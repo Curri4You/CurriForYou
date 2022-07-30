@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyPage_infoModification"
+    android:layout_marginTop="25dp"
+    android:layout_marginHorizontal="25dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="<"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"
+            android:layout_marginRight="7dp"/>
+
+        <TextView
+            android:id="@+id/tv_infoModification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정보수정"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"/>
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="15dp"/>
+
+    <ImageView
+        android:id="@+id/user_photoModi"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ewha_icon"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"
+            android:layout_marginBottom="7dp"/>
+
+        <EditText
+            android:background="@drawable/mypage_modification_box_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_nickname"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:padding="4dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학교"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"
+            android:layout_marginBottom="7dp"/>
+
+        <EditText
+            android:background="@drawable/mypage_modification_box_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이화여자대학교"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:padding="4dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="휴대폰"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"
+            android:layout_marginBottom="7dp"/>
+
+        <EditText
+            android:background="@drawable/mypage_modification_box_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_phoneNum"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:padding="4dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"
+            android:layout_marginBottom="7dp"/>
+
+        <EditText
+            android:background="@drawable/mypage_modification_box_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_email"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:padding="4dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"
+            android:layout_marginBottom="7dp"/>
+
+        <EditText
+            android:background="@drawable/mypage_modification_box_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/userId"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:padding="4dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:textSize="20dp"
+            android:textColor="@color/blue_5"
+            android:layout_marginBottom="7dp"/>
+
+        <EditText
+            android:background="@drawable/mypage_modification_box_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:padding="4dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
