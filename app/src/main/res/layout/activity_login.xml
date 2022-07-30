@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@null"
+        android:src="@drawable/main_logo">
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1, 1"
+            android:layout_marginVertical="10dp"
+            >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="ID"
+                    android:textSize="24sp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/blue_4"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="여기에 입력하세요"
+                    android:layout_height="50dp"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Password"
+                    android:textSize="24sp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/blue_4"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="여기에 입력하세요"
+                    android:layout_height="50dp"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:textColor="@color/blue_4"
+        android:text="LOGIN"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:textColor="@color/blue_4"
+        android:text="SIGN UP"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="▶ FORGET INFO?"
+        android:layout_margin="10dp"
+        android:textColor="@color/blue_4"
+        >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        >
+
+        <TextView
+            android:id="@+id/btn_findid_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/textview_edge"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="FIND ID"
+            android:textSize="24sp"
+            android:textColor="@color/blue_4" >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_edge"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:textSize="24sp"
+            android:text="FIND PW"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/blue_4"
+            >
+        </TextView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_curriculum_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Curriculum Page">
+    </Button>
+
+</LinearLayout>
