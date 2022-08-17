@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //*단과대학*//
+    <string-array name="spin_uni">
+        <item>인문과학대학</item>     //in
+        <item>사회과학대학</item>     //sagwa
+        <item>자연과학대학</item>     //ja
+        <item>엘텍공과대학</item>     //el
+        <item>공과대학</item>        //gong
+        <item>음악대학</item>        //umm
+        <item>조형예술대학</item>     //jo
+        <item>사범대학</item>        //sabeom
+        <item>경영대학</item>        //kyung
+        <item>신산업융합대학</item>   //sin
+        <item>의과대학</item>        //ui
+        <item>간호대학</item>        //gan
+        <item>약학대학</item>        //yag
+        <item>스크랜튼대학</item>     //seu
+        <item>교무처</item>          //gyo
+        <item>건강과학대학</item>     //gun
+        <item>호크마교양대학</item>   //ho
+        <item>AI융합학부</item>      //AI
+    </string-array>
+
+
+    //*전공 - 전체*//
+    <string-array name="spin_major_all">
+        <item>전체</item>
+    </string-array>
+
+
+    //*인문과학대학*//
+    <string-array name="spin_col_in">
+        <item>인문과학부</item>      //in
+        <item>기독교학부</item>      //gi
+        <item>인문과학대학</item>
+        <item>국어국문학과</item>
+        <item>중어중문학과</item>
+        <item>불어불문학과</item>
+        <item>독어독문학과</item>
+        <item>사학과</item>
+        <item>철학과</item>
+        <item>기독교학과</item>
+        <item>영어영문학부</item>
+    </string-array>
+
+    //*인문과학대학 - 인문과학부*//
+    <string-array name="spin_major_in">
+        <item>국어국문학</item>
+        <item>중어중문학</item>
+        <item>영어영문학</item>
+        <item>불어불문학</item>
+        <item>독어독문학</item>
+        <item>사학</item>
+        <item>철학</item>
+    </string-array>
+
+    //*인문과학대학 - 기독교학부*//
+    <string-array name="spin_major_gi">
+        <item>기독교학</item>
+    </string-array>
+
+
+    //*사회과학대학*//
+    <string-array name="spin_col_sagwa">
+        <item>사회과학부</item>              //sagwa
+        <item>커뮤니케이션미디어학부</item>    //keo
+        <item>사회과학대학</item>
+        <item>정치외교학과</item>
+        <item>행정학과</item>
+        <item>경제학과</item>
+        <item>문헌정보학과</item>
+        <item>사회학과</item>
+        <item>사회복지학과</item>
+        <item>심리학과</item>
+        <item>소비자학과</item>
+        <item>커뮤니케이션 미디어학부</item>
+    </string-array>
+
+    //*사회과학대학 - 사회과학부*//
+    <string-array name="spin_major_sagwa">
+        <item>정치외교학</item>
+        <item>행정학</item>
+        <item>경제학</item>
+        <item>문헌정보학</item>
+        <item>사회학</item>
+        <item>심리학</item>
+        <item>소비자학</item>
+        <item>사회복지학</item>
+    </string-array>
+
+    //*사회과학대학 - 커뮤니케이션미디어학부*//
+    <string-array name="spin_major_keo">
+        <item>커뮤니케이션 미디어학</item>
+    </string-array>
+</resources>

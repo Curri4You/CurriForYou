@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.curriforyou">
 
+    <!-- 인터넷 권한 선언 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,14 +19,22 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+        </activity>
+
+        <activity android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".SignUp_id"/>
+        <activity android:name=".SignUp_pw"/>
+        <activity android:name=".SignUp_repw"/>
+        <activity android:name=".SignUp_number"/>
+        <activity android:name=".SignUp_sch"/>
+        <activity android:name=".SignUp_major"/>
     </application>
 
 </manifest>
