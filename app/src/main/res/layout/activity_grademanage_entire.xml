@@ -1,171 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="40dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="80dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:text="학점"
-            android:textSize="30sp">
-        </TextView>
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_marginVertical="30dp">
-
-            <RadioButton
-                android:checked="true"
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/radio_button_rec"
-                android:textColor="@drawable/radio_text"
-                android:button="@null"
-                android:textAlignment="center"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="10dp"
-                android:text="4.3"
-                android:textSize="15dp" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/radio_button_rec"
-                android:textColor="@drawable/radio_text"
-                android:button="@null"
-                android:textAlignment="center"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="5dp"
-                android:text="4.5"
-                android:textSize="15dp"/>
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/radio_button_rec"
-                android:textColor="@drawable/radio_text"
-                android:button="@null"
-                android:textAlignment="center"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="10dp"
-                android:text="100"
-                android:textSize="40dp" />
-        </RadioGroup>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="45dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:text="학점"
+                android:textSize="25sp">
+            </TextView>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginVertical="15dp">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/radio_button_rec2"
+                    android:button="@null"
+                    android:checked="true"
+                    android:text="4.3"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/radio_text"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button_rec2"
+                    android:textColor="@drawable/radio_text"
+                    android:button="@null"
+                    android:textAlignment="center"
+                    android:text="4.5"
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button_rec2"
+                    android:textColor="@drawable/radio_text"
+                    android:button="@null"
+                    android:textAlignment="center"
+                    android:text="100"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="20"
+                android:background="@drawable/radio_button_rec2"
+                android:paddingVertical="10dp"
+                android:layout_marginVertical="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="총 평점"
+                        android:textSize="13sp">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.75"
+                        android:textSize="20sp"
+                        android:textStyle="bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전공 평점"
+                        android:textSize="13sp">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.75"
+                        android:textSize="20sp"
+                        android:textStyle="bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="교양 평점"
+                        android:textSize="13sp">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.75"
+                        android:textSize="20sp"
+                        android:textStyle="bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/next_arrow"
+                    android:layout_weight="2"
+                    app:tint="@color/blue_2"
+                    android:layout_marginRight="5dp">
+                </ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/pb_total_grade"
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    android:layout_weight="8"
+                    android:layout_gravity="center"
+                    android:max="100"
+                    android:progress="70"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progressDrawable="@drawable/progressbar_style1"
+                    android:layout_marginRight="10dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/radio_button_rec2"
+                    android:text="자세히 보기"
+                    android:textSize="10sp"
+                    android:layout_marginLeft="10dp">
+                </androidx.appcompat.widget.AppCompatButton>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="120"
+                    android:textSize="10sp">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textSize="10sp">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="183"
+                    android:textSize="10sp">
+                </TextView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_1"
             android:orientation="horizontal"
             android:weightSum="19"
-            android:background="@drawable/radio_button_rec"
-            android:paddingVertical="20dp"
-            android:layout_marginVertical="15dp">
+            android:padding="10dp"
+            android:layout_marginTop="20dp">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_weight="12"
+                android:text="1학년 1학기"
+                android:textStyle="bold">
+            </TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="총 평점"
-                    android:textSize="30sp">
-                </TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3.75"
-                    android:textSize="50sp"
-                    android:textStyle="bold">
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="평점"
+                android:textStyle="bold">
+            </TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="전공 평점"
-                    android:textSize="30sp">
-                </TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3.75"
-                    android:textSize="50sp"
-                    android:textStyle="bold">
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3.7"
+                android:textStyle="bold">
+            </TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="교양 평점"
-                    android:textSize="30sp">
-                </TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=" / "
+                android:textStyle="bold">
+            </TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3.75"
-                    android:textSize="50sp"
-                    android:textStyle="bold">
-                </TextView>
-
-            </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4.3"
+                android:textStyle="bold">
+            </TextView>
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
                 android:src="@drawable/next_arrow"
-                android:layout_weight="1"
-                app:tint="@color/blue_2"
-                android:layout_marginRight="5dp">
+                app:tint="@color/gray_4"
+                android:rotation="270">
             </ImageView>
 
         </LinearLayout>
 
-
-
-
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

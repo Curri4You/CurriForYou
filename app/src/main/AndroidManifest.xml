@@ -30,11 +30,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUp_id"/>
-        <activity android:name=".SignUp_pw"/>
-        <activity android:name=".SignUp_repw"/>
-        <activity android:name=".SignUp_number"/>
-        <activity android:name=".SignUp_sch"/>
-        <activity android:name=".SignUp_major"/>
     </application>
 
 </manifest>

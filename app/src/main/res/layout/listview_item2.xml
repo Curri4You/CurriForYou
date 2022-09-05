@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:weightSum="9"
+    android:layout_marginHorizontal="25dp"
+    android:layout_marginVertical="5dp"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/rectangle_blue5"
+        android:paddingRight="20dp"
+        android:paddingVertical="10dp">
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3학년 권장">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사이버보안개론"
+            android:textStyle="bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="3학점"
+        android:textSize="10sp">
+    </TextView>
+
+    <RadioButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:checked="true"
+        android:background="@drawable/shape_round"
+        android:gravity="center"
+        android:button="@null"
+        android:text="A+"
+        android:textSize="20sp"
+        android:textColor="@color/white">
+    </RadioButton>
+
+
+
+</LinearLayout>
