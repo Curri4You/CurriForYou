@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    //*복수전공, 부전공, 연계전공*//
+    <string-array name="spin_sub_major">
+        <item>복수전공</item>
+        <item>부전공</item>
+        <item>연계전공</item>
+    </string-array>
+
+    //*************************************************//
+
     //*단과대학*//
     <string-array name="spin_uni">
         <item>인문과학대학</item>     //0. in

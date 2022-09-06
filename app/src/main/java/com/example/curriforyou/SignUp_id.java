@@ -29,10 +29,11 @@ public class SignUp_id extends AppCompatActivity {
     private AlertDialog dialog;
     private boolean validate = false;
 
-    ArrayAdapter<CharSequence> spin_uniAdapter, spin_colAdapter, spin_majAdapter;
+    ArrayAdapter<CharSequence> spin_uniAdapter, spin_colAdapter, spin_majAdapter, spin_subAdapter;
     String choice_uni="";
     String choice_col="";
     String choice_maj="";
+    String choice_sub="";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,7 +115,6 @@ public class SignUp_id extends AppCompatActivity {
         spin_university_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //인문과학대학을 선택할 경우
                 //선택한 item의 index가 0 ~ 17 인 경우
                 if (position >= 0 && position <= 17){     //spin_uniAdapter.getItem(position).equals("인문과학대학")
                     int uni = position;
@@ -179,6 +179,24 @@ public class SignUp_id extends AppCompatActivity {
             }
         });
 
+        //Spinner - 복수전공&부전공&연계전공
+        final Spinner spin_sub_major = (Spinner)findViewById(R.id.spin_sub_major);
+        spin_subAdapter = ArrayAdapter.createFromResource(SignUp_id.this, R.array.spin_sub_major, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spin_subAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spin_sub_major.setAdapter(spin_subAdapter);
+
+        spin_sub_major.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                choice_sub = spin_subAdapter.getItem(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         //회원가입 버튼 클릭 시
         btn_register = findViewById(R.id.btn_register);
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +209,8 @@ public class SignUp_id extends AppCompatActivity {
                 String university_name = choice_uni;
                 String college_name = choice_col;
                 String major_name = choice_maj;
-                String major_division = et_major_division.getText().toString();
+                //getText().toString은 회원가입 버튼을 클릭했을 시에만 가져올 수 있기 때문에 다른 함수에서 제대로 된 값을 찾아올 수 없음 --> 이 함수 내에서 해결해야 함
+                String major_division = choice_sub + "&" + et_major_division.getText().toString();
 
                 Toast.makeText(SignUp_id.this, choice_uni + "&" + choice_col, Toast.LENGTH_SHORT).show();
 
