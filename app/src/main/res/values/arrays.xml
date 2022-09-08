@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //*복수전공, 부전공, 연계전공*//
+    <string-array name="spin_sub_major">
+        <item>복수전공</item>
+        <item>부전공</item>
+        <item>연계전공</item>
+    </string-array>
+
+    //*************************************************//
+
+    //*단과대학*//
+    <string-array name="spin_uni">
+        <item>인문과학대학</item>     //0. in
+        <item>사회과학대학</item>     //1. sagwa
+        <item>자연과학대학</item>     //2. ja
+        <item>엘텍공과대학</item>     //3. el
+        <item>공과대학</item>        //4. gong
+        <item>음악대학</item>        //5. umm
+        <item>조형예술대학</item>     //6. jo
+        <item>사범대학</item>        //7. sabeom
+        <item>경영대학</item>        //8. kyung
+        <item>신산업융합대학</item>   //9. sin
+        <item>의과대학</item>        //10. ui
+        <item>간호대학</item>        //11. gan
+        <item>약학대학</item>        //12. yag
+        <item>스크랜튼대학</item>     //13. seu
+        <item>교무처</item>          //14. gyo
+        <item>건강과학대학</item>     //15. gun
+        <item>호크마교양대학</item>   //16. ho
+        <item>AI융합학부</item>      //17. AI
+    </string-array>
+
+
+    //*전공 - 전체*//
+    <string-array name="spin_major_all">
+        <item>전체</item>
+    </string-array>
+
+    //*************************************************//
+    //*인문과학대학*//
+    <string-array name="spin_col_in">
+        <item>인문과학부</item>      //in
+        <item>기독교학부</item>      //gi
+        <item>인문과학대학</item>
+        <item>국어국문학과</item>
+        <item>중어중문학과</item>
+        <item>불어불문학과</item>
+        <item>독어독문학과</item>
+        <item>사학과</item>
+        <item>철학과</item>
+        <item>기독교학과</item>
+        <item>영어영문학부</item>
+    </string-array>
+
+    //*인문과학대학 - 인문과학부*//
+    <string-array name="spin_major_inin">
+        <item>국어국문학</item>
+        <item>중어중문학</item>
+        <item>영어영문학</item>
+        <item>불어불문학</item>
+        <item>독어독문학</item>
+        <item>사학</item>
+        <item>철학</item>
+    </string-array>
+
+    //*인문과학대학 - 기독교학부*//
+    <string-array name="spin_major_ingi">
+        <item>기독교학</item>
+    </string-array>
+
+    //*************************************************//
+    //*사회과학대학*//
+    <string-array name="spin_col_sagwa">
+        <item>사회과학부</item>              //sagwa
+        <item>커뮤니케이션미디어학부</item>    //keo
+        <item>사회과학대학</item>
+        <item>정치외교학과</item>
+        <item>행정학과</item>
+        <item>경제학과</item>
+        <item>문헌정보학과</item>
+        <item>사회학과</item>
+        <item>사회복지학과</item>
+        <item>심리학과</item>
+        <item>소비자학과</item>
+        <item>커뮤니케이션 미디어학부</item>
+    </string-array>
+
+    //*사회과학대학 - 사회과학부*//
+    <string-array name="spin_major_sagwasagwa">
+        <item>정치외교학</item>
+        <item>행정학</item>
+        <item>경제학</item>
+        <item>문헌정보학</item>
+        <item>사회학</item>
+        <item>심리학</item>
+        <item>소비자학</item>
+        <item>사회복지학</item>
+    </string-array>
+
+    //*사회과학대학 - 커뮤니케이션미디어학부*//
+    <string-array name="spin_major_sagwakeo">
+        <item>커뮤니케이션.미디어학</item>
+    </string-array>
+
+    //*************************************************//
+    //*자연과학대학*//
+    <string-array name="spin_col_ja">
+        <item>수리물리과학부</item>        //su
+        <item>화학생명분자과학부</item>     //hwa
+        <item>자연과학대학</item>
+        <item>수학과</item>
+        <item>통계학과</item>
+        <item>물리학과</item>
+    </string-array>
+
+    //*자연과학대학 - 수리물리과학부*//
+    <string-array name="spin_major_jasu">
+        <item>수학</item>
+        <item>통계학</item>
+        <item>물리학</item>
+    </string-array>
+
+    //*자연과학대학 - 화학생명분자과학부*//
+    <string-array name="spin_major_jahwa">
+        <item>화학 나노과학</item>
+        <item>생명과학</item>
+    </string-array>
+
+    //*************************************************//
+    //*엘텍공과대학*//
+    <string-array name="spin_col_el">
+        <item>소프트웨어학부</item>        //so
+        <item>차세대기술공학부</item>      //cha
+        <item>미래사회공학부</item>        //mi
+        <item>휴먼기계바이오공학부</item>
+        <item>엘텍공과대학</item>
+    </string-array>
+
+    //*엘텍공과대학 - 소프트웨어학부*//
+    <string-array name="spin_major_elso">
+        <item>컴퓨터공학</item>
+        <item>사이버보안</item>
+    </string-array>
+
+    //*엘텍공과대학 - 차세대기술공학부*//
+    <string-array name="spin_major_elcha">
+        <item>전자전기공학</item>
+        <item>화학신소재공학</item>
+        <item>식품공학</item>
+        <item>식품생명공학</item>
+        <item>화공신소재공학</item>
+    </string-array>
+
+    //*엘텍공과대학 - 미래사회공학부*//
+    <string-array name="spin_major_elmi">
+        <item>기후 에너지시스템공학</item>
+        <item>환경공학</item>
+        <item>건축도시시스템공학</item>
+        <item>건축학</item>
+    </string-array>
+
+    //*************************************************//
+    //*공과대학*//
+    <string-array name="spin_col_gong">
+        <item>건축학부</item>           //gun
+        <item>환경 식품공학부</item>     //hwan
+        <item>화학신소재공학부</item>     //hwa
+        <item>컴퓨터공학과</item>
+        <item>전자공학과</item>
+    </string-array>
+
+    //*공과대학 - 건축학부*//
+    <string-array name="spin_major_gonggun">
+        <item>건축학</item>
+        <item>건축공학</item>
+    </string-array>
+
+    //*공과대학 - 환경 식품공학부*//
+    <string-array name="spin_major_gonghwan">
+        <item>환경공학</item>
+        <item>식품공학</item>
+    </string-array>
+
+    //*공과대학 - 화학신소재공학부*//
+    <string-array name="spin_major_gonghwa">
+        <item>화학신소재공학</item>
+    </string-array>
+
+    //*************************************************//
+    //*음악대학*//
+    <string-array name="spin_col_umm">
+        <item>음악학부</item>       //umm
+        <item>음악대학</item>
+        <item>건반악기과</item>
+        <item>관현악과</item>
+        <item>성악과</item>
+        <item>작곡과</item>
+        <item>한국음악과</item>
+        <item>무용과</item>
+    </string-array>
+
+    //*음악대학 - 음악학부*//
+    <string-array name="spin_major_ummumm">
+        <item>건반악기</item>
+        <item>관현악</item>
+        <item>성악</item>
+        <item>작곡</item>
+        <item>한국음악</item>
+    </string-array>
+
+    //*************************************************//
+    //*조형예술대학*//
+    <string-array name="spin_col_jo">
+        <item>조형예술학부</item>     //jo
+        <item>섬유 패션학부</item>    //seom
+        <item>디자인학부</item>      //di
+        <item>의류학과</item>
+        <item></item>
+    </string-array>
+
+    //*조형예술대학 - 조형예술학부*//
+    <string-array name="spin_major_jojo">
+        <item>동양화</item>
+        <item>서양화</item>
+        <item>조소</item>
+        <item>도자예술</item>
+        <item>섬유예술</item>
+    </string-array>
+
+    //*조형예술대학 - 섬유 패션학부*//
+    <string-array name="spin_major_joseom">
+        <item>섬유예술</item>
+        <item>패션디자인</item>
+        <item>의류학</item>
+    </string-array>
+
+    //*조형예술대학 - 디자인학부*//
+    <string-array name="spin_major_jodi">
+        <item>공간디자인</item>
+        <item>시각디자인</item>
+        <item>산업디자인</item>
+        <item>패션디자인</item>
+        <item>영상디자인</item>
+    </string-array>
+
+    //*************************************************//
+    //*사범대학*//
+    <string-array name="spin_col_sabeom">
+        <item>특수교육과</item>      //teug
+        <item>사회과교육과</item>     //sa
+        <item>과학교육과</item>      //gwa
+        <item>교육학과</item>
+        <item>유아교육과</item>
+        <item>초등교육과</item>
+        <item>교육공학과</item>
+        <item>영어교육과</item>
+        <item>국어교육과</item>
+        <item>수학교육과</item>
+    </string-array>
+
+    //*사범대학 - 특수교육과*//
+    <string-array name="spin_major_sabeomteug">
+        <item>유아특수교육</item>
+        <item>초등특수교육</item>
+        <item>중등특수교육</item>
+    </string-array>
+
+    //*사범대학 - 사회과교육과*//
+    <string-array name="spin_major_sabeomsa">
+        <item>역사교육</item>
+        <item>사회교육</item>
+        <item>지리교육</item>
+    </string-array>
+
+    //*사범대학 - 과학교육과*//
+    <string-array name="spin_major_sabeomgwa">
+        <item>물리교육</item>
+        <item>화학교육</item>
+        <item>생물교육</item>
+        <item>지구과학교육</item>
+    </string-array>
+
+    //*************************************************//
+    //*경영대학*//
+    <string-array name="spin_col_kyung">
+        <item>경영학부</item>       //kyung
+        <item>국제사무학과</item>
+    </string-array>
+
+    //*경영대학 - 경영학부*//
+    <string-array name="spin_major_kyungkyung">
+        <item>경영학</item>
+    </string-array>
+
+    //*************************************************//
+    //*신산업융합대학*//
+    <string-array name="spin_col_sin">
+        <item>체육과학부</item>      //che
+        <item>신산업융합대학</item>
+        <item>융합콘텐츠학과</item>
+        <item>의류산업학과</item>
+        <item>국제사무학과</item>
+        <item>식품영양학과</item>
+        <item>융합보건학과</item>
+    </string-array>
+
+    //*신산업융합대학 - 체육과학부*//
+    <string-array name="spin_major_sinche">
+        <item>스포츠과학</item>
+        <item>글로벌스포츠산업</item>
+    </string-array>
+
+    //*************************************************//
+    //*의과대학*//
+    <string-array name="spin_col_ui">
+        <item>의예과</item>
+        <item>의학과</item>
+    </string-array>
+
+    //*************************************************//
+    //*간호대학*//
+    <string-array name="spin_col_gan">
+        <item>간호학부</item>       //gan
+    </string-array>
+
+    //*간호대학 - 간호학부*//
+    <string-array name="spin_major_gangan">
+        <item>간호학</item>
+        <item>글로벌건강간호학</item>
+    </string-array>
+
+    //*************************************************//
+    //*약학대학*//
+    <string-array name="spin_col_yag">
+        <item>약학부</item>        //yag
+        <item>약학과</item>
+        <item>산업제약학과</item>
+    </string-array>
+
+    //*약학대학 - 약학부*//
+    <string-array name="spin_major_yagyag">
+        <item>약학</item>
+        <item>미래산업약학</item>
+    </string-array>
+
+    //*************************************************//
+    //*스크랜튼대학*//
+    <string-array name="spin_col_seu">
+        <item>스크랜튼학부</item>     //seu
+        <item>융합학부</item>        //yung
+        <item>국제학부</item>        //gug
+        <item>스크랜튼대학</item>
+        <item>뇌·인지과학부</item>
+    </string-array>
+
+    //*스크랜튼대학 - 스크랜튼학부*//
+    <string-array name="spin_major_seuseu">
+        <item>자유</item>
+        <item>자기설계(통합적문화연구)</item>
+        <item>자기설계(디지털인문학)</item>
+        <item>자기설계(사회과학이니셔티브)</item>
+        <item>자기설계(과학과생명)</item>
+        <item>자기설계(인체와건강)</item>
+        <item>자기설계(사회와정의)</item>
+        <item>자기설계(문화연구)</item>
+        <item>자기설계(사회과학심화)</item>
+        <item>자기설계(스크랜튼-과학융합)</item>
+        <item>자기설계</item>
+        <item>자기설계(스크랜튼-공연예술경영)</item>
+        <item>자기설계(스크랜튼-뇌인지사회학)</item>
+    </string-array>
+
+    //*스크랜튼대학 - 융합학부*//
+    <string-array name="spin_major_seuyung">
+        <item>뇌·인지과학</item>
+    </string-array>
+
+    //*스크랜튼대학 - 국제학부*//
+    <string-array name="spin_major_seugug">
+        <item>국제학</item>
+        <item>글로벌한국학</item>
+    </string-array>
+
+    //*************************************************//
+    //*교무처*//
+    <string-array name="spin_col_gyo">
+        <item>수업지원팀</item>              //su -> 너무 많음.. 우선 패스
+        <item>미술사학과</item>
+        <item>여성학과</item>
+        <item>한국학과</item>
+        <item>법학과(법학전문대학원)</item>
+    </string-array>
+
+    //*************************************************//
+    //*건강과학대학*//
+    <string-array name="spin_col_gun">
+        <item>체육과학부</item>      //che
+        <item>간호학부</item>       //gan
+        <item>식품영양학과</item>
+        <item>보건관리학과</item>
+    </string-array>
+
+    //*건강과학대학 - 체육과학부*//
+    <string-array name="spin_major_gunche">
+        <item>체육과학</item>
+    </string-array>
+
+    //*건강과학대학 - 간호학부*//
+    <string-array name="spin_major_gungan">
+        <item>간호학</item>
+        <item>글로벌건강간호학</item>
+    </string-array>
+
+    //*************************************************//
+    //*호크마교양대학*//
+    <string-array name="spin_col_ho">
+        <item>호크마교양대학</item>
+    </string-array>
+
+    //*************************************************//
+    //*AI융합학부*//
+    <string-array name="spin_col_AI">
+        <item>AI융합학부</item>     //AI
+    </string-array>
+
+    //*AI융합학부 - AI융합학부*//
+    <string-array name="spin_major_AIAI">
+        <item>인공지능</item>
+    </string-array>
+
+
+</resources>

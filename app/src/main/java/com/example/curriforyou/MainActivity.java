@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-        //LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE로 이동
+
+        //LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE 로 이동
         Button btn_login_page = (Button)findViewById(R.id.btn_login_page);
         btn_login_page.setOnClickListener(new View.OnClickListener() {
             @Override

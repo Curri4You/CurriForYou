@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1"
-        android:src="@drawable/rectangle_navy"
+        android:src="@drawable/rectangle_blue5"
         android:paddingVertical="5dp">
     </ImageView>
 
@@ -20,7 +20,7 @@
         android:layout_weight="6"
         android:text="사이버보안개론"
         android:textSize="15sp"
-        android:gravity="center">
+        android:gravity="center_vertical">
     </TextView>
 
     <TextView

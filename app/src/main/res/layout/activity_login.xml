@@ -43,6 +43,7 @@
                     android:paddingRight="10dp"
                     android:textColor="@color/blue_4"/>
                 <EditText
+                    android:id="@+id/et_user_id"
                     android:layout_width="match_parent"
                     android:hint="여기에 입력하세요"
                     android:layout_height="50dp"/>
@@ -60,6 +61,7 @@
                     android:paddingRight="10dp"
                     android:textColor="@color/blue_4"/>
                 <EditText
+                    android:id="@+id/et_user_password"
                     android:layout_width="match_parent"
                     android:hint="여기에 입력하세요"
                     android:layout_height="50dp"/>
@@ -68,6 +70,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
@@ -79,6 +82,7 @@
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
@@ -108,7 +112,7 @@
         >
 
         <TextView
-            android:id="@+id/btn_findid_1"
+            android:id="@+id/btn_fi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
@@ -122,6 +126,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/btn_fp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/textview_edge"
