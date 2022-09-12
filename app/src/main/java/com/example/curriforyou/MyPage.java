@@ -3,13 +3,17 @@ package com.example.curriforyou;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MyPage extends AppCompatActivity {
@@ -26,6 +30,12 @@ public class MyPage extends AppCompatActivity {
     //private EditText et_id;
     private String str;
     private ListView list;
+    private View view;
+
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @NonNull Bundle savedInstanceState) {
+       view = inflater.inflate(R.layout.activity_mypage, container, false);
+       return view;
+    }
 
     @SuppressLint("WrongViewCast")
     @Override
