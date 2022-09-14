@@ -17,6 +17,8 @@ public class Curriculum extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_curriculum, container, false);
+
+
         return view;
     }
 }
