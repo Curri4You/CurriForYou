@@ -148,4 +148,10 @@
         android:text="Curriculum Page">
     </Button>
 
+    <Button
+        android:id="@+id/btn_activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="activity_main" />
+
 </LinearLayout>

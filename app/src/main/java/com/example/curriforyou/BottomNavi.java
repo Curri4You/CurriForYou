@@ -17,7 +17,8 @@ public class BottomNavi extends AppCompatActivity {
     private FragmentTransaction ft;
     private Curriculum curriculum;
     // 추후에 찜리스트, 강의추천, 학점관리 추가
-    //private MyPage myPage;
+    // private MyPage myPage;
+    private frag1 frag1;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class BottomNavi extends AppCompatActivity {
         curriculum = new Curriculum();
         // 추후에 찜리스트, 강의추천, 학점관리 추가
         //myPage = new MyPage();
+        frag1 = new frag1();
         setFrag(0); // 첫 fragment 화면 curriculum으로 설정
 
     }
@@ -73,11 +75,11 @@ public class BottomNavi extends AppCompatActivity {
             case 3:
                 ft.replace(R.id.main_frame, grade_management);
                 ft.commit();
-                break;
-            case 4:
-                ft.replace(R.id.main_frame, myPage);
-                ft.commit();
                 break;*/
+            case 4:
+                ft.replace(R.id.main_frame, frag1);
+                ft.commit();
+                break;
         }
     }
 
