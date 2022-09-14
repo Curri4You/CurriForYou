@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Curriculum extends Fragment {
+public class Navi_Curriculum extends Fragment {
 
     private View view;
 

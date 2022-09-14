@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //CURRICULUM PAGE에서 햄버거 클릭 --> 사이드바 화면 출력
         drawerLayout = (DrawerLayout)findViewById(R.id.curriculum_layout);
         drawerView = (View)findViewById(R.id.curriculum_sidebar);

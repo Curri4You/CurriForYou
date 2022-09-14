@@ -15,7 +15,7 @@ public class BottomNavi extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Curriculum curriculum;
+    private Navi_Curriculum naviCurriculum;
     // 추후에 찜리스트, 강의추천, 학점관리 추가
     // private MyPage myPage;
     private frag1 frag1;
@@ -48,7 +48,7 @@ public class BottomNavi extends AppCompatActivity {
                 return true;
             }
         });
-        curriculum = new Curriculum();
+        naviCurriculum = new Navi_Curriculum();
         // 추후에 찜리스트, 강의추천, 학점관리 추가
         //myPage = new MyPage();
         frag1 = new frag1();
@@ -61,7 +61,7 @@ public class BottomNavi extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch(n){
             case 0:
-                ft.replace(R.id.main_frame, curriculum);
+                ft.replace(R.id.main_frame, naviCurriculum);
                 ft.commit();
                 break;
             /*case 1:
