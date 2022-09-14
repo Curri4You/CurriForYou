@@ -32,7 +32,7 @@ public class MyPage extends AppCompatActivity {
     private ListView list;
     private View view;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @NonNull Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        view = inflater.inflate(R.layout.activity_mypage, container, false);
        return view;
     }
