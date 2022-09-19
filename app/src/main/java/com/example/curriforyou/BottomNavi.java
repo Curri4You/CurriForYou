@@ -17,7 +17,7 @@ public class BottomNavi extends AppCompatActivity {
     private FragmentTransaction ft;
     private Navi_Curriculum naviCurriculum;
     // 추후에 찜리스트, 강의추천, 학점관리 추가
-    // private MyPage myPage;
+    //private Navi_MyPage naviMyPage;
     private frag1 frag1;
 
     protected void onCreate(Bundle savedInstanceState){
@@ -30,19 +30,19 @@ public class BottomNavi extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.navi_curriculum:
-                        setFrag(0);
-                        break;
-                    case R.id.navi_jjim_list:
                         setFrag(1);
                         break;
-                    case R.id.navi_lecture_recommendation:
+                    case R.id.navi_jjim_list:
                         setFrag(2);
                         break;
-                    case R.id.navi_grade_management:
+                    case R.id.navi_lecture_recommendation:
                         setFrag(3);
                         break;
-                    case R.id.navi_mypage:
+                    case R.id.navi_grade_management:
                         setFrag(4);
+                        break;
+                    case R.id.navi_mypage:
+                        setFrag(5);
                         break;
                 }
                 return true;
@@ -52,7 +52,7 @@ public class BottomNavi extends AppCompatActivity {
         // 추후에 찜리스트, 강의추천, 학점관리 추가
         //myPage = new MyPage();
         frag1 = new frag1();
-        setFrag(0); // 첫 fragment 화면 curriculum으로 설정
+        setFrag(1); // 첫 fragment 화면 curriculum으로 설정
 
     }
 
@@ -61,22 +61,26 @@ public class BottomNavi extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch(n){
             case 0:
+                /*ft.replace(R.id.main_frame, naviLogin);
+                ft.commit();*/
+                break;
+            case 1:
                 ft.replace(R.id.main_frame, naviCurriculum);
                 ft.commit();
                 break;
             /*case 1:
-                ft.replace(R.id.main_frame, jjim_list);
-                ft.commit();
-                break;
-            case 2:
-                ft.replace(R.id.main_frame, lecture_recommendation);
+                ft.replace(R.id.main_frame, naviJjimList);
                 ft.commit();
                 break;
             case 3:
-                ft.replace(R.id.main_frame, grade_management);
+                ft.replace(R.id.main_frame, naviLectureRecommendation);
+                ft.commit();
+                break;
+            case 4:
+                ft.replace(R.id.main_frame, naviGradeManagement);
                 ft.commit();
                 break;*/
-            case 4:
+            case 5:
                 ft.replace(R.id.main_frame, frag1);
                 ft.commit();
                 break;
