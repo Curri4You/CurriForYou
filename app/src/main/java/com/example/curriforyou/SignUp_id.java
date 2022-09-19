@@ -73,13 +73,7 @@ public class SignUp_id extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success2 = jsonResponse.getBoolean("success2");
 
-                            /*//test
-                            dialog = builder.setMessage("실패 !!ㅅ").setPositiveButton("확인", null).create();
-                            dialog.show();*/
-
                             if(success2){
-                                //Toast.makeText(getApplicationContext(), "testing", Toast.LENGTH_SHORT).show();
-
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SignUp_id.this);
                                 dialog = builder.setMessage("사용할 수 있는 아이디입니다.").setPositiveButton("확인", null).create();
                                 dialog.show();

@@ -176,16 +176,16 @@
         android:layout_margin="20dp">
 
         <CheckBox
-            android:checked="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
             android:layout_marginRight="3dp"
+            android:layout_weight="1"
             android:background="@drawable/radio_button"
-            android:textColor="@drawable/radio_text"
+            android:button="@null"
+            android:checked="false"
+            android:text="주전공"
             android:textAlignment="center"
-            android:text="주전공"/>
+            android:textColor="@drawable/radio_text" />
 
         <CheckBox
             android:checked="false"
