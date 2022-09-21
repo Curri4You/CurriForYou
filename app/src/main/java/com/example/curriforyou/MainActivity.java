@@ -43,12 +43,14 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    //sidebar를 출력하기 위한 DrawerLayout
     private DrawerLayout drawerLayout;
     private View drawerView;
 
-    /////////
+    //btn_list 클릭 시 사용될 큐
     static RequestQueue requestQueue;
 
+    //[ListView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     private  String REQUEST_URL = "http://smlee099.dothome.co.kr/CourseList.php";
     public static final int LOAD_SUCCESS = 101;
@@ -56,16 +58,13 @@ public class MainActivity extends AppCompatActivity {
     private SimpleAdapter adapter = null;
     private ArrayList<HashMap<String, String>> courseList = null;
 
-    /////////////
-    private TextView tv_id, tv_pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-        //////////////////
-        //커리큘럼 화면이 켜지면서 리스트 출력되도록 JSON
+        //[ListView] 커리큘럼 화면이 켜짐과 동시에 리스트가 출력되도록 getJSON 함수 사용
         ListView lv_curriculum_course = (ListView)findViewById(R.id.lv_curriculum_course);
         courseList = new ArrayList<HashMap<String, String>>();
         String[] from = new String[]{"course_name", "subject_id", "gpa", "is_english"};
@@ -73,13 +72,16 @@ public class MainActivity extends AppCompatActivity {
         adapter = new SimpleAdapter(this, courseList, R.layout.listview_item, from, to);
         lv_curriculum_course.setAdapter(adapter);
 
+        //[ListView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Please wait ...");
         progressDialog.show();
 
+        //[ListView] ListView 출력하는 사용자 지정 함수
         getJSON();
 
         //////////////////
+        //testing 용 - 무시해도 됨
         //TextView에 리스트에 들어갈 내용 나열출력
         Button btn_list = (Button) findViewById(R.id.btn_list);
 
@@ -94,16 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 CourseList();
             }
         });
-
-        tv_id = findViewById(R.id.tv_id);
-        tv_pass = findViewById(R.id.tv_pass);
-        Intent intent = getIntent();
-        String user_id = intent.getStringExtra("user_id");
-        String user_password = intent.getStringExtra("user_password");
-        tv_id.setText(user_id);
-        tv_pass.setText(user_password);
-        ///////////////////
-
+        //////////////////
 
 
         //LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE 로 이동
@@ -148,8 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    ////////
-    //JSON 함수
+    //[ListView] MyHandler 함수
     private final MyHandler mHandler = new MyHandler(this);
 
     private static class MyHandler extends Handler{
@@ -173,7 +165,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void getJSON(){
+    //[ListView] getJSON 함수
+    //주어진 HTTP 웹사이트로부터 결과를 JSON으로 불러옴
+    public void getJSON() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -230,26 +224,28 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
     }
 
-    //////////
+    //[ListView] jsonParser 함수
+    //웹사이트 화면을 파싱
     public boolean jsonParser(String jsonString) {
-
 
         if (jsonString == null) return false;
 
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
 
-            JSONArray photo = jsonObject.getJSONArray("course");
+            //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
+            JSONArray course = jsonObject.getJSONArray("course");
 
             courseList.clear();
 
-            for (int i = 0; i < photo.length(); i++) {
-                JSONObject photoInfo = photo.getJSONObject(i);
+            //course의 길이만큼 반복해서 Mapping
+            for (int i = 0; i < course.length(); i++) {
+                JSONObject courseInfo = course.getJSONObject(i);
 
-                String course_name = photoInfo.getString("course_name");
-                String subject_id = photoInfo.getString("subject_id");
-                String gpa = photoInfo.getString("gpa");
-                String is_english = photoInfo.getString("is_english");
+                String course_name = courseInfo.getString("course_name");
+                String subject_id = courseInfo.getString("subject_id");
+                String gpa = courseInfo.getString("gpa");
+                String is_english = courseInfo.getString("is_english");
 
                 HashMap<String, String> photoinfoMap = new HashMap<String, String>();
                 photoinfoMap.put("course_name", course_name);
@@ -267,8 +263,8 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-
     ////////
+    //테스트용 - 버튼 누르면 토스트 문구 띄우기
     public void CourseList(){
         String URL = "http://smlee099.dothome.co.kr/CourseList.php";
 
