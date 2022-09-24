@@ -14,7 +14,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="top|right"
-        android:src="@drawable/x_button"
+        android:src="@drawable/close"
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"/>
 
