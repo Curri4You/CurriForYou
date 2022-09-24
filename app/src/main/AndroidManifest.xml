@@ -21,7 +21,7 @@
             android:exported="true">
         </activity>
 
-        <activity android:name=".BottomNavi"
+        <activity android:name=".frag1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

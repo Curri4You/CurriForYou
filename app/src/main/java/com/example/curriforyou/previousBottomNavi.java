@@ -10,14 +10,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BottomNavi extends AppCompatActivity {
+public class previousBottomNavi extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Navi_Curriculum naviCurriculum;
+    private previousNavi_Curriculum naviCurriculum;
     // 추후에 찜리스트, 강의추천, 학점관리 추가
-    //private Navi_MyPage naviMyPage;
+    //private previousNavi_MyPage naviMyPage;
     private frag1 frag1;
 
     protected void onCreate(Bundle savedInstanceState){
@@ -48,7 +48,7 @@ public class BottomNavi extends AppCompatActivity {
                 return true;
             }
         });
-        naviCurriculum = new Navi_Curriculum();
+        naviCurriculum = new previousNavi_Curriculum();
         // 추후에 찜리스트, 강의추천, 학점관리 추가
         //myPage = new MyPage();
         frag1 = new frag1();
@@ -80,10 +80,10 @@ public class BottomNavi extends AppCompatActivity {
                 ft.replace(R.id.main_frame, naviGradeManagement);
                 ft.commit();
                 break;*/
-            case 5:
+            /*case 5:
                 ft.replace(R.id.main_frame, frag1);
                 ft.commit();
-                break;
+                break;*/
         }
     }
 

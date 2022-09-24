@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,16 +26,11 @@ public class LoginActivity extends AppCompatActivity {
     ///////////
     private EditText et_user_id, et_user_password;
     private Button btn_login, btn_register;
-    private FragmentManager fm;
-    private FragmentTransaction ft;
-    private Navi_Curriculum naviCurriculum;
-    private View view;
 
     ////////////
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        naviCurriculum = new Navi_Curriculum();
 
         //////////////////////////////
         et_user_id = findViewById(R.id.et_user_id);
@@ -96,11 +89,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_curriculum_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fm = getSupportFragmentManager();
-                ft = fm.beginTransaction();
-                setContentView(R.layout.activity_main);
-                ft.replace(R.id.main_frame, naviCurriculum);
-                ft.commit();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

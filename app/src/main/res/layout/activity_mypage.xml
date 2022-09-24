@@ -385,17 +385,4 @@
 
     </LinearLayout>
 
-   <!-- <EditText
-        android:id="@+id/et_id"
-        android:layout_width="300dp"
-        android:text="블라블라"
-        android:layout_height="wrap_content"
-        android:hint="아이디를 입력하세요..."/>
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />-->
-
 </LinearLayout>
