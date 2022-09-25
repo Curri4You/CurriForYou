@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -137,6 +141,13 @@
 
         </TableLayout>
 
+        <ListView
+            android:id="@+id/lv_curriculum_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
 
         <!--로그인 페이지로 이동하는 버튼-->
         <LinearLayout
@@ -145,19 +156,19 @@
             android:layout_weight="1">
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_list"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="list">
+        </androidx.appcompat.widget.AppCompatButton>
 
-            <Button
-                android:id="@+id/btn_login_page"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LOGIN PAGE">
-            </Button>
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_login_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOGIN PAGE">
+        </Button>
 
         <LinearLayout
             android:layout_width="match_parent"
