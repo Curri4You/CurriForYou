@@ -2,44 +2,27 @@ package com.example.curriforyou;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MyPage extends AppCompatActivity implements View.OnClickListener {
+public class frag1 extends AppCompatActivity implements View.OnClickListener {
 
-    @Override
+    private View view;
+
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.frag1, container, false);
+        return view;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mypage);
-
-        ImageView user_photo = (ImageView) findViewById(R.id.user_photo);
-        user_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "프로필 사진 변경", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        TextView user_nickname = (TextView) findViewById(R.id.user_nickname);
-        TextView user_position = (TextView) findViewById(R.id.user_position);
-        ImageView btn_addMajor = (ImageView) findViewById(R.id.btn_addMajor);
-        Button btn_doubleMajor = (Button) findViewById(R.id.btn_doubleMajor);
-        Button btn_minor = (Button) findViewById(R.id.btn_minor);
-
-        ImageView btn_infoModification = (ImageView) findViewById(R.id.btn_infoModification);
-        btn_infoModification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage_infoModification.class);
-                startActivity(intent); //액티비티 이동
-            }
-        });
+        setContentView(R.layout.frag1);
 
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
         LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
@@ -79,5 +62,8 @@ public class MyPage extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
+
     }
+
 }
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navi_curriculum"
+        android:enabled="true"
+        android:icon="@drawable/navi_curriculum"
+        android:title="교과과정"/>
+
+    <item
+        android:id="@+id/navi_jjim_list"
+        android:enabled="true"
+        android:icon="@drawable/navi_jjim_list"
+        android:title="찜리스트"/>
+
+    <item
+        android:id="@+id/navi_lecture_recommendation"
+        android:enabled="true"
+        android:icon="@drawable/navi_lecture_recommendation"
+        android:title="강의추천"/>
+
+    <item
+        android:id="@+id/navi_grade_management"
+        android:enabled="true"
+        android:icon="@drawable/navi_grade_management"
+        android:title="학점관리"/>
+
+    <item
+        android:id="@+id/navi_mypage"
+        android:enabled="true"
+        android:icon="@drawable/navi_my_page"
+        android:title="마이페이지"/>
+</menu>

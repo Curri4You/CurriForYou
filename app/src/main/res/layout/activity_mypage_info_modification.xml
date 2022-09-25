@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,18 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test"
-            android:textSize="20dp"
-            android:textColor="@color/blue_5"
-            android:layout_marginRight="7dp"/>
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/navigate_before"
+            android:layout_gravity="center_vertical"/>
 
         <TextView
             android:id="@+id/tv_infoModification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="정보수정"
             android:textSize="20dp"
             android:textColor="@color/blue_5"/>
@@ -41,7 +39,7 @@
         android:id="@+id/user_photoModi"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ewha_icon"
+        android:src="@drawable/profile"
         android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
