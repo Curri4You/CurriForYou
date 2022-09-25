@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_curriculum"
+        android:enabled="true"
+        android:icon="@drawable/navi_curriculum"
+        android:title="@string/navi1"/>
+    <item
+        android:id="@+id/action_jjim_list"
+        android:enabled="true"
+        android:icon="@drawable/navi_jjim_list"
+        android:title="@string/navi2"/>
+    <item
+        android:id="@+id/action_lecture_recommendation"
+        android:enabled="true"
+        android:icon="@drawable/navi_lecture_recommendation"
+        android:title="@string/navi3"/>
+    <item
+        android:id="@+id/action_grade_management"
+        android:enabled="true"
+        android:icon="@drawable/navi_grade_management"
+        android:title="@string/navi4"/>
+    <item
+        android:id="@+id/action_mypage"
+        android:enabled="true"
+        android:icon="@drawable/navi_mypage"
+        android:title="@string/navi5"/>
+
+</menu>

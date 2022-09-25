@@ -12,4 +12,9 @@
     <string name="connect">연결하기</string>
     <string name="version">4.37.0</string>
     <string name="update">최신 버전</string>
+    <string name="navi1">교과과정</string>
+    <string name="navi2">찜리스트</string>
+    <string name="navi3">강의추천</string>
+    <string name="navi4">학점관리</string>
+    <string name="navi5">마이페이지</string>
 </resources>
