@@ -3,6 +3,8 @@ package com.example.curriforyou;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -59,11 +61,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SimpleAdapter adapter = null;
     private ArrayList<HashMap<String, String>> courseList = null;
 
+    //Recycler
+    RecyclerVierAdapter rc_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
+
+
+        //[하단바] parameter 선언
+        LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
+        LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
+        LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
+        LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
+        LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
+
+        naviBtn_curriculum.setOnClickListener(this);
+        naviBtn_jjimList.setOnClickListener(this);
+        naviBtn_lectureRecommendation.setOnClickListener(this);
+        naviBtn_gradeManagement.setOnClickListener(this);
+        naviBtn_myPage.setOnClickListener(this);
+
+        //Recycler
+        init();
+        getData();
 
         //[ListView] 커리큘럼 화면이 켜짐과 동시에 리스트가 출력되도록 getJSON 함수 사용
         ListView lv_curriculum_course = (ListView)findViewById(R.id.lv_curriculum_course);
@@ -99,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         //////////////////
 
-
         //LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE 로 이동
         Button btn_login_page = (Button)findViewById(R.id.btn_login_page);
         btn_login_page.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
-
 
         //CURRICULUM PAGE에서 햄버거 클릭 --> 사이드바 화면 출력
         drawerLayout = (DrawerLayout)findViewById(R.id.curriculum_layout);
@@ -141,6 +161,152 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
+
+
+    //RC
+    private void init(){
+        RecyclerView rc_curriculum_course = findViewById(R.id.rc_curriculum_course);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rc_curriculum_course.setLayoutManager(linearLayoutManager);
+
+        rc_adapter = new RecyclerVierAdapter();
+        rc_curriculum_course.setAdapter(rc_adapter);
+    }
+
+
+
+    //RC
+    private final RC_MyHandler RC_mHandler = new RC_MyHandler(this);
+
+    //[RC] MyHandler 함수
+    private static class RC_MyHandler extends Handler{
+        private final WeakReference<MainActivity> weakReference;
+
+        public RC_MyHandler(MainActivity mainActivity){
+            weakReference = new WeakReference<MainActivity>(mainActivity);
+        }
+
+        public void handleMessage(Message msg){
+            MainActivity mainActivity = weakReference.get();
+
+            if(mainActivity != null){
+                switch (msg.what){
+                    case LOAD_SUCCESS:
+                        mainActivity.progressDialog.dismiss();
+                        mainActivity.rc_adapter.notifyDataSetChanged();
+                        break;
+                }
+            }
+        }
+    }
+
+    private void getData(){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String result;
+
+                try{
+                    Log.d(TAG, REQUEST_URL);
+                    URL url = new URL(REQUEST_URL);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setReadTimeout(3000);
+                    httpURLConnection.setConnectTimeout(3000);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setRequestMethod("GET");
+                    httpURLConnection.setUseCaches(false);
+                    httpURLConnection.connect();
+
+                    int responseStatusCode = httpURLConnection.getResponseCode();
+
+                    InputStream inputStream;
+                    if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                        inputStream = httpURLConnection.getInputStream();
+                    } else {
+                        inputStream = httpURLConnection.getErrorStream();
+                    }
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        sb.append(line);
+                    }
+
+                    bufferedReader.close();
+                    httpURLConnection.disconnect();
+
+                    result = sb.toString().trim();
+                } catch (Exception e){
+                    result = e.toString();
+                }
+                if (RC_jsonParser(result)){
+                    Message message = RC_mHandler.obtainMessage(LOAD_SUCCESS);
+                    RC_mHandler.sendMessage(message);
+                }
+            }
+        });
+        thread.start();
+    }
+
+    //[ListView] jsonParser 함수
+    //웹사이트 화면을 파싱
+    public boolean RC_jsonParser(String jsonString) {
+
+        if (jsonString == null) return false;
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+
+            //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
+            JSONArray course = jsonObject.getJSONArray("course");
+
+            courseList.clear();
+
+            //course의 길이만큼 반복해서 Mapping
+            for (int i = 0; i < course.length(); i++) {
+                JSONObject courseInfo = course.getJSONObject(i);
+
+                String course_name = courseInfo.getString("course_name");
+                String subject_id = courseInfo.getString("subject_id");
+                String gpa = courseInfo.getString("gpa");
+                String is_english = courseInfo.getString("is_english");
+
+                DataCourseList data = new DataCourseList(course_name, subject_id, gpa, is_english);
+                rc_adapter.addItem(data);
+                /*HashMap<String, String> photoinfoMap = new HashMap<String, String>();
+                photoinfoMap.put("course_name", course_name);
+                photoinfoMap.put("subject_id", subject_id);
+                photoinfoMap.put("gpa", gpa);
+                photoinfoMap.put("is_english", is_english);
+                courseList.add(photoinfoMap);*/
+
+            }
+            return true;
+        } catch (JSONException e) {
+            Log.d(TAG, e.toString());
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    //////////////////////////////
+    */
 
     //[ListView] MyHandler 함수
     private final MyHandler mHandler = new MyHandler(this);
@@ -287,19 +453,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
         request.setShouldCache(false);
         requestQueue.add(request);
-        LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
-        LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
-        LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
-        LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
-        LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
 
-        naviBtn_curriculum.setOnClickListener(this);
-        naviBtn_jjimList.setOnClickListener(this);
-        naviBtn_lectureRecommendation.setOnClickListener(this);
-        naviBtn_gradeManagement.setOnClickListener(this);
-        naviBtn_myPage.setOnClickListener(this);
 
     }
+
+
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
         @Override

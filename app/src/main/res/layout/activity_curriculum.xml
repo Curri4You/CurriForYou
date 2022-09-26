@@ -5,20 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
--->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/gray_1">
-
 
             <ImageView
                 android:id="@+id/iv_logo"
@@ -26,7 +21,8 @@
                 android:layout_height="40dp"
                 android:layout_marginVertical="15dp"
                 android:background="@null"
-                android:src="@drawable/main_logo"></ImageView>
+                android:src="@drawable/main_logo">
+            </ImageView>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_open"
@@ -55,131 +51,166 @@
 
         </RelativeLayout>
 
-        <TextView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="전공필수"
-            android:textSize="18sp"
-            android:background="@color/blue_2"
-            android:padding="8dp"
-            android:textStyle="bold"
-            android:drawableRight="@drawable/below_arrow_resize">
-        </TextView>
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
-
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="13"
-                android:gravity="center"
-                android:background="@color/blue_1">
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="전공구분"
-                    android:textSize="15sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="전공필수"
+                    android:textSize="18sp"
+                    android:background="@color/blue_2"
+                    android:padding="8dp"
                     android:textStyle="bold"
-                    android:gravity="center">
+                    android:drawableRight="@drawable/below_arrow_resize">
                 </TextView>
 
-                <TextView
-                    android:layout_width="0dp"
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="13"
+                        android:gravity="center"
+                        android:background="@color/blue_1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="전공구분"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center">
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:text="교과목명"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center">
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="학수번호"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center">
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="이수권장"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center">
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="학점"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center">
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="찜"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center">
+                        </TextView>
+
+                    </TableRow>
+
+                </TableLayout>
+
+                <ListView
+                    android:id="@+id/lv_curriculum_course"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
+                <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="교과목명"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:text="test">
+                </Button>
 
-                <TextView
-                    android:layout_width="0dp"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="학수번호"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:text="hello">
+                </Button>
 
-                <TextView
-                    android:layout_width="0dp"
+
+
+
+
+
+                <!--로그인 페이지로 이동하는 버튼-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_list"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="이수권장"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:text="list">
+                </androidx.appcompat.widget.AppCompatButton>
 
-                <TextView
-                    android:layout_width="0dp"
+                <Button
+                    android:id="@+id/btn_login_page"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="학점"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="찜"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
-
-            </TableRow>
-
-        </TableLayout>
-
-        <ListView
-            android:id="@+id/lv_curriculum_course"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+                    android:text="LOGIN PAGE">
+                </Button>
+                <!--////////////////////////-->
+            </LinearLayout>
+        </ScrollView>
 
 
-
-
-        <!--로그인 페이지로 이동하는 버튼-->
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="list">
-        </androidx.appcompat.widget.AppCompatButton>
-
-        <Button
-            android:id="@+id/btn_login_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LOGIN PAGE">
-        </Button>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </LinearLayout>
+        </LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/bottomNavi"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/blue_5"
             android:gravity="center">
