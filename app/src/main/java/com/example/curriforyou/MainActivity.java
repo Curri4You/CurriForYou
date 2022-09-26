@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,9 +16,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -348,17 +344,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             /*case R.id.naviBtn_jjimList:
                 Intent intent_jjimList = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent_jjimList);
-                break;
+                break;*/
             case R.id.naviBtn_lectureRecommendation:
-                Intent intent_lectureRecommendation = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent_lectureRecommendation = new Intent(getApplicationContext(), RecomActivity.class);
                 startActivity(intent_lectureRecommendation);
                 break;
             case R.id.naviBtn_gradeManagement:
-                Intent intent_gradeManagement = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent_gradeManagement = new Intent(getApplicationContext(), GmActivity.class);
                 startActivity(intent_gradeManagement);
-                break;*/
+                break;
             case R.id.naviBtn_myPage:
-                Intent intent_myPage = new Intent(getApplicationContext(), MyPage.class);
+                Intent intent_myPage = new Intent(getApplicationContext(), MyPageActivity.class);
                 startActivity(intent_myPage);
                 break;
 

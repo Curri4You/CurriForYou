@@ -2,27 +2,16 @@ package com.example.curriforyou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class frag1 extends AppCompatActivity implements View.OnClickListener {
-
-    private View view;
-
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag1, container, false);
-        return view;
-    }
-
+public class GmActivity extends AppCompatActivity implements View.OnClickListener {
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frag1);
+        setContentView(R.layout.activity_gm_home);
 
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
         LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
@@ -35,9 +24,9 @@ public class frag1 extends AppCompatActivity implements View.OnClickListener {
         naviBtn_lectureRecommendation.setOnClickListener(this);
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
-
     }
 
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.naviBtn_curriculum:
@@ -47,23 +36,19 @@ public class frag1 extends AppCompatActivity implements View.OnClickListener {
             /*case R.id.naviBtn_jjimList:
                 Intent intent_jjimList = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent_jjimList);
-                break;
+                break;*/
             case R.id.naviBtn_lectureRecommendation:
-                Intent intent_lectureRecommendation = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent_lectureRecommendation = new Intent(getApplicationContext(), RecomActivity.class);
                 startActivity(intent_lectureRecommendation);
                 break;
             case R.id.naviBtn_gradeManagement:
-                Intent intent_gradeManagement = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent_gradeManagement = new Intent(getApplicationContext(), GmActivity.class);
                 startActivity(intent_gradeManagement);
-                break;*/
+                break;
             case R.id.naviBtn_myPage:
                 Intent intent_myPage = new Intent(getApplicationContext(), MyPageActivity.class);
                 startActivity(intent_myPage);
                 break;
-
         }
-
     }
-
 }
-
