@@ -53,24 +53,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //btn_list 클릭 시 사용될 큐
     static RequestQueue requestQueue;
 
-    //[ListView] 리스트 출력을 위한 parameter
+    //[RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     private  String REQUEST_URL = "http://smlee099.dothome.co.kr/CourseList.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
-    private SimpleAdapter adapter = null;
+    RecyclerVierAdapter rc_adapter = null;
     private ArrayList<HashMap<String, String>> courseList = null;
 
-    //Recycler
-    RecyclerVierAdapter rc_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-
-        //[하단바] parameter 선언
+        //[하단바] Button parameter 선언
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
         LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
         LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
@@ -83,25 +80,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
 
-        //Recycler
+        //[RecyclerView] Adapter 연결
         init();
+        //[RecyclerView] HTTP address로부터 response값 파싱 --> jsonParser 함수 사용 --> DataCourseList에 저장
         getData();
 
         //[ListView] 커리큘럼 화면이 켜짐과 동시에 리스트가 출력되도록 getJSON 함수 사용
-        ListView lv_curriculum_course = (ListView)findViewById(R.id.lv_curriculum_course);
+        /*ListView lv_curriculum_course = (ListView)findViewById(R.id.lv_curriculum_course);*/
         courseList = new ArrayList<HashMap<String, String>>();
         String[] from = new String[]{"course_name", "subject_id", "gpa", "is_english"};
         int[] to = new int[]{R.id.tv_course_name, R.id.tv_subject_id, R.id.tv_gpa, R.id.tv_is_english};
-        adapter = new SimpleAdapter(this, courseList, R.layout.listview_item, from, to);
-        lv_curriculum_course.setAdapter(adapter);
+        /*adapter = new SimpleAdapter(this, courseList, R.layout.listview_item, from, to);
+        lv_curriculum_course.setAdapter(adapter);*/
 
-        //[ListView] 로딩이 걸릴 경우 로딩 Dialog 출력
+        //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Please wait ...");
         progressDialog.show();
-
-        //[ListView] ListView 출력하는 사용자 지정 함수
-        getJSON();
 
         //////////////////
         //testing 용 - 무시해도 됨
@@ -162,8 +157,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /////////////////
+    /*사용자 지정 함수*/
+    /////////////////
 
-    //RC
+    //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수
     private void init(){
         RecyclerView rc_curriculum_course = findViewById(R.id.rc_curriculum_course);
 
@@ -174,12 +172,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rc_curriculum_course.setAdapter(rc_adapter);
     }
 
-
-
-    //RC
+    //[RecyclerView]
     private final RC_MyHandler RC_mHandler = new RC_MyHandler(this);
-
-    //[RC] MyHandler 함수
+    //[RecyclerView]
     private static class RC_MyHandler extends Handler{
         private final WeakReference<MainActivity> weakReference;
 
@@ -201,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //[RecyclerView] HTTP address로부터 Log 내용을 가져오는 함수; jsonParser 함수 사용
     private void getData(){
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -254,8 +250,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         thread.start();
     }
 
-    //[ListView] jsonParser 함수
-    //웹사이트 화면을 파싱
+    //[RecyclerView] jsonParser 함수
+    //웹사이트 화면을 파싱하는 함수
     public boolean RC_jsonParser(String jsonString) {
 
         if (jsonString == null) return false;
@@ -294,142 +290,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-
-
-
-
-
-
-
-
-
-
-    /*
-    //////////////////////////////
-    */
-
-    //[ListView] MyHandler 함수
-    private final MyHandler mHandler = new MyHandler(this);
-
-    private static class MyHandler extends Handler{
-        private final WeakReference<MainActivity> weakReference;
-
-        public MyHandler(MainActivity mainActivity){
-            weakReference = new WeakReference<MainActivity>(mainActivity);
-        }
-
-        public void handleMessage(Message msg){
-            MainActivity mainActivity = weakReference.get();
-
-            if(mainActivity != null){
-                switch (msg.what){
-                    case LOAD_SUCCESS:
-                        mainActivity.progressDialog.dismiss();
-                        mainActivity.adapter.notifyDataSetChanged();
-                        break;
-                }
-            }
-        }
-    }
-
-    //[ListView] getJSON 함수
-    //주어진 HTTP 웹사이트로부터 결과를 JSON으로 불러옴
-    public void getJSON() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String result;
-
-                try{
-                    Log.d(TAG, REQUEST_URL);
-                    URL url = new URL(REQUEST_URL);
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setReadTimeout(3000);
-                    httpURLConnection.setConnectTimeout(3000);
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.setDoInput(true);
-                    httpURLConnection.setRequestMethod("GET");
-                    httpURLConnection.setUseCaches(false);
-                    httpURLConnection.connect();
-
-                    int responseStatusCode = httpURLConnection.getResponseCode();
-
-                    InputStream inputStream;
-                    if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-
-                        inputStream = httpURLConnection.getInputStream();
-                    } else {
-                        inputStream = httpURLConnection.getErrorStream();
-
-                    }
-
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-
-
-                    while ((line = bufferedReader.readLine()) != null) {
-                        sb.append(line);
-                    }
-
-                    bufferedReader.close();
-                    httpURLConnection.disconnect();
-
-                    result = sb.toString().trim();
-                } catch (Exception e){
-                    result = e.toString();
-                }
-                if (jsonParser(result)){
-
-                    Message message = mHandler.obtainMessage(LOAD_SUCCESS);
-                    mHandler.sendMessage(message);
-                }
-            }
-        });
-        thread.start();
-    }
-
-    //[ListView] jsonParser 함수
-    //웹사이트 화면을 파싱
-    public boolean jsonParser(String jsonString) {
-
-        if (jsonString == null) return false;
-
-        try {
-            JSONObject jsonObject = new JSONObject(jsonString);
-
-            //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
-            JSONArray course = jsonObject.getJSONArray("course");
-
-            courseList.clear();
-
-            //course의 길이만큼 반복해서 Mapping
-            for (int i = 0; i < course.length(); i++) {
-                JSONObject courseInfo = course.getJSONObject(i);
-
-                String course_name = courseInfo.getString("course_name");
-                String subject_id = courseInfo.getString("subject_id");
-                String gpa = courseInfo.getString("gpa");
-                String is_english = courseInfo.getString("is_english");
-
-                HashMap<String, String> photoinfoMap = new HashMap<String, String>();
-                photoinfoMap.put("course_name", course_name);
-                photoinfoMap.put("subject_id", subject_id);
-                photoinfoMap.put("gpa", gpa);
-                photoinfoMap.put("is_english", is_english);
-
-                courseList.add(photoinfoMap);
-
-            }
-            return true;
-        } catch (JSONException e) {
-            Log.d(TAG, e.toString());
-        }
-        return false;
-    }
-
     ////////
     //테스트용 - 버튼 누르면 토스트 문구 띄우기
     public void CourseList(){
@@ -456,8 +316,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
-
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
         @Override

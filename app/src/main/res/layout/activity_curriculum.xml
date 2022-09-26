@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!--고정된 상단 영역-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +52,7 @@
 
         </RelativeLayout>
 
+        <!--스크롤 가능한 가운데 영역-->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -147,42 +149,20 @@
 
                 </TableLayout>
 
-                <ListView
-                    android:id="@+id/lv_curriculum_course"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="test">
-                </Button>
-
-
+                <!--[RecyclerView] CourseList 출력-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_curriculum_course"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="hello">
-                </Button>
 
-
-
-
-
-
-                <!--로그인 페이지로 이동하는 버튼-->
-                <LinearLayout
+                <!--컴포넌트 위/아래로 구분하는 코드-->
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
-                </LinearLayout>
+                </LinearLayout>-->
 
+                <!--[Testing] 버튼 누르면 CourseList 관련된 Toast 출력-->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_list"
                     android:layout_width="wrap_content"
@@ -190,30 +170,27 @@
                     android:text="list">
                 </androidx.appcompat.widget.AppCompatButton>
 
+                <!--로그인 페이지로 이동하는 버튼-->
                 <Button
                     android:id="@+id/btn_login_page"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="LOGIN PAGE">
                 </Button>
-                <!--////////////////////////-->
+
             </LinearLayout>
+
         </ScrollView>
 
-
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </LinearLayout>-->
-
+        <!--[하단바]-->
         <LinearLayout
             android:id="@+id/bottomNavi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/blue_5"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingVertical="8dp">
 
             <LinearLayout
                 android:id="@+id/naviBtn_curriculum"
