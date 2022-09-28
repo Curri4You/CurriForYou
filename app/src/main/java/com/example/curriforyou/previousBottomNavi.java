@@ -18,7 +18,7 @@ public class previousBottomNavi extends AppCompatActivity {
     private previousNavi_Curriculum naviCurriculum;
     // 추후에 찜리스트, 강의추천, 학점관리 추가
     //private previousNavi_MyPage naviMyPage;
-    private frag1 frag1;
+    private Frag1 frag1;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -51,7 +51,7 @@ public class previousBottomNavi extends AppCompatActivity {
         naviCurriculum = new previousNavi_Curriculum();
         // 추후에 찜리스트, 강의추천, 학점관리 추가
         //myPage = new MyPage();
-        frag1 = new frag1();
+        frag1 = new Frag1();
         setFrag(1); // 첫 fragment 화면 curriculum으로 설정
 
     }
