@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="25dp">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/navigate_before" />
+
+        <TextView
+            android:id="@+id/tv_infoModification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="전공추가"
+            android:textColor="@color/blue_5"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/iv_logo"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textview_edge"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="5dp"
+        android:hint="여기에 입력하세요"
+        android:paddingLeft="15dp"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <CheckBox
+            android:checked="false"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/radio_button"
+            android:textColor="@drawable/radio_text"
+            android:textAlignment="center"
+            android:text="주전공"/>
+
+        <CheckBox
+            android:checked="false"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_marginHorizontal="3dp"
+            android:background="@drawable/radio_button"
+            android:textColor="@drawable/radio_text"
+            android:textAlignment="center"
+            android:text="복수전공"/>
+
+        <CheckBox
+            android:checked="false"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_marginHorizontal="3dp"
+            android:background="@drawable/radio_button"
+            android:textColor="@drawable/radio_text"
+            android:textAlignment="center"
+            android:text="부전공"/>
+
+        <CheckBox
+            android:checked="false"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_marginHorizontal="3dp"
+            android:background="@drawable/radio_button"
+            android:textColor="@drawable/radio_text"
+            android:textAlignment="center"
+            android:text="TELOS"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="엘텍공과대학"
+        android:textSize="16dp"
+        android:background="@color/blue_1"
+        android:textColor="@color/blue_4"
+        android:layout_marginVertical="2dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="35dp"
+        android:drawableRight="@drawable/below_arrow_resize">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="스크랜튼대학"
+        android:textSize="16dp"
+        android:background="@color/blue_1"
+        android:textColor="@color/blue_4"
+        android:layout_marginVertical="2dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="35dp"
+        android:drawableRight="@drawable/below_arrow_resize">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="신산업융합대학"
+        android:textSize="16dp"
+        android:background="@color/blue_1"
+        android:textColor="@color/blue_4"
+        android:layout_marginVertical="2dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="35dp"
+        android:drawableRight="@drawable/below_arrow_resize">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </LinearLayout>
+
+    <!--[하단바]-->
+    <LinearLayout
+        android:id="@+id/bottomNavi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/blue_5"
+        android:gravity="center"
+        android:paddingVertical="8dp">
+
+        <LinearLayout
+            android:id="@+id/naviBtn_curriculum"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/navi_curriculum"
+                app:tint="@color/blue_3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="교과과정"
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/naviBtn_jjimList"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/navi_jjim_list"
+                app:tint="@color/blue_3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="찜리스트"
+                android:textSize="11dp"
+                android:textColor="@color/blue_3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/naviBtn_lectureRecommendation"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/navi_lecture_recommendation"
+                app:tint="@color/blue_3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="강의추천"
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/naviBtn_gradeManagement"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/navi_grade_management"
+                app:tint="@color/blue_3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학점관리"
+                android:textSize="11dp"
+                android:textColor="@color/blue_3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/naviBtn_myPage"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/navi_my_page"
+                app:tint="@color/blue_3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마이페이지"
+                android:textSize="11dp"
+                android:textColor="@color/blue_3" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
