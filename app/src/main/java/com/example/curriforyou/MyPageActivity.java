@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 public class MyPageActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -28,15 +30,57 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 
         TextView user_nickname = (TextView) findViewById(R.id.user_nickname);
         TextView user_position = (TextView) findViewById(R.id.user_position);
-        ImageView btn_addMajor = (ImageView) findViewById(R.id.btn_addMajor);
-        Button btn_doubleMajor = (Button) findViewById(R.id.btn_doubleMajor);
-        Button btn_minor = (Button) findViewById(R.id.btn_minor);
 
         ImageView btn_infoModification = (ImageView) findViewById(R.id.btn_infoModification);
         btn_infoModification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPage_infoModification.class);
+                startActivity(intent); //액티비티 이동
+            }
+        });
+
+        Button btn_mainMajor = (Button) findViewById(R.id.btn_mainMajor);
+        btn_mainMajor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
+                startActivity(intent); //액티비티 이동
+            }
+        });
+
+        Button btn_doubleMajor = (Button) findViewById(R.id.btn_doubleMajor);
+        btn_doubleMajor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
+                startActivity(intent); //액티비티 이동
+            }
+        });
+
+        Button btn_minor = (Button) findViewById(R.id.btn_minor);
+        btn_minor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
+                startActivity(intent); //액티비티 이동
+            }
+        });
+
+        ImageView btn_addMajor = (ImageView) findViewById(R.id.btn_addMajor);
+        btn_addMajor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage_addMajor.class);
+                startActivity(intent); //액티비티 이동
+            }
+        });
+
+        TextView logout = (TextView) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent); //액티비티 이동
             }
         });

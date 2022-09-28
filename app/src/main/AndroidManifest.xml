@@ -34,6 +34,9 @@
         <activity android:name=".MyPageActivity"/>
         <activity android:name=".GmActivity"/>
         <activity android:name=".RecomActivity"/>
+        <activity android:name=".MyPage_addMajor"/>
+        <activity android:name=".MyPage_infoModification"/>
+        <activity android:name=".MyPage_majorModification"/>
     </application>
 
 </manifest>
