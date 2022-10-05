@@ -1,69 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:weightSum="13">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
 
-
-    <ImageView
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/ll_listitem"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_weight="1"
-        android:src="@drawable/rectangle_blue5"
-        android:paddingVertical="5dp">
-    </ImageView>
+        android:weightSum="13">
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/rectangle_blue5"
+            android:paddingVertical="5dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv_course_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="사이버보안개론"
+            android:textSize="15sp"
+            android:gravity="center_vertical">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_subject_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="38473"
+            android:textSize="15sp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_gpa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="4"
+            android:textSize="15sp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_is_english"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="3"
+            android:textSize="15sp"
+            android:gravity="center">
+        </TextView>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/empty_heart"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="3dp"
+            android:paddingRight="8dp">
+        </ImageView>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_course_name"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="6"
-        android:text="사이버보안개론"
-        android:textSize="15sp"
-        android:gravity="center_vertical">
+        android:id="@+id/tv_item_open"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/gray_3"
+        android:text="펼침">
     </TextView>
-
-    <TextView
-        android:id="@+id/tv_subject_id"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:text="38473"
-        android:textSize="15sp"
-        android:gravity="center">
-    </TextView>
-
-    <TextView
-        android:id="@+id/tv_gpa"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:text="4"
-        android:textSize="15sp"
-        android:gravity="center">
-    </TextView>
-
-    <TextView
-        android:id="@+id/tv_is_english"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="3"
-        android:textSize="15sp"
-        android:gravity="center">
-    </TextView>
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_weight="1"
-        android:src="@drawable/empty_heart"
-        android:layout_gravity="center_vertical"
-        android:paddingTop="3dp"
-        android:paddingRight="8dp">
-    </ImageView>
-
-
-
 </LinearLayout>
