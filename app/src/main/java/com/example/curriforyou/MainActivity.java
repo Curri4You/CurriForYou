@@ -6,7 +6,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -59,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerVierAdapter rc_adapter = null;
     private ArrayList<HashMap<String, String>> courseList = null;
 
+    //Dialog
+    TextView tv_dialog;
+    AlertDialog.Builder builder;
+    String[] course_category;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +74,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_curriculum);
 
         //
-
+        tv_dialog = findViewById(R.id.tv_dialog);
+        tv_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
 
 
         //[하단바] Button parameter 선언
@@ -162,6 +176,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /////////////////
     /*사용자 지정 함수*/
     /////////////////
+
+    //
+    public void showDialog(){
+        course_category = getResources().getStringArray(R.array.course_category);
+        builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Select Your Course Category");
+
+        builder.setItems(course_category, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "선택된 카테고리는 "+course_category[which], Toast.LENGTH_SHORT).show();
+                tv_dialog.setText(course_category[which]);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
     //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수
     private void init(){
@@ -273,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String course_name = courseInfo.getString("course_name");
                 String subject_id = courseInfo.getString("subject_id");
                 String gpa = courseInfo.getString("gpa");
-                String is_english = courseInfo.getString("is_english");
+                String is_english = courseInfo.getString("is_open");
 
                 DataCourseList data = new DataCourseList(course_name, subject_id, gpa, is_english);
                 rc_adapter.addItem(data);

@@ -64,6 +64,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_dialog"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="전공필수"
