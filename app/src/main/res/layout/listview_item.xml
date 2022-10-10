@@ -61,23 +61,283 @@
             android:gravity="center">
         </TextView>
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/ib_heart"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="4dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="3dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_heart" />
+
+        <!--<ImageView
+            android:id="@+id/iv_heart"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="1"
-            android:src="@drawable/empty_heart"
+            android:src="@drawable/btn_heart"
             android:layout_gravity="center_vertical"
-            android:paddingTop="3dp"
-            android:paddingRight="8dp">
-        </ImageView>
+            >
+        </ImageView>-->
 
     </LinearLayout>
 
-    <TextView
+    <!--////////////////////////////////-->
+    <!--///////////////////////////////-->
+
+    <LinearLayout
         android:id="@+id/tv_item_open"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/gray_3"
-        android:text="펼침">
-    </TextView>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/gray_0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2학기"
+                android:textSize="15sp"
+                android:paddingHorizontal="15dp">
+            </TextView>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_3"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3시간"
+                android:textSize="15sp"
+                android:paddingHorizontal="15dp">
+            </TextView>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_3"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A+"
+                android:textSize="15sp"
+                android:paddingHorizontal="15dp">
+            </TextView>
+
+            <!--Text는 왼쪽 정렬 & Button은 오른쪽 정렬-->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!--btn_flag - 버튼 클릭하면 색상 변경-->
+            <CheckBox
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_flag"
+                android:button="@null"
+                android:checked="false"
+                android:scaleX="-1"
+                android:textScaleX="-1"
+                android:text="미수강"
+                android:textColor="@drawable/radio_text"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <!--전공분류 선택-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:weightSum="3"
+            android:gravity="center">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/gray_3"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="전공"
+                android:textStyle="bold"
+                android:textSize="15sp">
+            </TextView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/gray_3"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:layout_margin="20dp">
+
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:text="주전공"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_text" />
+
+            <CheckBox
+                android:id="@+id/btn_flag"
+                android:checked="false"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:layout_marginHorizontal="3dp"
+                android:background="@drawable/radio_button"
+                android:textColor="@drawable/radio_text"
+                android:textAlignment="center"
+                android:text="복수전공"/>
+
+            <CheckBox
+                android:checked="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/radio_button"
+                android:textColor="@drawable/radio_text"
+                android:textAlignment="center"
+                android:text="부전공"/>
+
+        </LinearLayout>
+
+        <!--선수과목 상세정보-->
+        <!--[수정 필요] 일단 수기로 입력하였으나, 이후 listview를 사용하여 자동화-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:weightSum="3"
+            android:gravity="center">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/gray_3"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="선수과목"
+                android:textStyle="bold"
+                android:textSize="15sp">
+            </TextView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/gray_3"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tv_edge_gray3"
+            android:layout_margin="15dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/rectangle_gray"
+                android:paddingVertical="5dp">
+            </ImageView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:text="사이버보안개론"
+                android:textSize="15sp"
+                android:gravity="center_vertical">
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="38473"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="4"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="3"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:src="@drawable/empty_heart"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="3dp"
+                android:paddingRight="8dp">
+            </ImageView>
+
+        </LinearLayout>
+</LinearLayout>
+
 </LinearLayout>
