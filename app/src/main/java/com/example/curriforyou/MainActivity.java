@@ -56,10 +56,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //[RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
-    //URL1 - 전공필수
+    //URL1 - 전공필수 카테고리 CourseList
     private  String REQUEST_URL1 = "http://smlee099.dothome.co.kr/CourseList.php";
-    //URL2 - 전공선택
+    //URL2 - 전공선택 카테고리 CourseList
     private  String REQUEST_URL2 = "http://smlee099.dothome.co.kr/CourseList_practice.php";
+    //URL3 - 교양필수 카테고리 CourseList
+    private  String REQUEST_URL3 = "http://smlee099.dothome.co.kr/CourseList_practice.php";
+    //URL4 - 교양선택 카테고리 CourseList
+    private  String REQUEST_URL4 = "http://smlee099.dothome.co.kr/CourseList_practice.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
     RecyclerVierAdapter rc_adapter = null;
@@ -70,13 +74,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AlertDialog.Builder builder;
     String[] course_category;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-        //
+        //-------------------------------------------------//
+        //[Dialog] 카테고리 TextView 선택 시 showDialog 함수 호출
         tv_dialog = findViewById(R.id.tv_dialog);
         tv_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,57 +89,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-
-        //[하단바] Button parameter 선언
-        LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
-        LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
-        LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
-        LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
-        LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
-
-        naviBtn_curriculum.setOnClickListener(this);
-        naviBtn_jjimList.setOnClickListener(this);
-        naviBtn_lectureRecommendation.setOnClickListener(this);
-        naviBtn_gradeManagement.setOnClickListener(this);
-        naviBtn_myPage.setOnClickListener(this);
-
-        //[RecyclerView] Adapter 연결
+        //-------------------------------------------------//
+        //[RecyclerView] Adapter 연결 & 리스트 초기화
         init();
-        //[RecyclerView] HTTP address로부터 response값 파싱 --> jsonParser 함수 사용 --> DataCourseList에 저장
+        //[RecyclerView] HTTP address로부터 response값 파싱 -> jsonParser 함수 사용 -> DataCourseList에 저장
         getData(REQUEST_URL1);
 
-        //[ListView] 커리큘럼 화면이 켜짐과 동시에 리스트가 출력되도록 getJSON 함수 사용
-        /*ListView lv_curriculum_course = (ListView)findViewById(R.id.lv_curriculum_course);*/
+        //[RecyclerView] HashMap 사용
         courseList = new ArrayList<HashMap<String, String>>();
+        //[RecyclerView] 각 필드값을 매핑, from -> to
         String[] from = new String[]{"course_name", "subject_id", "gpa", "is_english"};
         int[] to = new int[]{R.id.tv_course_name, R.id.tv_subject_id, R.id.tv_gpa, R.id.tv_is_english};
-        /*adapter = new SimpleAdapter(this, courseList, R.layout.listview_item, from, to);
-        lv_curriculum_course.setAdapter(adapter);*/
 
         //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Please wait ...");
         progressDialog.show();
 
-        //////////////////
-        //testing 용 - 무시해도 됨
-        //TextView에 리스트에 들어갈 내용 나열출력
-        Button btn_list = (Button) findViewById(R.id.btn_list);
-
-        btn_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //요청 큐가 없으면 요청 큐 생성하기
-                if(requestQueue == null){
-                    requestQueue = Volley.newRequestQueue(getApplicationContext());
-                }
-                //course table 정보 토스트값으로 출력
-                CourseList();
-            }
-        });
-        //////////////////
-
-        //LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE 로 이동
+        //-------------------------------------------------//
+        //[페이지 이동] LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE 로 이동
         Button btn_login_page = (Button)findViewById(R.id.btn_login_page);
         btn_login_page.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +117,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        //CURRICULUM PAGE에서 햄버거 클릭 --> 사이드바 화면 출력
+        //-------------------------------------------------//
+        //[SideBar] CURRICULUM PAGE에서 햄버거 클릭 --> 사이드바 화면 출력
         drawerLayout = (DrawerLayout)findViewById(R.id.curriculum_layout);
         drawerView = (View)findViewById(R.id.curriculum_sidebar);
 
@@ -174,24 +147,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        //-------------------------------------------------//
+        //[하단바] Button parameter 선언
+        LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
+        LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
+        LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
+        LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
+        LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
+
+        naviBtn_curriculum.setOnClickListener(this);
+        naviBtn_jjimList.setOnClickListener(this);
+        naviBtn_lectureRecommendation.setOnClickListener(this);
+        naviBtn_gradeManagement.setOnClickListener(this);
+        naviBtn_myPage.setOnClickListener(this);
+
+        //////////////////
+        //testing 용 - 무시해도 됨
+        //TextView에 리스트에 들어갈 내용 나열출력
+        Button btn_list = (Button) findViewById(R.id.btn_list);
+        btn_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //요청 큐가 없으면 요청 큐 생성하기
+                if(requestQueue == null){
+                    requestQueue = Volley.newRequestQueue(getApplicationContext());
+                }
+                //course table 정보 토스트값으로 출력
+                CourseList();
+            }
+        });
+        //////////////////
+
     }
 
     /////////////////
     /*사용자 지정 함수*/
     /////////////////
 
+    //-------------------------------------------------//
     //[Dialog] 팝업창 띄우고 선택 시 OnClick 함수 적용
     public void showDialog(){
         course_category = getResources().getStringArray(R.array.course_category);
         builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Select Your Course Category");
+        builder.setTitle("Select Your Course Category");    //제목
 
         builder.setItems(course_category, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(), "선택된 카테고리는 "+course_category[which], Toast.LENGTH_SHORT).show();
                 tv_dialog.setText(course_category[which]);
-
+                //선택된 카테고리에 따라 다른 URL에서 파싱
                 switch (which){
                     case 0:
                         init();
@@ -201,6 +206,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         init();
                         getData(REQUEST_URL2);
                         break;
+                    case 3:
+                        init();
+                        getData(REQUEST_URL3);
+                        break;
+                    case 4:
+                        init();
+                        getData(REQUEST_URL4);
+                        break;
                 }
             }
         });
@@ -208,7 +221,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.show();
     }
 
-    //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수
+    //-------------------------------------------------//
+    //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수 & 초기화 함수
     private void init(){
         RecyclerView rc_curriculum_course = findViewById(R.id.rc_curriculum_course);
 
@@ -288,7 +302,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (Exception e){
                     result = e.toString();
                 }
-                if (RC_jsonParser(result)){
+                if (RC_jsonParser(result)){     // 파싱 기능 사용
                     Message message = RC_mHandler.obtainMessage(LOAD_SUCCESS);
                     RC_mHandler.sendMessage(message);
                 }
@@ -337,33 +351,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    ////////
-    //테스트용 - 버튼 누르면 토스트 문구 띄우기
-    public void CourseList(){
-        String URL = "http://smlee099.dothome.co.kr/CourseList.php";
-
-        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "응답:"+response, Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "에러:"+error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> param = new HashMap<String, String>();
-                return param;
-            }
-        };
-        request.setShouldCache(false);
-        requestQueue.add(request);
-
-
-    }
-
+    //-------------------------------------------------//
+    //[SideBar] Drawer 사용
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
         @Override
         public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -386,6 +375,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+    //-------------------------------------------------//
+    //[하단바]
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.naviBtn_curriculum:
@@ -408,8 +399,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent_myPage = new Intent(getApplicationContext(), MyPageActivity.class);
                 startActivity(intent_myPage);
                 break;
-
         }
-
     }
+
+    ///////////////////////////
+    //테스트용 - 버튼 누르면 토스트 문구 띄우기
+    public void CourseList(){
+        String URL = "http://smlee099.dothome.co.kr/CourseList.php";
+
+        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "응답:"+response, Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "에러:"+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+                return param;
+            }
+        };
+        request.setShouldCache(false);
+        requestQueue.add(request);
+    }
+    ///////////////////////////
 }

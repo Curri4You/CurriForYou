@@ -25,12 +25,14 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //adapter에 들어갈 list
     private ArrayList<DataCourseList> listData = new ArrayList<>();
     private Context context;
+
     //item의 클릭 상태를 저장할 array 객체
     private SparseBooleanArray selecteditems = new SparseBooleanArray();
+
     //직전에 클릭됐던 item의 position
     private int prePosition = -1;
-    private int prePosition2 = -1;
-    ////////////
+
+    ////////////////
     int CHECK_NUM = 0;
 
     //
@@ -67,7 +69,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     class ViewHolderCourseList extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tv_course_name, tv_subject_id, tv_gpa, tv_is_english;
-        private LinearLayout tv_item_open;
+        private LinearLayout tv_item_open, ll_listitem;
         private DataCourseList data;
         private int position;
         private ImageButton ib_heart;
@@ -84,6 +86,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             tv_item_open = itemView.findViewById(R.id.tv_item_open);
             ib_heart = itemView.findViewById(R.id.ib_heart);
+            ll_listitem = itemView.findViewById(R.id.ll_listitem);
             /*iv_heart = itemView.findViewById(R.id.iv_heart);*/
 
             /*iv_heart.setOnClickListener(new View.OnClickListener() {
@@ -117,9 +120,8 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             /*changeImageView(selectedhearts.get(position));*/
 
             itemView.setOnClickListener(this);
-            tv_course_name.setOnClickListener(this);
-            tv_subject_id.setOnClickListener(this);
             ib_heart.setOnClickListener(this);
+            ll_listitem.setOnClickListener(this);
             /*iv_heart.setOnClickListener(this);*/
         }
 
@@ -135,7 +137,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.tv_subject_id:
+                case R.id.ll_listitem:
                     if(selecteditems.get(position)){
                         //펼쳐진 item을 클릭 시
                         selecteditems.delete(position);
@@ -151,9 +153,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     notifyItemChanged(position);
                     //클릭된 position 저장
                     prePosition = position;
-                    break;
-                case R.id.tv_course_name:
-                    Toast.makeText(context, data.getCourse_name(), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.ib_heart:
                     if(CHECK_NUM == 0){
