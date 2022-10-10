@@ -56,13 +56,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //[RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
-    private  String REQUEST_URL = "http://smlee099.dothome.co.kr/CourseList.php";
+    //URL1 - 전공필수
+    private  String REQUEST_URL1 = "http://smlee099.dothome.co.kr/CourseList.php";
+    //URL2 - 전공선택
+    private  String REQUEST_URL2 = "http://smlee099.dothome.co.kr/CourseList_practice.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
     RecyclerVierAdapter rc_adapter = null;
     private ArrayList<HashMap<String, String>> courseList = null;
 
-    //Dialog
+    //[Dialog]
     TextView tv_dialog;
     AlertDialog.Builder builder;
     String[] course_category;
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //[RecyclerView] Adapter 연결
         init();
         //[RecyclerView] HTTP address로부터 response값 파싱 --> jsonParser 함수 사용 --> DataCourseList에 저장
-        getData();
+        getData(REQUEST_URL1);
 
         //[ListView] 커리큘럼 화면이 켜짐과 동시에 리스트가 출력되도록 getJSON 함수 사용
         /*ListView lv_curriculum_course = (ListView)findViewById(R.id.lv_curriculum_course);*/
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /*사용자 지정 함수*/
     /////////////////
 
-    //
+    //[Dialog] 팝업창 띄우고 선택 시 OnClick 함수 적용
     public void showDialog(){
         course_category = getResources().getStringArray(R.array.course_category);
         builder = new AlertDialog.Builder(MainActivity.this);
@@ -188,6 +191,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(), "선택된 카테고리는 "+course_category[which], Toast.LENGTH_SHORT).show();
                 tv_dialog.setText(course_category[which]);
+
+                switch (which){
+                    case 0:
+                        init();
+                        getData(REQUEST_URL1);
+                        break;
+                    case 1:
+                        init();
+                        getData(REQUEST_URL2);
+                        break;
+                }
             }
         });
         AlertDialog alertDialog = builder.create();
@@ -230,15 +244,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //[RecyclerView] HTTP address로부터 Log 내용을 가져오는 함수; jsonParser 함수 사용
-    private void getData(){
+    private void getData(String Request_url){
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 String result;
 
                 try{
-                    Log.d(TAG, REQUEST_URL);
-                    URL url = new URL(REQUEST_URL);
+                    Log.d(TAG, Request_url);
+                    URL url = new URL(Request_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     httpURLConnection.setReadTimeout(3000);
                     httpURLConnection.setConnectTimeout(3000);
