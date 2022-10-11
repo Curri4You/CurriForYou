@@ -17,4 +17,24 @@
     <string name="navi3">강의추천</string>
     <string name="navi4">학점관리</string>
     <string name="navi5">마이페이지</string>
+
+    <string-array name="course_category">
+        <item>전공필수</item>
+        <item>전공선택</item>
+        <item>교양필수</item>
+        <item>교양선택</item>
+    </string-array>
+
+    <string-array name="semester">
+        <item>1학년 1학기</item>
+        <item>1학년 2학기</item>
+        <item>2학년 1학기</item>
+        <item>2학년 2학기</item>
+        <item>3학년 1학기</item>
+        <item>3학년 2학기</item>
+        <item>4학년 1학기</item>
+        <item>4학년 2학기</item>
+        <item>5학년 1학기</item>
+        <item>5학년 2학기</item>
+    </string-array>
 </resources>
