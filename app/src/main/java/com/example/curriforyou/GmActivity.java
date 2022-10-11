@@ -1,18 +1,39 @@
 package com.example.curriforyou;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GmActivity extends AppCompatActivity implements View.OnClickListener {
+
+    LinearLayout ll_listsemester;
+    TextView tv_semester;
+    AlertDialog.Builder builder;
+    String[] semester;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gm_home);
 
+        //[Dialog]
+        tv_semester = findViewById(R.id.tv_semester);
+        ll_listsemester = findViewById(R.id.ll_listsemester);
+        ll_listsemester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GmShowDialog();
+            }
+        });
+
+        //[하단바] Button parameter 선언
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
         LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
         LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
@@ -24,6 +45,23 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         naviBtn_lectureRecommendation.setOnClickListener(this);
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
+    }
+
+    //[Dialog] 팝업창 띄우고 선택 시 OnClick 함수 적용
+    public void GmShowDialog(){
+        semester = getResources().getStringArray(R.array.semester);
+        builder = new AlertDialog.Builder(GmActivity.this);
+        builder.setTitle("Select Your Course Category");    //제목
+
+        builder.setItems(semester, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                tv_semester.setText(semester[which]);
+                //선택된 카테고리에 따라 다른 URL에서 파싱
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override

@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                CateShowDialog();
             }
         });
 
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //-------------------------------------------------//
     //[Dialog] 팝업창 띄우고 선택 시 OnClick 함수 적용
-    public void showDialog(){
+    public void CateShowDialog(){
         course_category = getResources().getStringArray(R.array.course_category);
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Select Your Course Category");    //제목
