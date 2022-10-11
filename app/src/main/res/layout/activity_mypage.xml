@@ -32,7 +32,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/user_nickname"
+                    android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user_nickname"
@@ -40,7 +40,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/user_position"
+                    android:id="@+id/tv_student_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user_position"
@@ -390,7 +390,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -410,9 +409,9 @@
             android:id="@+id/naviBtn_curriculum"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -433,9 +432,9 @@
             android:id="@+id/naviBtn_jjimList"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -447,8 +446,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="찜리스트"
-                android:textSize="11dp"
-                android:textColor="@color/blue_3" />
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
 
         </LinearLayout>
 
@@ -456,9 +455,9 @@
             android:id="@+id/naviBtn_lectureRecommendation"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -479,9 +478,9 @@
             android:id="@+id/naviBtn_gradeManagement"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -493,8 +492,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="학점관리"
-                android:textSize="11dp"
-                android:textColor="@color/blue_3" />
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
 
         </LinearLayout>
 
@@ -502,9 +501,9 @@
             android:id="@+id/naviBtn_myPage"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -516,8 +515,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="마이페이지"
-                android:textSize="11dp"
-                android:textColor="@color/blue_3" />
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
 
         </LinearLayout>
 
