@@ -1,6 +1,7 @@
 package com.example.curriforyou;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     ///////////
+    public String user_id;
     private EditText et_user_id, et_user_password;
     private Button btn_login, btn_register;
 
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user_id = et_user_id.getText().toString();
+                user_id = et_user_id.getText().toString();
                 String user_password = et_user_password.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -62,17 +64,17 @@ public class LoginActivity extends AppCompatActivity {
                             if(success){
                                 String user_id = jsonObject.getString("user_id");
                                 String user_password = jsonObject.getString("user_password");
-
-                                ///////////////////////
-                                String major_id = jsonObject.getString("user_id");
+                                String user_name = jsonObject.getString("user_name");
+                                String student_id = jsonObject.getString("student_id");
+                                String major_name = jsonObject.getString("major_name");
 
                                 Toast.makeText(getApplicationContext(), "로그인에 성공", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MyPageActivity.class);
                                 intent.putExtra("user_id", user_id);
                                 intent.putExtra("user_password", user_password);
-
-                                /////////////////////
-                                intent.putExtra("user_id", major_id);
+                                intent.putExtra("user_name", user_name);
+                                intent.putExtra("student_id", student_id);
+                                intent.putExtra("major_name", major_name);
 
                                 startActivity(intent);
                             } else {
