@@ -1,3 +1,5 @@
+//학점관리 메인페이지
+
 package com.example.curriforyou;
 
 import android.app.AlertDialog;
@@ -5,10 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GmActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,6 +32,16 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 GmShowDialog();
+            }
+        });
+
+        //gm_semester 페이지로 이동하는 버튼
+        ImageView goto_gm_semester = (ImageView) findViewById(R.id.goto_gm_semester);
+        goto_gm_semester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GmSemesterActivity.class);
+                startActivity(intent);
             }
         });
 
