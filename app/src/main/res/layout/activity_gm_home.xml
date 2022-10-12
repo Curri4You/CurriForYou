@@ -149,7 +149,9 @@
 
             </LinearLayout>
 
+<!--            gm_semester 페이지로 이동하는 버튼 -->
             <ImageView
+                android:id="@+id/goto_gm_semester"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/next_arrow"
