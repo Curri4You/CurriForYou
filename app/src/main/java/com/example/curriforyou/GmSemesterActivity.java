@@ -2,7 +2,11 @@
 
 package com.example.curriforyou;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +22,16 @@ public class GmSemesterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gm_semester);
         init();
         getData();
+
+        //뒤로가기 버튼
+        ImageView btn_infoModification = (ImageView) findViewById(R.id.navigate_before);
+        btn_infoModification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GmActivity.class);
+                startActivity(intent); //액티비티 이동
+            }
+        });
     }
 
     private void init(){
