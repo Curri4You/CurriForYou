@@ -222,6 +222,73 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_listsemester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/gray_1"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="19">
+
+            <TextView
+                android:id="@+id/tv_semester"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="12"
+                android:text="1학년 1학기"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="평점"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3.7"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=" / "
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4.3"
+                android:textStyle="bold"></TextView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:rotation="270"
+                android:src="@drawable/next_arrow"
+                app:tint="@color/gray_4"></ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <!--[하단바]-->
     <ScrollView
@@ -229,73 +296,11 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <LinearLayout
+        <!--[RecyclerView] CourseList 출력-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_gm_course"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/ll_listsemester"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/gray_1"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:weightSum="19">
-
-                <TextView
-                    android:id="@+id/tv_semester"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="12"
-                    android:text="1학년 1학기"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="평점"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="3.7"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text=" / "
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4.3"
-                    android:textStyle="bold"></TextView>
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:rotation="270"
-                    android:src="@drawable/next_arrow"
-                    app:tint="@color/gray_4"></ImageView>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
 
     </ScrollView>
 

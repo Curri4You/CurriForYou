@@ -3,15 +3,20 @@
 package com.example.curriforyou;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class GmActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,10 +25,20 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     AlertDialog.Builder builder;
     String[] semester;
 
+    //
+    RVGmSemesterAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gm_home);
+
+        //
+        init();
+        getData();
+
+
 
         //[Dialog]
         tv_semester = findViewById(R.id.tv_semester);
@@ -57,6 +72,43 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         naviBtn_lectureRecommendation.setOnClickListener(this);
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
+    }
+
+    //////
+    private void init(){
+        RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        Context context;
+        adapter = new RVGmSemesterAdapter(GmActivity.this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void getData(){
+        DataGmList data = new DataGmList("syllabus_id1", "강좌명1", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id2", "강좌명2", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id3", "강좌명3", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id4", "강좌명4", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+
+        //
+        RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
+
     }
 
     //[Dialog] 팝업창 띄우고 선택 시 OnClick 함수 적용
