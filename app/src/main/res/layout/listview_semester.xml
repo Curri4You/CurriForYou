@@ -99,9 +99,6 @@
 
     </LinearLayout>
 
-
-
-    <!---->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -193,6 +190,7 @@
         android:background="@color/gray_3"/>
 
     <LinearLayout
+        android:id="@+id/open_gm_semester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue_1"
