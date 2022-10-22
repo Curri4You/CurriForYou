@@ -8,6 +8,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -53,7 +54,8 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     class GmViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView gm_list_semester, gm_list_totalGrade, gm_list_majorGrade, gm_list_liberalGrade;
-        private LinearLayout open_gm_semester;
+        private LinearLayout open_gm_semester, gm_semester_subject;
+        private ImageView open_gm_arrow;
         private DataGmSemester data;
         private int position;
 
@@ -64,6 +66,8 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             gm_list_majorGrade = itemView.findViewById(R.id.gm_list_majorGrade);
             gm_list_liberalGrade = itemView.findViewById(R.id.gm_list_liberalGrade);
             open_gm_semester = itemView.findViewById(R.id.open_gm_semester);
+            gm_semester_subject = itemView.findViewById(R.id.gm_semester_subject);
+            open_gm_arrow = itemView.findViewById(R.id.open_gm_arrow);
         }
 
         //데이터 이용해서 text 변경
@@ -79,18 +83,20 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             changeVisibility(selectedItems.get(position));
 
             open_gm_semester.setOnClickListener(this);
+            open_gm_arrow.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.open_gm_semester:
+                case R.id.open_gm_arrow:
+//                    open_gm_arrow.setImageResource(R.drawable.arrow_up);
                     if (selectedItems.get(position)) {
                         // 펼쳐진 Item을 클릭 시
                         selectedItems.delete(position);
+//                        open_gm_arrow.setImageResource(R.drawable.arrow_down);
                     } else {
-                        // 직전의 클릭됐던 Item의 클릭상태를 지움
-                        selectedItems.delete(prePosition);
                         // 클릭한 Item의 position을 저장
                         selectedItems.put(position, true);
                     }
@@ -121,11 +127,8 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 public void onAnimationUpdate(ValueAnimator animation) {
                     // value는 height 값
                     int value = (int) animation.getAnimatedValue();
-                    // imageView의 높이 변경
-//                    imageView2.getLayoutParams().height = value;
-//                    imageView2.requestLayout();
-//                    // imageView가 실제로 사라지게하는 부분
-//                    imageView2.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+                    // imageView가 실제로 사라지게하는 부분
+                    gm_semester_subject.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
                 }
             });
             // Animation start

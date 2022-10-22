@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,97 +48,100 @@
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
-        android:weightSum="6">
+        android:layout_marginBottom="20dp">
 
-        <CheckBox
-            android:checked="false"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:layout_marginRight="3dp"
-            android:background="@drawable/radio_button"
-            android:textColor="@drawable/radio_text"
-            android:textAlignment="center"
-            android:text="주전공"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:weightSum="6">
 
-        <CheckBox
-            android:checked="false"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:layout_marginHorizontal="3dp"
-            android:background="@drawable/radio_button"
-            android:textColor="@drawable/radio_text"
-            android:textAlignment="center"
-            android:text="복수전공"/>
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:text="주전공"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_text" />
 
-        <CheckBox
-            android:checked="false"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:layout_marginHorizontal="3dp"
-            android:background="@drawable/radio_button"
-            android:textColor="@drawable/radio_text"
-            android:textAlignment="center"
-            android:text="부전공"/>
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:text="복수전공"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_text" />
 
-        <CheckBox
-            android:checked="false"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:layout_marginHorizontal="3dp"
-            android:background="@drawable/radio_button"
-            android:textColor="@drawable/radio_text"
-            android:textAlignment="center"
-            android:text="TELOS"/>
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:text="부전공"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_text" />
+
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button"
+                android:button="@null"
+                android:checked="false"
+                android:text="TELOS"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_text" />
+
+        </RadioGroup>
 
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/blue_1"
+        android:drawableRight="@drawable/below_arrow_resize"
+        android:gravity="center_vertical"
+        android:paddingLeft="35dp"
         android:text="엘텍공과대학"
-        android:textSize="16dp"
-        android:background="@color/blue_1"
         android:textColor="@color/blue_4"
-        android:layout_marginVertical="2dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="35dp"
-        android:drawableRight="@drawable/below_arrow_resize">
-    </TextView>
+        android:textSize="16dp"></TextView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/blue_1"
+        android:drawableRight="@drawable/below_arrow_resize"
+        android:gravity="center_vertical"
+        android:paddingLeft="35dp"
         android:text="스크랜튼대학"
-        android:textSize="16dp"
-        android:background="@color/blue_1"
         android:textColor="@color/blue_4"
-        android:layout_marginVertical="2dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="35dp"
-        android:drawableRight="@drawable/below_arrow_resize">
-    </TextView>
+        android:textSize="16dp"></TextView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="신산업융합대학"
-        android:textSize="16dp"
-        android:background="@color/blue_1"
-        android:textColor="@color/blue_4"
         android:layout_marginVertical="2dp"
+        android:background="@color/blue_1"
+        android:drawableRight="@drawable/below_arrow_resize"
         android:gravity="center_vertical"
         android:paddingLeft="35dp"
-        android:drawableRight="@drawable/below_arrow_resize">
-    </TextView>
+        android:text="신산업융합대학"
+        android:textColor="@color/blue_4"
+        android:textSize="16dp"></TextView>
 
 </LinearLayout>

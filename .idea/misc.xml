@@ -61,15 +61,17 @@
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum_sidebar.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_home.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_semester.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_jjim_list.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_management.xml" value="0.1625" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage.xml" value="0.175" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage.xml" value="0.25" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage_add_major.xml" value="0.22" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage_info_modification.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage_major_modification.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_recom.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/frag1.xml" value="0.13125" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/item_list.xml" value="0.1625" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listbutton_major.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item.xml" value="0.22" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item2.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item_open.xml" value="0.1625" />
@@ -78,6 +80,7 @@
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/rb_grade.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/bottom_navi.xml" value="0.175" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/bottom_navigation_bar.xml" value="0.1625" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/sidebar_layout.xml" value="0.1625" />
       </map>
     </option>
   </component>

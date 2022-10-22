@@ -15,7 +15,6 @@
             android:layout_marginHorizontal="30dp"
             android:orientation="vertical">
 
-
             <ImageView
                 android:id="@+id/navigate_before"
                 android:layout_width="28dp"

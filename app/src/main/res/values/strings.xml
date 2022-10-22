@@ -2,7 +2,7 @@
     <string name="app_name">CurriForYou</string>
     <string name="userId">ewhaian</string>
     <string name="user_nickname">이화연</string>
-    <string name="user_position">이화여자대학교 1886531</string>
+    <string name="user_student_id">1886531</string>
     <string name="mainMajor">뇌인지과학전공</string>
     <string name="doubleMajor">사이버보안전공</string>
     <string name="miner">컴퓨터공학전공</string>

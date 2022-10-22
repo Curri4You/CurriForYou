@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/tv_edge_gray3"
     android:layout_marginHorizontal="15dp"
@@ -100,6 +101,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/gm_semester_subject"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center">
@@ -196,15 +198,13 @@
         android:background="@color/blue_1"
         android:gravity="center">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:background="@drawable/next_arrow"
-            android:backgroundTint="@color/blue_2"
-            android:rotation="90">
-        </androidx.appcompat.widget.AppCompatButton>
+        <ImageView
+            android:id="@+id/open_gm_arrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/arrow_down"
+            app:tint="@color/blue_2"/>
 
     </LinearLayout>
-
 
 </LinearLayout>
