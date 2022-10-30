@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="94.3"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold">
             </TextView>
 
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="94.3"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold">
             </TextView>
 
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="94.3"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold">
             </TextView>
 
@@ -122,12 +122,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_syllabus_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="주전공">
             </TextView>
 
             <TextView
+                android:id="@+id/tv_course_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="사이버보안학과"
@@ -150,6 +152,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tv_credit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="누적 13/180 이수"
@@ -165,22 +168,18 @@
             android:layout_weight="1"
             android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RadioButton
+                android:id="@+id/rb_grade"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:checked="true"
+                android:background="@drawable/shape_round"
                 android:gravity="center"
-                android:text="평균"
-                android:textSize="10sp">
-            </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="90.5"
-                android:textSize="20sp"
-                android:textStyle="bold">
-            </TextView>
+                android:button="@null"
+                android:text="A+"
+                android:textSize="15sp"
+                android:textColor="@color/white">
+            </RadioButton>
 
         </LinearLayout>
 

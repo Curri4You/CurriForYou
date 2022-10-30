@@ -26,8 +26,7 @@
             android:id="@+id/tv_syllabus_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3학년 권장">
-        </TextView>
+            android:text="3학년 권장"></TextView>
 
         <TextView
             android:id="@+id/tv_course_name2"
@@ -46,7 +45,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="3학점"
-        android:textSize="10sp">
+        android:textSize="15sp">
     </TextView>
 
     <RadioButton

@@ -3,14 +3,20 @@
 package com.example.curriforyou;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class GmActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,20 +25,18 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     AlertDialog.Builder builder;
     String[] semester;
 
+    //
+    RVGmSemesterAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gm_home);
 
-        //[Dialog]
-        tv_semester = findViewById(R.id.tv_semester);
-        ll_listsemester = findViewById(R.id.ll_listsemester);
-        ll_listsemester.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GmShowDialog();
-            }
-        });
+        //
+        init();
+        getData();
 
         //gm_semester 페이지로 이동하는 버튼
         ImageView goto_gm_semester = (ImageView) findViewById(R.id.goto_gm_semester);
@@ -58,21 +62,41 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         naviBtn_myPage.setOnClickListener(this);
     }
 
-    //[Dialog] 팝업창 띄우고 선택 시 OnClick 함수 적용
-    public void GmShowDialog(){
-        semester = getResources().getStringArray(R.array.semester);
-        builder = new AlertDialog.Builder(GmActivity.this);
-        builder.setTitle("Select Your Course Category");    //제목
+    //////
+    private void init(){
+        RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
 
-        builder.setItems(semester, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                tv_semester.setText(semester[which]);
-                //선택된 카테고리에 따라 다른 URL에서 파싱
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        Context context;
+        adapter = new RVGmSemesterAdapter(GmActivity.this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void getData(){
+        DataGmList data = new DataGmList("syllabus_id1", "강좌명1", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id2", "강좌명2", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id3", "강좌명3", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id4", "강좌명4", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+        data = new DataGmList("syllabus_id5", "강좌명5", "2", "1.0");
+        adapter.addItem(data);
+
+        //
+        RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
+
     }
 
     @Override

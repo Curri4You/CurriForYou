@@ -3,10 +3,10 @@ package com.example.curriforyou;
 public class DataGmList {
     //syllabus_id(학수번호), course_name(강좌명), credit(학점), grade(성적)
     String syllabus_id, course_name;
-    int credit;
-    float grade;
+    String credit;
+    String grade;
 
-    public DataGmList(String syllabus_id, String course_name, int credit, float grade){
+    public DataGmList(String syllabus_id, String course_name, String credit, String grade){
         this.syllabus_id = syllabus_id;
         this.course_name = course_name;
         this.credit = credit;
@@ -29,19 +29,19 @@ public class DataGmList {
         this.course_name = course_name;
     }
 
-    public int getCredit() {
+    public String getCredit() {
         return credit;
     }
 
-    public void setCredit(int credit) {
+    public void setCredit(String credit) {
         this.credit = credit;
     }
 
-    public float getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(float grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 }
