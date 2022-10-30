@@ -38,19 +38,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         init();
         getData();
 
-
-
-        //[Dialog]
-        tv_semester = findViewById(R.id.tv_semester);
-        ll_listsemester = findViewById(R.id.ll_listsemester);
-        ll_listsemester.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GmShowDialog();
-            }
-        });
-
-        //gm_semester 페이지로 이동하는 버튼
+        /*//gm_semester 페이지로 이동하는 버튼
         ImageView goto_gm_semester = (ImageView) findViewById(R.id.goto_gm_semester);
         goto_gm_semester.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +46,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 Intent intent = new Intent(getApplicationContext(), GmSemesterActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //[하단바] Button parameter 선언
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
@@ -109,23 +97,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         //
         RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
 
-    }
-
-    //[Dialog] 팝업창 띄우고 선택 시 OnClick 함수 적용
-    public void GmShowDialog(){
-        semester = getResources().getStringArray(R.array.semester);
-        builder = new AlertDialog.Builder(GmActivity.this);
-        builder.setTitle("Select Your Course Category");    //제목
-
-        builder.setItems(semester, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                tv_semester.setText(semester[which]);
-                //선택된 카테고리에 따라 다른 URL에서 파싱
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     @Override

@@ -33,7 +33,7 @@ public class RVGmSemesterAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_semester, parent, false);
         return new ViewHolderGmList(view);
     }
 
