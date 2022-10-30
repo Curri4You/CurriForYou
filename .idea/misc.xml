@@ -15,7 +15,6 @@
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/progressbar_style1.xml" value="0.1" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/radio_button.xml" value="0.1" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/radio_button_rec.xml" value="0.1" />
-        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/radio_button_rec2.xml" value="0.159" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/radio_text.xml" value="0.1" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/shape_rec.xml" value="0.1" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/shape_round.xml" value="0.1" />
@@ -32,10 +31,10 @@
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/textview_edge.xml" value="0.104" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/tv_edge_gray3.xml" value="0.1" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_appbar.xml" value="0.16077898550724637" />
-        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum.xml" value="0.16" />
+        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum.xml" value="0.1" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum_sidebar.xml" value="0.2" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_drawer.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_home.xml" value="0.264" />
+        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_home.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_semester.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_header.xml" value="0.16077898550724637" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_login.xml" value="0.2" />
@@ -51,17 +50,16 @@
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_signup_id.xml" value="0.14175724637681159" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/frag1.xml" value="0.17889492753623187" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item.xml" value="0.176" />
-        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item2.xml" value="0.2" />
+        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item2.xml" value="0.12107396149949341" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item_open.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_recom.xml" value="0.2" />
-        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_semester.xml" value="0.1691542288557214" />
-        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/rb_grade.xml" value="0.16" />
+        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_semester.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/drawerlayout.xml" value="0.3466796875" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/sidebar_layout.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.114" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum.xml" value="0.10666666666666667" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum_sidebar.xml" value="0.1" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_home.xml" value="0.1" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_home.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_semester.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_jjim_list.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_main.xml" value="0.22" />
