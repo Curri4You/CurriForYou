@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //[RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     //URL1 - 전공필수 카테고리 CourseList
-    private  String REQUEST_URL1 = "http://smlee099.dothome.co.kr/CourseList.php";
+    private  String REQUEST_URL1 = "http://smlee099.dothome.co.kr/CourseList1.php";
     //URL2 - 전공선택 카테고리 CourseList
     private  String REQUEST_URL2 = "http://smlee099.dothome.co.kr/CourseList_practice.php";
     //URL3 - 교양필수 카테고리 CourseList
@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //[RecyclerView] HashMap 사용
         courseList = new ArrayList<HashMap<String, String>>();
         //[RecyclerView] 각 필드값을 매핑, from -> to
-        String[] from = new String[]{"course_name", "subject_id", "gpa", "is_english"};
-        int[] to = new int[]{R.id.tv_course_name, R.id.tv_subject_id, R.id.tv_gpa, R.id.tv_is_english};
+        String[] from = new String[]{"course_name", "course_id", "is_open", "credit"};
+        int[] to = new int[]{R.id.tv_course_name, R.id.tv_course_id, R.id.tv_is_open, R.id.tv_credit};
 
         //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
@@ -321,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             JSONObject jsonObject = new JSONObject(jsonString);
 
             //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
-            JSONArray course = jsonObject.getJSONArray("course");
+            JSONArray course = jsonObject.getJSONArray("courselist1");
 
             courseList.clear();
 
@@ -329,12 +329,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             for (int i = 0; i < course.length(); i++) {
                 JSONObject courseInfo = course.getJSONObject(i);
 
+                String major_division = courseInfo.getString("major_division");
                 String course_name = courseInfo.getString("course_name");
-                String subject_id = courseInfo.getString("subject_id");
-                String gpa = courseInfo.getString("gpa");
-                String is_english = courseInfo.getString("is_open");
+                String course_id = courseInfo.getString("course_id");
+                String is_open = courseInfo.getString("is_open");
+                String credit = courseInfo.getString("credit");
+                String course_id_true_false = courseInfo.getString("course_id_true_false");
 
-                DataCourseList data = new DataCourseList(course_name, subject_id, gpa, is_english);
+                DataCourseList data = new DataCourseList(major_division, course_name, course_id, is_open, credit, course_id_true_false);
                 rc_adapter.addItem(data);
                 /*HashMap<String, String> photoinfoMap = new HashMap<String, String>();
                 photoinfoMap.put("course_name", course_name);

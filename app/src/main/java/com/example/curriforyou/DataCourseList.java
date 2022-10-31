@@ -1,13 +1,25 @@
 package com.example.curriforyou;
 
 public class DataCourseList {
-    String course_name, subject_id, gpa, is_english;
+    String major_division, course_name, course_id,
+            is_open, credit, course_id_true_false;
 
-    public DataCourseList(String course_name, String subject_id, String gpa, String is_english){
+    public DataCourseList(String major_division, String course_name, String course_id,
+                          String is_open, String credit, String course_id_true_false){
+        this.major_division = major_division;
         this.course_name = course_name;
-        this.subject_id = subject_id;
-        this.gpa = gpa;
-        this.is_english = is_english;
+        this.course_id = course_id;
+        this.is_open = is_open;
+        this.credit = credit;
+        this.course_id_true_false = course_id_true_false;
+    }
+
+    public String getMajor_division() {
+        return major_division;
+    }
+
+    public void setMajor_division(String major_division) {
+        this.major_division = major_division;
     }
 
     public String getCourse_name() {
@@ -18,27 +30,35 @@ public class DataCourseList {
         this.course_name = course_name;
     }
 
-    public String getSubject_id() {
-        return subject_id;
+    public String getCourse_id() {
+        return course_id;
     }
 
-    public void setSubject_id(String subject_id) {
-        this.subject_id = subject_id;
+    public void setCourse_id(String course_id) {
+        this.course_id = course_id;
     }
 
-    public String getGpa() {
-        return gpa;
+    public String getIs_open() {
+        return is_open;
     }
 
-    public void setGpa(String gpa) {
-        this.gpa = gpa;
+    public void setIs_open(String is_open) {
+        this.is_open = is_open;
     }
 
-    public String getIs_english() {
-        return is_english;
+    public String getCredit() {
+        return credit;
     }
 
-    public void setIs_english(String is_english) {
-        this.is_english = is_english;
+    public void setCredit(String credit) {
+        this.credit = credit;
+    }
+
+    public String getCourse_id_true_false() {
+        return course_id_true_false;
+    }
+
+    public void setCourse_id_true_false(String course_id_true_false) {
+        this.course_id_true_false = course_id_true_false;
     }
 }
