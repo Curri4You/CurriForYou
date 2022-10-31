@@ -106,16 +106,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog.setMessage("Please wait ...");
         progressDialog.show();
 
-        //-------------------------------------------------//
-        //[페이지 이동] LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE 로 이동
-        Button btn_login_page = (Button)findViewById(R.id.btn_login_page);
-        btn_login_page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+//        //-------------------------------------------------//
+//        //[페이지 이동] LOGIN PAGE BUTTON 클릭 --> LOGIN PAGE 로 이동
+//        Button btn_login_page = (Button)findViewById(R.id.btn_login_page);
+//        btn_login_page.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //-------------------------------------------------//
         //[SideBar] CURRICULUM PAGE에서 햄버거 클릭 --> 사이드바 화면 출력
@@ -161,22 +161,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
 
-        //////////////////
-        //testing 용 - 무시해도 됨
-        //TextView에 리스트에 들어갈 내용 나열출력
-        Button btn_list = (Button) findViewById(R.id.btn_list);
-        btn_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //요청 큐가 없으면 요청 큐 생성하기
-                if(requestQueue == null){
-                    requestQueue = Volley.newRequestQueue(getApplicationContext());
-                }
-                //course table 정보 토스트값으로 출력
-                CourseList();
-            }
-        });
-        //////////////////
+//        //////////////////
+//        //testing 용 - 무시해도 됨
+//        //TextView에 리스트에 들어갈 내용 나열출력
+//        Button btn_list = (Button) findViewById(R.id.btn_list);
+//        btn_list.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //요청 큐가 없으면 요청 큐 생성하기
+//                if(requestQueue == null){
+//                    requestQueue = Volley.newRequestQueue(getApplicationContext());
+//                }
+//                //course table 정보 토스트값으로 출력
+//                CourseList();
+//            }
+//        });
+//        //////////////////
 
     }
 

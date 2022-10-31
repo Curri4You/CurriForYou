@@ -110,9 +110,10 @@
             android:layout_marginVertical="8dp"/>
 
         <TextView
+            android:id="@+id/grade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A+"
+            android:text=" "
             android:textSize="15sp"
             android:paddingHorizontal="15dp">
         </TextView>
