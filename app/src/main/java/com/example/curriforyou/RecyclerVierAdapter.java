@@ -6,7 +6,9 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -63,7 +65,10 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //subView를 setting
     class ViewHolderCourseList extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView tv_course_name, tv_course_id, tv_is_open, tv_credit;
+        TextView tv_course_name, tv_course_id, tv_is_open, tv_credit,
+                tv_course_year, tv_course_semester, tv_grade;
+        ImageView iv_major_division;
+        CheckBox cb_taken;
         private LinearLayout tv_item_open, ll_listitem;
         private DataCourseList data;
         private int position;
@@ -78,6 +83,12 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_course_id = itemView.findViewById(R.id.tv_course_id);
             tv_is_open = itemView.findViewById(R.id.tv_is_open);
             tv_credit = itemView.findViewById(R.id.tv_credit);
+            ///
+            tv_course_year = itemView.findViewById(R.id.tv_course_year);
+            tv_course_semester = itemView.findViewById(R.id.tv_course_semester);
+            tv_grade = itemView.findViewById(R.id.tv_grade);
+            iv_major_division = itemView.findViewById(R.id.iv_major_division);
+            cb_taken = itemView.findViewById(R.id.cb_taken);
 
             tv_item_open = itemView.findViewById(R.id.tv_item_open);
             ib_heart = itemView.findViewById(R.id.ib_heart);
@@ -110,6 +121,27 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_course_id.setText(data.getCourse_id());
             tv_is_open.setText(data.getIs_open());
             tv_credit.setText(data.getCredit());
+            ///
+            tv_course_year.setText(data.getCourse_year());
+            tv_course_semester.setText(data.getCourse_semester());
+            tv_grade.setText(data.getGrade());
+
+            //major_division에 따른 바 색깔 변경
+            if(data.getMajor_division().equals("1")){
+                iv_major_division.setImageResource(R.drawable.rectangle_blue5);
+            } else if (data.getMajor_division().equals("2")){
+                iv_major_division.setImageResource(R.drawable.rectangle_blue3);
+            } else if (data.getMajor_division().equals("3")){
+                iv_major_division.setImageResource(R.drawable.rectangle_blue1);
+            }
+
+            //수강&미수강 버튼 변경
+            if (!data.getCourse_year().equals("미정")){
+                cb_taken.setText("수강");
+                cb_taken.setChecked(true);
+            }
+
+            //
 
             changeVisibility(selecteditems.get(position));
             /*changeImageView(selectedhearts.get(position));*/

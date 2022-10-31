@@ -113,6 +113,7 @@
             android:layout_marginVertical="10dp">
 
             <TextView
+                android:id="@+id/tv_course_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2학기"
@@ -128,6 +129,7 @@
                 android:layout_marginVertical="8dp"/>
 
             <TextView
+                android:id="@+id/tv_course_semester"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3시간"
@@ -143,6 +145,7 @@
                 android:layout_marginVertical="8dp"/>
 
             <TextView
+                android:id="@+id/tv_grade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A+"
@@ -158,6 +161,7 @@
 
             <!--btn_flag - 버튼 클릭하면 색상 변경-->
             <CheckBox
+                android:id="@+id/cb_taken"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/btn_flag"
@@ -218,7 +222,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/radio_button"
                 android:button="@null"
-                android:checked="false"
+                android:checked="true"
                 android:text="주전공"
                 android:textAlignment="center"
                 android:textColor="@drawable/radio_text" />
@@ -237,7 +241,7 @@
                 android:text="복수전공"/>
 
             <CheckBox
-                android:checked="true"
+                android:checked="false"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -285,7 +289,16 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="선수과목이 존재하지 않습니다."
+            android:gravity="center"
+            android:layout_marginVertical="25dp">
+        </TextView>
+
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/tv_edge_gray3"

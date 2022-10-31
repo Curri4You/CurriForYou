@@ -34,6 +34,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GmActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -122,6 +123,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
             }
         }
     }
+
+    String[] semester_list = {"1학년 1학기", "1학년 2학기", "2학년 1학기", "2학년 2학기", "3학년 1학기", "3학년 2학기", "4학년 1학기", "4학년 2학기"};
+
 
     private void getData(String Request_url){
 //        Thread thread = new Thread(new Runnable() {

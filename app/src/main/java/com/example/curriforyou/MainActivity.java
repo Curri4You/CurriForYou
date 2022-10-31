@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,9 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //[RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     //URL1 - 전공필수 카테고리 CourseList
-    private  String REQUEST_URL1 = "http://smlee099.dothome.co.kr/CourseList1.php";
+    private  String REQUEST_URL1 = "http://smlee099.dothome.co.kr/CourseListTest.php";
     //URL2 - 전공선택 카테고리 CourseList
-    private  String REQUEST_URL2 = "http://smlee099.dothome.co.kr/CourseList_practice.php";
+    private  String REQUEST_URL2 = "http://smlee099.dothome.co.kr/CourseListTest2.php";
     //URL3 - 교양필수 카테고리 CourseList
     private  String REQUEST_URL3 = "http://smlee099.dothome.co.kr/CourseList_practice.php";
     //URL4 - 교양선택 카테고리 CourseList
@@ -321,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             JSONObject jsonObject = new JSONObject(jsonString);
 
             //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
-            JSONArray course = jsonObject.getJSONArray("courselist1");
+            JSONArray course = jsonObject.getJSONArray("CourseListTest");
 
             courseList.clear();
 
@@ -332,11 +333,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String major_division = courseInfo.getString("major_division");
                 String course_name = courseInfo.getString("course_name");
                 String course_id = courseInfo.getString("course_id");
-                String is_open = courseInfo.getString("is_open");
-                String credit = courseInfo.getString("credit");
-                String course_id_true_false = courseInfo.getString("course_id_true_false");
 
-                DataCourseList data = new DataCourseList(major_division, course_name, course_id, is_open, credit, course_id_true_false);
+                String is_open = courseInfo.getString("is_open");
+                if(is_open.equals("0")){
+                    is_open = "X";
+                } else {
+                    is_open = "O";
+                }
+
+                String credit = courseInfo.getString("credit");
+                String jjim = courseInfo.getString("jjim");
+                String course_year = courseInfo.getString("course_year");
+
+                String course_semester = courseInfo.getString("course_semester");
+                if (!course_semester.equals("null")){
+                    course_semester = course_semester + "학기";
+                }
+
+
+                String grade = courseInfo.getString("grade");
+
+                String category = courseInfo.getString("category");
+
+
+                String pre_course_id = courseInfo.getString("pre_course_name");
+                String pre_course_name = courseInfo.getString("pre_course_id");
+                String pre_is_open = courseInfo.getString("pre_is_open");
+                String pre_credit = courseInfo.getString("pre_credit");
+                String pre_jjim = courseInfo.getString("pre_jjim");
+
+                if(course_year.equals("null")){
+                    course_year = "미정";
+                    course_semester = "미정";
+                    grade = "미정";
+                } else{
+
+                }
+
+
+                DataCourseList data = new DataCourseList(major_division, course_name,
+                        course_id, is_open, credit, jjim, course_year, course_semester,
+                        grade, category, pre_course_name, pre_course_id, pre_is_open,
+                        pre_credit, pre_jjim);
                 rc_adapter.addItem(data);
                 /*HashMap<String, String> photoinfoMap = new HashMap<String, String>();
                 photoinfoMap.put("course_name", course_name);
