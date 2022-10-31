@@ -88,31 +88,31 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/mainMajor"
-                android:textColor="@color/blue_5"
-                android:backgroundTint="@color/blue_2"/>
+                android:textColor="@color/blue_1"
+                android:backgroundTint="@color/blue_3"/>
 
             <Button
                 android:id="@+id/btn_doubleMajor"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/doubleMajor"
-                android:textColor="@color/blue_5"
-                android:backgroundTint="@color/blue_2" />
+                android:textColor="@color/blue_1"
+                android:backgroundTint="@color/blue_3" />
 
             <Button
                 android:id="@+id/btn_minor"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/miner"
-                android:textColor="@color/blue_5"
-                android:backgroundTint="@color/blue_2" />
+                android:textColor="@color/blue_1"
+                android:backgroundTint="@color/blue_3" />
 
             <ImageView
                 android:id="@+id/btn_addMajor"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:src="@drawable/add_box"
-                app:tint="@color/blue_5" />
+                app:tint="@color/blue_4" />
 
         </LinearLayout>
 
@@ -217,7 +217,7 @@
                         android:id="@+id/naver"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/pokemon" />
+                        android:src="@drawable/instagram" />
 
                     <TextView
                         android:id="@+id/naverConnect"
@@ -239,7 +239,7 @@
                         android:id="@+id/google"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/pokemon" />
+                        android:src="@drawable/kakaotalk" />
 
                     <TextView
                         android:id="@+id/googleConnect"
@@ -259,9 +259,9 @@
 
                     <ImageView
                         android:id="@+id/kakao"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/pokemon" />
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/facebook" />
 
                     <TextView
                         android:id="@+id/kakaoConnect"
@@ -283,7 +283,7 @@
                         android:id="@+id/apple"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/pokemon" />
+                        android:src="@drawable/apple" />
 
                     <TextView
                         android:id="@+id/appleConnect"

@@ -3,9 +3,9 @@
     <string name="userId">ewhaian</string>
     <string name="user_nickname">이화연</string>
     <string name="user_student_id">1886531</string>
-    <string name="mainMajor">뇌인지과학전공</string>
-    <string name="doubleMajor">사이버보안전공</string>
-    <string name="miner">컴퓨터공학전공</string>
+    <string name="mainMajor">사이버보안</string>
+    <string name="doubleMajor">컴퓨터공학과</string>
+    <string name="miner">뇌인지과학부</string>
     <string name="user_phoneNum">010-1886-0531</string>
     <string name="user_email">ewha1886@ewhain.net</string>
     <string name="connected">연결완료</string>
