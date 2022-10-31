@@ -77,7 +77,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_course_name = itemView.findViewById(R.id.tv_course_name);
             tv_course_id = itemView.findViewById(R.id.tv_course_id);
             tv_is_open = itemView.findViewById(R.id.tv_is_open);
-            tv_credit = itemView.findViewById(R.id.tv_credit);
+            tv_credit = itemView.findViewById(R.id.tv_credit1);
 
             tv_item_open = itemView.findViewById(R.id.tv_item_open);
             ib_heart = itemView.findViewById(R.id.ib_heart);
