@@ -23,6 +23,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -81,12 +84,123 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<DataCourseList> search_list = new ArrayList<>();
     EditText et_search;
 
+    //[Filter]
+    ArrayList<DataCourseList> filter_list = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list2 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list3 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list4 = new ArrayList<>();
+    Button btn_filter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-        //[Search]
+        //[Filter]
+        RadioButton rb_all = findViewById(R.id.rb_all);
+        RadioButton rb_this_semester = findViewById(R.id.rb_this_semester);
+        String filter_all = rb_all.getText().toString().toUpperCase();
+        String filter_this_semester = rb_this_semester.getText().toString().toUpperCase();
+
+        CheckBox cb_credit1 = findViewById(R.id.cb_credit1);
+        CheckBox cb_credit2 = findViewById(R.id.cb_credit2);
+        CheckBox cb_credit3 = findViewById(R.id.cb_credit3);
+        CheckBox cb_credit4 = findViewById(R.id.cb_credit4);
+
+        Switch swit_taken = findViewById(R.id.swit_taken);
+
+        CheckBox cb_major1 = findViewById(R.id.cb_major1);
+        CheckBox cb_major2 = findViewById(R.id.cb_major2);
+        CheckBox cb_major3 = findViewById(R.id.cb_major3);
+
+        btn_filter = findViewById(R.id.btn_filter);
+        btn_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter_list.clear();
+                filter_list2.clear();
+                filter_list3.clear();
+                filter_list4.clear();
+
+                //개설여부
+                if (rb_all.isChecked()){
+                    /*Toast.makeText(getApplicationContext(), filter_all, Toast.LENGTH_SHORT).show();*/
+                    for(int a = 0; a < original_list.size(); a++){
+                        filter_list.add(original_list.get(a));
+                    }
+                } else {
+                    /*Toast.makeText(getApplicationContext(), filter_this_semester, Toast.LENGTH_SHORT).show();*/
+                    for(int a = 0; a < original_list.size(); a++){
+                        if(original_list.get(a).is_open.toLowerCase().contains("X".toLowerCase())){
+                            filter_list.add(original_list.get(a));
+                        }
+                    }
+                }
+
+                //학점
+                String[] credit_list = {"0", "0", "0", "0"};
+                if (cb_credit1.isChecked()){
+                    credit_list[0] = "1";
+                }
+                if (cb_credit2.isChecked()){
+                    credit_list[1] = "1";
+                }
+                if (cb_credit3.isChecked()){
+                    credit_list[2] = "1";
+                }
+                if (cb_credit4.isChecked()){
+                    credit_list[3] = "1";
+                }
+                for (int i = 0; i < 4; i++){
+                    if (credit_list[i].equals("1")){
+                        /*Toast.makeText(getApplicationContext(), (i+1)+"", Toast.LENGTH_SHORT).show();*/
+                        for(int a = 0; a < filter_list.size(); a++){
+                            if(filter_list.get(a).credit.equals((i+1)+"")){
+                                filter_list2.add(filter_list.get(a));
+                            }
+                        }
+                    }
+                }
+
+                //수강과목 --> ERROR
+                if (swit_taken.isChecked()){
+                    for(int a = 0; a < filter_list2.size(); a++){
+                        if(!filter_list2.get(a).course_year.equals("미정")){
+                            filter_list3.add(filter_list2.get(a));
+                        }
+                    }
+                } else {
+                    filter_list3 = filter_list2;
+                }
+
+                //전공사항
+                String[] major_list = {"0", "0", "0"};
+                if (cb_major1.isChecked()){
+                    major_list[0] = "1";
+                }
+                if (cb_major2.isChecked()){
+                    major_list[1] = "1";
+                }
+                if (cb_major3.isChecked()){
+                    major_list[2] = "1";
+                }
+                for (int i = 0; i < 3; i++){
+                    if (major_list[i].equals("1")){
+                        for(int a = 0; a < filter_list3.size(); a++){
+                            if(filter_list3.get(a).major_division.equals((i+1)+"")){
+                                filter_list4.add(filter_list3.get(a));
+                            }
+                        }
+                    }
+                }
+
+                /*Toast.makeText(getApplicationContext(), ""+credit_list[0]+credit_list[1]+credit_list[2]+credit_list[3], Toast.LENGTH_SHORT).show();*/
+                rc_adapter.setItems(filter_list4);
+            }
+        });
+
+        //-------------------------------------------------//
+        //[Search] edittext에 입력 시 해당 리스트로 변경
         et_search = findViewById(R.id.et_search);
         et_search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,14 +215,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                String searchText = et_search.getText().toString();
+                String search_text = et_search.getText().toString();
                 search_list.clear();
 
-                if(searchText.equals("")){
+                if(search_text.equals("")){
                     rc_adapter.setItems(original_list);
                 } else {
                     for(int a=0; a < original_list.size(); a++){
-                        if(original_list.get(a).course_name.toLowerCase().contains(searchText.toLowerCase())){
+                        if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
                             search_list.add(original_list.get(a));
                         }
                         rc_adapter.setItems(search_list);
@@ -267,6 +381,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rc_curriculum_course.setLayoutManager(linearLayoutManager);
 
+        original_list.clear();
+        filter_list.clear();
+        filter_list2.clear();
+        filter_list3.clear();
+        filter_list4.clear();
         rc_adapter = new RecyclerVierAdapter(original_list);
         rc_curriculum_course.setAdapter(rc_adapter);
     }

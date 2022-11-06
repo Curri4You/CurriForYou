@@ -25,7 +25,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     /*private ArrayList<DataCourseList> listData = new ArrayList<>();*/
     private ArrayList<DataCourseList> listData = null;
     private Context context;
-    private ArrayList<DataCourseList> filteredList = new ArrayList<>();
 
     //item의 클릭 상태를 저장할 array 객체
     private SparseBooleanArray selecteditems = new SparseBooleanArray();
@@ -39,6 +38,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //
     private SparseBooleanArray selectedhearts = new SparseBooleanArray();
 
+    //생성자
     RecyclerVierAdapter(ArrayList<DataCourseList> list){
         listData = list;
     }
@@ -69,6 +69,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         listData.add(data);
     }
 
+    //[Search]
     public void setItems(ArrayList<DataCourseList> listData1){
         listData = listData1;
         notifyDataSetChanged();
