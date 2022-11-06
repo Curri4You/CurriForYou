@@ -169,21 +169,21 @@
                     android:layout_weight="1">
                 </LinearLayout>-->
 
-                <!--[Testing] 버튼 누르면 CourseList 관련된 Toast 출력-->
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="list">
-                </androidx.appcompat.widget.AppCompatButton>
+<!--                &lt;!&ndash;[Testing] 버튼 누르면 CourseList 관련된 Toast 출력&ndash;&gt;-->
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/btn_list"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="list">-->
+<!--                </androidx.appcompat.widget.AppCompatButton>-->
 
-                <!--로그인 페이지로 이동하는 버튼-->
-                <Button
-                    android:id="@+id/btn_login_page"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="LOGIN PAGE">
-                </Button>
+<!--                &lt;!&ndash;로그인 페이지로 이동하는 버튼&ndash;&gt;-->
+<!--                <Button-->
+<!--                    android:id="@+id/btn_login_page"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="LOGIN PAGE">-->
+<!--                </Button>-->
 
 
             </LinearLayout>
