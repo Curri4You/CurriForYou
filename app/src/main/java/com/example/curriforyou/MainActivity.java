@@ -14,11 +14,14 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -75,10 +78,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AlertDialog.Builder builder;
     String[] course_category;
 
+    //[Search]
+    ArrayList<DataCourseList> original_list = new ArrayList<>();
+    ArrayList<DataCourseList> search_list = new ArrayList<>();
+    EditText et_search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
+
+        //[Search]
+        et_search = findViewById(R.id.et_search);
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String searchText = et_search.getText().toString();
+                search_list.clear();
+
+                if(searchText.equals("")){
+                    rc_adapter.setItems(original_list);
+                } else {
+                    for(int a=0; a < original_list.size(); a++){
+                        if(original_list.get(a).course_name.toLowerCase().contains(searchText.toLowerCase())){
+                            search_list.add(original_list.get(a));
+                        }
+                        rc_adapter.setItems(search_list);
+                    }
+                }
+            }
+        });
 
         //-------------------------------------------------//
         //[Dialog] 카테고리 TextView 선택 시 showDialog 함수 호출
@@ -230,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rc_curriculum_course.setLayoutManager(linearLayoutManager);
 
-        rc_adapter = new RecyclerVierAdapter();
+        rc_adapter = new RecyclerVierAdapter(original_list);
         rc_curriculum_course.setAdapter(rc_adapter);
     }
 

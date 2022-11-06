@@ -1,6 +1,7 @@
 package com.example.curriforyou;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -16,12 +17,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     //adapter에 들어갈 list
-    private ArrayList<DataCourseList> listData = new ArrayList<>();
+    /*private ArrayList<DataCourseList> listData = new ArrayList<>();*/
+    private ArrayList<DataCourseList> listData = null;
     private Context context;
+    private ArrayList<DataCourseList> filteredList = new ArrayList<>();
 
     //item의 클릭 상태를 저장할 array 객체
     private SparseBooleanArray selecteditems = new SparseBooleanArray();
@@ -34,6 +38,10 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     //
     private SparseBooleanArray selectedhearts = new SparseBooleanArray();
+
+    RecyclerVierAdapter(ArrayList<DataCourseList> list){
+        listData = list;
+    }
 
     @NonNull
     @Override
@@ -59,6 +67,11 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     void addItem(DataCourseList data){
         //외부에서 item을 추가시킬 함수
         listData.add(data);
+    }
+
+    public void setItems(ArrayList<DataCourseList> listData1){
+        listData = listData1;
+        notifyDataSetChanged();
     }
 
     //Recycler의 핵심; ViewHolder
