@@ -1,59 +1,42 @@
 package com.example.curriforyou;
 
 public class DataGmList {
-    // semester(학기), totalGrade(총 학점), majorGrade(전공학점), liberalGrade(교양학점)
-    // syllabus_id(학수번호), course_name(강좌명), credit(학점), grade(성적)
-    String semester, totalGrade, majorGrade, liberalGrade, syllabus_id, course_name, credit, grade;
+     // course_semester(수강학기), course_id(학수번호), course_name(강좌이름)
+     // major_division(전공구분), credit(학점), grade(성적), category(전필,전선,교필,교선 구분)
+    String course_semester, major_division, course_id, course_name, credit, grade, category;
 
-    public DataGmList(String semester, String totalGrade, String majorGrade, String liberalGrade, String syllabus_id, String course_name, String credit, String grade){
-        this.semester = semester;
-        this.totalGrade = totalGrade;
-        this.majorGrade = majorGrade;
-        this.liberalGrade = liberalGrade;
-        this.syllabus_id = syllabus_id;
+    public DataGmList(String course_semester, String major_division, String course_id, String course_name, String credit, String grade, String category){
+        this.course_semester = course_semester;
+        this.major_division = major_division;
+        this.course_id = course_id;
         this.course_name = course_name;
         this.credit = credit;
         this.grade = grade;
+        this.category = category;
     }
 
-    public String getSemester() {
-        return semester;
+    public String getCourse_semester() {
+        return course_semester;
     }
 
-    public void setSemester(String semester) {
-        this.semester = semester;
+    public void setCourse_semester(String course_semester) {
+        this.course_semester = course_semester;
     }
 
-    public String getTotalGrade() {
-        return totalGrade;
+    public String getMajor_division() {
+        return major_division;
     }
 
-    public void setTotalGrade(String totalGrade) {
-        this.totalGrade = totalGrade;
+    public void setMajor_division(String major_division) {
+        this.major_division = major_division;
     }
 
-    public String getMajorGrade() {
-        return majorGrade;
+    public String getCourse_id() {
+        return course_id;
     }
 
-    public void setMajorGrade(String majorGrade) {
-        this.majorGrade = majorGrade;
-    }
-
-    public String getLiberalGrade() {
-        return liberalGrade;
-    }
-
-    public void setLiberalGrade(String liberalGrade) {
-        this.liberalGrade = liberalGrade;
-    }
-
-    public String getSyllabus_id() {
-        return syllabus_id;
-    }
-
-    public void setSyllabus_id(String syllabus_id) {
-        this.syllabus_id = syllabus_id;
+    public void setCourse_id(String course_id) {
+        this.course_id = course_id;
     }
 
     public String getCourse_name() {
@@ -78,5 +61,13 @@ public class DataGmList {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

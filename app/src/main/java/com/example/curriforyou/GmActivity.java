@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,11 +43,11 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     AlertDialog.Builder builder;
     String[] semester;
     //Adapter 연결
-    GmRecyclerAdapter adapter;
+    /*GmRecyclerAdapter adapter = null;*/
     // [RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     // URL - 학기별 학점요약 DB
-    private  String REQUEST_URL = "http://smlee099.dothome.co.kr/practice_avg_grade.php";
+    private String REQUEST_URL = "http://smlee099.dothome.co.kr/hakjum.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
     GmRecyclerAdapter rc_adapter = null;
@@ -58,7 +59,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gm_home);
 
-        //
         init();
         getData(REQUEST_URL);
 
@@ -69,16 +69,16 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
         LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
 
-//        //[RecyclerView] HashMap 사용
-//        gmSemesterList = new ArrayList<HashMap<String, String>>();
-//        //[RecyclerView] 각 필드값을 매핑, from -> to
-//        String[] from = new String[]{"semester", "totalGrade", "majorGrade", "liberalGrade"};
-//        int[] to = new int[]{R.id.gm_list_semester, R.id.gm_list_totalGrade, R.id.gm_list_majorGrade, R.id.gm_list_liberalGrade};
-//
-//        //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
-//        progressDialog = new ProgressDialog(GmActivity.this);
-//        progressDialog.setMessage("Please wait ...");
-//        progressDialog.show();
+        //[RecyclerView] HashMap 사용
+        gmSemesterList = new ArrayList<HashMap<String, String>>();
+        //[RecyclerView] 각 필드값을 매핑, from -> to
+        String[] from = new String[]{"course_id", "course_name", "credit", "grade"};
+        int[] to = new int[]{R.id.tv_course_id, R.id.tv_course_name, R.id.tv_credit, R.id.rb_grade};
+
+        //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
+        progressDialog = new ProgressDialog(GmActivity.this);
+        progressDialog.setMessage("Please wait ...");
+        progressDialog.show();
 
         naviBtn_curriculum.setOnClickListener(this);
         naviBtn_jjimList.setOnClickListener(this);
@@ -87,33 +87,33 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         naviBtn_myPage.setOnClickListener(this);
     }
 
-    //////
-    private void init(){
+    private void init() {
         RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         Context context;
-        adapter = new GmRecyclerAdapter(this);
-        recyclerView.setAdapter(adapter);
+        rc_adapter = new GmRecyclerAdapter(this);
+        recyclerView.setAdapter(rc_adapter);
     }
 
     //[RecyclerView]
     private final RC_MyHandler RC_mHandler = new RC_MyHandler(this);
+
     //[RecyclerView]
     private static class RC_MyHandler extends Handler {
         private final WeakReference<GmActivity> weakReference;
 
-        public RC_MyHandler(GmActivity gmActivity){
+        public RC_MyHandler(GmActivity gmActivity) {
             weakReference = new WeakReference<GmActivity>(gmActivity);
         }
 
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             GmActivity gmActivity = weakReference.get();
 
-            if(gmActivity != null){
-                switch (msg.what){
+            if (gmActivity != null) {
+                switch (msg.what) {
                     case LOAD_SUCCESS:
                         gmActivity.progressDialog.dismiss();
                         gmActivity.rc_adapter.notifyDataSetChanged();
@@ -123,112 +123,95 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    private void getData(String Request_url){
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                String result;
-//
-//                try{
-//                    Log.d(TAG, Request_url);
-//                    URL url = new URL(Request_url);
-//                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-//                    httpURLConnection.setReadTimeout(3000);
-//                    httpURLConnection.setConnectTimeout(3000);
-//                    httpURLConnection.setDoOutput(true);
-//                    httpURLConnection.setDoInput(true);
-//                    httpURLConnection.setRequestMethod("GET");
-//                    httpURLConnection.setUseCaches(false);
-//                    httpURLConnection.connect();
-//
-//                    int responseStatusCode = httpURLConnection.getResponseCode();
-//
-//                    InputStream inputStream;
-//                    if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-//                        inputStream = httpURLConnection.getInputStream();
-//                    } else {
-//                        inputStream = httpURLConnection.getErrorStream();
-//                    }
-//
-//                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-//                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//
-//                    StringBuilder sb = new StringBuilder();
-//                    String line;
-//
-//                    while ((line = bufferedReader.readLine()) != null) {
-//                        sb.append(line);
-//                    }
-//
-//                    bufferedReader.close();
-//                    httpURLConnection.disconnect();
-//
-//                    result = sb.toString().trim();
-//                } catch (Exception e){
-//                    result = e.toString();
-//                }
-//                if (RC_jsonParser(result)){     // 파싱 기능 사용
-//                    Message message = RC_mHandler.obtainMessage(LOAD_SUCCESS);
-//                    RC_mHandler.sendMessage(message);
-//                }
-//            }
-//        });
-//        thread.start();
+    private void getData(String Request_url) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String result;
 
-        DataGmList data = new DataGmList("1학년 1학기", "3.25", "3.15", "3.38", "syllabus_id1", "강좌명1", "1", "1.0");
-        adapter.addItem(data);
-        data = new DataGmList("1학년 1학기", "3.25", "3.15", "3.38", "syllabus_id2", "강좌명2", "2", "1.0");
-        adapter.addItem(data);
-        data = new DataGmList("1학년 1학기", "3.25", "3.15", "3.38", "syllabus_id3", "강좌명3", "3", "1.0");
-        adapter.addItem(data);
-        data = new DataGmList("1학년 1학기", "3.25", "3.15", "3.38", "syllabus_id4", "강좌명4", "2", "1.0");
-        adapter.addItem(data);
-        data = new DataGmList("1학년 1학기", "3.25", "3.15", "3.38", "syllabus_id5", "강좌명5", "3", "1.0");
-        adapter.addItem(data);
-        data = new DataGmList("1학년 1학기", "3.25", "3.15", "3.38", "syllabus_id6", "강좌명6", "3", "1.0");
-        adapter.addItem(data);
+                try {
+                    Log.d(TAG, Request_url);
+                    URL url = new URL(Request_url);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setReadTimeout(3000);
+                    httpURLConnection.setConnectTimeout(3000);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setRequestMethod("GET");
+                    httpURLConnection.setUseCaches(false);
+                    httpURLConnection.connect();
 
-        RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
+                    int responseStatusCode = httpURLConnection.getResponseCode();
 
+                    InputStream inputStream;
+                    if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                        inputStream = httpURLConnection.getInputStream();
+                    } else {
+                        inputStream = httpURLConnection.getErrorStream();
+                    }
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        sb.append(line);
+                    }
+
+                    bufferedReader.close();
+                    httpURLConnection.disconnect();
+
+                    result = sb.toString().trim();
+                } catch (Exception e) {
+                    result = e.toString();
+                }
+                if (RC_jsonParser(result)) {     // 파싱 기능 사용
+                    Message message = RC_mHandler.obtainMessage(LOAD_SUCCESS);
+                    RC_mHandler.sendMessage(message);
+                }
+            }
+        });
+        thread.start();
     }
 
-//    //[RecyclerView] jsonParser 함수
-//    //웹사이트 화면을 파싱하는 함수
-//    public boolean RC_jsonParser(String jsonString) {
-//
-//        if (jsonString == null) return false;
-//
-//        try {
-//            JSONObject jsonObject = new JSONObject(jsonString);
-//
-//            //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
-//            JSONArray gmSemester = jsonObject.getJSONArray("practice_avg_grade");
-//
-//            gmSemesterList.clear();
-//
-//            //gmSemester 길이만큼 반복해서 Mapping
-//            for (int i = 0; i < gmSemester.length(); i++) {
-//                JSONObject gmSemesterInfo = gmSemester.getJSONObject(i);
-//
-//                String semester = gmSemesterInfo.getString("semester");
-//                String totalGrade = gmSemesterInfo.getString("totalGrade");
-//                String majorGrade = gmSemesterInfo.getString("majorGrade");
-//                String liberalGrade = gmSemesterInfo.getString("liberalGrade");
-//                String syllabus_id = gmSemesterInfo.getString("syllabus_id");
-//                String course_name = gmSemesterInfo.getString("course_name");
-//                String credit = gmSemesterInfo.getString("credit");
-//                String grade = gmSemesterInfo.getString("grade");
-//
-//                DataGmList data = new DataGmList(semester, totalGrade, majorGrade, liberalGrade, syllabus_id, course_name, credit, grade);
-//                rc_adapter.addItem(data);
-//
-//            }
-//            return true;
-//        } catch (JSONException e) {
-//            Log.d(TAG, e.toString());
-//        }
-//        return false;
-//    }
+    //[RecyclerView] jsonParser 함수
+    //웹사이트 화면을 파싱하는 함수
+    public boolean RC_jsonParser(String jsonString) {
+
+        if (jsonString == null) return false;
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+
+            //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
+            JSONArray gmSemester = jsonObject.getJSONArray("hakjum");
+
+            gmSemesterList.clear();
+
+            //gmSemester 길이만큼 반복해서 Mapping
+            for (int i = 0; i < gmSemester.length(); i++) {
+                JSONObject gmSemesterInfo = gmSemester.getJSONObject(i);
+
+                String course_semester = gmSemesterInfo.getString("course_semester");
+                String major_division = gmSemesterInfo.getString("major_division");
+                String course_id = gmSemesterInfo.getString("course_id");
+                String course_name = gmSemesterInfo.getString("course_name");
+                String credit = gmSemesterInfo.getString("credit");
+                String grade = gmSemesterInfo.getString("grade");
+                String category = gmSemesterInfo.getString("category");
+
+                DataGmList data = new DataGmList(course_semester, major_division, course_id, course_name, credit, grade, category);
+                rc_adapter.addItem(data);
+
+            }
+            return true;
+        } catch (JSONException e) {
+            Log.d(TAG, e.toString());
+        }
+        return false;
+    }
 
     @Override
     public void onClick(View view) {

@@ -44,7 +44,7 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_semester, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_gmcourse, parent, false);
         return new GmViewHolder(view);
     }
 
@@ -66,11 +66,12 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     class GmViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView gm_list_semester, gm_list_totalGrade, gm_list_majorGrade, gm_list_liberalGrade;
-        TextView tv_syllabus_id, tv_course_name2, tv_credit;
+        ImageView major_division;
+        TextView tv_course_id, tv_course_name, tv_credit;
         RadioButton rb_grade;
-        private LinearLayout open_gm_semester, gm_semester_subject;
-        private ImageView open_gm_arrow;
+//        private LinearLayout open_gm_semester;
+        RecyclerView rc_gm_course;
+//        private ImageView open_gm_arrow;
         private DataGmList data;
         private int position;
         //[Dialog] rb_grade 버튼 누르면 뜨는 dialog(팝업창)
@@ -78,17 +79,13 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         public GmViewHolder(@NonNull View itemView) {
             super(itemView);
-            gm_list_semester = itemView.findViewById(R.id.gm_list_semester);
-            gm_list_totalGrade = itemView.findViewById(R.id.gm_list_totalGrade);
-            gm_list_majorGrade = itemView.findViewById(R.id.gm_list_majorGrade);
-            gm_list_liberalGrade = itemView.findViewById(R.id.gm_list_liberalGrade);
-            tv_syllabus_id = itemView.findViewById(R.id.tv_syllabus_id);
-            tv_course_name2 = itemView.findViewById(R.id.tv_course_name2);
+            major_division = itemView.findViewById(R.id.major_division);
+            tv_course_id = itemView.findViewById(R.id.tv_course_id);
+            tv_course_name = itemView.findViewById(R.id.tv_course_name);
             tv_credit = itemView.findViewById(R.id.tv_credit);
             rb_grade = itemView.findViewById(R.id.rb_grade);
-            open_gm_semester = itemView.findViewById(R.id.open_gm_semester);
-            gm_semester_subject = itemView.findViewById(R.id.gm_semester_subject);
-            open_gm_arrow = itemView.findViewById(R.id.open_gm_arrow);
+//            open_gm_semester = itemView.findViewById(R.id.open_gm_semester);
+//            open_gm_arrow = itemView.findViewById(R.id.open_gm_arrow);
 
             //[Dialog] GmActivity에서 초기화
             grade_dialog = new Dialog(activity);
@@ -103,42 +100,39 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             this.data = data;
             this.position = position;
 
-            gm_list_semester.setText(data.getSemester());
-            gm_list_totalGrade.setText(data.getTotalGrade());
-            gm_list_majorGrade.setText(data.getMajorGrade());
-            gm_list_liberalGrade.setText(data.getLiberalGrade());
-            tv_syllabus_id.setText(data.getSyllabus_id());
-            tv_course_name2.setText(data.getCourse_name());
+            tv_course_id.setText(data.getCourse_id());
+            tv_course_name.setText(data.getCourse_name());
             tv_credit.setText(data.getCredit());
+            rb_grade.setText(data.getGrade());
 
             changeVisibility(selectedItems.get(position));
 
             rb_grade.setOnClickListener(this);
-            open_gm_semester.setOnClickListener(this);
-            open_gm_arrow.setOnClickListener(this);
+//            open_gm_semester.setOnClickListener(this);
+//            open_gm_arrow.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.open_gm_semester:
-                case R.id.open_gm_arrow:
-//                    open_gm_arrow.setImageResource(R.drawable.arrow_up);
-                    if (selectedItems.get(position)) {
-                        // 펼쳐진 Item을 클릭 시
-                        selectedItems.delete(position);
-//                        open_gm_arrow.setImageResource(R.drawable.arrow_down);
-                    } else {
-                        // 클릭한 Item의 position을 저장
-                        selectedItems.put(position, true);
-                    }
-                    // 해당 포지션의 변화를 알림
-                    if (prePosition != -1)
-                        notifyItemChanged(prePosition);
-                    notifyItemChanged(position);
-                    // 클릭된 position 저장
-                    prePosition = position;
-                    break;
+//                case R.id.open_gm_semester:
+//                case R.id.open_gm_arrow:
+////                    open_gm_arrow.setImageResource(R.drawable.arrow_up);
+//                    if (selectedItems.get(position)) {
+//                        // 펼쳐진 Item을 클릭 시
+//                        selectedItems.delete(position);
+////                        open_gm_arrow.setImageResource(R.drawable.arrow_down);
+//                    } else {
+//                        // 클릭한 Item의 position을 저장
+//                        selectedItems.put(position, true);
+//                    }
+//                    // 해당 포지션의 변화를 알림
+//                    if (prePosition != -1)
+//                        notifyItemChanged(prePosition);
+//                    notifyItemChanged(position);
+//                    // 클릭된 position 저장
+//                    prePosition = position;
+//                    break;
                 case R.id.rb_grade:
                     showGradeDialog();
             }
@@ -240,7 +234,7 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     // value는 height 값
                     int value = (int) animation.getAnimatedValue();
                     // imageView가 실제로 사라지게하는 부분
-                    gm_semester_subject.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+//                    rc_gm_course.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
                 }
             });
             // Animation start
