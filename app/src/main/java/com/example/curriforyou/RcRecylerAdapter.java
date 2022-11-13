@@ -16,6 +16,11 @@ public class RcRecylerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private ArrayList<DataRecomList> listData = new ArrayList<>();
     private SparseBooleanArray selecteditems = new SparseBooleanArray();
 
+    //생성자
+    RcRecylerAdapter(ArrayList<DataRecomList> list) {
+        listData = list;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,7 +45,7 @@ public class RcRecylerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     class ViewHolderRecomList extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView tv_recom_course_name, tv_recom_credit, tv_recom_data1, tv_recom_data2, tv_recom_data3;
+        TextView tv_recom_course_name, tv_recom_open_major, tv_recom_credit, tv_recom_pre_course_name;
         private DataRecomList data;
         private int position;
 
@@ -48,10 +53,10 @@ public class RcRecylerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             super(itemView);
 
             tv_recom_course_name = itemView.findViewById(R.id.tv_recom_course_name);
+            tv_recom_open_major = itemView.findViewById(R.id.tv_recom_open_major);
             tv_recom_credit = itemView.findViewById(R.id.tv_recom_credit);
-            tv_recom_data1 = itemView.findViewById(R.id.tv_recom_data1);
-            tv_recom_data2 = itemView.findViewById(R.id.tv_recom_data2);
-            tv_recom_data3 = itemView.findViewById(R.id.tv_recom_data3);
+            tv_recom_pre_course_name = itemView.findViewById(R.id.tv_recom_pre_course_name);
+
 
         }
 
@@ -60,10 +65,9 @@ public class RcRecylerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             this.position = position;
 
             tv_recom_course_name.setText(data.getCourse_name());
+            tv_recom_open_major.setText(data.getOpen_major());
             tv_recom_credit.setText(data.getCredit());
-            tv_recom_data1.setText(data.getData1());
-            tv_recom_data2.setText(data.getData2());
-            tv_recom_data3.setText(data.getData3());
+            tv_recom_pre_course_name.setText(data.getPre_course_name());
 
         }
 

@@ -1,15 +1,25 @@
 package com.example.curriforyou;
 
 public class DataRecomList {
-    String course_name, credit, data1, data2, data3;
+    String category, course_name, open_major, credit, pre_course_name, jjim;
 
-    public DataRecomList(String course_name, String credit, String data1,
-                         String data2, String data3){
+    public DataRecomList(String category, String course_name, String open_major,
+                         String credit, String pre_course_name,
+                         String jjim){
+        this.category = category;
         this.course_name = course_name;
+        this.open_major = open_major;
         this.credit = credit;
-        this.data1 = data1;
-        this.data2 = data2;
-        this.data3 = data3;
+        this.pre_course_name = pre_course_name;
+        this.jjim = jjim;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getCourse_name() {
@@ -20,6 +30,14 @@ public class DataRecomList {
         this.course_name = course_name;
     }
 
+    public String getOpen_major() {
+        return open_major;
+    }
+
+    public void setOpen_major(String open_major) {
+        this.open_major = open_major;
+    }
+
     public String getCredit() {
         return credit;
     }
@@ -28,27 +46,20 @@ public class DataRecomList {
         this.credit = credit;
     }
 
-    public String getData1() {
-        return data1;
+    public String getPre_course_name() {
+        return pre_course_name;
     }
 
-    public void setData1(String data1) {
-        this.data1 = data1;
+    public void setPre_course_name(String pre_course_name) {
+        this.pre_course_name = pre_course_name;
     }
 
-    public String getData2() {
-        return data2;
+    public String getJjim() {
+        return jjim;
     }
 
-    public void setData2(String data2) {
-        this.data2 = data2;
+    public void setJjim(String jjim) {
+        this.jjim = jjim;
     }
 
-    public String getData3() {
-        return data3;
-    }
-
-    public void setData3(String data3) {
-        this.data3 = data3;
-    }
 }
