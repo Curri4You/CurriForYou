@@ -200,7 +200,7 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
                 JSONObject courseInfo = course.getJSONObject(i);
 
                 String category = courseInfo.getString("category");
-                String course_name = courseInfo.getString("major_name");
+                String course_name = courseInfo.getString("course_name");
                 String open_major = courseInfo.getString("open_major");
                 String credit = courseInfo.getString("credit");
                 String pre_course_name = courseInfo.getString("pre_course_name");

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="12"
+            android:gravity="center"
+            android:background="@color/gray_1">
+
+            <TextView
+                android:id="@+id/tv_detail_major"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:text="[주/복]"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_3"
+                android:layout_marginVertical="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_detail_category"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="4.5"
+                android:text="영역명"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_3"
+                android:layout_marginVertical="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_detail_standard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:text="이수기준"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <!--<TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="학점"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="찜"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center">
+            </TextView>-->
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>
