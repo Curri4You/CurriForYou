@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class RcRecylerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<DataRecomList> listData = new ArrayList<>();
+    private ArrayList<DataRecomList> listData = null;
     private SparseBooleanArray selecteditems = new SparseBooleanArray();
 
     //생성자
@@ -41,6 +41,11 @@ public class RcRecylerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     void addItem(DataRecomList data){
         //외부에서 item을 추가시킬 함수
         listData.add(data);
+    }
+
+    public void setItems(ArrayList<DataRecomList> listData1) {
+        listData = listData1;
+        notifyDataSetChanged();
     }
 
     class ViewHolderRecomList extends RecyclerView.ViewHolder implements View.OnClickListener{

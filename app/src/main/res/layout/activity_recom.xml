@@ -52,21 +52,6 @@
                 android:background="@color/blue_2">
             </View>
 
-            <!--전공(선택) 추천-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전공(선택) 추천"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:layout_marginVertical="20dp">
-            </TextView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_recom1"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-
             <!--교양(융복합) 추천-->
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +63,7 @@
             </TextView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_recom2"
+                android:id="@+id/rc_recom1"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"/>
 
@@ -87,6 +72,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="교양(융합기초) 추천"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginVertical="20dp">
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_recom2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <!--전공(선택) 추천-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전공(선택) 추천"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_marginVertical="20dp">

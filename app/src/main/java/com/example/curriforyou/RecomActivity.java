@@ -37,6 +37,8 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
     RcRecylerAdapter rc_adapter, rc_adapter2, rc_adapter3 = null;
 
     ArrayList<DataRecomList> recom_list1 = new ArrayList<>();
+    ArrayList<DataRecomList> recom_list2 = new ArrayList<>();
+    ArrayList<DataRecomList> recom_list3 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,27 +77,28 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
     //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수 & 초기화 함수
     private void init(){
         recom_list1.clear();
+        recom_list2.clear();
+        recom_list3.clear();
 
+        /*교양(융복합) 어댑터*/
         RecyclerView recyclerView = findViewById(R.id.rc_recom1);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-
         rc_adapter = new RcRecylerAdapter(recom_list1);
         recyclerView.setAdapter(rc_adapter);
 
-        /**/
+        /*교양(융합기초) 어댑터*/
         RecyclerView recyclerView2 = findViewById(R.id.rc_recom2);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView2.setLayoutManager(linearLayoutManager2);
-        rc_adapter2 = new RcRecylerAdapter(recom_list1);
+        rc_adapter2 = new RcRecylerAdapter(recom_list2);
         recyclerView2.setAdapter(rc_adapter2);
 
-        /**/
+        /*전공(선택) 어댑터*/
         RecyclerView recyclerView3 = findViewById(R.id.rc_recom3);
         LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView3.setLayoutManager(linearLayoutManager3);
-        rc_adapter3 = new RcRecylerAdapter(recom_list1);
+        rc_adapter3 = new RcRecylerAdapter(recom_list3);
         recyclerView3.setAdapter(rc_adapter3);
     }
 
@@ -117,6 +120,8 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
                     case LOAD_SUCCESS:
                         mainActivity.progressDialog.dismiss();
                         mainActivity.rc_adapter.notifyDataSetChanged();
+                        mainActivity.rc_adapter2.notifyDataSetChanged();
+                        mainActivity.rc_adapter3.notifyDataSetChanged();
                         break;
                 }
             }
@@ -201,10 +206,17 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
                 String pre_course_name = courseInfo.getString("pre_course_name");
                 String jjim = courseInfo.getString("jjim");
 
-
                 DataRecomList data = new DataRecomList(category, course_name,
                         open_major, credit, pre_course_name, jjim);
-                rc_adapter.addItem(data);
+
+                /*분류값에 따라 다른 RecyclerView 어댑터에 추가*/
+                if (category.equals("1")){
+                    rc_adapter.addItem(data);
+                } else if (category.equals("2")){
+                    rc_adapter2.addItem(data);
+                } else {
+                    rc_adapter3.addItem(data);
+                }
 
             }
             return true;
