@@ -52,7 +52,15 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     private ProgressDialog progressDialog = null;
     GmRecyclerAdapter rc_adapter = null;
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
-
+    TextView totalGrade, majorGrade, liberalGrade, tillNowCredit;
+    TextView totalGrade11, majorGrade11, liberalGrade11;
+    TextView totalGrade12, majorGrade12, liberalGrade12;
+    TextView totalGrade21, majorGrade21, liberalGrade21;
+    TextView totalGrade22, majorGrade22, liberalGrade22;
+    TextView totalGrade31, majorGrade31, liberalGrade31;
+    TextView totalGrade32, majorGrade32, liberalGrade32;
+    TextView totalGrade41, majorGrade41, liberalGrade41;
+    TextView totalGrade42, majorGrade42, liberalGrade42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +69,37 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
         init();
         getData(REQUEST_URL);
+
+        // 학점 평점 정리
+        totalGrade = (TextView) findViewById(R.id.totalGrade);
+        majorGrade = (TextView) findViewById(R.id.majorGrade);
+        liberalGrade = (TextView) findViewById(R.id.liberalGrade);
+        tillNowCredit = (TextView) findViewById(R.id.tillNowCredit);
+        // 학기별 평점 정리
+        totalGrade11 = (TextView) findViewById(R.id.gm_list_totalGrade11);
+        majorGrade11 = (TextView) findViewById(R.id.gm_list_majorGrade11);
+        liberalGrade11 = (TextView) findViewById(R.id.gm_list_liberalGrade11);
+        totalGrade12 = (TextView) findViewById(R.id.gm_list_totalGrade12);
+        majorGrade12 = (TextView) findViewById(R.id.gm_list_majorGrade12);
+        liberalGrade12 = (TextView) findViewById(R.id.gm_list_liberalGrade12);
+        totalGrade21 = (TextView) findViewById(R.id.gm_list_totalGrade21);
+        majorGrade21 = (TextView) findViewById(R.id.gm_list_majorGrade21);
+        liberalGrade21 = (TextView) findViewById(R.id.gm_list_liberalGrade21);
+        totalGrade22 = (TextView) findViewById(R.id.gm_list_totalGrade22);
+        majorGrade22 = (TextView) findViewById(R.id.gm_list_majorGrade22);
+        liberalGrade22 = (TextView) findViewById(R.id.gm_list_liberalGrade22);
+        totalGrade31 = (TextView) findViewById(R.id.gm_list_totalGrade31);
+        majorGrade31 = (TextView) findViewById(R.id.gm_list_majorGrade31);
+        liberalGrade31 = (TextView) findViewById(R.id.gm_list_liberalGrade31);
+        totalGrade32 = (TextView) findViewById(R.id.gm_list_totalGrade32);
+        majorGrade32 = (TextView) findViewById(R.id.gm_list_majorGrade32);
+        liberalGrade32 = (TextView) findViewById(R.id.gm_list_liberalGrade32);
+        totalGrade41 = (TextView) findViewById(R.id.gm_list_totalGrade41);
+        majorGrade41 = (TextView) findViewById(R.id.gm_list_majorGrade41);
+        liberalGrade41 = (TextView) findViewById(R.id.gm_list_liberalGrade41);
+        totalGrade42 = (TextView) findViewById(R.id.gm_list_totalGrade42);
+        majorGrade42 = (TextView) findViewById(R.id.gm_list_majorGrade42);
+        liberalGrade42 = (TextView) findViewById(R.id.gm_list_liberalGrade42);
 
         //[하단바] Button parameter 선언
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
