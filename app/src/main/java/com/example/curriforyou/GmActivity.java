@@ -3,19 +3,14 @@
 package com.example.curriforyou;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,17 +45,24 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     private String REQUEST_URL = "http://smlee099.dothome.co.kr/hakjum.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
-    GmRecyclerAdapter rc_adapter = null;
+    GmRecyclerAdapter adapt11 = null;
+    GmRecyclerAdapter adapt12 = null;
+    GmRecyclerAdapter adapt21 = null;
+    GmRecyclerAdapter adapt22 = null;
+    GmRecyclerAdapter adapt31 = null;
+    GmRecyclerAdapter adapt32 = null;
+    GmRecyclerAdapter adapt41 = null;
+    GmRecyclerAdapter adapt42 = null;
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
-    TextView totalGrade, majorGrade, liberalGrade, tillNowCredit;
-    TextView totalGrade11, majorGrade11, liberalGrade11;
-    TextView totalGrade12, majorGrade12, liberalGrade12;
-    TextView totalGrade21, majorGrade21, liberalGrade21;
-    TextView totalGrade22, majorGrade22, liberalGrade22;
-    TextView totalGrade31, majorGrade31, liberalGrade31;
-    TextView totalGrade32, majorGrade32, liberalGrade32;
-    TextView totalGrade41, majorGrade41, liberalGrade41;
-    TextView totalGrade42, majorGrade42, liberalGrade42;
+    TextView tv_totalGrade, tv_majorGrade, tv_liberalGrade, tv_tillNowCredit;
+    TextView tv_totalGrade11, tv_majorGrade11, tv_liberalGrade11;
+    TextView tv_totalGrade12, tv_majorGrade12, tv_liberalGrade12;
+    TextView tv_totalGrade21, tv_majorGrade21, tv_liberalGrade21;
+    TextView tv_totalGrade22, tv_majorGrade22, tv_liberalGrade22;
+    TextView tv_totalGrade31, tv_majorGrade31, tv_liberalGrade31;
+    TextView tv_totalGrade32, tv_majorGrade32, tv_liberalGrade32;
+    TextView tv_totalGrade41, tv_majorGrade41, tv_liberalGrade41;
+    TextView tv_totalGrade42, tv_majorGrade42, tv_liberalGrade42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,35 +73,35 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         getData(REQUEST_URL);
 
         // 학점 평점 정리
-        totalGrade = (TextView) findViewById(R.id.totalGrade);
-        majorGrade = (TextView) findViewById(R.id.majorGrade);
-        liberalGrade = (TextView) findViewById(R.id.liberalGrade);
-        tillNowCredit = (TextView) findViewById(R.id.tillNowCredit);
+        tv_totalGrade = (TextView) findViewById(R.id.totalGrade);
+        tv_majorGrade = (TextView) findViewById(R.id.majorGrade);
+        tv_liberalGrade = (TextView) findViewById(R.id.liberalGrade);
+        tv_tillNowCredit = (TextView) findViewById(R.id.tillNowCredit);
         // 학기별 평점 정리
-        totalGrade11 = (TextView) findViewById(R.id.gm_list_totalGrade11);
-        majorGrade11 = (TextView) findViewById(R.id.gm_list_majorGrade11);
-        liberalGrade11 = (TextView) findViewById(R.id.gm_list_liberalGrade11);
-        totalGrade12 = (TextView) findViewById(R.id.gm_list_totalGrade12);
-        majorGrade12 = (TextView) findViewById(R.id.gm_list_majorGrade12);
-        liberalGrade12 = (TextView) findViewById(R.id.gm_list_liberalGrade12);
-        totalGrade21 = (TextView) findViewById(R.id.gm_list_totalGrade21);
-        majorGrade21 = (TextView) findViewById(R.id.gm_list_majorGrade21);
-        liberalGrade21 = (TextView) findViewById(R.id.gm_list_liberalGrade21);
-        totalGrade22 = (TextView) findViewById(R.id.gm_list_totalGrade22);
-        majorGrade22 = (TextView) findViewById(R.id.gm_list_majorGrade22);
-        liberalGrade22 = (TextView) findViewById(R.id.gm_list_liberalGrade22);
-        totalGrade31 = (TextView) findViewById(R.id.gm_list_totalGrade31);
-        majorGrade31 = (TextView) findViewById(R.id.gm_list_majorGrade31);
-        liberalGrade31 = (TextView) findViewById(R.id.gm_list_liberalGrade31);
-        totalGrade32 = (TextView) findViewById(R.id.gm_list_totalGrade32);
-        majorGrade32 = (TextView) findViewById(R.id.gm_list_majorGrade32);
-        liberalGrade32 = (TextView) findViewById(R.id.gm_list_liberalGrade32);
-        totalGrade41 = (TextView) findViewById(R.id.gm_list_totalGrade41);
-        majorGrade41 = (TextView) findViewById(R.id.gm_list_majorGrade41);
-        liberalGrade41 = (TextView) findViewById(R.id.gm_list_liberalGrade41);
-        totalGrade42 = (TextView) findViewById(R.id.gm_list_totalGrade42);
-        majorGrade42 = (TextView) findViewById(R.id.gm_list_majorGrade42);
-        liberalGrade42 = (TextView) findViewById(R.id.gm_list_liberalGrade42);
+        tv_totalGrade11 = (TextView) findViewById(R.id.gm_list_totalGrade11);
+        tv_majorGrade11 = (TextView) findViewById(R.id.gm_list_majorGrade11);
+        tv_liberalGrade11 = (TextView) findViewById(R.id.gm_list_liberalGrade11);
+        tv_totalGrade12 = (TextView) findViewById(R.id.gm_list_totalGrade12);
+        tv_majorGrade12 = (TextView) findViewById(R.id.gm_list_majorGrade12);
+        tv_liberalGrade12 = (TextView) findViewById(R.id.gm_list_liberalGrade12);
+        tv_totalGrade21 = (TextView) findViewById(R.id.gm_list_totalGrade21);
+        tv_majorGrade21 = (TextView) findViewById(R.id.gm_list_majorGrade21);
+        tv_liberalGrade21 = (TextView) findViewById(R.id.gm_list_liberalGrade21);
+        tv_totalGrade22 = (TextView) findViewById(R.id.gm_list_totalGrade22);
+        tv_majorGrade22 = (TextView) findViewById(R.id.gm_list_majorGrade22);
+        tv_liberalGrade22 = (TextView) findViewById(R.id.gm_list_liberalGrade22);
+        tv_totalGrade31 = (TextView) findViewById(R.id.gm_list_totalGrade31);
+        tv_majorGrade31 = (TextView) findViewById(R.id.gm_list_majorGrade31);
+        tv_liberalGrade31 = (TextView) findViewById(R.id.gm_list_liberalGrade31);
+        tv_totalGrade32 = (TextView) findViewById(R.id.gm_list_totalGrade32);
+        tv_majorGrade32 = (TextView) findViewById(R.id.gm_list_majorGrade32);
+        tv_liberalGrade32 = (TextView) findViewById(R.id.gm_list_liberalGrade32);
+        tv_totalGrade41 = (TextView) findViewById(R.id.gm_list_totalGrade41);
+        tv_majorGrade41 = (TextView) findViewById(R.id.gm_list_majorGrade41);
+        tv_liberalGrade41 = (TextView) findViewById(R.id.gm_list_liberalGrade41);
+        tv_totalGrade42 = (TextView) findViewById(R.id.gm_list_totalGrade42);
+        tv_majorGrade42 = (TextView) findViewById(R.id.gm_list_majorGrade42);
+        tv_liberalGrade42 = (TextView) findViewById(R.id.gm_list_liberalGrade42);
 
         //[하단바] Button parameter 선언
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
@@ -127,14 +129,48 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     }
 
     private void init() {
-        RecyclerView recyclerView = findViewById(R.id.rc_gm_course);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
         Context context;
-        rc_adapter = new GmRecyclerAdapter(this);
-        recyclerView.setAdapter(rc_adapter);
+
+        RecyclerView semes11 = findViewById(R.id.rc_gm_course11);
+        LinearLayoutManager lm11 = new LinearLayoutManager(this);
+        semes11.setLayoutManager(lm11);
+        adapt11 = new GmRecyclerAdapter(this);
+        semes11.setAdapter(adapt11);
+        RecyclerView semes12 = findViewById(R.id.rc_gm_course12);
+        LinearLayoutManager lm12 = new LinearLayoutManager(this);
+        semes12.setLayoutManager(lm12);
+        adapt12 = new GmRecyclerAdapter(this);
+        semes12.setAdapter(adapt12);
+        RecyclerView semes21 = findViewById(R.id.rc_gm_course21);
+        LinearLayoutManager lm21 = new LinearLayoutManager(this);
+        semes21.setLayoutManager(lm21);
+        adapt21 = new GmRecyclerAdapter(this);
+        semes21.setAdapter(adapt21);
+        RecyclerView semes22 = findViewById(R.id.rc_gm_course22);
+        LinearLayoutManager lm22 = new LinearLayoutManager(this);
+        semes22.setLayoutManager(lm22);
+        adapt22 = new GmRecyclerAdapter(this);
+        semes22.setAdapter(adapt22);
+        RecyclerView semes31 = findViewById(R.id.rc_gm_course31);
+        LinearLayoutManager lm31 = new LinearLayoutManager(this);
+        semes31.setLayoutManager(lm31);
+        adapt31 = new GmRecyclerAdapter(this);
+        semes31.setAdapter(adapt31);
+        RecyclerView semes32 = findViewById(R.id.rc_gm_course32);
+        LinearLayoutManager lm32 = new LinearLayoutManager(this);
+        semes32.setLayoutManager(lm32);
+        adapt32 = new GmRecyclerAdapter(this);
+        semes32.setAdapter(adapt32);
+        RecyclerView semes41 = findViewById(R.id.rc_gm_course41);
+        LinearLayoutManager lm41 = new LinearLayoutManager(this);
+        semes41.setLayoutManager(lm41);
+        adapt41 = new GmRecyclerAdapter(this);
+        semes41.setAdapter(adapt41);
+        RecyclerView semes42 = findViewById(R.id.rc_gm_course42);
+        LinearLayoutManager lm42 = new LinearLayoutManager(this);
+        semes42.setLayoutManager(lm42);
+        adapt42 = new GmRecyclerAdapter(this);
+        semes42.setAdapter(adapt42);
     }
 
     //[RecyclerView]
@@ -155,7 +191,14 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 switch (msg.what) {
                     case LOAD_SUCCESS:
                         gmActivity.progressDialog.dismiss();
-                        gmActivity.rc_adapter.notifyDataSetChanged();
+                        gmActivity.adapt11.notifyDataSetChanged();
+                        gmActivity.adapt12.notifyDataSetChanged();
+                        gmActivity.adapt21.notifyDataSetChanged();
+                        gmActivity.adapt22.notifyDataSetChanged();
+                        gmActivity.adapt31.notifyDataSetChanged();
+                        gmActivity.adapt32.notifyDataSetChanged();
+                        gmActivity.adapt41.notifyDataSetChanged();
+                        gmActivity.adapt42.notifyDataSetChanged();
                         break;
                 }
             }
@@ -229,10 +272,18 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
             gmSemesterList.clear();
 
+            float totalGrade = 0, totalGrade11 = 0, totalGrade12 = 0, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
+            float majorGrade = 0, majorGrade11 = 0, majorGrade12 = 0, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
+            float liberalGrade = 0, liberalGrade11 = 0, liberalGrade12 = 0, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
+            int totalCredit = 0, credit11 = 0, credit12 = 0, credit21 = 0, credit22 = 0, credit31 = 0, credit32 = 0, credit41 = 0, credit42 = 0;
+            int majorCredit = 0, majorCredit11 = 0, majorCredit12 = 0, majorCredit21 = 0, majorCredit22 = 0, majorCredit31 = 0, majorCredit32 = 0, majorCredit41 = 0, majorCredit42 = 0;
+            int liberalCredit = 0, liberalCredit11 = 0, liberalCredit12 = 0, liberalCredit21 = 0, liberalCredit22 = 0, liberalCredit31 = 0, liberalCredit32 = 0, liberalCredit41 = 0, liberalCredit42 = 0;
+
             //gmSemester 길이만큼 반복해서 Mapping
             for (int i = 0; i < gmSemester.length(); i++) {
                 JSONObject gmSemesterInfo = gmSemester.getJSONObject(i);
 
+                String course_year = gmSemesterInfo.getString("course_year");
                 String course_semester = gmSemesterInfo.getString("course_semester");
                 String major_division = gmSemesterInfo.getString("major_division");
                 String course_id = gmSemesterInfo.getString("course_id");
@@ -241,8 +292,48 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 String grade = gmSemesterInfo.getString("grade");
                 String category = gmSemesterInfo.getString("category");
 
-                DataGmList data = new DataGmList(course_semester, major_division, course_id, course_name, credit, grade, category);
-                rc_adapter.addItem(data);
+                if(course_year.equals("2019") && course_semester.equals("1")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt11.addItem(data);
+//                    if(category.equals("1") || category.equals("2")){
+//                        majorCredit11 += Integer.parseInt(credit);
+//                        majorGrade11 += Float.parseFloat(grade) * Integer.parseInt(credit);
+//                    } else if(category.equals("3") || category.equals("4")){
+//                        liberalCredit11 += Integer.parseInt(credit);
+//                        liberalGrade11 += Float.parseFloat(grade) * Integer.parseInt(credit);
+//                    }
+//                    credit11 = majorCredit11 + liberalCredit11;
+//                    totalGrade11 = (majorGrade11 + liberalGrade11) / credit11;
+//                    tv_totalGrade11.setText(String.valueOf(totalGrade11));
+//                    if(majorCredit11 != 0){
+//                        majorGrade11 /= majorCredit11;
+//                        tv_majorGrade11.setText(String.valueOf(majorGrade11));
+//                    } if(liberalCredit != 0){
+//                        liberalGrade11 /= liberalCredit11;
+//                        tv_liberalGrade11.setText(String.valueOf(liberalGrade11));
+//                    }
+                } else if(course_year.equals("2019") && course_semester.equals("2")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt12.addItem(data);
+                } else if(course_year.equals("2020") && course_semester.equals("1")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt21.addItem(data);
+                } else if(course_year.equals("2020") && course_semester.equals("2")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt22.addItem(data);
+                } else if(course_year.equals("2021") && course_semester.equals("1")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt31.addItem(data);
+                } else if(course_year.equals("2021") && course_semester.equals("2")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt32.addItem(data);
+                } else if(course_year.equals("2022") && course_semester.equals("1")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt41.addItem(data);
+                } else if(course_year.equals("2022") && course_semester.equals("2")){
+                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
+                    adapt42.addItem(data);
+                }
 
             }
             return true;

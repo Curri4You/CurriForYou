@@ -1,11 +1,11 @@
 package com.example.curriforyou;
 
 public class DataGmList {
-     // course_semester(수강학기), course_id(학수번호), course_name(강좌이름)
-     // major_division(전공구분), credit(학점), grade(성적), category(전필,전선,교필,교선 구분)
-    String course_semester, major_division, course_id, course_name, credit, grade, category;
+    // course+year(수강연도), course_semester(수강학기), course_id(학수번호), course_name(강좌이름)
+    // major_division(전공구분), credit(학점), grade(성적), category(전필,전선,교필,교선 구분)
+    String course_year, course_semester, major_division, course_id, course_name, credit, grade, category;
 
-    public DataGmList(String course_semester, String major_division, String course_id, String course_name, String credit, String grade, String category){
+    public DataGmList(String course_year, String course_semester, String major_division, String course_id, String course_name, String credit, String grade, String category) {
         this.course_semester = course_semester;
         this.major_division = major_division;
         this.course_id = course_id;
@@ -13,6 +13,14 @@ public class DataGmList {
         this.credit = credit;
         this.grade = grade;
         this.category = category;
+    }
+
+    public String getCourse_year() {
+        return course_year;
+    }
+
+    public void setCourse_year(String course_year) {
+        this.course_year = course_year;
     }
 
     public String getCourse_semester() {
