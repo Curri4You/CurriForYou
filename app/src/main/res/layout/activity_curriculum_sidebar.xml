@@ -44,12 +44,13 @@
         </TextView>
 
         <RadioGroup
+            android:id="@+id/rg_open"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/rb_true"
+                android:id="@+id/rb_all"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,8 +62,8 @@
                 android:textColor="@drawable/radio_text" />
 
             <RadioButton
+                android:id="@+id/rb_this_semester"
                 android:checked="false"
-                android:id="@+id/rb_false"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_button"
@@ -79,7 +80,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="학년"
+        android:text="학점"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginVertical="15dp">
@@ -91,6 +92,7 @@
         android:orientation="horizontal">
 
         <CheckBox
+            android:id="@+id/cb_credit1"
             android:checked="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -100,9 +102,10 @@
             android:background="@drawable/radio_button"
             android:textColor="@drawable/radio_text"
             android:textAlignment="center"
-            android:text="1학년"/>
+            android:text="1학점"/>
 
         <CheckBox
+            android:id="@+id/cb_credit2"
             android:checked="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -112,9 +115,10 @@
             android:background="@drawable/radio_button"
             android:textColor="@drawable/radio_text"
             android:textAlignment="center"
-            android:text="2학년"/>
+            android:text="2학점"/>
 
         <CheckBox
+            android:id="@+id/cb_credit3"
             android:checked="true"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -124,9 +128,10 @@
             android:background="@drawable/radio_button"
             android:textColor="@drawable/radio_text"
             android:textAlignment="center"
-            android:text="3학년"/>
+            android:text="3학점"/>
 
         <CheckBox
+            android:id="@+id/cb_credit4"
             android:checked="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -136,7 +141,7 @@
             android:background="@drawable/radio_button"
             android:textColor="@drawable/radio_text"
             android:textAlignment="center"
-            android:text="4학년"/>
+            android:text="4학점"/>
 
     </LinearLayout>
 
@@ -156,31 +161,7 @@
         </TextView>
 
         <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:thumb="@drawable/switch_thumb"
-            android:track="@drawable/switch_track_selector" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:text="영어강의"
-            android:textSize="15sp"
-            android:textStyle="bold">
-        </TextView>
-
-        <Switch
+            android:id="@+id/swit_taken"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -208,6 +189,7 @@
         android:orientation="horizontal">
 
         <CheckBox
+            android:id="@+id/cb_major1"
             android:checked="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -220,6 +202,7 @@
             android:text="주전공"/>
 
         <CheckBox
+            android:id="@+id/cb_major2"
             android:checked="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -232,6 +215,7 @@
             android:text="복수전공"/>
 
         <CheckBox
+            android:id="@+id/cb_major3"
             android:checked="true"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -244,6 +228,21 @@
             android:text="부전공"/>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_background"
+            android:text="적용"></androidx.appcompat.widget.AppCompatButton>
+
+    </RelativeLayout>
 
 
 </LinearLayout>

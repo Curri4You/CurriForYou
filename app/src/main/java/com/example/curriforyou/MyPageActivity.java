@@ -43,14 +43,14 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 //        tv_student_id.setText(student_id);
 //        btn_mainMajor.setText(major_name);
 
-        // 프로필 사진
-        ImageView user_photo = (ImageView) findViewById(R.id.user_photo);
-        user_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "프로필 사진 변경", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        // 프로필 사진
+//        ImageView user_photo = (ImageView) findViewById(R.id.user_photo);
+//        user_photo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getApplicationContext(), "프로필 사진 변경", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         // 전공수정버튼 (연필)
         ImageView btn_infoModification = (ImageView) findViewById(R.id.btn_infoModification);

@@ -5,6 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="강의 추천"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp">
+    </TextView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,87 +26,77 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/blue_2">
+            </View>
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="160dp"
+                android:text="What course do you want?"
+                android:textStyle="italic"
+                android:textSize="30dp"
                 android:gravity="center"
-                android:text="강의 추천"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:layout_marginTop="30dp">
+                android:textAlignment="center"
+                android:textColor="@color/blue_4"
+                android:background="@color/blue_1">
             </TextView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/blue_2">
+            </View>
+
+            <!--교양(융복합) 추천-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="교양 추천"
+                android:text="교양(융복합) 추천"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_marginVertical="20dp">
             </TextView>
 
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_recom1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+
+            <!--교양(융합기초) 추천-->
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="200dp">
+                android:layout_height="wrap_content"
+                android:text="교양(융합기초) 추천"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginVertical="20dp">
+            </TextView>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_recom2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
-                    <LinearLayout
-                        android:layout_width="180dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@drawable/shape_rec"
-                        android:padding="15dp">
+            <!--전공(선택) 추천-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전공(선택) 추천"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginVertical="20dp">
+            </TextView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="컴퓨터와 우주"
-                            android:textSize="20dp"
-                            android:textStyle="bold">
-                        </TextView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="컴퓨터공학전공"
-                            android:textColor="@color/blue_3"
-                            android:textSize="12dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="40dp">
-                        </TextView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/radio_button"
-                            android:text="선수과목"
-                            android:textSize="10dp"
-                            android:textColor="@drawable/radio_text"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="10dp"
-                            android:layout_marginVertical="5dp">
-                        </TextView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/radio_button"
-                            android:text="선수과목"
-                            android:textSize="10dp"
-                            android:textColor="@drawable/radio_text"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="10dp"
-                            android:layout_marginVertical="5dp">
-                        </TextView>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_recom3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
 

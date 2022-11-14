@@ -23,13 +23,13 @@
         android:layout_weight="7">
 
         <TextView
-            android:id="@+id/tv_syllabus_id"
+            android:id="@+id/tv_syllabus_id1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3학년 권장"></TextView>
 
         <TextView
-            android:id="@+id/tv_course_name2"
+            android:id="@+id/tv_course_name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="사이버보안개론"
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_credit"
+        android:id="@+id/tv_credit1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -49,7 +49,7 @@
     </TextView>
 
     <RadioButton
-        android:id="@+id/rb_grade"
+        android:id="@+id/rb_grade1"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:checked="true"
