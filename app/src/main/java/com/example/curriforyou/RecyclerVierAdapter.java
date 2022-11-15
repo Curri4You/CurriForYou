@@ -12,9 +12,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -107,7 +115,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_item_open = itemView.findViewById(R.id.tv_item_open);
             ib_heart = itemView.findViewById(R.id.ib_heart);
             ll_listitem = itemView.findViewById(R.id.ll_listitem);
-            /*iv_heart = itemView.findViewById(R.id.iv_heart);*/
 
             /*iv_heart.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -158,7 +165,8 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             //
 
             changeVisibility(selecteditems.get(position));
-            /*changeImageView(selectedhearts.get(position));*/
+            ////////
+            changeImageView(selectedhearts.get(position));
 
             itemView.setOnClickListener(this);
             ib_heart.setOnClickListener(this);
@@ -196,13 +204,64 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     prePosition = position;
                     break;
                 case R.id.ib_heart:
-                    if(CHECK_NUM == 0){
-                        ib_heart.setSelected(false);
-                        CHECK_NUM = 1;
+                    if(selectedhearts.get(position)){
+                        //선택된 item을 클릭 시(value == 1)
+                        selectedhearts.delete(position);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if(success) {
+                                        Toast.makeText(context.getApplicationContext(),"등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Context mainActivity = MainActivity.context_main;
+                        JjimRequest jjimRequest = new JjimRequest(listData.get(position).course_id, "1", responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(mainActivity);
+                        queue.add(jjimRequest);
                     } else {
-                        ib_heart.setSelected(true);
-                        CHECK_NUM = 0;
+                        //선택되지 않은 item을 클릭 시(value == 0)
+                        //클릭한 item의 position을 저장
+                        selectedhearts.put(position, true);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if(success) {
+                                        Toast.makeText(context.getApplicationContext(),listData.get(position).course_id, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Context mainActivity = MainActivity.context_main;
+                        JjimRequest jjimRequest = new JjimRequest(listData.get(position).course_id, "0", responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(mainActivity);
+                        queue.add(jjimRequest);
                     }
+                    if (prePosition != -1)
+                        notifyItemChanged(prePosition);
+                    notifyItemChanged(position);
+                    prePosition = position;
+
+                    break;
+
+
             }
         }
 
@@ -231,6 +290,10 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             });
             //Animation start
             va.start();
+        }
+
+        private void changeImageView(final boolean isExpanded){
+            ib_heart.setImageResource(isExpanded ? R.drawable.filled_heart : R.drawable.empty_heart);
         }
 
 

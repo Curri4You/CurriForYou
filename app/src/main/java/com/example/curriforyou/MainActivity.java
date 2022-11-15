@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -97,11 +98,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout ll_detail_category3;
     private LinearLayout ll_detail_category4;*/
 
+    //////////testing
+    public static Context context_main;
+    public int var;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
+        //////////////
+        context_main = this;
+
+        ///////////
+        /*for(int a=0; a < original_list.size(); a++){
+            if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
+                search_list.add(original_list.get(a));
+            }
+            rc_adapter.setItems(search_list);
+        }*/
+
+
+        //[Detail Category]
         LinearLayout ll_detail_category[] = new LinearLayout[12];
         for (int i = 0; i < 12; i ++){
             int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
