@@ -344,8 +344,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //[RecyclerView] HashMap 사용
         courseList = new ArrayList<HashMap<String, String>>();
         //[RecyclerView] 각 필드값을 매핑, from -> to
-        String[] from = new String[]{"course_name", "course_id", "is_open", "credit"};
-        int[] to = new int[]{R.id.tv_course_name, R.id.tv_course_id, R.id.tv_is_open, R.id.tv_credit};
+        /*String[] from = new String[]{"course_name", "course_id", "is_open", "credit"};
+        int[] to = new int[]{R.id.tv_course_name, R.id.tv_course_id, R.id.tv_is_open, R.id.tv_credit};*/
 
         //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
@@ -716,7 +716,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String pre_credit = courseInfo.getString("pre_credit");
                 String pre_jjim = courseInfo.getString("pre_jjim");
 
-                if(course_year.equals("null")){
+                if(course_semester.equals("null")){
                     course_year = "미정";
                     course_semester = "미정";
                     grade = "미정";
