@@ -12,7 +12,9 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,6 +56,14 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     GmRecyclerAdapter adapt41 = null;
     GmRecyclerAdapter adapt42 = null;
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
+
+    double gradeToDouble = 0, totalGrade = 0, totalGrade11 = 0, totalGrade12 = 0, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
+    double majorGrade = 0, majorGrade11 = 0, majorGrade12 = 0, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
+    double liberalGrade = 0, liberalGrade11 = 0, liberalGrade12 = 0, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
+    int totalCredit = 0, credit11 = 0, credit12 = 0, credit21 = 0, credit22 = 0, credit31 = 0, credit32 = 0, credit41 = 0, credit42 = 0;
+    int majorCredit = 0, majorCredit11 = 0, majorCredit12 = 0, majorCredit21 = 0, majorCredit22 = 0, majorCredit31 = 0, majorCredit32 = 0, majorCredit41 = 0, majorCredit42 = 0;
+    int liberalCredit = 0, liberalCredit11 = 0, liberalCredit12 = 0, liberalCredit21 = 0, liberalCredit22 = 0, liberalCredit31 = 0, liberalCredit32 = 0, liberalCredit41 = 0, liberalCredit42 = 0;
+
     TextView tv_totalGrade, tv_majorGrade, tv_liberalGrade, tv_tillNowCredit;
     TextView tv_totalGrade11, tv_majorGrade11, tv_liberalGrade11;
     TextView tv_totalGrade12, tv_majorGrade12, tv_liberalGrade12;
@@ -63,6 +73,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     TextView tv_totalGrade32, tv_majorGrade32, tv_liberalGrade32;
     TextView tv_totalGrade41, tv_majorGrade41, tv_liberalGrade41;
     TextView tv_totalGrade42, tv_majorGrade42, tv_liberalGrade42;
+    ProgressBar pb_total_grade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +88,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         tv_majorGrade = (TextView) findViewById(R.id.majorGrade);
         tv_liberalGrade = (TextView) findViewById(R.id.liberalGrade);
         tv_tillNowCredit = (TextView) findViewById(R.id.tillNowCredit);
+        pb_total_grade = (ProgressBar) findViewById(R.id.pb_total_grade);
         // 학기별 평점 정리
         tv_totalGrade11 = (TextView) findViewById(R.id.gm_list_totalGrade11);
         tv_majorGrade11 = (TextView) findViewById(R.id.gm_list_majorGrade11);
@@ -120,6 +132,36 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         progressDialog = new ProgressDialog(GmActivity.this);
         progressDialog.setMessage("Please wait ...");
         progressDialog.show();
+
+        tv_totalGrade.setText(String.valueOf(totalGrade));
+        tv_majorGrade.setText(String.valueOf(majorGrade));
+        tv_liberalGrade.setText(String.valueOf(liberalGrade));
+        tv_tillNowCredit.setText(String.valueOf(totalCredit));
+        pb_total_grade.setProgress(totalCredit);
+        tv_totalGrade11.setText(String.valueOf(totalGrade11));
+        tv_majorGrade11.setText(String.valueOf(majorGrade11));
+        tv_liberalGrade11.setText(String.valueOf(liberalGrade11));
+        tv_totalGrade12.setText(String.valueOf(totalGrade12));
+        tv_majorGrade12.setText(String.valueOf(majorGrade12));
+        tv_liberalGrade12.setText(String.valueOf(liberalGrade12));
+        tv_totalGrade21.setText(String.valueOf(totalGrade21));
+        tv_majorGrade21.setText(String.valueOf(majorGrade21));
+        tv_liberalGrade21.setText(String.valueOf(liberalGrade21));
+        tv_totalGrade22.setText(String.valueOf(totalGrade22));
+        tv_majorGrade22.setText(String.valueOf(majorGrade22));
+        tv_liberalGrade22.setText(String.valueOf(liberalGrade22));
+        tv_totalGrade31.setText(String.valueOf(totalGrade31));
+        tv_majorGrade31.setText(String.valueOf(majorGrade31));
+        tv_liberalGrade31.setText(String.valueOf(liberalGrade31));
+        tv_totalGrade32.setText(String.valueOf(totalGrade32));
+        tv_majorGrade32.setText(String.valueOf(majorGrade32));
+        tv_liberalGrade32.setText(String.valueOf(liberalGrade32));
+        tv_totalGrade41.setText(String.valueOf(totalGrade41));
+        tv_majorGrade41.setText(String.valueOf(majorGrade41));
+        tv_liberalGrade41.setText(String.valueOf(liberalGrade41));
+        tv_totalGrade42.setText(String.valueOf(totalGrade42));
+        tv_majorGrade42.setText(String.valueOf(majorGrade42));
+        tv_liberalGrade42.setText(String.valueOf(liberalGrade42));
 
         naviBtn_curriculum.setOnClickListener(this);
         naviBtn_jjimList.setOnClickListener(this);
@@ -272,13 +314,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
             gmSemesterList.clear();
 
-            float totalGrade = 0, totalGrade11 = 0, totalGrade12 = 0, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
-            float majorGrade = 0, majorGrade11 = 0, majorGrade12 = 0, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
-            float liberalGrade = 0, liberalGrade11 = 0, liberalGrade12 = 0, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
-            int totalCredit = 0, credit11 = 0, credit12 = 0, credit21 = 0, credit22 = 0, credit31 = 0, credit32 = 0, credit41 = 0, credit42 = 0;
-            int majorCredit = 0, majorCredit11 = 0, majorCredit12 = 0, majorCredit21 = 0, majorCredit22 = 0, majorCredit31 = 0, majorCredit32 = 0, majorCredit41 = 0, majorCredit42 = 0;
-            int liberalCredit = 0, liberalCredit11 = 0, liberalCredit12 = 0, liberalCredit21 = 0, liberalCredit22 = 0, liberalCredit31 = 0, liberalCredit32 = 0, liberalCredit41 = 0, liberalCredit42 = 0;
-
             //gmSemester 길이만큼 반복해서 Mapping
             for (int i = 0; i < gmSemester.length(); i++) {
                 JSONObject gmSemesterInfo = gmSemester.getJSONObject(i);
@@ -292,56 +327,93 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 String grade = gmSemesterInfo.getString("grade");
                 String category = gmSemesterInfo.getString("category");
 
-                if(course_year.equals("2019") && course_semester.equals("1")){
+                if (course_year.equals("2019") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt11.addItem(data);
-//                    if(category.equals("1") || category.equals("2")){
-//                        majorCredit11 += Integer.parseInt(credit);
-//                        majorGrade11 += Float.parseFloat(grade) * Integer.parseInt(credit);
-//                    } else if(category.equals("3") || category.equals("4")){
-//                        liberalCredit11 += Integer.parseInt(credit);
-//                        liberalGrade11 += Float.parseFloat(grade) * Integer.parseInt(credit);
-//                    }
-//                    credit11 = majorCredit11 + liberalCredit11;
-//                    totalGrade11 = (majorGrade11 + liberalGrade11) / credit11;
-//                    tv_totalGrade11.setText(String.valueOf(totalGrade11));
-//                    if(majorCredit11 != 0){
-//                        majorGrade11 /= majorCredit11;
-//                        tv_majorGrade11.setText(String.valueOf(majorGrade11));
-//                    } if(liberalCredit != 0){
-//                        liberalGrade11 /= liberalCredit11;
-//                        tv_liberalGrade11.setText(String.valueOf(liberalGrade11));
-//                    }
-                } else if(course_year.equals("2019") && course_semester.equals("2")){
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit11 += Integer.parseInt(credit);
+                        majorGrade11 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit11 += Integer.parseInt(credit);
+                        liberalGrade11 += gradeToDouble * Double.parseDouble(credit);
+                    }
+                } else if (course_year.equals("2019") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt12.addItem(data);
-                } else if(course_year.equals("2020") && course_semester.equals("1")){
+                } else if (course_year.equals("2020") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt21.addItem(data);
-                } else if(course_year.equals("2020") && course_semester.equals("2")){
+                } else if (course_year.equals("2020") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt22.addItem(data);
-                } else if(course_year.equals("2021") && course_semester.equals("1")){
+                } else if (course_year.equals("2021") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt31.addItem(data);
-                } else if(course_year.equals("2021") && course_semester.equals("2")){
+                } else if (course_year.equals("2021") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt32.addItem(data);
-                } else if(course_year.equals("2022") && course_semester.equals("1")){
+                } else if (course_year.equals("2022") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt41.addItem(data);
-                } else if(course_year.equals("2022") && course_semester.equals("2")){
+                } else if (course_year.equals("2022") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt42.addItem(data);
                 }
 
             }
+
+            credit11 = majorCredit11 + liberalCredit11;
+            totalGrade11 = (majorGrade11 + liberalGrade11) / credit11;
+            if (majorCredit11 != 0) {
+                majorGrade11 /= majorCredit11;
+            }
+            if (liberalCredit != 0) {
+                liberalGrade11 /= liberalCredit11;
+            }
+
+            majorCredit = majorCredit11 + majorCredit12 + majorCredit21 + majorCredit22 + majorCredit31 + majorCredit32 + majorCredit41 + majorCredit42;
+            liberalCredit = liberalCredit11 + liberalCredit12 + liberalCredit21 + liberalCredit22 + liberalCredit31 + liberalCredit32 + liberalCredit41 + liberalCredit42;
+            totalCredit = majorCredit + liberalCredit;
+
             return true;
         } catch (JSONException e) {
             Log.d(TAG, e.toString());
         }
         return false;
     }
+
+    private double gradeToNum(String grade) {
+        if (grade.equals("A+")) {
+            return 4.3;
+        } else if (grade.equals("A")) {
+            return 4.0;
+        } else if (grade.equals("A-")) {
+            return 3.7;
+        } else if (grade.equals("B+")) {
+            return 3.3;
+        } else if (grade.equals("B")) {
+            return 3.0;
+        } else if (grade.equals("B-")) {
+            return 2.7;
+        } else if (grade.equals("C+")) {
+            return 2.3;
+        } else if (grade.equals("C")) {
+            return 2.0;
+        } else if (grade.equals("C-")) {
+            return 1.7;
+        } else if (grade.equals("D+")) {
+            return 1.3;
+        } else if (grade.equals("D")) {
+            return 1.0;
+        } else if (grade.equals("D-")) {
+            return 0.7;
+        } else if (grade.equals("F")) {
+            return 0.0;
+        }
+        return 0.0;
+    }
+
 
     @Override
     public void onClick(View view) {
