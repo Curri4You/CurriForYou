@@ -98,6 +98,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout ll_detail_category3;
     private LinearLayout ll_detail_category4;*/
 
+    ////////
+    CheckBox cb_taken;
+
     //////////testing
     public static Context context_main;
     public int var;
@@ -106,6 +109,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
+
+        /////////
+        cb_taken = findViewById(R.id.cb_taken);
 
         //////////////
         context_main = this;
@@ -716,14 +722,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String pre_credit = courseInfo.getString("pre_credit");
                 String pre_jjim = courseInfo.getString("pre_jjim");
 
-                if(course_semester.equals("null")){
+                if(course_year.equals("null")){
                     course_year = "미정";
                     course_semester = "미정";
                     grade = "미정";
-                } else{
-
                 }
-
 
                 DataCourseList data = new DataCourseList(major_division, course_name,
                         course_id, is_open, credit, jjim, course_year, course_semester,

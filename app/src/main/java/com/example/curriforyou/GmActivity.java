@@ -331,13 +331,15 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt11.addItem(data);
                     gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
+                    majorCredit11 += Integer.parseInt(credit);
+                    majorGrade11 += gradeToDouble * Double.parseDouble(credit);
+                    /*if (category.equals("1") || category.equals("2")) {
                         majorCredit11 += Integer.parseInt(credit);
                         majorGrade11 += gradeToDouble * Double.parseDouble(credit);
                     } else if (category.equals("3") || category.equals("4")) {
                         liberalCredit11 += Integer.parseInt(credit);
                         liberalGrade11 += gradeToDouble * Double.parseDouble(credit);
-                    }
+                    }*/
                 } else if (course_year.equals("2019") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt12.addItem(data);

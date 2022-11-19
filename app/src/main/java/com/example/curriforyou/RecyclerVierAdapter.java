@@ -39,12 +39,15 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     //직전에 클릭됐던 item의 position
     private int prePosition = -1;
+    //직전에 클릭했던 heart position
+    private int prePosition_heart = -1;
+    //직전에 클릭했던 수강&미수강 position
+    private int prePosition_listened = -1;
 
-    ////////////////
-    int CHECK_NUM = 0;
-
-    //
+    //[찜 기능] 찜 상태를 저장하는 boolean array
     private SparseBooleanArray selectedhearts = new SparseBooleanArray();
+    //[수강&미수강] 수강/미수강 상태를 저장하는 boolean array
+    private SparseBooleanArray selectedlistened = new SparseBooleanArray();
 
     //생성자
     RecyclerVierAdapter(ArrayList<DataCourseList> list){
@@ -90,13 +93,16 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView tv_course_name, tv_course_id, tv_is_open, tv_credit,
                 tv_course_year, tv_course_semester, tv_grade;
         ImageView iv_major_division;
-        CheckBox cb_taken;
         private LinearLayout tv_item_open, ll_listitem;
         private DataCourseList data;
         private int position;
         private ImageButton ib_heart;
-        /*ImageView iv_heart;*/
+        CheckBox cb_taken;
         boolean i = true;
+
+        //[찜, 수강&미수강] 초기화에 사용되는 임의 count 변수
+        int count_heart = 0;
+        int count_listened = 0;
 
         public ViewHolderCourseList(@NonNull View itemView) {
             super(itemView);
@@ -110,27 +116,11 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_course_semester = itemView.findViewById(R.id.tv_course_semester);
             tv_grade = itemView.findViewById(R.id.tv_grade);
             iv_major_division = itemView.findViewById(R.id.iv_major_division);
-            cb_taken = itemView.findViewById(R.id.cb_taken);
 
             tv_item_open = itemView.findViewById(R.id.tv_item_open);
             ib_heart = itemView.findViewById(R.id.ib_heart);
+            cb_taken = itemView.findViewById(R.id.cb_taken);
             ll_listitem = itemView.findViewById(R.id.ll_listitem);
-
-            /*iv_heart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if(pos != RecyclerView.NO_POSITION){
-                        if (i == true){
-                            iv_heart.setImageResource(R.drawable.filled_heart);
-                            i = false;
-                        } else {
-                            iv_heart.setImageResource(R.drawable.empty_heart);
-                            i = true;
-                        }
-                    }
-                }
-            });*/
         }
 
         public void onBind(DataCourseList data, int position) {
@@ -156,32 +146,30 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 iv_major_division.setImageResource(R.drawable.rectangle_blue1);
             }
 
-            //수강&미수강 버튼 변경
-            if (!data.getCourse_year().equals("미정")){
-                cb_taken.setText("수강");
-                cb_taken.setChecked(true);
+            //[찜] 기존 데이터에 기반한 찜 초기화
+            if(data.getJjim().equals("1") && count_heart == 0){
+                selectedhearts.put(position, true);
+                count_heart ++;
             }
 
-            //
+            //[수강&미수강] 기존 데이터에 기반한 수강 깃발 초기화
+            if ((!data.getCourse_year().equals("미정")) && count_listened == 0){
+                selectedlistened.put(position, true);
+                count_listened ++;
+            }
 
+            //[펼침기능] 펼침 기능을 적용하는 함수
             changeVisibility(selecteditems.get(position));
-            ////////
+            //[찜] 찜 기능을 적용하는 함수
             changeImageView(selectedhearts.get(position));
+            //[수강&미수강] 버튼을 클릭하면 깃발 기능을 적용하는 함수
+            changeListened(selectedlistened.get(position));
 
             itemView.setOnClickListener(this);
             ib_heart.setOnClickListener(this);
+            cb_taken.setOnClickListener(this);
             ll_listitem.setOnClickListener(this);
-            /*iv_heart.setOnClickListener(this);*/
         }
-
-        /*ImageView iv_heart = (ImageView)findViewById(R.id.iv_heart);
-        iv_heart.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                iv_heart.setSelected(event.getAction()==MotionEvent.ACTION_DOWN);
-                return true;
-            }
-        });*/
 
         @Override
         public void onClick(View v) {
@@ -192,7 +180,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         selecteditems.delete(position);
                     } else {
                         //직전의 클릭했던 item의 클릭상태를 지움
-                        selecteditems.delete(prePosition);
+                        /*selecteditems.delete(prePosition);*/
                         //클릭한 item의 position을 저장
                         selecteditems.put(position, true);
                     }
@@ -203,7 +191,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     //클릭된 position 저장
                     prePosition = position;
                     break;
-                case R.id.ib_heart:
+                case R.id.ib_heart:     //찜 버튼을 클릭했을 경우
                     if(selectedhearts.get(position)){
                         //선택된 item을 클릭 시(value == 1)
                         selectedhearts.delete(position);
@@ -254,11 +242,18 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
                         queue.add(jjimRequest);
                     }
-                    if (prePosition != -1)
-                        notifyItemChanged(prePosition);
                     notifyItemChanged(position);
-                    prePosition = position;
-
+                    break;
+                case R.id.cb_taken:     //수강&미수강 버튼을 클릭했을 경우
+                    if(selectedlistened.get(position)){
+                        //선택된 item을 클릭 시(value == 1)
+                        selectedlistened.delete(position);
+                    } else {
+                        //선택되지 않은 item을 클릭 시(value == 0)
+                        //클릭한 item의 position을 저장
+                        selectedlistened.put(position, true);
+                    }
+                    notifyItemChanged(position);
                     break;
 
 
@@ -296,41 +291,16 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ib_heart.setImageResource(isExpanded ? R.drawable.filled_heart : R.drawable.empty_heart);
         }
 
+        private void changeListened(final boolean isExpanded){
+            if(isExpanded){
+                cb_taken.setText("수강");
+                cb_taken.setChecked(true);
+            } else {
+                cb_taken.setText("미수강");
+                cb_taken.setChecked(false);
+            }
+        }
 
-        /*private void changeImageView(final boolean isExpanded){
-            //height 값을 dp로 지정해서 넣고 싶으면 아래 소스를 이용
-            int dpValue = 150;
-            float d = context.getResources().getDisplayMetrics().density;
-            int height = (int)(dpValue*d);
-
-            // ValueAnimator.ofInt(int... values)는 View가 변할 값을 지정, 인자는 int 배열
-            ValueAnimator va = isExpanded ? ValueAnimator.ofInt(0, height) : ValueAnimator.ofInt(height, 0);
-            // Animation이 실행되는 시간, n/1000초
-            va.setDuration(200000000);
-            va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    // value는 height 값
-                    int value = (int) animation.getAnimatedValue();
-                    // imageView가 실제로 사라지게하는 부분
-                    iv_heart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            iv_heart.setImageResource(R.drawable.filled_heart);
-                        }
-                    });
-                    iv_heart.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            iv_heart.setSelected(event.getAction()==MotionEvent.ACTION_DOWN);
-                            return true;
-                        }
-                    });
-                }
-            });
-            //Animation start
-            va.start();
-        }*/
     }
 
 }
