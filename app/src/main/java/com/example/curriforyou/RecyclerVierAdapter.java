@@ -248,10 +248,52 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     if(selectedlistened.get(position)){
                         //선택된 item을 클릭 시(value == 1)
                         selectedlistened.delete(position);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if(success) {
+                                        Toast.makeText(context.getApplicationContext(),"등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Context mainActivity = MainActivity.context_main;
+                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, "1", responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(mainActivity);
+                        queue.add(listenedRequest);
                     } else {
                         //선택되지 않은 item을 클릭 시(value == 0)
                         //클릭한 item의 position을 저장
                         selectedlistened.put(position, true);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if(success) {
+                                        Toast.makeText(context.getApplicationContext(),listData.get(position).course_id, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Context mainActivity = MainActivity.context_main;
+                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, "0", responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(mainActivity);
+                        queue.add(listenedRequest);
                     }
                     notifyItemChanged(position);
                     break;

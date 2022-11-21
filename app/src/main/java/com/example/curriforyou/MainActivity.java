@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
     RecyclerVierAdapter rc_adapter = null;
-    private ArrayList<HashMap<String, String>> courseList = null;
 
     //[Dialog]
     TextView tv_dialog;
@@ -98,9 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout ll_detail_category3;
     private LinearLayout ll_detail_category4;*/
 
-    ////////
-    CheckBox cb_taken;
-
     //////////testing
     public static Context context_main;
     public int var;
@@ -110,19 +106,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-        /////////
-        cb_taken = findViewById(R.id.cb_taken);
-
         //////////////
         context_main = this;
-
-        ///////////
-        /*for(int a=0; a < original_list.size(); a++){
-            if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
-                search_list.add(original_list.get(a));
-            }
-            rc_adapter.setItems(search_list);
-        }*/
 
 
         //[Detail Category]
@@ -132,30 +117,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ll_detail_category[i] = findViewById(res_id2);
         }
 
-        LayoutInflater detail_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater.inflate(R.layout.detail_category_layout, ll_detail_category[0], true);
+        LayoutInflater detail_inflater0 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater1 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LayoutInflater detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category[1], true);
         LayoutInflater detail_inflater3 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater3.inflate(R.layout.detail_category_layout, ll_detail_category[2], true);
         LayoutInflater detail_inflater4 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater4.inflate(R.layout.detail_category_layout, ll_detail_category[3], true);
         LayoutInflater detail_inflater5 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater5.inflate(R.layout.detail_category_layout, ll_detail_category[4], true);
         LayoutInflater detail_inflater6 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater6.inflate(R.layout.detail_category_layout, ll_detail_category[5], true);
         LayoutInflater detail_inflater7 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater7.inflate(R.layout.detail_category_layout, ll_detail_category[6], true);
         LayoutInflater detail_inflater8 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater8.inflate(R.layout.detail_category_layout, ll_detail_category[7], true);
         LayoutInflater detail_inflater9 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater9.inflate(R.layout.detail_category_layout, ll_detail_category[8], true);
         LayoutInflater detail_inflater10 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater10.inflate(R.layout.detail_category_layout, ll_detail_category[9], true);
         LayoutInflater detail_inflater11 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater11.inflate(R.layout.detail_category_layout, ll_detail_category[10], true);
-        LayoutInflater detail_inflater12 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater12.inflate(R.layout.detail_category_layout, ll_detail_category[11], true);
+
+        LayoutInflater detail_inflater_list[] = {detail_inflater0, detail_inflater1, detail_inflater2, detail_inflater3, detail_inflater4,
+                detail_inflater5, detail_inflater6, detail_inflater7, detail_inflater8, detail_inflater9, detail_inflater10, detail_inflater11};
+        for (int i=0; i<12; i++){
+            detail_inflater_list[i].inflate(R.layout.detail_category_layout, ll_detail_category[i], true);
+        }
 
         TextView tv_detail_category[] = new TextView[12];
         TextView tv_detail_standard[] = new TextView[12];
@@ -200,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //[Filter]
         RadioButton rb_all = findViewById(R.id.rb_all);
         RadioButton rb_this_semester = findViewById(R.id.rb_this_semester);
+        /*[TESTING]*/
         String filter_all = rb_all.getText().toString().toUpperCase();
         String filter_this_semester = rb_this_semester.getText().toString().toUpperCase();
 
@@ -347,11 +327,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //[RecyclerView] HTTP address로부터 response값 파싱 -> jsonParser 함수 사용 -> DataCourseList에 저장
         getData(REQUEST_URL1);
 
-        //[RecyclerView] HashMap 사용
-        courseList = new ArrayList<HashMap<String, String>>();
-        //[RecyclerView] 각 필드값을 매핑, from -> to
-        /*String[] from = new String[]{"course_name", "course_id", "is_open", "credit"};
-        int[] to = new int[]{R.id.tv_course_name, R.id.tv_course_id, R.id.tv_is_open, R.id.tv_credit};*/
+        /*이수구분을 나타내는 LinearLayout 모두 초기화(GONE)*/
+        for (int i = 0; i < 12; i ++){
+            ll_detail_category[i].setVisibility(View.GONE);
+        }
+        /*전공필수 - 4개 영역으로 분류*/
+        for (int i = 0; i < 4; i ++){
+            ll_detail_category[i].setVisibility(View.VISIBLE);
+        }
+
+        String str_major0[] = {"[주/복]", "[주]", "[부]", "[주/복]"};
+        String str_category0[] = {"전공기초(필수)", "전공기초(선택)", "전공기초", "전공필수"};
+        String str_standard0[] = {"[7과목 19학점 이수]", "[1과목 1학점 이수]", "[4과목 6학점 이수]",
+                "[11과목 33학점 이수]"};
+
+        /*4개의 각 영역에 category와 standard 값 적용*/
+        for (int i = 0; i < 4; i ++){
+            tv_detail_major[i].setText(str_major0[i]);
+            tv_detail_category[i].setText(str_category0[i]);
+            tv_detail_standard[i].setText(str_standard0[i]);
+        }
 
         //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
@@ -474,15 +469,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             tv_detail_category[i].setText(str_category0[i]);
                             tv_detail_standard[i].setText(str_standard0[i]);
                         }
-
-
-
-                        /*ll_detail_category1.setVisibility(View.VISIBLE);
-                        ll_detail_category1 = findViewById(R.id.ll_detail_category1);
-                        LayoutInflater detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category2, true);
-                        TextView tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-                        tv_detail_category2.setText("second");*/
                         break;
                     case 1:     //전공선택
                         init();
@@ -683,8 +669,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
             JSONArray course = jsonObject.getJSONArray("CourseListTest");
-
-            courseList.clear();
 
             //course의 길이만큼 반복해서 Mapping
             for (int i = 0; i < course.length(); i++) {
