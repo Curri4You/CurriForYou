@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,8 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private  String REQUEST_URL4 = "http://smlee099.dothome.co.kr/CourseListTest4.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
-    RecyclerVierAdapter rc_adapter = null;
+    /*RecyclerVierAdapter rc_adapter = null;*/
     private ArrayList<HashMap<String, String>> courseList = null;
+
+    /*LinearLayout ll_detail_category[] = new LinearLayout[12];
+        for (int i=0; i<12; i++){
+        int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
+        ll_detail_category[i] = findViewById(res_id2);
+    }*/
 
     //[Dialog]
     TextView tv_dialog;
@@ -98,36 +105,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout ll_detail_category3;
     private LinearLayout ll_detail_category4;*/
 
-    ////////
-    CheckBox cb_taken;
-
     //////////testing
     public static Context context_main;
     public int var;
+
+    //[Several Adapter]
+    /*RecyclerVierAdapter rc_adapter_list[] = new RecyclerVierAdapter[12];*/
+    RecyclerVierAdapter rc_adapter0, rc_adapter1, rc_adapter2, rc_adapter3, rc_adapter4, rc_adapter5, rc_adapter6, rc_adapter7, rc_adapter8, rc_adapter9, rc_adapter10, rc_adapter11;
+    RecyclerVierAdapter rc_adapter_list[] = {rc_adapter0, rc_adapter1, rc_adapter2, rc_adapter3, rc_adapter4, rc_adapter5, rc_adapter6, rc_adapter7, rc_adapter8, rc_adapter9, rc_adapter10, rc_adapter11};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-        /////////
-        cb_taken = findViewById(R.id.cb_taken);
+
 
         //////////////
         context_main = this;
 
-        ///////////
-        /*for(int a=0; a < original_list.size(); a++){
-            if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
-                search_list.add(original_list.get(a));
-            }
-            rc_adapter.setItems(search_list);
-        }*/
-
-
         //[Detail Category]
         LinearLayout ll_detail_category[] = new LinearLayout[12];
-        for (int i = 0; i < 12; i ++){
+        for (int i=0; i<12; i++){
             int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
             ll_detail_category[i] = findViewById(res_id2);
         }
@@ -157,10 +156,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LayoutInflater detail_inflater12 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         detail_inflater12.inflate(R.layout.detail_category_layout, ll_detail_category[11], true);
 
+
         TextView tv_detail_category[] = new TextView[12];
         TextView tv_detail_standard[] = new TextView[12];
         TextView tv_detail_major[] = new TextView[12];
-        for (int i = 0; i < 12; i ++){
+        for (int i=0; i<12; i++){
             tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
             tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
             tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
@@ -226,13 +226,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //개설여부
                 if (rb_all.isChecked()){
                     /*Toast.makeText(getApplicationContext(), filter_all, Toast.LENGTH_SHORT).show();*/
-                    for(int a = 0; a < original_list.size(); a++){
+                    for(int a=0; a<original_list.size(); a++){
                         filter_list.add(original_list.get(a));
                     }
                 } else {
                     /*Toast.makeText(getApplicationContext(), filter_this_semester, Toast.LENGTH_SHORT).show();*/
-                    for(int a = 0; a < original_list.size(); a++){
-                        if(original_list.get(a).is_open.toLowerCase().contains("X".toLowerCase())){
+                    for(int a=0; a<original_list.size(); a++){
+                        if(original_list.get(a).is_open.toLowerCase().contains("O".toLowerCase())){
                             filter_list.add(original_list.get(a));
                         }
                     }
@@ -252,10 +252,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (cb_credit4.isChecked()){
                     credit_list[3] = "1";
                 }
-                for (int i = 0; i < 4; i++){
+                for (int i=0; i<4; i++){
                     if (credit_list[i].equals("1")){
                         /*Toast.makeText(getApplicationContext(), (i+1)+"", Toast.LENGTH_SHORT).show();*/
-                        for(int a = 0; a < filter_list.size(); a++){
+                        for(int a=0; a<filter_list.size(); a++){
                             if(filter_list.get(a).credit.equals((i+1)+"")){
                                 filter_list2.add(filter_list.get(a));
                             }
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //수강과목 --> ERROR
                 if (swit_taken.isChecked()){
-                    for(int a = 0; a < filter_list2.size(); a++){
+                    for(int a=0; a<filter_list2.size(); a++){
                         if(!filter_list2.get(a).course_year.equals("미정")){
                             filter_list3.add(filter_list2.get(a));
                         }
@@ -285,9 +285,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (cb_major3.isChecked()){
                     major_list[2] = "1";
                 }
-                for (int i = 0; i < 3; i++){
+                for (int i=0; i<3; i++){
                     if (major_list[i].equals("1")){
-                        for(int a = 0; a < filter_list3.size(); a++){
+                        for(int a=0; a<filter_list3.size(); a++){
                             if(filter_list3.get(a).major_division.equals((i+1)+"")){
                                 filter_list4.add(filter_list3.get(a));
                             }
@@ -295,7 +295,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 /*Toast.makeText(getApplicationContext(), ""+credit_list[0]+credit_list[1]+credit_list[2]+credit_list[3], Toast.LENGTH_SHORT).show();*/
-                rc_adapter.setItems(filter_list4);
+                /*rc_adapter.setItems(filter_list4);*/
+                for (int i=0; i<4; i++){
+                    rc_adapter_list[i].setItems(filter_list4);
+                }
             }
         });
 
@@ -319,13 +322,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 search_list.clear();
 
                 if(search_text.equals("")){
-                    rc_adapter.setItems(original_list);
+                    /*rc_adapter.setItems(original_list);*/
+                    for (int i=0; i<12; i++){
+                        rc_adapter_list[i].setItems(original_list);
+                    }
                 } else {
-                    for(int a=0; a < original_list.size(); a++){
+                    for(int a=0; a<original_list.size(); a++){
                         if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
                             search_list.add(original_list.get(a));
                         }
-                        rc_adapter.setItems(search_list);
+                        /*rc_adapter.setItems(search_list);*/
+                        for (int i=0; i<4; i++){
+                            rc_adapter_list[i].setItems(search_list);
+                        }
                     }
                 }
             }
@@ -341,11 +350,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        TextView tv_detail_category_init[] = new TextView[12];
+        TextView tv_detail_standard_init[] = new TextView[12];
+        TextView tv_detail_major_init[] = new TextView[12];
+        for (int i=0; i<12; i++){
+            tv_detail_category_init[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
+            tv_detail_standard_init[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
+            tv_detail_major_init[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
+            tv_detail_major_init[i].setText("[주]");
+        }
+
         //-------------------------------------------------//
         //[RecyclerView] Adapter 연결 & 리스트 초기화
-        init();
+        init0();
         //[RecyclerView] HTTP address로부터 response값 파싱 -> jsonParser 함수 사용 -> DataCourseList에 저장
-        getData(REQUEST_URL1);
+        getData(REQUEST_URL1, 1);
+        /*이수구분을 나타내는 LinearLayout 모두 초기화(GONE)*/
+        for (int i=0; i<12; i++){
+            ll_detail_category[i].setVisibility(View.GONE);
+        }
+        /*전공필수 - 4개 영역으로 분류*/
+        for (int i=0; i<4; i++){
+            ll_detail_category[i].setVisibility(View.VISIBLE);
+        }
+
+        String str_major_init[] = {"[주/복]", "[주]", "[부]", "[주/복]"};
+        String str_category_init[] = {"전공기초(필수)", "전공기초(선택)", "전공기초", "전공필수"};
+        String str_standard_init[] = {"[7과목 19학점 이수]", "[1과목 1학점 이수]", "[4과목 6학점 이수]",
+                "[11과목 33학점 이수]"};
+
+        /*4개의 각 영역에 category와 standard 값 적용*/
+        for (int i=0; i<4; i++){
+            tv_detail_major[i].setText(str_major_init[i]);
+            tv_detail_category[i].setText(str_category_init[i]);
+            tv_detail_standard[i].setText(str_standard_init[i]);
+        }
 
         //[RecyclerView] HashMap 사용
         courseList = new ArrayList<HashMap<String, String>>();
@@ -425,7 +464,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         course_category = getResources().getStringArray(R.array.course_category);
 
         LinearLayout ll_detail_category[] = new LinearLayout[12];
-        for (int i = 0; i < 12; i ++){
+        for (int i=0; i<12; i++){
             int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
             ll_detail_category[i] = findViewById(res_id2);
         }
@@ -442,7 +481,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TextView tv_detail_category[] = new TextView[12];
                 TextView tv_detail_standard[] = new TextView[12];
                 TextView tv_detail_major[] = new TextView[12];
-                for (int i = 0; i < 12; i ++){
+                for (int i=0; i<12; i++){
                     tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
                     tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
                     tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
@@ -451,15 +490,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //선택된 카테고리에 따라 다른 URL에서 파싱
                 switch (which){
                     case 0:     //전공필수
-                        init();
-                        getData(REQUEST_URL1);
+                        init0();
+                        getData(REQUEST_URL1, 1);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(GONE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i=0; i<12; i++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
                         /*전공필수 - 4개 영역으로 분류*/
-                        for (int i = 0; i < 4; i ++){
+                        for (int i=0; i<4; i++){
                             ll_detail_category[i].setVisibility(View.VISIBLE);
                         }
 
@@ -469,14 +508,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 "[11과목 33학점 이수]"};
 
                         /*4개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 4; i ++){
+                        for (int i=0; i<4; i++){
                             tv_detail_major[i].setText(str_major0[i]);
                             tv_detail_category[i].setText(str_category0[i]);
                             tv_detail_standard[i].setText(str_standard0[i]);
                         }
-
-
-
                         /*ll_detail_category1.setVisibility(View.VISIBLE);
                         ll_detail_category1 = findViewById(R.id.ll_detail_category1);
                         LayoutInflater detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -485,15 +521,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         tv_detail_category2.setText("second");*/
                         break;
                     case 1:     //전공선택
-                        init();
-                        getData(REQUEST_URL2);
+                        init1();
+                        getData(REQUEST_URL2, 2);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i=0; i<12; i++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
                         /*전공선택 - 6개 영역으로 분류*/
-                        for (int i = 0; i < 6; i ++){
+                        for (int i=0; i<6; i++){
                             ll_detail_category[i].setVisibility(View.VISIBLE);
                         }
 
@@ -504,29 +540,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 "[1과목 3학점 이수]", "[2과목 6학점 이수]", "[1과목 3학점 이수]"};
 
                         /*6개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 6; i ++){
+                        for (int i=0; i<6; i++){
                             tv_detail_major[i].setText(str_major1[i]);
                             tv_detail_category[i].setText(str_category1[i]);
                             tv_detail_standard[i].setText(str_standard1[i]);
                         }
-
-                        /*ll_detail_category2.setVisibility(View.VISIBLE);
-                        ll_detail_category2 = findViewById(R.id.ll_detail_category2);
-                        detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category2, true);
-                        tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-                        tv_detail_category2.setText("second");*/
                         break;
                     case 2:     //교양필수
-                        init();
-                        getData(REQUEST_URL3);
+                        init2();
+                        getData(REQUEST_URL3, 3);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i=0; i<12; i++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
                         /*교양필수 - 3개 영역으로 분류*/
-                        for (int i = 0; i < 3; i ++){
+                        for (int i=0; i<3; i++){
                             ll_detail_category[i].setVisibility(View.VISIBLE);
                         }
 
@@ -534,7 +563,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         String str_standard2[] = {"[1과목 3학점 이수]", "[2과목 5학점 이수]", "[1과목 3학점 이수]"};
 
                         /*3개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 3; i ++){
+                        for (int i=0; i<3; i++){
                             tv_detail_category[i].setText(str_category2[i]);
                             tv_detail_standard[i].setText(str_standard2[i]);
                         }
@@ -546,15 +575,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         tv_detail_category2.setText("third");*/
                         break;
                     case 3:     //교양선택
-                        init();
-                        getData(REQUEST_URL4);
+                        init3();
+                        getData(REQUEST_URL4, 4);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i=0; i<12; i++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
                         /*교양필수 - 12개 영역으로 분류*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i=0; i<12; i++){
                             ll_detail_category[i].setVisibility(View.VISIBLE);
                         }
 
@@ -565,7 +594,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 "[1과목 3학점 이수]"};
 
                         /*12개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i=0; i<12; i++){
                             tv_detail_category[i].setText(str_category3[i]);
                             tv_detail_standard[i].setText(str_standard3[i]);
                         }
@@ -577,10 +606,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.show();
     }
 
+    RecyclerView rc_curriculum_course[] = new RecyclerView[12];
+    LinearLayoutManager linearLayoutManager0 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager4 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager5 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager6 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager7 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager8 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager9 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager10 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager11 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager[] = {linearLayoutManager0, linearLayoutManager1, linearLayoutManager2, linearLayoutManager3, linearLayoutManager4, linearLayoutManager5, linearLayoutManager6, linearLayoutManager7, linearLayoutManager8, linearLayoutManager9, linearLayoutManager10, linearLayoutManager11};
+
     //-------------------------------------------------//
     //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수 & 초기화 함수
-    private void init(){
-        RecyclerView rc_curriculum_course1 = findViewById(R.id.rc_curriculum_course1);
+    private void init0(){
+        /*RecyclerView rc_curriculum_course1 = findViewById(R.id.rc_curriculum_course1);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rc_curriculum_course1.setLayoutManager(linearLayoutManager);
@@ -591,40 +635,168 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         filter_list3.clear();
         filter_list4.clear();
         rc_adapter = new RecyclerVierAdapter(original_list);
-        rc_curriculum_course1.setAdapter(rc_adapter);
+        rc_curriculum_course1.setAdapter(rc_adapter);*/
+
+        //
+        for (int i=0; i<4; i++){
+            int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
+            rc_curriculum_course[i] = findViewById(res_id);
+            rc_curriculum_course[i].setLayoutManager(linearLayoutManager[i]);
+        }
+        original_list.clear();
+        filter_list.clear();
+        filter_list2.clear();
+        filter_list3.clear();
+        filter_list4.clear();
+        for (int i=0; i<4; i++){
+            rc_adapter_list[i] = new RecyclerVierAdapter(original_list);
+            rc_curriculum_course[i].setAdapter(rc_adapter_list[i]);
+        }
+    }
+
+    private void init1(){
+        //
+        for (int i=0; i<6; i++){
+            int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
+            rc_curriculum_course[i] = findViewById(res_id);
+            rc_curriculum_course[i].setLayoutManager(linearLayoutManager[i]);
+        }
+        original_list.clear();
+        filter_list.clear();
+        filter_list2.clear();
+        filter_list3.clear();
+        filter_list4.clear();
+        for (int i=0; i<6; i++){
+            rc_adapter_list[i] = new RecyclerVierAdapter(original_list);
+            rc_curriculum_course[i].setAdapter(rc_adapter_list[i]);
+        }
+    }
+
+    private void init2(){
+        //
+        for (int i=0; i<3; i++){
+            int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
+            rc_curriculum_course[i] = findViewById(res_id);
+            rc_curriculum_course[i].setLayoutManager(linearLayoutManager[i]);
+        }
+        original_list.clear();
+        filter_list.clear();
+        filter_list2.clear();
+        filter_list3.clear();
+        filter_list4.clear();
+        for (int i=0; i<3; i++){
+            rc_adapter_list[i] = new RecyclerVierAdapter(original_list);
+            rc_curriculum_course[i].setAdapter(rc_adapter_list[i]);
+        }
+    }
+    private void init3(){
+        //
+        for (int i=0; i<12; i++){
+            int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
+            rc_curriculum_course[i] = findViewById(res_id);
+            rc_curriculum_course[i].setLayoutManager(linearLayoutManager[i]);
+        }
+        original_list.clear();
+        filter_list.clear();
+        filter_list2.clear();
+        filter_list3.clear();
+        filter_list4.clear();
+        for (int i=0; i<12; i++){
+            rc_adapter_list[i] = new RecyclerVierAdapter(original_list);
+            rc_curriculum_course[i].setAdapter(rc_adapter_list[i]);
+        }
     }
 
     //[RecyclerView]
-    private final RC_MyHandler RC_mHandler = new RC_MyHandler(this);
+    private final RC_MyHandler0 RC_mHandler0 = new RC_MyHandler0(this);
+    /*private final RC_MyHandler1 RC_mHandler1 = new RC_MyHandler1(this);*/
+    /*private final RC_MyHandler2 RC_mHandler2 = new RC_MyHandler2(this);*/
+    /*private final RC_MyHandler3 RC_mHandler3 = new RC_MyHandler3(this);*/
     //[RecyclerView]
-    private static class RC_MyHandler extends Handler{
+    private static class RC_MyHandler0 extends Handler{
         private final WeakReference<MainActivity> weakReference;
-
-        public RC_MyHandler(MainActivity mainActivity){
+        public RC_MyHandler0(MainActivity mainActivity){
             weakReference = new WeakReference<MainActivity>(mainActivity);
         }
-
         public void handleMessage(Message msg){
             MainActivity mainActivity = weakReference.get();
-
             if(mainActivity != null){
                 switch (msg.what){
                     case LOAD_SUCCESS:
                         mainActivity.progressDialog.dismiss();
-                        mainActivity.rc_adapter.notifyDataSetChanged();
+                        /*mainActivity.rc_adapter.notifyDataSetChanged();*/
+                        for (int i=0; i<4; i++){
+                            mainActivity.rc_adapter_list[i].notifyDataSetChanged();
+                        }
                         break;
                 }
             }
         }
     }
+    /*private static class RC_MyHandler1 extends Handler{
+        private final WeakReference<MainActivity> weakReference;
+        public RC_MyHandler1(MainActivity mainActivity){
+            weakReference = new WeakReference<MainActivity>(mainActivity);
+        }
+        public void handleMessage(Message msg){
+            MainActivity mainActivity = weakReference.get();
+            if(mainActivity != null){
+                switch (msg.what){
+                    case LOAD_SUCCESS:
+                        mainActivity.progressDialog.dismiss();
+                        for (int i=0; i<6; i++){
+                            mainActivity.rc_adapter_list[i].notifyDataSetChanged();
+                        }
+                        break;
+                }
+            }
+        }
+    }*/
+    /*private static class RC_MyHandler2 extends Handler{
+        private final WeakReference<MainActivity> weakReference;
+        public RC_MyHandler2(MainActivity mainActivity){
+            weakReference = new WeakReference<MainActivity>(mainActivity);
+        }
+        public void handleMessage(Message msg){
+            MainActivity mainActivity = weakReference.get();
+            if(mainActivity != null){
+                switch (msg.what){
+                    case LOAD_SUCCESS:
+                        mainActivity.progressDialog.dismiss();
+                        for (int i=0; i<3; i++){
+                            mainActivity.rc_adapter_list[i].notifyDataSetChanged();
+                        }
+                        break;
+                }
+            }
+        }
+    }*/
+    /*private static class RC_MyHandler3 extends Handler{
+        private final WeakReference<MainActivity> weakReference;
+        public RC_MyHandler3(MainActivity mainActivity){
+            weakReference = new WeakReference<MainActivity>(mainActivity);
+        }
+        public void handleMessage(Message msg){
+            MainActivity mainActivity = weakReference.get();
+            if(mainActivity != null){
+                switch (msg.what){
+                    case LOAD_SUCCESS:
+                        mainActivity.progressDialog.dismiss();
+                        for (int i=0; i<12; i++){
+                            mainActivity.rc_adapter_list[i].notifyDataSetChanged();
+                        }
+                        break;
+                }
+            }
+        }
+    }*/
 
     //[RecyclerView] HTTP address로부터 Log 내용을 가져오는 함수; jsonParser 함수 사용
-    private void getData(String Request_url){
+    private void getData(String Request_url, int category){
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 String result;
-
                 try{
                     Log.d(TAG, Request_url);
                     URL url = new URL(Request_url);
@@ -664,8 +836,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     result = e.toString();
                 }
                 if (RC_jsonParser(result)){     // 파싱 기능 사용
-                    Message message = RC_mHandler.obtainMessage(LOAD_SUCCESS);
-                    RC_mHandler.sendMessage(message);
+                    switch (category) {
+                        case 1:
+                            Message message = RC_mHandler0.obtainMessage(LOAD_SUCCESS);
+                            RC_mHandler0.sendMessage(message);
+                        /*case 2:
+                            Message message2 = RC_mHandler1.obtainMessage(LOAD_SUCCESS);
+                            RC_mHandler1.sendMessage(message2);*/
+                        /*case 3:
+                            Message message3 = RC_mHandler2.obtainMessage(LOAD_SUCCESS);
+                            RC_mHandler2.sendMessage(message3);*/
+                        /*case 4:
+                            Message message4 = RC_mHandler3.obtainMessage(LOAD_SUCCESS);
+                            RC_mHandler3.sendMessage(message4);*/
+                    }
+
                 }
             }
         });
@@ -687,7 +872,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             courseList.clear();
 
             //course의 길이만큼 반복해서 Mapping
-            for (int i = 0; i < course.length(); i++) {
+            for (int i=0; i<course.length(); i++) {
                 JSONObject courseInfo = course.getJSONObject(i);
 
                 String major_division = courseInfo.getString("major_division");
@@ -709,13 +894,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (!course_semester.equals("null")){
                     course_semester = course_semester + "학기";
                 }
-
-
                 String grade = courseInfo.getString("grade");
-
                 String category = courseInfo.getString("category");
-
-
                 String pre_course_id = courseInfo.getString("pre_course_name");
                 String pre_course_name = courseInfo.getString("pre_course_id");
                 String pre_is_open = courseInfo.getString("pre_is_open");
@@ -732,14 +912,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         course_id, is_open, credit, jjim, course_year, course_semester,
                         grade, category, pre_course_name, pre_course_id, pre_is_open,
                         pre_credit, pre_jjim);
-                rc_adapter.addItem(data);
+                /*rc_adapter.addItem(data);*/
+                for (int j=0; j<1; j++){
+                    rc_adapter_list[j].addItem(data);
+                }
                 /*HashMap<String, String> photoinfoMap = new HashMap<String, String>();
                 photoinfoMap.put("course_name", course_name);
                 photoinfoMap.put("subject_id", subject_id);
                 photoinfoMap.put("gpa", gpa);
                 photoinfoMap.put("is_english", is_english);
                 courseList.add(photoinfoMap);*/
-
             }
             return true;
         } catch (JSONException e) {
