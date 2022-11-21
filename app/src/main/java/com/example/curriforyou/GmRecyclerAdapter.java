@@ -35,9 +35,8 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     // adapter에 들어갈 activity 정보
     Activity activity;
 
-    public GmRecyclerAdapter(Activity activity) {
-        //Adapter를 만들 때 해당 Activity 정보 불러오기
-        this.activity = activity;
+    public GmRecyclerAdapter(Activity activity){
+        this. activity = activity;
     }
 
     @NonNull
