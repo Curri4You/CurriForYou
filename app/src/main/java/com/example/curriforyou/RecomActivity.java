@@ -30,7 +30,7 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
     //[RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     //URL
-    private  String REQUEST_URL = "http://smlee099.dothome.co.kr/recommendation.php";
+    private String REQUEST_URL = "http://smlee099.dothome.co.kr/recommendation.php";
 
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;

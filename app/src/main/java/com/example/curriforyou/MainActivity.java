@@ -91,15 +91,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<DataCourseList> filter_list4 = new ArrayList<>();
     Button btn_filter;
 
-    //[Detail Category]
-    /*private LinearLayout ll_detail_category1;
-    private LinearLayout ll_detail_category2;
-    private LinearLayout ll_detail_category3;
-    private LinearLayout ll_detail_category4;*/
-
     //////////testing
     public static Context context_main;
     public int var;
+
+    //Detail
+    RecyclerVierAdapter rc_adapter0, rc_adapter1, rc_adapter2, rc_adapter3, rc_adapter4, rc_adapter5, rc_adapter6, rc_adapter7, rc_adapter8, rc_adapter9,
+            rc_adapter10, rc_adapter11, rc_adapter12, rc_adapter13, rc_adapter14, rc_adapter15, rc_adapter16, rc_adapter17, rc_adapter18, rc_adapter19,
+            rc_adapter20, rc_adapter21, rc_adapter22, rc_adapter23, rc_adapter24;
+    RecyclerVierAdapter rc_adapter_list[] = {rc_adapter0, rc_adapter1, rc_adapter2, rc_adapter3, rc_adapter4, rc_adapter5, rc_adapter6, rc_adapter7, rc_adapter8, rc_adapter9,
+            rc_adapter10, rc_adapter11, rc_adapter12, rc_adapter13, rc_adapter14, rc_adapter15, rc_adapter16, rc_adapter17, rc_adapter18, rc_adapter19,
+            rc_adapter20, rc_adapter21, rc_adapter22, rc_adapter23, rc_adapter24};
+
+    ArrayList<DataCourseList> course_list0 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list1 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list2 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list3 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list4 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list5 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list6 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list7 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list8 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list9 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list10 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list11 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list12 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list13 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list14 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list15 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list16 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list17 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list18 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list19 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list20 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list21 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list22 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list23 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list24 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list_list[] = new ArrayList[]{course_list0, course_list1, course_list2, course_list3, course_list4, course_list5, course_list6, course_list7, course_list8, course_list9, course_list10, course_list11,
+            course_list12, course_list13, course_list14, course_list15, course_list16, course_list17, course_list18, course_list19, course_list20,
+            course_list21, course_list22, course_list23, course_list24};
+
+    TextView tv_detail_major[] = new TextView[25];
+    TextView tv_detail_category[] = new TextView[25];
+    TextView tv_detail_standard[] = new TextView[25];
+
+    String detail_major_list[] = {"[주]", "[주]", "[주]", "[주]", "[주]",
+            "[주]", "[주]", "[주]", "[주]", "[주]",
+            "[주]", "[주]", "[주]", "[주]", "[주]",
+            "[주/복]", "[주/복]", "[주/복]", "[주/복]", "[주/복]",
+            "[주]", "[복]", "[부]", "[주/복]", "[전체]"};
+    String detail_category_list[] = {"기독교와 세계", "나눔리더십 외", "사고와 표현", "대학영어", "중국어",
+            "프랑스어", "독일어", "일본어", "스페인어", "러시아어",
+            "고급영어선택", "융합기초", "큐브(인문학)", "큐브(콘텐츠)", "큐브(디자인)",
+            "전공기초(필수)", "전공기초(선택필1)", "전공기초(선택필1)", "전공기초(선택필1)", "전공기초(선택필1)",
+            "전공기초(선택)", "전공기초(선택필2)", "전공기초(뇌인지)", "전공필수", "전공선택"};
+    String detail_standard_list[] = {"1과목 3학점 이수", "1과목 2학점 이수", "2과목 5학점 이수", "1과목 3학점 이수", "2과목 4학점 이수",
+            "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수",
+            "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수",
+            "7과목 19학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수",
+            "1과목 1학점 이수", "2과목 6학점 이수", "4과목 12학점 이수", "11과목 33ㅗㅓㅗ학점 이수", "1과목 3학점 이수"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,11 +159,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //////////////
         context_main = this;
-
-
+        
         //[Detail Category]
-        LinearLayout ll_detail_category[] = new LinearLayout[12];
-        for (int i = 0; i < 12; i ++){
+        LinearLayout ll_detail_category[] = new LinearLayout[25];
+        for (int i = 0; i < 25; i ++){
             int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
             ll_detail_category[i] = findViewById(res_id2);
         }
@@ -129,52 +179,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LayoutInflater detail_inflater9 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LayoutInflater detail_inflater10 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LayoutInflater detail_inflater11 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater12 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater13 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater14 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater15 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater16 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater17 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater18 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater19 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater20 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater21 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater22 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater23 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater detail_inflater24 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         LayoutInflater detail_inflater_list[] = {detail_inflater0, detail_inflater1, detail_inflater2, detail_inflater3, detail_inflater4,
-                detail_inflater5, detail_inflater6, detail_inflater7, detail_inflater8, detail_inflater9, detail_inflater10, detail_inflater11};
-        for (int i=0; i<12; i++){
+                detail_inflater5, detail_inflater6, detail_inflater7, detail_inflater8, detail_inflater9, detail_inflater10, detail_inflater11,
+                detail_inflater12, detail_inflater13, detail_inflater14, detail_inflater15, detail_inflater16, detail_inflater17, detail_inflater18,
+                detail_inflater19, detail_inflater20, detail_inflater21, detail_inflater22, detail_inflater23, detail_inflater24};
+        for (int i=0; i<25; i++){
             detail_inflater_list[i].inflate(R.layout.detail_category_layout, ll_detail_category[i], true);
         }
-
-        TextView tv_detail_category[] = new TextView[12];
-        TextView tv_detail_standard[] = new TextView[12];
-        TextView tv_detail_major[] = new TextView[12];
-        for (int i = 0; i < 12; i ++){
-            tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
-            tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
-            tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
-            tv_detail_major[i].setText(i+"");
-            tv_detail_category[i].setText("영역"+i);
-            tv_detail_standard[i].setText("이수"+i);
-        }
-
-
-        //[Detail Category]
-        /*ll_detail_category1 = findViewById(R.id.ll_detail_category1);
-        LayoutInflater detail_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater.inflate(R.layout.detail_category_layout, ll_detail_category1, true);
-        TextView tv_detail_category = ll_detail_category1.findViewById(R.id.tv_detail_category);
-        tv_detail_category.setText("영역1");
-
-        ll_detail_category2 = findViewById(R.id.ll_detail_category2);
-        LayoutInflater detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category2, true);
-        TextView tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-        tv_detail_category2.setText("영역2");
-
-        ll_detail_category3 = findViewById(R.id.ll_detail_category3);
-        LayoutInflater detail_inflater3 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater3.inflate(R.layout.detail_category_layout, ll_detail_category3, true);
-        TextView tv_detail_category3 = ll_detail_category3.findViewById(R.id.tv_detail_category);
-        tv_detail_category3.setText("영역3");
-
-        ll_detail_category4 = findViewById(R.id.ll_detail_category4);
-        LayoutInflater detail_inflater4 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater4.inflate(R.layout.detail_category_layout, ll_detail_category4, true);
-        TextView tv_detail_category4 = ll_detail_category4.findViewById(R.id.tv_detail_category);
-        tv_detail_category4.setText("영역4");*/
-
-
 
         //[Filter]
         RadioButton rb_all = findViewById(R.id.rb_all);
@@ -327,26 +352,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //[RecyclerView] HTTP address로부터 response값 파싱 -> jsonParser 함수 사용 -> DataCourseList에 저장
         getData(REQUEST_URL1);
 
+        for (int i=0; i<25; i++){
+            tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
+            tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
+            tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
+            tv_detail_major[i].setText(detail_major_list[i]);
+            tv_detail_category[i].setText(detail_category_list[i]);
+            tv_detail_standard[i].setText(detail_standard_list[i]);
+        }
+
         /*이수구분을 나타내는 LinearLayout 모두 초기화(GONE)*/
-        for (int i = 0; i < 12; i ++){
+        for (int i = 0; i < 25; i ++){
             ll_detail_category[i].setVisibility(View.GONE);
         }
         /*전공필수 - 4개 영역으로 분류*/
-        for (int i = 0; i < 4; i ++){
-            ll_detail_category[i].setVisibility(View.VISIBLE);
-        }
-
-        String str_major0[] = {"[주/복]", "[주]", "[부]", "[주/복]"};
-        String str_category0[] = {"전공기초(필수)", "전공기초(선택)", "전공기초", "전공필수"};
-        String str_standard0[] = {"[7과목 19학점 이수]", "[1과목 1학점 이수]", "[4과목 6학점 이수]",
-                "[11과목 33학점 이수]"};
-
-        /*4개의 각 영역에 category와 standard 값 적용*/
-        for (int i = 0; i < 4; i ++){
-            tv_detail_major[i].setText(str_major0[i]);
-            tv_detail_category[i].setText(str_category0[i]);
-            tv_detail_standard[i].setText(str_standard0[i]);
-        }
+        ll_detail_category[15].setVisibility(View.VISIBLE);
+        ll_detail_category[20].setVisibility(View.VISIBLE);
+        ll_detail_category[22].setVisibility(View.VISIBLE);
+        ll_detail_category[23].setVisibility(View.VISIBLE);
 
         //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
@@ -419,8 +442,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void CateShowDialog(){
         course_category = getResources().getStringArray(R.array.course_category);
 
-        LinearLayout ll_detail_category[] = new LinearLayout[12];
-        for (int i = 0; i < 12; i ++){
+        LinearLayout ll_detail_category[] = new LinearLayout[25];
+        for (int i = 0; i < 25; i ++){
             int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
             ll_detail_category[i] = findViewById(res_id2);
         }
@@ -434,14 +457,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(getApplicationContext(), "선택된 카테고리는 "+course_category[which], Toast.LENGTH_SHORT).show();
                 tv_dialog.setText(course_category[which]);
 
-                TextView tv_detail_category[] = new TextView[12];
-                TextView tv_detail_standard[] = new TextView[12];
-                TextView tv_detail_major[] = new TextView[12];
-                for (int i = 0; i < 12; i ++){
+                for (int i = 0; i < 25; i ++){
                     tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
                     tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
                     tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
-                    tv_detail_major[i].setText("[주]");
+                    tv_detail_major[i].setText(detail_major_list[i]);
+                    tv_detail_category[i].setText(detail_category_list[i]);
+                    tv_detail_standard[i].setText(detail_standard_list[i]);
                 }
                 //선택된 카테고리에 따라 다른 URL에서 파싱
                 switch (which){
@@ -450,111 +472,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         getData(REQUEST_URL1);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(GONE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
                         /*전공필수 - 4개 영역으로 분류*/
-                        for (int i = 0; i < 4; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_major0[] = {"[주/복]", "[주]", "[부]", "[주/복]"};
-                        String str_category0[] = {"전공기초(필수)", "전공기초(선택)", "전공기초", "전공필수"};
-                        String str_standard0[] = {"[7과목 19학점 이수]", "[1과목 1학점 이수]", "[4과목 6학점 이수]",
-                                "[11과목 33학점 이수]"};
-
-                        /*4개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 4; i ++){
-                            tv_detail_major[i].setText(str_major0[i]);
-                            tv_detail_category[i].setText(str_category0[i]);
-                            tv_detail_standard[i].setText(str_standard0[i]);
-                        }
+                        ll_detail_category[15].setVisibility(View.VISIBLE);
+                        ll_detail_category[20].setVisibility(View.VISIBLE);
+                        ll_detail_category[22].setVisibility(View.VISIBLE);
+                        ll_detail_category[23].setVisibility(View.VISIBLE);
                         break;
                     case 1:     //전공선택
                         init();
                         getData(REQUEST_URL2);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
-                        /*전공선택 - 6개 영역으로 분류*/
-                        for (int i = 0; i < 6; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_major1[] = {"[주/복]", "[주/복]", "[주/복]", "[주/복]", "[복]", "[전체]"};
-                        String str_category1[] = {"전공기초(선택필1)", "전공기초(선택필1)", "전공기초(선택필1)",
-                                "전공기초(선택필1)", "전공기초(선택필2)", "전공선택"};
-                        String str_standard1[] = {"[1과목 3학점 이수]", "[1과목 3학점 이수]", "[1과목 3학점 이수]",
-                                "[1과목 3학점 이수]", "[2과목 6학점 이수]", "[1과목 3학점 이수]"};
-
-                        /*6개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 6; i ++){
-                            tv_detail_major[i].setText(str_major1[i]);
-                            tv_detail_category[i].setText(str_category1[i]);
-                            tv_detail_standard[i].setText(str_standard1[i]);
-                        }
-
-                        /*ll_detail_category2.setVisibility(View.VISIBLE);
-                        ll_detail_category2 = findViewById(R.id.ll_detail_category2);
-                        detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category2, true);
-                        tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-                        tv_detail_category2.setText("second");*/
+                        ll_detail_category[16].setVisibility(View.VISIBLE);
+                        ll_detail_category[17].setVisibility(View.VISIBLE);
+                        ll_detail_category[18].setVisibility(View.VISIBLE);
+                        ll_detail_category[19].setVisibility(View.VISIBLE);
+                        ll_detail_category[21].setVisibility(View.VISIBLE);
+                        ll_detail_category[24].setVisibility(View.VISIBLE);
                         break;
                     case 2:     //교양필수
                         init();
                         getData(REQUEST_URL3);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
-                        /*교양필수 - 3개 영역으로 분류*/
-                        for (int i = 0; i < 3; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_category2[] = {"기독교와 세계", "사고와 표현", "대학영어"};
-                        String str_standard2[] = {"[1과목 3학점 이수]", "[2과목 5학점 이수]", "[1과목 3학점 이수]"};
-
-                        /*3개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 3; i ++){
-                            tv_detail_category[i].setText(str_category2[i]);
-                            tv_detail_standard[i].setText(str_standard2[i]);
-                        }
-
-                        //성공했던 코드
-                        /*ll_detail_category2.setVisibility(View.VISIBLE);
-                        ll_detail_category2 = findViewById(R.id.ll_detail_category2);
-                        tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-                        tv_detail_category2.setText("third");*/
+                        ll_detail_category[0].setVisibility(View.VISIBLE);
+                        ll_detail_category[2].setVisibility(View.VISIBLE);
+                        ll_detail_category[3].setVisibility(View.VISIBLE);
                         break;
                     case 3:     //교양선택
                         init();
                         getData(REQUEST_URL4);
 
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
-                        /*교양필수 - 12개 영역으로 분류*/
-                        for (int i = 0; i < 12; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_category3[] = {"나눔리더십 외", "중국어", "프랑스어", "독일어", "일본어", "스페인어", "러시아어", "고급영어선택", "융합기초", "큐브(인문학)", "큐브(콘텐츠)", "큐브(디자인)"};
-                        String str_standard3[] = {"[1과목 2학점 이수]", "[2과목 4학점 이수]", "[2과목 4학점 이수]",
-                                "[2과목 4학점 이수]", "[2과목 4학점 이수]", "[2과목 4학점 이수]", "[2과목 4학점 이수]",
-                                "[1과목 3학점 이수]", "[1과목 3학점 이수]", "[1과목 3학점 이수]", "[1과목 3학점 이수]",
-                                "[1과목 3학점 이수]"};
-
-                        /*12개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 12; i ++){
-                            tv_detail_category[i].setText(str_category3[i]);
-                            tv_detail_standard[i].setText(str_standard3[i]);
-                        }
+                        ll_detail_category[1].setVisibility(View.VISIBLE);
+                        ll_detail_category[4].setVisibility(View.VISIBLE);
+                        ll_detail_category[5].setVisibility(View.VISIBLE);
+                        ll_detail_category[6].setVisibility(View.VISIBLE);
+                        ll_detail_category[7].setVisibility(View.VISIBLE);
+                        ll_detail_category[8].setVisibility(View.VISIBLE);
+                        ll_detail_category[9].setVisibility(View.VISIBLE);
+                        ll_detail_category[10].setVisibility(View.VISIBLE);
+                        ll_detail_category[11].setVisibility(View.VISIBLE);
+                        ll_detail_category[12].setVisibility(View.VISIBLE);
+                        ll_detail_category[13].setVisibility(View.VISIBLE);
+                        ll_detail_category[14].setVisibility(View.VISIBLE);
                         break;
                 }
             }
@@ -564,10 +537,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //-------------------------------------------------//
+    RecyclerView recyclerView_list[] = new RecyclerView[25];
+    LinearLayoutManager linearLayoutManager0 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager4 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager5 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager6 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager7 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager8 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager9 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager10 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager11 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager12 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager13 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager14 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager15 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager16 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager17 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager18 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager19 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager20 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager21 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager22 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager23 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager24 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager[] = {linearLayoutManager0, linearLayoutManager1, linearLayoutManager2, linearLayoutManager3, linearLayoutManager4, linearLayoutManager5, linearLayoutManager6, linearLayoutManager7, linearLayoutManager8, linearLayoutManager9, linearLayoutManager10,
+            linearLayoutManager11, linearLayoutManager12, linearLayoutManager13, linearLayoutManager14, linearLayoutManager15, linearLayoutManager16, linearLayoutManager17, linearLayoutManager18, linearLayoutManager19, linearLayoutManager20,
+            linearLayoutManager21, linearLayoutManager22, linearLayoutManager23, linearLayoutManager24};
+
+
     //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수 & 초기화 함수
     private void init(){
-        RecyclerView rc_curriculum_course1 = findViewById(R.id.rc_curriculum_course1);
-
+        /*RecyclerView rc_curriculum_course1 = findViewById(R.id.rc_curriculum_course1);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rc_curriculum_course1.setLayoutManager(linearLayoutManager);
 
@@ -577,7 +580,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         filter_list3.clear();
         filter_list4.clear();
         rc_adapter = new RecyclerVierAdapter(original_list);
-        rc_curriculum_course1.setAdapter(rc_adapter);
+        rc_curriculum_course1.setAdapter(rc_adapter);*/
+        /*여기로!*/
+        for(int i=0; i<25; i++){
+            course_list_list[i].clear();
+        }
+        for (int i=0; i<25; i++){
+            int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
+            recyclerView_list[i] = findViewById(res_id);
+            recyclerView_list[i].setLayoutManager(linearLayoutManager[i]);
+            rc_adapter_list[i] = new RecyclerVierAdapter(course_list_list[i]);
+            recyclerView_list[i].setAdapter(rc_adapter_list[i]);
+        }
     }
 
     //[RecyclerView]
@@ -592,12 +606,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         public void handleMessage(Message msg){
             MainActivity mainActivity = weakReference.get();
-
             if(mainActivity != null){
                 switch (msg.what){
                     case LOAD_SUCCESS:
                         mainActivity.progressDialog.dismiss();
-                        mainActivity.rc_adapter.notifyDataSetChanged();
+                        /*mainActivity.rc_adapter.notifyDataSetChanged();*/
+                        for (int i=0; i<25; i++){
+                            mainActivity.rc_adapter_list[i].notifyDataSetChanged();
+                        }
                         break;
                 }
             }
@@ -675,6 +691,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 JSONObject courseInfo = course.getJSONObject(i);
 
                 String major_division = courseInfo.getString("major_division");
+                String detail_category = courseInfo.getString("detail_category");
                 String course_name = courseInfo.getString("course_name");
                 String course_id = courseInfo.getString("course_id");
 
@@ -694,11 +711,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     course_semester = course_semester + "학기";
                 }
 
-
                 String grade = courseInfo.getString("grade");
-
                 String category = courseInfo.getString("category");
-
 
                 String pre_course_id = courseInfo.getString("pre_course_name");
                 String pre_course_name = courseInfo.getString("pre_course_id");
@@ -712,11 +726,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     grade = "미정";
                 }
 
-                DataCourseList data = new DataCourseList(major_division, course_name,
+                DataCourseList data = new DataCourseList(major_division, detail_category, course_name,
                         course_id, is_open, credit, jjim, course_year, course_semester,
                         grade, category, pre_course_name, pre_course_id, pre_is_open,
                         pre_credit, pre_jjim);
-                rc_adapter.addItem(data);
+                /*rc_adapter.addItem(data);*/
+                for (int j=0; j<25; j++){
+                    if (detail_category.equals((j+1)+"")){
+                        rc_adapter_list[j].addItem(data);
+                    }
+                }
                 /*HashMap<String, String> photoinfoMap = new HashMap<String, String>();
                 photoinfoMap.put("course_name", course_name);
                 photoinfoMap.put("subject_id", subject_id);

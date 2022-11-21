@@ -1,17 +1,18 @@
 package com.example.curriforyou;
 
 public class DataCourseList {
-    String major_division, course_name, course_id,
+    String major_division, detail_category, course_name, course_id,
             is_open, credit, jjim, course_year, course_semester,
             grade, category, pre_course_name, pre_course_id, pre_is_open,
             pre_credit, pre_jjim;
 
-    public DataCourseList(String major_division, String course_name, String course_id,
+    public DataCourseList(String major_division, String detail_category, String course_name, String course_id,
                           String is_open, String credit, String jjim, String course_year,
                           String course_semester, String grade, String category,
                           String pre_course_name, String pre_course_id,
                           String pre_is_open, String pre_credit, String pre_jjim){
         this.major_division = major_division;
+        this.detail_category = major_division;
         this.course_name = course_name;
         this.course_id = course_id;
         this.is_open = is_open;
@@ -34,6 +35,14 @@ public class DataCourseList {
 
     public void setMajor_division(String major_division) {
         this.major_division = major_division;
+    }
+
+    public String getDetail_category() {
+        return detail_category;
+    }
+
+    public void setDetail_category(String detail_category) {
+        this.detail_category = detail_category;
     }
 
     public String getCourse_name() {
