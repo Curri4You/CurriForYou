@@ -28,6 +28,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -57,9 +58,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     GmRecyclerAdapter adapt42 = null;
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
 
-    double gradeToDouble = 0, totalGrade = 0, totalGrade11 = 0, totalGrade12 = 0, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
-    double majorGrade = 0, majorGrade11 = 0, majorGrade12 = 0, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
-    double liberalGrade = 0, liberalGrade11 = 0, liberalGrade12 = 0, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
+    double gradeToDouble = 0, totalGrade = 2.65, totalGrade11 = 3.84, totalGrade12 = 0, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
+    double majorGrade = 3.52, majorGrade11 = 3.71, majorGrade12 = 0, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
+    double liberalGrade = 3.83, liberalGrade11 = 4.00, liberalGrade12 = 0, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
     int totalCredit = 0, credit11 = 0, credit12 = 0, credit21 = 0, credit22 = 0, credit31 = 0, credit32 = 0, credit41 = 0, credit42 = 0;
     int majorCredit = 0, majorCredit11 = 0, majorCredit12 = 0, majorCredit21 = 0, majorCredit22 = 0, majorCredit31 = 0, majorCredit32 = 0, majorCredit41 = 0, majorCredit42 = 0;
     int liberalCredit = 0, liberalCredit11 = 0, liberalCredit12 = 0, liberalCredit21 = 0, liberalCredit22 = 0, liberalCredit31 = 0, liberalCredit32 = 0, liberalCredit41 = 0, liberalCredit42 = 0;
@@ -348,112 +349,109 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 String grade = gmSemesterInfo.getString("grade");
                 String category = gmSemesterInfo.getString("category");
 
-//                DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                gm_list_all.add(data);
-
                 if (course_year.equals("2019") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt11.addItem(data);
-//                    gradeToDouble = gradeToNum(grade);
-//                    if (category.equals("1") || category.equals("2")) {
-//                        majorCredit11 += Integer.parseInt(credit);
-//                        majorGrade11 += gradeToDouble * Double.parseDouble(credit);
-//                    } else if (category.equals("3") || category.equals("4")) {
-//                        liberalCredit11 += Integer.parseInt(credit);
-//                        liberalGrade11 += gradeToDouble * Double.parseDouble(credit);
-//                    }
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit11 += Integer.parseInt(credit);
+                        majorGrade11 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit11 += Integer.parseInt(credit);
+                        liberalGrade11 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 } else if (course_year.equals("2019") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt12.addItem(data);
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit12 += Integer.parseInt(credit);
+                        majorGrade12 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit12 += Integer.parseInt(credit);
+                        liberalGrade12 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 } else if (course_year.equals("2020") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt21.addItem(data);
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit21 += Integer.parseInt(credit);
+                        majorGrade21 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit21 += Integer.parseInt(credit);
+                        liberalGrade21 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 } else if (course_year.equals("2020") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt22.addItem(data);
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit22 += Integer.parseInt(credit);
+                        majorGrade22 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit22 += Integer.parseInt(credit);
+                        liberalGrade22 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 } else if (course_year.equals("2021") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt31.addItem(data);
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit31 += Integer.parseInt(credit);
+                        majorGrade31 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit31 += Integer.parseInt(credit);
+                        liberalGrade31 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 } else if (course_year.equals("2021") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt32.addItem(data);
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit32 += Integer.parseInt(credit);
+                        majorGrade32 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit32 += Integer.parseInt(credit);
+                        liberalGrade32 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 } else if (course_year.equals("2022") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt41.addItem(data);
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit41 += Integer.parseInt(credit);
+                        majorGrade41 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit41 += Integer.parseInt(credit);
+                        liberalGrade41 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 } else if (course_year.equals("2022") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt42.addItem(data);
+                    gradeToDouble = gradeToNum(grade);
+                    if (category.equals("1") || category.equals("2")) {
+                        majorCredit42 += Integer.parseInt(credit);
+                        majorGrade42 += gradeToDouble * Double.parseDouble(credit);
+                    } else if (category.equals("3") || category.equals("4")) {
+                        liberalCredit42 += Integer.parseInt(credit);
+                        liberalGrade42 += gradeToDouble * Double.parseDouble(credit);
+                    }
                 }
-
             }
 
-//            for(int i=0; i<gm_list_all.size(); i++){
-//                DataGmList data = gm_list_all.get(i);
-//                if(data.course_year.equals("2019") && data.course_semester.equals("1")){
-//                    adapt11.addItem(data);
-//                } else if(data.course_year.equals("2019") && data.course_semester.equals("2")){
-//                    adapt12.addItem(data);
-//                } else if(data.course_year.equals("2020") && data.course_semester.equals("1")){
-//                    adapt12.addItem(data);
-//                } else if(data.course_year.equals("2020") && data.course_semester.equals("2")){
-//                    adapt12.addItem(data);
-//                } else if(data.course_year.equals("2021") && data.course_semester.equals("1")){
-//                    adapt12.addItem(data);
-//                } else if(data.course_year.equals("2021") && data.course_semester.equals("2")){
-//                    adapt12.addItem(data);
-//                } else if(data.course_year.equals("2022") && data.course_semester.equals("1")){
-//                    adapt12.addItem(data);
-//                } else if(data.course_year.equals("2022") && data.course_semester.equals("2")){
-//                    adapt12.addItem(data);
-//                }
-//            }
-
-//            if (course_year.equals("2019") && course_semester.equals("1")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt11.addItem(data);
-//                    gradeToDouble = gradeToNum(grade);
-//                    if (category.equals("1") || category.equals("2")) {
-//                        majorCredit11 += Integer.parseInt(credit);
-//                        majorGrade11 += gradeToDouble * Double.parseDouble(credit);
-//                    } else if (category.equals("3") || category.equals("4")) {
-//                        liberalCredit11 += Integer.parseInt(credit);
-//                        liberalGrade11 += gradeToDouble * Double.parseDouble(credit);
-//                    }
-//                } else if (course_year.equals("2019") && course_semester.equals("2")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt12.addItem(data);
-//                } else if (course_year.equals("2020") && course_semester.equals("1")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt21.addItem(data);
-//                } else if (course_year.equals("2020") && course_semester.equals("2")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt22.addItem(data);
-//                } else if (course_year.equals("2021") && course_semester.equals("1")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt31.addItem(data);
-//                } else if (course_year.equals("2021") && course_semester.equals("2")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt32.addItem(data);
-//                } else if (course_year.equals("2022") && course_semester.equals("1")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt41.addItem(data);
-//                } else if (course_year.equals("2022") && course_semester.equals("2")) {
-//                    DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
-//                    adapt42.addItem(data);
-//                }
-
-//            credit11 = majorCredit11 + liberalCredit11;
-//            totalGrade11 = (majorGrade11 + liberalGrade11) / credit11;
-//            if (majorCredit11 != 0) {
-//                majorGrade11 /= majorCredit11;
-//            }
-//            if (liberalCredit != 0) {
-//                liberalGrade11 /= liberalCredit11;
-//            }
-//
-//            majorCredit = majorCredit11 + majorCredit12 + majorCredit21 + majorCredit22 + majorCredit31 + majorCredit32 + majorCredit41 + majorCredit42;
-//            liberalCredit = liberalCredit11 + liberalCredit12 + liberalCredit21 + liberalCredit22 + liberalCredit31 + liberalCredit32 + liberalCredit41 + liberalCredit42;
-//            totalCredit = majorCredit + liberalCredit;
+            credit11 = majorCredit11 + liberalCredit11;
+            credit12 = majorCredit12 + liberalCredit12;
+            credit21 = majorCredit21 + liberalCredit21;
+            credit22 = majorCredit22 + liberalCredit22;
+            credit31 = majorCredit31 + liberalCredit31;
+            credit32 = majorCredit32 + liberalCredit32;
+            credit41 = majorCredit41 + liberalCredit41;
+            credit42 = majorCredit42 + liberalCredit42;
+            totalCredit = credit11 + credit12 + credit21 + credit22 + credit31 + credit32 + credit41 + credit42;
+            majorGrade = (majorGrade11 + majorGrade12 + majorGrade21 + majorGrade22 + majorGrade31 + majorGrade32 + majorGrade41 + majorGrade42);
+            liberalGrade = (liberalGrade11 + liberalGrade12 + liberalGrade21 + liberalGrade22 + liberalGrade31 + liberalGrade32 + liberalGrade41 + liberalGrade42);
+            totalGrade = majorGrade + liberalGrade;
 
             return true;
         } catch (JSONException e) {
