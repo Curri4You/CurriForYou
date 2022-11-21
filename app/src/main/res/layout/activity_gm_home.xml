@@ -171,7 +171,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:layout_weight="8"
-                android:max="100"
+                android:max="183"
                 android:progress="70"
                 android:progressDrawable="@drawable/progressbar_style1" />
 

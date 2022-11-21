@@ -58,10 +58,10 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     GmRecyclerAdapter adapt42 = null;
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
 
-    double gradeToDouble = 0, totalGrade = 2.65, totalGrade11 = 3.84, totalGrade12 = 0, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
-    double majorGrade = 3.52, majorGrade11 = 3.71, majorGrade12 = 0, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
-    double liberalGrade = 3.83, liberalGrade11 = 4.00, liberalGrade12 = 0, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
-    int totalCredit = 0, credit11 = 0, credit12 = 0, credit21 = 0, credit22 = 0, credit31 = 0, credit32 = 0, credit41 = 0, credit42 = 0;
+    double gradeToDouble = 0, totalGrade = 2.65, totalGrade11 = 3.84, totalGrade12 = 3.49, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
+    double majorGrade = 3.52, majorGrade11 = 3.71, majorGrade12 = 3.54, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
+    double liberalGrade = 3.83, liberalGrade11 = 4.00, liberalGrade12 = 3.35, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
+    int totalCredit = 150, credit11 = 0, credit12 = 0, credit21 = 0, credit22 = 0, credit31 = 0, credit32 = 0, credit41 = 0, credit42 = 0;
     int majorCredit = 0, majorCredit11 = 0, majorCredit12 = 0, majorCredit21 = 0, majorCredit22 = 0, majorCredit31 = 0, majorCredit32 = 0, majorCredit41 = 0, majorCredit42 = 0;
     int liberalCredit = 0, liberalCredit11 = 0, liberalCredit12 = 0, liberalCredit21 = 0, liberalCredit22 = 0, liberalCredit31 = 0, liberalCredit32 = 0, liberalCredit41 = 0, liberalCredit42 = 0;
 
