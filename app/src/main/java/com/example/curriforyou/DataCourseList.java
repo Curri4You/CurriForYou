@@ -12,7 +12,7 @@ public class DataCourseList {
                           String pre_course_name, String pre_course_id,
                           String pre_is_open, String pre_credit, String pre_jjim){
         this.major_division = major_division;
-        this.detail_category = major_division;
+        this.detail_category = detail_category;
         this.course_name = course_name;
         this.course_id = course_id;
         this.is_open = is_open;

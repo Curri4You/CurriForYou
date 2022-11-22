@@ -49,6 +49,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private  String REQUEST_URL4 = "http://smlee099.dothome.co.kr/CourseListTest4.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
-    RecyclerVierAdapter rc_adapter = null;
+    /*RecyclerVierAdapter rc_adapter = null;*/
 
     //[Dialog]
     TextView tv_dialog;
@@ -81,16 +82,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //[Search]
     ArrayList<DataCourseList> original_list = new ArrayList<>();
-    ArrayList<DataCourseList> search_list = new ArrayList<>();
+    /*ArrayList<DataCourseList> search_list = new ArrayList<>();*/
     EditText et_search;
+    ArrayList<DataCourseList> search_list0 = new ArrayList<>(), search_list1 = new ArrayList<>(), search_list2 = new ArrayList<>(), search_list3 = new ArrayList<>(), search_list4 = new ArrayList<>(),
+            search_list5 = new ArrayList<>(), search_list6 = new ArrayList<>(), search_list7 = new ArrayList<>(), search_list8 = new ArrayList<>(), search_list9 = new ArrayList<>(),
+            search_list10 = new ArrayList<>(), search_list11 = new ArrayList<>(), search_list12 = new ArrayList<>(), search_list13 = new ArrayList<>(), search_list14 = new ArrayList<>(),
+            search_list15 = new ArrayList<>(), search_list16 = new ArrayList<>(), search_list17 = new ArrayList<>(), search_list18 = new ArrayList<>(), search_list19 = new ArrayList<>(),
+            search_list20 = new ArrayList<>(), search_list21 = new ArrayList<>(), search_list22 = new ArrayList<>(), search_list23 = new ArrayList<>(), search_list24 = new ArrayList<>();
+    ArrayList<DataCourseList> search_list_list[] = new ArrayList[]{search_list0, search_list1, search_list2, search_list3, search_list4,
+            search_list5, search_list6, search_list7, search_list8, search_list9,
+            search_list10, search_list11, search_list12, search_list13, search_list14,
+            search_list15, search_list16, search_list17, search_list18, search_list19,
+            search_list20, search_list21, search_list22, search_list23, search_list24};
 
     //[Filter]
     ArrayList<DataCourseList> filter_list = new ArrayList<>();
     ArrayList<DataCourseList> filter_list2 = new ArrayList<>();
     ArrayList<DataCourseList> filter_list3 = new ArrayList<>();
     ArrayList<DataCourseList> filter_list4 = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list0;
-    ArrayList<DataCourseList> filter_list_list[] = new ArrayList[]{filter_list0};
+    ArrayList<DataCourseList> filter_list000 = new ArrayList<>(), filter_list001 = new ArrayList<>(), filter_list002 = new ArrayList<>(), filter_list003 = new ArrayList<>(), filter_list004 = new ArrayList<>(),
+            filter_list005 = new ArrayList<>(), filter_list006 = new ArrayList<>(), filter_list007 = new ArrayList<>(), filter_list008 = new ArrayList<>(), filter_list009 = new ArrayList<>(),
+            filter_list010 = new ArrayList<>(), filter_list011 = new ArrayList<>(), filter_list012 = new ArrayList<>(), filter_list013 = new ArrayList<>(), filter_list014 = new ArrayList<>(),
+            filter_list015 = new ArrayList<>(), filter_list016 = new ArrayList<>(), filter_list017 = new ArrayList<>(), filter_list018 = new ArrayList<>(), filter_list019 = new ArrayList<>(),
+            filter_list020 = new ArrayList<>(), filter_list021 = new ArrayList<>(), filter_list022 = new ArrayList<>(), filter_list023 = new ArrayList<>(), filter_list024 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list100 = new ArrayList<>(), filter_list101 = new ArrayList<>(), filter_list102 = new ArrayList<>(), filter_list103 = new ArrayList<>(), filter_list104 = new ArrayList<>(),
+            filter_list105 = new ArrayList<>(), filter_list106 = new ArrayList<>(), filter_list107 = new ArrayList<>(), filter_list108 = new ArrayList<>(), filter_list109 = new ArrayList<>(),
+            filter_list110 = new ArrayList<>(), filter_list111 = new ArrayList<>(), filter_list112 = new ArrayList<>(), filter_list113 = new ArrayList<>(), filter_list114 = new ArrayList<>(),
+            filter_list115 = new ArrayList<>(), filter_list116 = new ArrayList<>(), filter_list117 = new ArrayList<>(), filter_list118 = new ArrayList<>(), filter_list119 = new ArrayList<>(),
+            filter_list120 = new ArrayList<>(), filter_list121 = new ArrayList<>(), filter_list122 = new ArrayList<>(), filter_list123 = new ArrayList<>(), filter_list124 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list200 = new ArrayList<>(), filter_list201 = new ArrayList<>(), filter_list202 = new ArrayList<>(), filter_list203 = new ArrayList<>(), filter_list204 = new ArrayList<>(),
+            filter_list205 = new ArrayList<>(), filter_list206 = new ArrayList<>(), filter_list207 = new ArrayList<>(), filter_list208 = new ArrayList<>(), filter_list209 = new ArrayList<>(),
+            filter_list210 = new ArrayList<>(), filter_list211 = new ArrayList<>(), filter_list212 = new ArrayList<>(), filter_list213 = new ArrayList<>(), filter_list214 = new ArrayList<>(),
+            filter_list215 = new ArrayList<>(), filter_list216 = new ArrayList<>(), filter_list217 = new ArrayList<>(), filter_list218 = new ArrayList<>(), filter_list219 = new ArrayList<>(),
+            filter_list220 = new ArrayList<>(), filter_list221 = new ArrayList<>(), filter_list222 = new ArrayList<>(), filter_list223 = new ArrayList<>(), filter_list224 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list300 = new ArrayList<>(), filter_list301 = new ArrayList<>(), filter_list302 = new ArrayList<>(), filter_list303 = new ArrayList<>(), filter_list304 = new ArrayList<>(),
+            filter_list305 = new ArrayList<>(), filter_list306 = new ArrayList<>(), filter_list307 = new ArrayList<>(), filter_list308 = new ArrayList<>(), filter_list309 = new ArrayList<>(),
+            filter_list310 = new ArrayList<>(), filter_list311 = new ArrayList<>(), filter_list312 = new ArrayList<>(), filter_list313 = new ArrayList<>(), filter_list314 = new ArrayList<>(),
+            filter_list315 = new ArrayList<>(), filter_list316 = new ArrayList<>(), filter_list317 = new ArrayList<>(), filter_list318 = new ArrayList<>(), filter_list319 = new ArrayList<>(),
+            filter_list320 = new ArrayList<>(), filter_list321 = new ArrayList<>(), filter_list322 = new ArrayList<>(), filter_list323 = new ArrayList<>(), filter_list324 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list_list0[] = new ArrayList[]{
+            filter_list000, filter_list001, filter_list002, filter_list003, filter_list004,
+            filter_list005, filter_list006, filter_list007, filter_list008, filter_list009,
+            filter_list010, filter_list011, filter_list012, filter_list013, filter_list014,
+            filter_list015, filter_list016, filter_list017, filter_list018, filter_list019,
+            filter_list020, filter_list021, filter_list022, filter_list023, filter_list024};
+    ArrayList<DataCourseList> filter_list_list1[] = new ArrayList[]{
+            filter_list100, filter_list101, filter_list102, filter_list103, filter_list104,
+            filter_list105, filter_list106, filter_list107, filter_list108, filter_list109,
+            filter_list110, filter_list111, filter_list112, filter_list113, filter_list114,
+            filter_list115, filter_list116, filter_list117, filter_list118, filter_list119,
+            filter_list120, filter_list121, filter_list122, filter_list123, filter_list124};
+    ArrayList<DataCourseList> filter_list_list2[] = new ArrayList[]{
+            filter_list200, filter_list201, filter_list202, filter_list203, filter_list204,
+            filter_list205, filter_list206, filter_list207, filter_list208, filter_list209,
+            filter_list210, filter_list211, filter_list212, filter_list213, filter_list214,
+            filter_list215, filter_list216, filter_list217, filter_list218, filter_list219,
+            filter_list220, filter_list221, filter_list222, filter_list223, filter_list224};
+    ArrayList<DataCourseList> filter_list_list3[] = new ArrayList[]{
+            filter_list300, filter_list301, filter_list302, filter_list303, filter_list304,
+            filter_list305, filter_list306, filter_list307, filter_list308, filter_list309,
+            filter_list310, filter_list311, filter_list312, filter_list313, filter_list314,
+            filter_list315, filter_list316, filter_list317, filter_list318, filter_list319,
+            filter_list320, filter_list321, filter_list322, filter_list323, filter_list324};
     Button btn_filter;
 
     //////////testing
@@ -132,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수",
             "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수",
             "7과목 19학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수",
-            "1과목 1학점 이수", "2과목 6학점 이수", "4과목 12학점 이수", "11과목 33ㅗㅓㅗ학점 이수", "1과목 3학점 이수"};
+            "1과목 1학점 이수", "2과목 6학점 이수", "4과목 12학점 이수", "11과목 33학점 이수", "1과목 3학점 이수"};
 
     LayoutInflater detail_inflater0, detail_inflater1, detail_inflater2, detail_inflater3, detail_inflater4,
             detail_inflater5, detail_inflater6, detail_inflater7, detail_inflater8, detail_inflater9,
@@ -190,18 +243,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 filter_list2.clear();
                 filter_list3.clear();
                 filter_list4.clear();
+                for (int i=0; i<25; i++){
+                    filter_list_list0[i].clear();
+                    filter_list_list1[i].clear();
+                    filter_list_list2[i].clear();
+                    filter_list_list3[i].clear();
+                }
 
                 //개설여부
                 if (rb_all.isChecked()){
                     /*Toast.makeText(getApplicationContext(), filter_all, Toast.LENGTH_SHORT).show();*/
-                    for(int a = 0; a < original_list.size(); a++){
-                        filter_list.add(original_list.get(a));
+                    /*for(int a = 0; a < course_list_list[15].size(); a++){
+                        filter_list.add(course_list_list[15].get(a));
+                    }*/
+                    for (int i=0; i<25; i++){
+                        for (int j=0; j<course_list_list[i].size(); j++){
+                            filter_list_list0[i].add(course_list_list[i].get(j));
+                        }
                     }
                 } else {
                     /*Toast.makeText(getApplicationContext(), filter_this_semester, Toast.LENGTH_SHORT).show();*/
-                    for(int a = 0; a < original_list.size(); a++){
-                        if(original_list.get(a).is_open.toLowerCase().contains("X".toLowerCase())){
-                            filter_list.add(original_list.get(a));
+                    /*for(int a = 0; a < course_list_list[15].size(); a++){
+                        if(course_list_list[15].get(a).is_open.toLowerCase().contains("O".toLowerCase())){
+                            filter_list.add(course_list_list[15].get(a));
+                        }
+                    }*/
+                    for (int i=0; i<25; i++){
+                        for (int j=0; j<course_list_list[i].size(); j++){
+                            if(course_list_list[i].get(j).is_open.toLowerCase().contains("O".toLowerCase())){
+                                filter_list_list0[i].add(course_list_list[i].get(j));
+                            }
                         }
                     }
                 }
@@ -220,12 +291,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (cb_credit4.isChecked()){
                     credit_list[3] = "1";
                 }
-                for (int i = 0; i < 4; i++){
-                    if (credit_list[i].equals("1")){
+                for (int k = 0; k < 4; k++){
+                    if (credit_list[k].equals("1")){
                         /*Toast.makeText(getApplicationContext(), (i+1)+"", Toast.LENGTH_SHORT).show();*/
-                        for(int a = 0; a < filter_list.size(); a++){
-                            if(filter_list.get(a).credit.equals((i+1)+"")){
-                                filter_list2.add(filter_list.get(a));
+                        /*for(int a = 0; a < filter_list_list0[15].size(); a++){
+                            if(filter_list_list0[15].get(a).credit.equals((k+1)+"")){
+                                filter_list_list1[15].add(filter_list_list0[15].get(a));
+                            }
+                        }*/
+                        for (int i=0; i<25; i++){
+                            for (int j=0; j<filter_list_list0[i].size(); j++){
+                                if(filter_list_list0[i].get(j).credit.equals((k+1)+"")){
+                                    filter_list_list1[i].add(filter_list_list0[i].get(j));
+                                }
                             }
                         }
                     }
@@ -233,13 +311,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //수강과목 --> ERROR
                 if (swit_taken.isChecked()){
-                    for(int a = 0; a < filter_list2.size(); a++){
+                    /*for(int a = 0; a < filter_list2.size(); a++){
                         if(!filter_list2.get(a).course_year.equals("미정")){
                             filter_list3.add(filter_list2.get(a));
                         }
-                    }
+                    }*/
                 } else {
-                    filter_list3 = filter_list2;
+                    /*filter_list3 = filter_list2;*/
+                    for (int i=0; i<25; i++){
+                        filter_list_list2[i] = filter_list_list1[i];
+                    }
                 }
 
                 //전공사항
@@ -253,17 +334,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (cb_major3.isChecked()){
                     major_list[2] = "1";
                 }
-                for (int i = 0; i < 3; i++){
-                    if (major_list[i].equals("1")){
-                        for(int a = 0; a < filter_list3.size(); a++){
-                            if(filter_list3.get(a).major_division.equals((i+1)+"")){
-                                filter_list4.add(filter_list3.get(a));
+                for (int k = 0; k < 3; k++){
+                    if (major_list[k].equals("1")){
+                        /*for(int a = 0; a < filter_list3.size(); a++){
+                            if(filter_list3.get(a).major_division.equals((k+1)+"")){
+                                filter_list4.add(filter_list.get(a));
+                            }
+                        }*/
+                        for (int i=0; i<25; i++){
+                            for (int j=0; j<filter_list_list2[i].size(); j++){
+                                if(filter_list_list2[i].get(j).major_division.equals((k+1)+"")){
+                                    filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                }
                             }
                         }
                     }
                 }
                 /*Toast.makeText(getApplicationContext(), ""+credit_list[0]+credit_list[1]+credit_list[2]+credit_list[3], Toast.LENGTH_SHORT).show();*/
-                rc_adapter.setItems(filter_list4);
+                /*rc_adapter.setItems(filter_list4);*/
+                /*rc_adapter_list[15].setItems(filter_list_list1[15]);*/
+                for (int i=0; i<25; i++){
+                    rc_adapter_list[i].setItems(filter_list_list3[i]);
+                }
             }
         });
 
@@ -284,16 +376,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 String search_text = et_search.getText().toString();
-                search_list.clear();
+                /*search_list.clear();*/
+                for (int i=0; i<25; i++){
+                    search_list_list[i].clear();
+                }
 
                 if(search_text.equals("")){
-                    rc_adapter.setItems(original_list);
+                    /*rc_adapter.setItems(original_list);*/
+                    for (int i=0; i<25; i++){
+                        rc_adapter_list[i].setItems(course_list_list[i]);
+                    }
                 } else {
-                    for(int a=0; a < original_list.size(); a++){
+                    /*for(int a=0; a < original_list.size(); a++){
                         if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
                             search_list.add(original_list.get(a));
                         }
                         rc_adapter.setItems(search_list);
+                    }*/
+                    for (int i=0; i<25; i++){
+                        for (int j=0; j<course_list_list[i].size(); j++){
+                            if(course_list_list[i].get(j).course_name.toLowerCase().contains(search_text.toLowerCase())){
+                                search_list_list[i].add(course_list_list[i].get(j));
+                            }
+                            rc_adapter_list[i].setItems(search_list_list[i]);
+                        }
                     }
                 }
             }
@@ -532,10 +638,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         filter_list4.clear();
         rc_adapter = new RecyclerVierAdapter(original_list);
         rc_curriculum_course1.setAdapter(rc_adapter);*/
-        /*여기로!*/
+
         for(int i=0; i<25; i++){
             course_list_list[i].clear();
+            /*filter_list_list0[i].clear();
+            filter_list_list1[i].clear();
+            filter_list_list2[i].clear();
+            filter_list_list3[i].clear();*/
         }
+        /*filter_list.clear();
+        filter_list2.clear();
+        filter_list3.clear();
+        filter_list4.clear();*/
         for (int i=0; i<25; i++){
             int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
             recyclerView_list[i] = findViewById(res_id);
