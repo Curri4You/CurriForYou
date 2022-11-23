@@ -2,7 +2,6 @@
 
 package com.example.curriforyou;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +9,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +28,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,12 +35,6 @@ import java.util.HashMap;
 
 public class GmActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LinearLayout ll_listsemester;
-    TextView tv_semester;
-    AlertDialog.Builder builder;
-    String[] semester;
-    //Adapter 연결
-    /*GmRecyclerAdapter adapter = null;*/
     // [RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     // URL - 학기별 학점요약 DB
@@ -57,13 +50,16 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     GmRecyclerAdapter adapt41 = null;
     GmRecyclerAdapter adapt42 = null;
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
+    private SparseBooleanArray selectedItems = new SparseBooleanArray();
+    private Context context;
 
-    double gradeToDouble = 0, totalGrade = 2.65, totalGrade11 = 3.84, totalGrade12 = 3.49, totalGrade21 = 0, totalGrade22 = 0, totalGrade31 = 0, totalGrade32 = 0, totalGrade41 = 0, totalGrade42 = 0;
-    double majorGrade = 3.52, majorGrade11 = 3.71, majorGrade12 = 3.54, majorGrade21 = 0, majorGrade22 = 0, majorGrade31 = 0, majorGrade32 = 0, majorGrade41 = 0, majorGrade42 = 0;
-    double liberalGrade = 3.83, liberalGrade11 = 4.00, liberalGrade12 = 3.35, liberalGrade21 = 0, liberalGrade22 = 0, liberalGrade31 = 0, liberalGrade32 = 0, liberalGrade41 = 0, liberalGrade42 = 0;
-    int totalCredit = 150, credit11 = 0, credit12 = 0, credit21 = 0, credit22 = 0, credit31 = 0, credit32 = 0, credit41 = 0, credit42 = 0;
-    int majorCredit = 0, majorCredit11 = 0, majorCredit12 = 0, majorCredit21 = 0, majorCredit22 = 0, majorCredit31 = 0, majorCredit32 = 0, majorCredit41 = 0, majorCredit42 = 0;
-    int liberalCredit = 0, liberalCredit11 = 0, liberalCredit12 = 0, liberalCredit21 = 0, liberalCredit22 = 0, liberalCredit31 = 0, liberalCredit32 = 0, liberalCredit41 = 0, liberalCredit42 = 0;
+    double gradeToDouble, totalGrade, totalGrade11, totalGrade12, totalGrade21, totalGrade22, totalGrade31, totalGrade32, totalGrade41, totalGrade42;
+    double majorGrade, majorGrade11, majorGrade12, majorGrade21, majorGrade22, majorGrade31, majorGrade32, majorGrade41, majorGrade42;
+    double liberalGrade, liberalGrade11, liberalGrade12, liberalGrade21, liberalGrade22, liberalGrade31, liberalGrade32, liberalGrade41, liberalGrade42;
+    int totalCredit, credit11, credit12, credit21, credit22, credit31, credit32, credit41, credit42;
+    int majorCredit, majorCredit11, majorCredit12, majorCredit21, majorCredit22, majorCredit31, majorCredit32, majorCredit41, majorCredit42;
+    int liberalCredit, liberalCredit11, liberalCredit12, liberalCredit21, liberalCredit22, liberalCredit31, liberalCredit32, liberalCredit41, liberalCredit42;
+    boolean open_or_not = false;
 
     TextView tv_totalGrade, tv_majorGrade, tv_liberalGrade, tv_tillNowCredit;
     TextView tv_totalGrade11, tv_majorGrade11, tv_liberalGrade11;
@@ -75,6 +71,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     TextView tv_totalGrade41, tv_majorGrade41, tv_liberalGrade41;
     TextView tv_totalGrade42, tv_majorGrade42, tv_liberalGrade42;
     ProgressBar pb_total_grade;
+    private LinearLayout open_gm_semester, open_gm_semester12, open_gm_semester21, open_gm_semester22, open_gm_semester31, open_gm_semester32, open_gm_semester41, open_gm_semester42;
+    private ImageView open_gm_arrow, open_gm_arrow12, open_gm_arrow21, open_gm_arrow22, open_gm_arrow31, open_gm_arrow32, open_gm_arrow41, open_gm_arrow42;
+    RecyclerView rc_gm_course11, rc_gm_course12, rc_gm_course21, rc_gm_course22, rc_gm_course31, rc_gm_course32, rc_gm_course41, rc_gm_course42;
 
     ArrayList<DataGmList> gm_list_all = new ArrayList<>();
     ArrayList<DataGmList> gm_list_11 = new ArrayList<>();
@@ -85,6 +84,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     ArrayList<DataGmList> gm_list_32 = new ArrayList<>();
     ArrayList<DataGmList> gm_list_41 = new ArrayList<>();
     ArrayList<DataGmList> gm_list_42 = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,12 +127,49 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         tv_majorGrade42 = (TextView) findViewById(R.id.gm_list_majorGrade42);
         tv_liberalGrade42 = (TextView) findViewById(R.id.gm_list_liberalGrade42);
 
+        open_gm_arrow = (ImageView) findViewById(R.id.open_gm_arrow);
+        open_gm_arrow12 = (ImageView) findViewById(R.id.open_gm_arrow12);
+        open_gm_arrow21 = (ImageView) findViewById(R.id.open_gm_arrow21);
+        open_gm_arrow22 = (ImageView) findViewById(R.id.open_gm_arrow22);
+        open_gm_arrow31 = (ImageView) findViewById(R.id.open_gm_arrow31);
+        open_gm_arrow32 = (ImageView) findViewById(R.id.open_gm_arrow32);
+        open_gm_arrow41 = (ImageView) findViewById(R.id.open_gm_arrow41);
+        open_gm_arrow42 = (ImageView) findViewById(R.id.open_gm_arrow42);
+
+        open_gm_semester = (LinearLayout) findViewById(R.id.open_gm_semester);
+        open_gm_semester12 = (LinearLayout) findViewById(R.id.open_gm_semester12);
+        open_gm_semester21 = (LinearLayout) findViewById(R.id.open_gm_semester21);
+        open_gm_semester22 = (LinearLayout) findViewById(R.id.open_gm_semester22);
+        open_gm_semester31 = (LinearLayout) findViewById(R.id.open_gm_semester31);
+        open_gm_semester32 = (LinearLayout) findViewById(R.id.open_gm_semester32);
+        open_gm_semester41 = (LinearLayout) findViewById(R.id.open_gm_semester41);
+        open_gm_semester42 = (LinearLayout) findViewById(R.id.open_gm_semester42);
+
         //[하단바] Button parameter 선언
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
         LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
         LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
         LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
         LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
+
+        //[RecyclerView]
+        rc_gm_course11 = (RecyclerView) findViewById(R.id.rc_gm_course11);
+        rc_gm_course12 = (RecyclerView) findViewById(R.id.rc_gm_course12);
+         rc_gm_course21 = (RecyclerView) findViewById(R.id.rc_gm_course21);
+         rc_gm_course22 = (RecyclerView) findViewById(R.id.rc_gm_course22);
+         rc_gm_course31 = (RecyclerView) findViewById(R.id.rc_gm_course31);
+         rc_gm_course32 = (RecyclerView) findViewById(R.id.rc_gm_course32);
+         rc_gm_course41 = (RecyclerView) findViewById(R.id.rc_gm_course41);
+         rc_gm_course42 = (RecyclerView) findViewById(R.id.rc_gm_course42);
+
+        rc_gm_course11.setVisibility(View.GONE);
+        rc_gm_course12.setVisibility(View.GONE);
+        rc_gm_course21.setVisibility(View.GONE);
+        rc_gm_course22.setVisibility(View.GONE);
+        rc_gm_course31.setVisibility(View.GONE);
+        rc_gm_course32.setVisibility(View.GONE);
+        rc_gm_course41.setVisibility(View.GONE);
+        rc_gm_course42.setVisibility(View.GONE);
 
         //[RecyclerView] HashMap 사용
         gmSemesterList = new ArrayList<HashMap<String, String>>();
@@ -174,6 +211,24 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         tv_totalGrade42.setText(String.valueOf(totalGrade42));
         tv_majorGrade42.setText(String.valueOf(majorGrade42));
         tv_liberalGrade42.setText(String.valueOf(liberalGrade42));
+
+        open_gm_arrow.setOnClickListener(this);
+        open_gm_arrow12.setOnClickListener(this);
+        open_gm_arrow21.setOnClickListener(this);
+        open_gm_arrow22.setOnClickListener(this);
+        open_gm_arrow31.setOnClickListener(this);
+        open_gm_arrow32.setOnClickListener(this);
+        open_gm_arrow41.setOnClickListener(this);
+        open_gm_arrow42.setOnClickListener(this);
+
+        open_gm_semester.setOnClickListener(this);
+        open_gm_semester12.setOnClickListener(this);
+        open_gm_semester21.setOnClickListener(this);
+        open_gm_semester22.setOnClickListener(this);
+        open_gm_semester31.setOnClickListener(this);
+        open_gm_semester32.setOnClickListener(this);
+        open_gm_semester41.setOnClickListener(this);
+        open_gm_semester42.setOnClickListener(this);
 
         naviBtn_curriculum.setOnClickListener(this);
         naviBtn_jjimList.setOnClickListener(this);
@@ -352,91 +407,27 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 if (course_year.equals("2019") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt11.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit11 += Integer.parseInt(credit);
-                        majorGrade11 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit11 += Integer.parseInt(credit);
-                        liberalGrade11 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 } else if (course_year.equals("2019") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt12.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit12 += Integer.parseInt(credit);
-                        majorGrade12 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit12 += Integer.parseInt(credit);
-                        liberalGrade12 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 } else if (course_year.equals("2020") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt21.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit21 += Integer.parseInt(credit);
-                        majorGrade21 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit21 += Integer.parseInt(credit);
-                        liberalGrade21 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 } else if (course_year.equals("2020") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt22.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit22 += Integer.parseInt(credit);
-                        majorGrade22 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit22 += Integer.parseInt(credit);
-                        liberalGrade22 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 } else if (course_year.equals("2021") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt31.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit31 += Integer.parseInt(credit);
-                        majorGrade31 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit31 += Integer.parseInt(credit);
-                        liberalGrade31 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 } else if (course_year.equals("2021") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt32.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit32 += Integer.parseInt(credit);
-                        majorGrade32 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit32 += Integer.parseInt(credit);
-                        liberalGrade32 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 } else if (course_year.equals("2022") && course_semester.equals("1")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt41.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit41 += Integer.parseInt(credit);
-                        majorGrade41 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit41 += Integer.parseInt(credit);
-                        liberalGrade41 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 } else if (course_year.equals("2022") && course_semester.equals("2")) {
                     DataGmList data = new DataGmList(course_year, course_semester, major_division, course_id, course_name, credit, grade, category);
                     adapt42.addItem(data);
-                    gradeToDouble = gradeToNum(grade);
-                    if (category.equals("1") || category.equals("2")) {
-                        majorCredit42 += Integer.parseInt(credit);
-                        majorGrade42 += gradeToDouble * Double.parseDouble(credit);
-                    } else if (category.equals("3") || category.equals("4")) {
-                        liberalCredit42 += Integer.parseInt(credit);
-                        liberalGrade42 += gradeToDouble * Double.parseDouble(credit);
-                    }
                 }
             }
 
@@ -491,10 +482,115 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         return 0.0;
     }
 
-
-    @Override
     public void onClick(View view) {
+        rc_gm_course11 = (RecyclerView) findViewById(R.id.rc_gm_course11);
+        rc_gm_course12 = (RecyclerView) findViewById(R.id.rc_gm_course12);
+        rc_gm_course21 = (RecyclerView) findViewById(R.id.rc_gm_course21);
+        rc_gm_course22 = (RecyclerView) findViewById(R.id.rc_gm_course22);
+        rc_gm_course31 = (RecyclerView) findViewById(R.id.rc_gm_course31);
+        rc_gm_course32 = (RecyclerView) findViewById(R.id.rc_gm_course32);
+        rc_gm_course41 = (RecyclerView) findViewById(R.id.rc_gm_course41);
+        rc_gm_course42 = (RecyclerView) findViewById(R.id.rc_gm_course42);
+
         switch (view.getId()) {
+            case R.id.open_gm_semester:
+            case R.id.open_gm_arrow:
+                if(open_or_not){
+                    rc_gm_course11.setVisibility(View.GONE);
+                    open_gm_arrow.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course11.setVisibility(View.VISIBLE);
+                    open_gm_arrow.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                    break;
+            case R.id.open_gm_semester12:
+            case R.id.open_gm_arrow12:
+                if(open_or_not){
+                    rc_gm_course12.setVisibility(View.GONE);
+                    open_gm_arrow12.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course12.setVisibility(View.VISIBLE);
+                    open_gm_arrow12.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                break;
+            case R.id.open_gm_semester21:
+            case R.id.open_gm_arrow21:
+                if(open_or_not){
+                    rc_gm_course21.setVisibility(View.GONE);
+                    open_gm_arrow21.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course21.setVisibility(View.VISIBLE);
+                    open_gm_arrow21.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                break;
+            case R.id.open_gm_semester22:
+            case R.id.open_gm_arrow22:
+                if(open_or_not){
+                    rc_gm_course22.setVisibility(View.GONE);
+                    open_gm_arrow22.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course22.setVisibility(View.VISIBLE);
+                    open_gm_arrow22.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                break;
+            case R.id.open_gm_semester31:
+            case R.id.open_gm_arrow31:
+                if(open_or_not){
+                    rc_gm_course31.setVisibility(View.GONE);
+                    open_gm_arrow31.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course31.setVisibility(View.VISIBLE);
+                    open_gm_arrow31.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                break;
+            case R.id.open_gm_semester32:
+            case R.id.open_gm_arrow32:
+                if(open_or_not){
+                    rc_gm_course32.setVisibility(View.GONE);
+                    open_gm_arrow32.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course32.setVisibility(View.VISIBLE);
+                    open_gm_arrow32.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                break;
+            case R.id.open_gm_semester41:
+            case R.id.open_gm_arrow41:
+                if(open_or_not){
+                    rc_gm_course41.setVisibility(View.GONE);
+                    open_gm_arrow41.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course41.setVisibility(View.VISIBLE);
+                    open_gm_arrow41.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                break;
+            case R.id.open_gm_semester42:
+            case R.id.open_gm_arrow42:
+                if(open_or_not){
+                    rc_gm_course42.setVisibility(View.GONE);
+                    open_gm_arrow42.setImageResource(R.drawable.arrow_down);
+                    open_or_not = false;
+                } else{
+                    rc_gm_course42.setVisibility(View.VISIBLE);
+                    open_gm_arrow42.setImageResource(R.drawable.arrow_up);
+                    open_or_not = true;
+                }
+                break;
+
+                //[하단네비]
             case R.id.naviBtn_curriculum:
                 Intent intent_curriculum = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent_curriculum);
