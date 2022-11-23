@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }*/
                         for (int i=0; i<25; i++){
                             for (int j=0; j<filter_list_list2[i].size(); j++){
-                                if(filter_list_list2[i].get(j).major_division.equals((k+1)+"")){
+                                if(filter_list_list2[i].get(j).credit.equals((k+1)+"")){
                                     filter_list_list3[i].add(filter_list_list2[i].get(j));
                                 }
                             }

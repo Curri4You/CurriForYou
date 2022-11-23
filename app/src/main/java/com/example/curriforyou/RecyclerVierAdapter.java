@@ -138,13 +138,36 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_grade.setText(data.getGrade());
 
             //major_division에 따른 바 색깔 변경
-            if(data.getMajor_division().equals("1")){
+            switch (data.getMajor_division()) {
+                case "1":
+                    iv_major_division.setImageResource(R.drawable.major_division_1);
+                    break;
+                case "2":
+                    iv_major_division.setImageResource(R.drawable.major_division_2);
+                    break;
+                case "3":
+                    iv_major_division.setImageResource(R.drawable.major_division_3);
+                    break;
+                case "12":
+                    iv_major_division.setImageResource(R.drawable.major_division_12);
+                    break;
+                case "23":
+                    iv_major_division.setImageResource(R.drawable.major_division_23);
+                    break;
+                case "13":
+                    iv_major_division.setImageResource(R.drawable.major_division_13);
+                    break;
+                case "123":
+                    iv_major_division.setImageResource(R.drawable.major_division_123);
+                    break;
+            }
+            /*if(data.getMajor_division().equals("1")){
                 iv_major_division.setImageResource(R.drawable.rectangle_blue5);
             } else if (data.getMajor_division().equals("2")){
                 iv_major_division.setImageResource(R.drawable.rectangle_blue3);
             } else if (data.getMajor_division().equals("3")){
                 iv_major_division.setImageResource(R.drawable.rectangle_blue1);
-            }
+            }*/
 
             //[찜] 기존 데이터에 기반한 찜 초기화
             if(data.getJjim().equals("1") && count_heart == 0){
