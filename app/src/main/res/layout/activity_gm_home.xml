@@ -171,7 +171,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:layout_weight="8"
-                android:max="100"
+                android:max="183"
                 android:progress="70"
                 android:progressDrawable="@drawable/progressbar_style1" />
 
@@ -326,12 +326,12 @@
 
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rc_gm_course11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never" />
 
                 <View
                     android:layout_width="match_parent"
