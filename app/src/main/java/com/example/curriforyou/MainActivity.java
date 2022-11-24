@@ -48,7 +48,10 @@ import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
 
@@ -80,9 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AlertDialog.Builder builder;
     String[] course_category;
 
-    //[Search]
-    ArrayList<DataCourseList> original_list = new ArrayList<>();
-    /*ArrayList<DataCourseList> search_list = new ArrayList<>();*/
+    //[Search] Search List 초기화
+    /*ArrayList<DataCourseList> original_list = new ArrayList<>();*/
     EditText et_search;
     ArrayList<DataCourseList> search_list0 = new ArrayList<>(), search_list1 = new ArrayList<>(), search_list2 = new ArrayList<>(), search_list3 = new ArrayList<>(), search_list4 = new ArrayList<>(),
             search_list5 = new ArrayList<>(), search_list6 = new ArrayList<>(), search_list7 = new ArrayList<>(), search_list8 = new ArrayList<>(), search_list9 = new ArrayList<>(),
@@ -95,11 +97,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             search_list15, search_list16, search_list17, search_list18, search_list19,
             search_list20, search_list21, search_list22, search_list23, search_list24};
 
-    //[Filter]
-    ArrayList<DataCourseList> filter_list = new ArrayList<>();
+    //[Filter] Filter List 초기화
+    /*ArrayList<DataCourseList> filter_list = new ArrayList<>();
     ArrayList<DataCourseList> filter_list2 = new ArrayList<>();
     ArrayList<DataCourseList> filter_list3 = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list4 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list4 = new ArrayList<>();*/
     ArrayList<DataCourseList> filter_list000 = new ArrayList<>(), filter_list001 = new ArrayList<>(), filter_list002 = new ArrayList<>(), filter_list003 = new ArrayList<>(), filter_list004 = new ArrayList<>(),
             filter_list005 = new ArrayList<>(), filter_list006 = new ArrayList<>(), filter_list007 = new ArrayList<>(), filter_list008 = new ArrayList<>(), filter_list009 = new ArrayList<>(),
             filter_list010 = new ArrayList<>(), filter_list011 = new ArrayList<>(), filter_list012 = new ArrayList<>(), filter_list013 = new ArrayList<>(), filter_list014 = new ArrayList<>(),
@@ -239,10 +241,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filter_list.clear();
+                /*filter_list.clear();
                 filter_list2.clear();
                 filter_list3.clear();
-                filter_list4.clear();
+                filter_list4.clear();*/
                 for (int i=0; i<25; i++){
                     filter_list_list0[i].clear();
                     filter_list_list1[i].clear();
@@ -293,12 +295,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 for (int k = 0; k < 4; k++){
                     if (credit_list[k].equals("1")){
-                        /*Toast.makeText(getApplicationContext(), (i+1)+"", Toast.LENGTH_SHORT).show();*/
-                        /*for(int a = 0; a < filter_list_list0[15].size(); a++){
-                            if(filter_list_list0[15].get(a).credit.equals((k+1)+"")){
-                                filter_list_list1[15].add(filter_list_list0[15].get(a));
-                            }
-                        }*/
                         for (int i=0; i<25; i++){
                             for (int j=0; j<filter_list_list0[i].size(); j++){
                                 if(filter_list_list0[i].get(j).credit.equals((k+1)+"")){
@@ -311,11 +307,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //수강과목 --> ERROR
                 if (swit_taken.isChecked()){
-                    /*for(int a = 0; a < filter_list2.size(); a++){
-                        if(!filter_list2.get(a).course_year.equals("미정")){
-                            filter_list3.add(filter_list2.get(a));
-                        }
-                    }*/
+                    for (int i=0; i<25; i++){
+                        filter_list_list2[i] = filter_list_list1[i];
+                    }
                 } else {
                     /*filter_list3 = filter_list2;*/
                     for (int i=0; i<25; i++){
@@ -324,35 +318,97 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 //전공사항
-                String[] major_list = {"0", "0", "0"};
+                int[] major_list = {0, 0, 0};
                 if (cb_major1.isChecked()){
-                    major_list[0] = "1";
+                    major_list[0] = 1;
                 }
                 if (cb_major2.isChecked()){
-                    major_list[1] = "1";
+                    major_list[1] = 1;
                 }
                 if (cb_major3.isChecked()){
-                    major_list[2] = "1";
+                    major_list[2] = 1;
                 }
-                for (int k = 0; k < 3; k++){
-                    if (major_list[k].equals("1")){
-                        /*for(int a = 0; a < filter_list3.size(); a++){
-                            if(filter_list3.get(a).major_division.equals((k+1)+"")){
-                                filter_list4.add(filter_list.get(a));
+                int check_sum = 0;
+                for (int i=0; i<3; i++){
+                    check_sum = check_sum + major_list[i];
+                }
+                switch (check_sum){
+                    case 1:
+                        if (major_list[0] == 1){  // 1 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    String what_major = filter_list_list2[i].get(j).major_division;
+                                    if(what_major.equals("1") || what_major.equals("12") || what_major.equals("13") || what_major.equals("123")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
                             }
-                        }*/
+                        } else if (major_list[1] == 1){  // 2 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    String what_major = filter_list_list2[i].get(j).major_division;
+                                    if(what_major.equals("2") || what_major.equals("12") || what_major.equals("23") || what_major.equals("123")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        } else if (major_list[2] == 1){  // 3 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    String what_major = filter_list_list2[i].get(j).major_division;
+                                    if(what_major.equals("3") || what_major.equals("13") || what_major.equals("23") || what_major.equals("123")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (major_list[0] == 1 && major_list[1] == 1){  // 1 & 2 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    if(!filter_list_list2[i].get(j).major_division.equals("3")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        } else if (major_list[0] == 1 && major_list[2] == 1) {   // 1 & 3 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    if(!filter_list_list2[i].get(j).major_division.equals("2")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        } else if (major_list[1] == 1 && major_list[2] == 1) {   // 2 & 3 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    if(!filter_list_list2[i].get(j).major_division.equals("1")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 3:
+                        for (int i=0; i<25; i++){
+                            filter_list_list3[i] = filter_list_list2[i];
+                        }
+                        break;
+                }
+
+                /*for (int k = 0; k < 3; k++){
+                    if (major_list[k] == 1){
                         for (int i=0; i<25; i++){
                             for (int j=0; j<filter_list_list2[i].size(); j++){
-                                if(filter_list_list2[i].get(j).credit.equals((k+1)+"")){
+                                if(filter_list_list2[i].get(j).major_division.contains((k+1)+"")){
                                     filter_list_list3[i].add(filter_list_list2[i].get(j));
                                 }
                             }
                         }
                     }
-                }
-                /*Toast.makeText(getApplicationContext(), ""+credit_list[0]+credit_list[1]+credit_list[2]+credit_list[3], Toast.LENGTH_SHORT).show();*/
-                /*rc_adapter.setItems(filter_list4);*/
-                /*rc_adapter_list[15].setItems(filter_list_list1[15]);*/
+                }*/
+
                 for (int i=0; i<25; i++){
                     rc_adapter_list[i].setItems(filter_list_list3[i]);
                 }
