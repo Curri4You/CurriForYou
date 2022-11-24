@@ -39,20 +39,20 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     private static final String TAG = "imagesearchexample";
     // URL - 학기별 학점요약 DB
     private String REQUEST_URL = "http://smlee099.dothome.co.kr/hakjum.php";
+    private String REQUEST_URL_GRADE = "http://smlee099.dothome.co.kr/hakjum_practice.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
-    GmRecyclerAdapter adapt11 = null, adapt12 = null, adapt21 = null, adapt22 = null,
-            adapt31 = null, adapt32 = null, adapt41 = null, adapt42 = null;
+    GmRecyclerAdapter adapt11, adapt12, adapt21, adapt22, adapt31, adapt32, adapt41, adapt42;
     GmRecyclerAdapter adapt_list[] = {adapt11, adapt12, adapt21, adapt22, adapt31, adapt32, adapt41, adapt42};
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
     private Context context;
 
-    double gradeToDouble, totalGrade, totalGrade11, totalGrade12, totalGrade21, totalGrade22, totalGrade31, totalGrade32, totalGrade41, totalGrade42;
+    /*double gradeToDouble, totalGrade, totalGrade11, totalGrade12, totalGrade21, totalGrade22, totalGrade31, totalGrade32, totalGrade41, totalGrade42;
     double majorGrade, majorGrade11, majorGrade12, majorGrade21, majorGrade22, majorGrade31, majorGrade32, majorGrade41, majorGrade42;
     double liberalGrade, liberalGrade11, liberalGrade12, liberalGrade21, liberalGrade22, liberalGrade31, liberalGrade32, liberalGrade41, liberalGrade42;
     int totalCredit, credit11, credit12, credit21, credit22, credit31, credit32, credit41, credit42;
     int majorCredit, majorCredit11, majorCredit12, majorCredit21, majorCredit22, majorCredit31, majorCredit32, majorCredit41, majorCredit42;
-    int liberalCredit, liberalCredit11, liberalCredit12, liberalCredit21, liberalCredit22, liberalCredit31, liberalCredit32, liberalCredit41, liberalCredit42;
+    int liberalCredit, liberalCredit11, liberalCredit12, liberalCredit21, liberalCredit22, liberalCredit31, liberalCredit32, liberalCredit41, liberalCredit42;*/
     boolean open_or_not = false;
 
     //[Grade] 총평점, 전공평점, 교양평점 TextView들을 담을 list 정의
@@ -78,6 +78,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
         init();
         getData(REQUEST_URL);
+
+        //
+        getData_Grade(REQUEST_URL_GRADE);
 
         // 학점 평점 정리
         tv_totalGrade = findViewById(R.id.totalGrade);
@@ -118,17 +121,17 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         progressDialog.setMessage("Please wait ...");
         progressDialog.show();
 
-        tv_totalGrade.setText(String.valueOf(totalGrade));
+        /*tv_totalGrade.setText(String.valueOf(totalGrade));
         tv_majorGrade.setText(String.valueOf(majorGrade));
         tv_liberalGrade.setText(String.valueOf(liberalGrade));
         tv_tillNowCredit.setText(String.valueOf(totalCredit));
-        pb_total_grade.setProgress(totalCredit);
+        pb_total_grade.setProgress(totalCredit);*/
 
-        for (int i=0; i<8; i++){
+        /*for (int i=0; i<8; i++){
             tv_totalGrade_list[i].setText("0");
             tv_majorGrade_list[i].setText("0");
             tv_liberalGrade_list[i].setText("0");
-        }
+        }*/
 
         for (int i=0; i<8; i++){
             open_gm_arrow_list[i].setOnClickListener(this);
@@ -199,7 +202,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
     //[RecyclerView]
     private final RC_MyHandler RC_mHandler = new RC_MyHandler(this);
-
     //[RecyclerView]
     private static class RC_MyHandler extends Handler {
         private final WeakReference<GmActivity> weakReference;
@@ -234,7 +236,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
             @Override
             public void run() {
                 String result;
-
                 try {
                     Log.d(TAG, Request_url);
                     URL url = new URL(Request_url);
@@ -258,7 +259,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
                     StringBuilder sb = new StringBuilder();
                     String line;
 
@@ -268,7 +268,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
                     bufferedReader.close();
                     httpURLConnection.disconnect();
-
                     result = sb.toString().trim();
                 } catch (Exception e) {
                     result = e.toString();
@@ -330,24 +329,110 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 }
             }
 
-            credit11 = majorCredit11 + liberalCredit11;
-            credit12 = majorCredit12 + liberalCredit12;
-            credit21 = majorCredit21 + liberalCredit21;
-            credit22 = majorCredit22 + liberalCredit22;
-            credit31 = majorCredit31 + liberalCredit31;
-            credit32 = majorCredit32 + liberalCredit32;
-            credit41 = majorCredit41 + liberalCredit41;
-            credit42 = majorCredit42 + liberalCredit42;
-            totalCredit = credit11 + credit12 + credit21 + credit22 + credit31 + credit32 + credit41 + credit42;
-            majorGrade = (majorGrade11 + majorGrade12 + majorGrade21 + majorGrade22 + majorGrade31 + majorGrade32 + majorGrade41 + majorGrade42);
-            liberalGrade = (liberalGrade11 + liberalGrade12 + liberalGrade21 + liberalGrade22 + liberalGrade31 + liberalGrade32 + liberalGrade41 + liberalGrade42);
-            totalGrade = majorGrade + liberalGrade;
-
             return true;
         } catch (JSONException e) {
             Log.d(TAG, e.toString());
         }
         return false;
+    }
+
+    /////////////////////////////////////////////////////////////////
+    private void getData_Grade(String Request_url) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String result;
+                try {
+                    Log.d(TAG, Request_url);
+                    URL url = new URL(Request_url);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setReadTimeout(3000);
+                    httpURLConnection.setConnectTimeout(3000);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setRequestMethod("GET");
+                    httpURLConnection.setUseCaches(false);
+                    httpURLConnection.connect();
+
+                    int responseStatusCode = httpURLConnection.getResponseCode();
+
+                    InputStream inputStream;
+                    if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                        inputStream = httpURLConnection.getInputStream();
+                    } else {
+                        inputStream = httpURLConnection.getErrorStream();
+                    }
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        sb.append(line);
+                    }
+
+                    bufferedReader.close();
+                    httpURLConnection.disconnect();
+                    result = sb.toString().trim();
+                } catch (Exception e) {
+                    result = e.toString();
+                }
+                //파싱 기능 사용
+                RC_jsonParser_Grade(result);
+            }
+        });
+        thread.start();
+    }
+
+    //[RecyclerView] jsonParser 함수
+    //웹사이트 화면을 파싱하는 함수
+    public void RC_jsonParser_Grade(String jsonString) {
+
+        /*if (jsonString == null) return false;*/
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+
+            //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
+            JSONArray gmSemester = jsonObject.getJSONArray("result1");
+
+            //gmSemester 길이만큼 반복해서 Mapping
+            for (int i = 0; i < gmSemester.length(); i++) {
+                JSONObject gmSemesterInfo = gmSemester.getJSONObject(i);
+
+                String course_year = gmSemesterInfo.getString("course_year");
+                String course_semester = gmSemesterInfo.getString("course_semester");
+
+                String str_sum_grade_semester, str_sum_credit_semester;
+                double sum_grade_semester, sum_credit_semester, avg_semester;
+
+                for (int j=0; j<8; j++){
+                    int grade_res_id = getResources().getIdentifier("gm_list_totalGrade"+j, "id", getPackageName());
+                    tv_totalGrade_list[j] = findViewById(grade_res_id);
+                }
+
+                switch (course_year) {
+                    case "2019":
+                        if(course_semester.equals("1")){
+                            str_sum_grade_semester = gmSemesterInfo.getString("multiply2019_1_1_add");
+                            str_sum_credit_semester = gmSemesterInfo.getString("sum_credit2019_1");
+                            sum_grade_semester = Double.parseDouble(str_sum_grade_semester);
+                            sum_credit_semester = Double.parseDouble(str_sum_credit_semester);
+                            avg_semester = sum_grade_semester/sum_credit_semester;
+                            tv_totalGrade_list[0].setText(String.format("%.1f", avg_semester));
+                        } else {
+                            str_sum_grade_semester = gmSemesterInfo.getString("multiply2019_2_1_add");
+                            /*tv_totalGrade_list[1].setText(str_sum_grade_semester);*/
+                        }
+                        break;
+                }
+
+
+            }
+        } catch (JSONException e) {
+            Log.d(TAG, e.toString());
+        }
     }
 
     private double gradeToNum(String grade) {
