@@ -232,6 +232,7 @@
             android:orientation="vertical">
             <!--            NestedScrollView 안의 모든 view들은 이 안에 넣을것!!-->
 
+            <!--==================================================================-->
             <!--            1학년 1학기-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -239,17 +240,19 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester"
+                    android:id="@+id/gm_list_semester0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:gravity="center"
                     android:text="1학년 1학기"
                     android:textSize="20sp"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold">
+                </TextView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -268,15 +271,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="총 평점"></TextView>
+                            android:text="총 평점">
+                        </TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade11"
+                            android:id="@+id/gm_list_totalGrade0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
                             android:textSize="22sp"
-                            android:textStyle="bold"></TextView>
+                            android:textStyle="bold">
+                        </TextView>
 
                     </LinearLayout>
 
@@ -290,15 +295,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="전공 평점"></TextView>
+                            android:text="전공 평점">
+                        </TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade11"
+                            android:id="@+id/gm_list_majorGrade0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
                             android:textSize="22sp"
-                            android:textStyle="bold"></TextView>
+                            android:textStyle="bold">
+                        </TextView>
 
                     </LinearLayout>
 
@@ -312,26 +319,28 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="교양 평점"></TextView>
+                            android:text="교양 평점">
+                        </TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade11"
+                            android:id="@+id/gm_list_liberalGrade0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
                             android:textSize="22sp"
-                            android:textStyle="bold"></TextView>
+                            android:textStyle="bold">
+                        </TextView>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rc_gm_course11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"
-                        android:overScrollMode="never" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_gm_course0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -339,14 +348,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester"
+                    android:id="@+id/open_gm_semester0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow"
+                        android:id="@+id/open_gm_arrow0"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
@@ -355,6 +364,8 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <!--==================================================================-->
             <!--            1학년 2학기-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -362,10 +373,11 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester12"
+                    android:id="@+id/gm_list_semester1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -394,7 +406,7 @@
                             android:text="총 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade12"
+                            android:id="@+id/gm_list_totalGrade1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -416,7 +428,7 @@
                             android:text="전공 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade12"
+                            android:id="@+id/gm_list_majorGrade1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -438,7 +450,7 @@
                             android:text="교양 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade12"
+                            android:id="@+id/gm_list_liberalGrade1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -450,7 +462,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course12"
+                    android:id="@+id/rc_gm_course1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -460,14 +472,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester12"
+                    android:id="@+id/open_gm_semester1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow12"
+                        android:id="@+id/open_gm_arrow1"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
@@ -483,10 +495,11 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester21"
+                    android:id="@+id/gm_list_semester2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -515,7 +528,7 @@
                             android:text="총 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade21"
+                            android:id="@+id/gm_list_totalGrade2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -537,7 +550,7 @@
                             android:text="전공 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade21"
+                            android:id="@+id/gm_list_majorGrade2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -559,7 +572,7 @@
                             android:text="교양 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade21"
+                            android:id="@+id/gm_list_liberalGrade2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -571,7 +584,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course21"
+                    android:id="@+id/rc_gm_course2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
@@ -583,14 +596,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester21"
+                    android:id="@+id/open_gm_semester2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow21"
+                        android:id="@+id/open_gm_arrow2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
@@ -606,10 +619,11 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester22"
+                    android:id="@+id/gm_list_semester3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -638,7 +652,7 @@
                             android:text="총 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade22"
+                            android:id="@+id/gm_list_totalGrade3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -660,7 +674,7 @@
                             android:text="전공 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade22"
+                            android:id="@+id/gm_list_majorGrade3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -682,7 +696,7 @@
                             android:text="교양 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade22"
+                            android:id="@+id/gm_list_liberalGrade3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -694,7 +708,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course22"
+                    android:id="@+id/rc_gm_course3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
@@ -706,14 +720,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester22"
+                    android:id="@+id/open_gm_semester3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow22"
+                        android:id="@+id/open_gm_arrow3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
@@ -729,10 +743,11 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester31"
+                    android:id="@+id/gm_list_semester4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -761,7 +776,7 @@
                             android:text="총 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade31"
+                            android:id="@+id/gm_list_totalGrade4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -783,7 +798,7 @@
                             android:text="전공 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade31"
+                            android:id="@+id/gm_list_majorGrade4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -805,7 +820,7 @@
                             android:text="교양 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade31"
+                            android:id="@+id/gm_list_liberalGrade4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -817,7 +832,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course31"
+                    android:id="@+id/rc_gm_course4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
@@ -829,14 +844,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester31"
+                    android:id="@+id/open_gm_semester4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow31"
+                        android:id="@+id/open_gm_arrow4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
@@ -852,10 +867,11 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester32"
+                    android:id="@+id/gm_list_semester5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -884,7 +900,7 @@
                             android:text="총 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade32"
+                            android:id="@+id/gm_list_totalGrade5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -906,7 +922,7 @@
                             android:text="전공 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade32"
+                            android:id="@+id/gm_list_majorGrade5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -928,7 +944,7 @@
                             android:text="교양 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade32"
+                            android:id="@+id/gm_list_liberalGrade5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -940,7 +956,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course32"
+                    android:id="@+id/rc_gm_course5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
@@ -952,14 +968,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester32"
+                    android:id="@+id/open_gm_semester5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow32"
+                        android:id="@+id/open_gm_arrow5"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
@@ -975,10 +991,11 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester41"
+                    android:id="@+id/gm_list_semester6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -1007,7 +1024,7 @@
                             android:text="총 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade41"
+                            android:id="@+id/gm_list_totalGrade6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -1029,7 +1046,7 @@
                             android:text="전공 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade41"
+                            android:id="@+id/gm_list_majorGrade6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -1051,7 +1068,7 @@
                             android:text="교양 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade41"
+                            android:id="@+id/gm_list_liberalGrade6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -1063,7 +1080,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course41"
+                    android:id="@+id/rc_gm_course6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
@@ -1075,14 +1092,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester41"
+                    android:id="@+id/open_gm_semester6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow41"
+                        android:id="@+id/open_gm_arrow6"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
@@ -1098,10 +1115,11 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/tv_edge_gray3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
                 <TextView
-                    android:id="@+id/gm_list_semester42"
+                    android:id="@+id/gm_list_semester7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -1130,7 +1148,7 @@
                             android:text="총 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_totalGrade42"
+                            android:id="@+id/gm_list_totalGrade7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -1152,7 +1170,7 @@
                             android:text="전공 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_majorGrade42"
+                            android:id="@+id/gm_list_majorGrade7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -1174,7 +1192,7 @@
                             android:text="교양 평점"></TextView>
 
                         <TextView
-                            android:id="@+id/gm_list_liberalGrade42"
+                            android:id="@+id/gm_list_liberalGrade7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-"
@@ -1186,7 +1204,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_gm_course42"
+                    android:id="@+id/rc_gm_course7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
@@ -1198,14 +1216,14 @@
                     android:background="@color/gray_3" />
 
                 <LinearLayout
-                    android:id="@+id/open_gm_semester42"
+                    android:id="@+id/open_gm_semester7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_1"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/open_gm_arrow42"
+                        android:id="@+id/open_gm_arrow7"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/arrow_down"
