@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String[] course_category;
 
     //[Search] Search List 초기화
-    /*ArrayList<DataCourseList> original_list = new ArrayList<>();*/
     EditText et_search;
     ArrayList<DataCourseList> search_list0 = new ArrayList<>(), search_list1 = new ArrayList<>(), search_list2 = new ArrayList<>(), search_list3 = new ArrayList<>(), search_list4 = new ArrayList<>(),
             search_list5 = new ArrayList<>(), search_list6 = new ArrayList<>(), search_list7 = new ArrayList<>(), search_list8 = new ArrayList<>(), search_list9 = new ArrayList<>(),
@@ -98,10 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             search_list20, search_list21, search_list22, search_list23, search_list24};
 
     //[Filter] Filter List 초기화
-    /*ArrayList<DataCourseList> filter_list = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list2 = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list3 = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list4 = new ArrayList<>();*/
     ArrayList<DataCourseList> filter_list000 = new ArrayList<>(), filter_list001 = new ArrayList<>(), filter_list002 = new ArrayList<>(), filter_list003 = new ArrayList<>(), filter_list004 = new ArrayList<>(),
             filter_list005 = new ArrayList<>(), filter_list006 = new ArrayList<>(), filter_list007 = new ArrayList<>(), filter_list008 = new ArrayList<>(), filter_list009 = new ArrayList<>(),
             filter_list010 = new ArrayList<>(), filter_list011 = new ArrayList<>(), filter_list012 = new ArrayList<>(), filter_list013 = new ArrayList<>(), filter_list014 = new ArrayList<>(),
@@ -152,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static Context context_main;
     public int var;
 
-    //[Detail Category]
+    //[Detail Category] Adapter List & CourseList List 초기화
     RecyclerVierAdapter rc_adapter0, rc_adapter1, rc_adapter2, rc_adapter3, rc_adapter4, rc_adapter5, rc_adapter6, rc_adapter7, rc_adapter8, rc_adapter9,
             rc_adapter10, rc_adapter11, rc_adapter12, rc_adapter13, rc_adapter14, rc_adapter15, rc_adapter16, rc_adapter17, rc_adapter18, rc_adapter19,
             rc_adapter20, rc_adapter21, rc_adapter22, rc_adapter23, rc_adapter24;
@@ -199,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             detail_inflater10, detail_inflater11, detail_inflater12, detail_inflater13, detail_inflater14,
             detail_inflater15, detail_inflater16, detail_inflater17, detail_inflater18, detail_inflater19,
             detail_inflater20, detail_inflater21, detail_inflater22, detail_inflater23, detail_inflater24};
+    /* === Detail Category === */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,10 +237,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*filter_list.clear();
-                filter_list2.clear();
-                filter_list3.clear();
-                filter_list4.clear();*/
                 for (int i=0; i<25; i++){
                     filter_list_list0[i].clear();
                     filter_list_list1[i].clear();
@@ -254,22 +246,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //개설여부
                 if (rb_all.isChecked()){
-                    /*Toast.makeText(getApplicationContext(), filter_all, Toast.LENGTH_SHORT).show();*/
-                    /*for(int a = 0; a < course_list_list[15].size(); a++){
-                        filter_list.add(course_list_list[15].get(a));
-                    }*/
                     for (int i=0; i<25; i++){
                         for (int j=0; j<course_list_list[i].size(); j++){
                             filter_list_list0[i].add(course_list_list[i].get(j));
                         }
                     }
                 } else {
-                    /*Toast.makeText(getApplicationContext(), filter_this_semester, Toast.LENGTH_SHORT).show();*/
-                    /*for(int a = 0; a < course_list_list[15].size(); a++){
-                        if(course_list_list[15].get(a).is_open.toLowerCase().contains("O".toLowerCase())){
-                            filter_list.add(course_list_list[15].get(a));
-                        }
-                    }*/
                     for (int i=0; i<25; i++){
                         for (int j=0; j<course_list_list[i].size(); j++){
                             if(course_list_list[i].get(j).is_open.toLowerCase().contains("O".toLowerCase())){
@@ -397,18 +379,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                 }
 
-                /*for (int k = 0; k < 3; k++){
-                    if (major_list[k] == 1){
-                        for (int i=0; i<25; i++){
-                            for (int j=0; j<filter_list_list2[i].size(); j++){
-                                if(filter_list_list2[i].get(j).major_division.contains((k+1)+"")){
-                                    filter_list_list3[i].add(filter_list_list2[i].get(j));
-                                }
-                            }
-                        }
-                    }
-                }*/
-
                 for (int i=0; i<25; i++){
                     rc_adapter_list[i].setItems(filter_list_list3[i]);
                 }
@@ -438,17 +408,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 if(search_text.equals("")){
-                    /*rc_adapter.setItems(original_list);*/
                     for (int i=0; i<25; i++){
                         rc_adapter_list[i].setItems(course_list_list[i]);
                     }
                 } else {
-                    /*for(int a=0; a < original_list.size(); a++){
-                        if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
-                            search_list.add(original_list.get(a));
-                        }
-                        rc_adapter.setItems(search_list);
-                    }*/
                     for (int i=0; i<25; i++){
                         for (int j=0; j<course_list_list[i].size(); j++){
                             if(course_list_list[i].get(j).course_name.toLowerCase().contains(search_text.toLowerCase())){
@@ -683,29 +646,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수 & 초기화 함수
     //[Detail Category]
     private void init(){
-        /*RecyclerView rc_curriculum_course1 = findViewById(R.id.rc_curriculum_course1);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rc_curriculum_course1.setLayoutManager(linearLayoutManager);
-
-        original_list.clear();
-        filter_list.clear();
-        filter_list2.clear();
-        filter_list3.clear();
-        filter_list4.clear();
-        rc_adapter = new RecyclerVierAdapter(original_list);
-        rc_curriculum_course1.setAdapter(rc_adapter);*/
-
         for(int i=0; i<25; i++){
             course_list_list[i].clear();
-            /*filter_list_list0[i].clear();
-            filter_list_list1[i].clear();
-            filter_list_list2[i].clear();
-            filter_list_list3[i].clear();*/
         }
-        /*filter_list.clear();
-        filter_list2.clear();
-        filter_list3.clear();
-        filter_list4.clear();*/
         for (int i=0; i<25; i++){
             int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
             recyclerView_list[i] = findViewById(res_id);
