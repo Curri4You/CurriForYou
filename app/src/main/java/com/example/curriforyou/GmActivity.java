@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,14 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     private static final String TAG = "imagesearchexample";
     // URL - 학기별 학점요약 DB
     private String REQUEST_URL = "http://smlee099.dothome.co.kr/hakjum.php";
-    private String REQUEST_URL_GRADE = "http://smlee099.dothome.co.kr/hakjum_practice.php";
+    private String REQUEST_URL_GRADE0 = "http://smlee099.dothome.co.kr/2019_1.php";
+    private String REQUEST_URL_GRADE1 = "http://smlee099.dothome.co.kr/2019_2.php";
+    private String REQUEST_URL_GRADE2 = "http://smlee099.dothome.co.kr/2020_1.php";
+    private String REQUEST_URL_GRADE3 = "http://smlee099.dothome.co.kr/2020_2.php";
+    private String REQUEST_URL_GRADE4 = "http://smlee099.dothome.co.kr/2021_1.php";
+    private String REQUEST_URL_GRADE5 = "http://smlee099.dothome.co.kr/2021_2.php";
+    private String REQUEST_URL_GRADE6 = "http://smlee099.dothome.co.kr/2022_1.php";
+    String REQUEST_URL_GRADE_LIST[] = {REQUEST_URL_GRADE0, REQUEST_URL_GRADE1, REQUEST_URL_GRADE2, REQUEST_URL_GRADE3, REQUEST_URL_GRADE4, REQUEST_URL_GRADE5, REQUEST_URL_GRADE6};
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
     GmRecyclerAdapter adapt11, adapt12, adapt21, adapt22, adapt31, adapt32, adapt41, adapt42;
@@ -68,8 +76,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     ImageView open_gm_arrow_list[] = new ImageView[8];
     RecyclerView rc_gm_course_list[] = new RecyclerView[8];
 
-    //////////
-    LinearLayoutManager lm_list[] = new LinearLayoutManager[8];
+    /////
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +89,14 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         getData(REQUEST_URL);
 
         //
-        getData_Grade(REQUEST_URL_GRADE);
+        /*getData_Grade(REQUEST_URL_GRADE_LIST[0], 0);
+        getData_Grade(REQUEST_URL_GRADE_LIST[1], 1);
+        getData_Grade(REQUEST_URL_GRADE_LIST[2], 2);
+        getData_Grade(REQUEST_URL_GRADE_LIST[3], 3);
+        getData_Grade(REQUEST_URL_GRADE_LIST[4], 4);*/
+        for (int i=0; i<4; i++){
+            getData_Grade(REQUEST_URL_GRADE_LIST[i], i, 1);
+        }
 
         // 학점 평점 정리
         tv_totalGrade = findViewById(R.id.totalGrade);
@@ -337,7 +353,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     }
 
     /////////////////////////////////////////////////////////////////
-    private void getData_Grade(String Request_url) {
+    private void getData_Grade(String Request_url, int num_semester, int num_version) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -379,7 +395,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                     result = e.toString();
                 }
                 //파싱 기능 사용
-                RC_jsonParser_Grade(result);
+                RC_jsonParser_Grade(result, num_semester, num_version);
             }
         });
         thread.start();
@@ -387,7 +403,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
 
     //[RecyclerView] jsonParser 함수
     //웹사이트 화면을 파싱하는 함수
-    public void RC_jsonParser_Grade(String jsonString) {
+    public void RC_jsonParser_Grade(String jsonString, int num_semester, int num_version) {
 
         /*if (jsonString == null) return false;*/
 
@@ -395,7 +411,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
             JSONObject jsonObject = new JSONObject(jsonString);
 
             //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
-            JSONArray gmSemester = jsonObject.getJSONArray("result1");
+            JSONArray gmSemester = jsonObject.getJSONArray("result");
 
             //gmSemester 길이만큼 반복해서 Mapping
             for (int i = 0; i < gmSemester.length(); i++) {
@@ -404,29 +420,38 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 String course_year = gmSemesterInfo.getString("course_year");
                 String course_semester = gmSemesterInfo.getString("course_semester");
 
-                String str_sum_grade_semester, str_sum_credit_semester;
-                double sum_grade_semester, sum_credit_semester, avg_semester;
+                double sum_grade_ver1_all, sum_grade_ver1_major, sum_grade_ver1_liber;
+                double sum_credit_all, sum_credit_major, sum_credit_liber;
+                double avg_ver1_all, avg_ver1_major, avg_ver1_liber;
 
                 for (int j=0; j<8; j++){
                     int grade_res_id = getResources().getIdentifier("gm_list_totalGrade"+j, "id", getPackageName());
+                    int major_res_id = getResources().getIdentifier("gm_list_majorGrade"+j, "id", getPackageName());
+                    int liberal_res_id = getResources().getIdentifier("gm_list_liberalGrade"+j, "id", getPackageName());
                     tv_totalGrade_list[j] = findViewById(grade_res_id);
+                    tv_majorGrade_list[j] = findViewById(major_res_id);
+                    tv_liberalGrade_list[j] = findViewById(liberal_res_id);
                 }
 
-                switch (course_year) {
-                    case "2019":
-                        if(course_semester.equals("1")){
-                            str_sum_grade_semester = gmSemesterInfo.getString("multiply2019_1_1_add");
-                            str_sum_credit_semester = gmSemesterInfo.getString("sum_credit2019_1");
-                            sum_grade_semester = Double.parseDouble(str_sum_grade_semester);
-                            sum_credit_semester = Double.parseDouble(str_sum_credit_semester);
-                            avg_semester = sum_grade_semester/sum_credit_semester;
-                            tv_totalGrade_list[0].setText(String.format("%.1f", avg_semester));
-                        } else {
-                            str_sum_grade_semester = gmSemesterInfo.getString("multiply2019_2_1_add");
-                            /*tv_totalGrade_list[1].setText(str_sum_grade_semester);*/
-                        }
-                        break;
-                }
+                //[총 평점]
+                sum_grade_ver1_all = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver"+num_version+"_all"));
+                sum_credit_all = Double.parseDouble(gmSemesterInfo.getString("sum_credit_all"));
+                avg_ver1_all = sum_grade_ver1_all/sum_credit_all;
+                tv_totalGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_all));
+
+                //[전공 평점]
+                sum_grade_ver1_major = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver"+num_version+"_major"));
+                sum_credit_major = Double.parseDouble(gmSemesterInfo.getString("sum_credit_major"));
+                avg_ver1_major = sum_grade_ver1_major/sum_credit_major;
+                tv_majorGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_major));
+
+                //[교양 평점]
+                sum_grade_ver1_liber = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver"+num_version+"_liber"));
+                sum_credit_liber = Double.parseDouble(gmSemesterInfo.getString("sum_credit_liber"));
+                avg_ver1_liber = sum_grade_ver1_liber/sum_credit_liber;
+                tv_liberalGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_liber));
+
+
 
 
             }
