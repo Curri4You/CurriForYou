@@ -23,6 +23,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 //    private ArrayList<HashMap<String, String>> userDBlist = null;
     private TextView tv_user_name, tv_student_id;
     private Button btn_mainMajor, btn_doubleMajor, btn_minor;
+    Button btn_navigate_feedback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +124,9 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
 
+        Button btn_navigate_feedback = (Button) findViewById(R.id.btn_navigate_feedback);
+        btn_navigate_feedback.setOnClickListener(this);
+
     }
 
     //[하단네비] 클릭시 Activity 이동
@@ -147,6 +151,10 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.naviBtn_myPage:
                 Intent intent_myPage = new Intent(getApplicationContext(), MyPageActivity.class);
                 startActivity(intent_myPage);
+                break;
+            case R.id.btn_navigate_feedback:
+                Intent intent = new Intent(getApplicationContext(), Feedback.class);
+                startActivity(intent);
                 break;
         }
     }

@@ -39,6 +39,7 @@
         <activity android:name=".MyPage_addMajor"/>
         <activity android:name=".MyPage_infoModification"/>
         <activity android:name=".MyPage_majorModification"/>
+        <activity android:name=".Feedback"/>
     </application>
 
 </manifest>
