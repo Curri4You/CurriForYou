@@ -1,79 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="15dp"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="찜리스트"
-            android:textColor="@color/blue_5"
-            android:textSize="20dp"/>
-
-        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:weightSum="8">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:text="찜리스트"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
 
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="기본"
-                android:textAlignment="center"
-                android:background="@drawable/radio_button"
-                android:button="@null"
-                android:checked="true"
-                android:textColor="@drawable/radio_text"
-                android:layout_marginRight="10dp"/>
+<!--        <RadioGroup-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="8">-->
 
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="뇑"
-                android:textAlignment="center"
-                android:background="@drawable/radio_button"
-                android:button="@null"
-                android:checked="false"
-                android:textColor="@drawable/radio_text"
-                android:layout_marginRight="10dp"/>
+<!--            <RadioButton-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/radio_button"-->
+<!--                android:button="@null"-->
+<!--                android:checked="true"-->
+<!--                android:text="기본"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@drawable/radio_text" />-->
 
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="사보"
-                android:textAlignment="center"
-                android:background="@drawable/radio_button"
-                android:button="@null"
-                android:checked="false"
-                android:textColor="@drawable/radio_text"
-                android:layout_marginRight="10dp"/>
+<!--            <RadioButton-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/radio_button"-->
+<!--                android:button="@null"-->
+<!--                android:checked="false"-->
+<!--                android:text="뇑"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@drawable/radio_text" />-->
 
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="수학"
-                android:textAlignment="center"
-                android:background="@drawable/radio_button"
-                android:button="@null"
-                android:checked="false"
-                android:textColor="@drawable/radio_text"
-                android:layout_marginRight="10dp"/>
+<!--            <RadioButton-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/radio_button"-->
+<!--                android:button="@null"-->
+<!--                android:checked="false"-->
+<!--                android:text="사보"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@drawable/radio_text" />-->
 
-        </RadioGroup>
+<!--            <RadioButton-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/radio_button"-->
+<!--                android:button="@null"-->
+<!--                android:checked="false"-->
+<!--                android:text="수학"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@drawable/radio_text" />-->
+
+<!--        </RadioGroup>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,13 +93,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="찜한 강좌 "
-                    android:textColor="@color/gray_4"/>
+                    android:textColor="@color/gray_4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" "
-                    android:textColor="@color/gray_4"/>
+                    android:textColor="@color/gray_4" />
 
             </LinearLayout>
 
@@ -107,10 +111,10 @@
 
                 <ImageView
                     android:id="@+id/open_checkbox"
-                    android:src="@drawable/checkbox_outline"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center_vertical"
+                    android:src="@drawable/checkbox_outline"
                     app:tint="@color/gray_3" />
 
                 <TextView
@@ -118,7 +122,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 개설한 강좌만 보기"
-                    android:textColor="@color/gray_3"/>
+                    android:textColor="@color/gray_3" />
 
             </LinearLayout>
 
@@ -131,17 +135,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_dialog"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:text="전공필수"-->
-<!--            android:textSize="18sp"-->
-<!--            android:background="@color/blue_2"-->
-<!--            android:padding="8dp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:drawableRight="@drawable/below_arrow_resize">-->
-<!--        </TextView>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_dialog"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:text="전공필수"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:background="@color/blue_2"-->
+        <!--            android:padding="8dp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:drawableRight="@drawable/below_arrow_resize">-->
+        <!--        </TextView>-->
 
         <TableLayout
             android:layout_width="match_parent"
@@ -150,69 +154,63 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="13"
+                android:background="@color/blue_1"
                 android:gravity="center"
-                android:background="@color/blue_1">
+                android:weightSum="13">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="전공구분"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:textStyle="bold"></TextView>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:gravity="center"
                     android:text="교과목명"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:textStyle="bold"></TextView>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:gravity="center"
                     android:text="학수번호"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:textStyle="bold"></TextView>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:gravity="center"
                     android:text="개설여부"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:textStyle="bold"></TextView>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="학점"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:textStyle="bold"></TextView>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="찜"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:gravity="center">
-                </TextView>
+                    android:textStyle="bold"></TextView>
 
             </TableRow>
 
@@ -223,13 +221,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_jjimList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="0dp"
-                   android:layout_weight="1">
-               </LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottomNavi"
@@ -244,9 +241,9 @@
             android:id="@+id/naviBtn_curriculum"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -267,9 +264,9 @@
             android:id="@+id/naviBtn_jjimList"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -281,8 +278,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="찜리스트"
-                android:textSize="11dp"
-                android:textColor="@color/blue_3" />
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
 
         </LinearLayout>
 
@@ -290,9 +287,9 @@
             android:id="@+id/naviBtn_lectureRecommendation"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -313,9 +310,9 @@
             android:id="@+id/naviBtn_gradeManagement"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -327,8 +324,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="학점관리"
-                android:textSize="11dp"
-                android:textColor="@color/blue_3" />
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
 
         </LinearLayout>
 
@@ -336,9 +333,9 @@
             android:id="@+id/naviBtn_myPage"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="35dp"
@@ -350,8 +347,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="마이페이지"
-                android:textSize="11dp"
-                android:textColor="@color/blue_3" />
+                android:textColor="@color/blue_3"
+                android:textSize="11dp" />
 
         </LinearLayout>
 

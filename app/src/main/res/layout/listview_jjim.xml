@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="13">
+
+        <LinearLayout
+            android:id="@+id/ll_listitem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="12"
+            android:weightSum="12">
+
+            <ImageView
+                android:id="@+id/iv_major_division"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/rectangle_blue5"
+                android:paddingVertical="5dp">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_course_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:text="사이버보안개론"
+                android:textSize="15sp"
+                android:gravity="center_vertical">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_course_id"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="38473"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_is_open"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="4"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_credit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="3"
+                android:textSize="15sp"
+                android:gravity="center">
+            </TextView>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ib_heart"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="4dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="3dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_heart" />
+
+        <!--<ImageView
+            android:id="@+id/iv_heart"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/btn_heart"
+            android:layout_gravity="center_vertical"
+            >
+        </ImageView>-->
+
+    </LinearLayout>
+
+</LinearLayout>
