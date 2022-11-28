@@ -233,10 +233,10 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent_curriculum = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent_curriculum);
                 break;
-            /*case R.id.naviBtn_jjimList:
-                Intent intent_jjimList = new Intent(getApplicationContext(), MainActivity.class);
+            case R.id.naviBtn_jjimList:
+                Intent intent_jjimList = new Intent(getApplicationContext(), JjimActivity.class);
                 startActivity(intent_jjimList);
-                break;*/
+                break;
             case R.id.naviBtn_lectureRecommendation:
                 Intent intent_lectureRecommendation = new Intent(getApplicationContext(), RecomActivity.class);
                 startActivity(intent_lectureRecommendation);
