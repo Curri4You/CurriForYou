@@ -99,6 +99,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private ImageButton ib_heart;
         CheckBox cb_taken;
         boolean i = true;
+        CheckBox cb_major1, cb_major2, cb_major3;
 
         //[찜, 수강&미수강] 초기화에 사용되는 임의 count 변수
         int count_heart = 0;
@@ -121,6 +122,10 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ib_heart = itemView.findViewById(R.id.ib_heart);
             cb_taken = itemView.findViewById(R.id.cb_taken);
             ll_listitem = itemView.findViewById(R.id.ll_listitem);
+
+            cb_major1 = itemView.findViewById(R.id.cb_major1);
+            cb_major2 = itemView.findViewById(R.id.cb_major2);
+            cb_major3 = itemView.findViewById(R.id.cb_major3);
         }
 
         public void onBind(DataCourseList data, int position) {
@@ -141,33 +146,47 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             switch (data.getMajor_division()) {
                 case "1":
                     iv_major_division.setImageResource(R.drawable.major_division_1);
+                    cb_major1.setChecked(true);
+                    cb_major2.setChecked(false);
+                    cb_major3.setChecked(false);
                     break;
                 case "2":
                     iv_major_division.setImageResource(R.drawable.major_division_2);
+                    cb_major1.setChecked(false);
+                    cb_major2.setChecked(true);
+                    cb_major3.setChecked(false);
                     break;
                 case "3":
                     iv_major_division.setImageResource(R.drawable.major_division_3);
+                    cb_major1.setChecked(false);
+                    cb_major2.setChecked(false);
+                    cb_major3.setChecked(true);
                     break;
                 case "12":
                     iv_major_division.setImageResource(R.drawable.major_division_12);
+                    cb_major1.setChecked(true);
+                    cb_major2.setChecked(true);
+                    cb_major3.setChecked(false);
                     break;
                 case "23":
                     iv_major_division.setImageResource(R.drawable.major_division_23);
+                    cb_major1.setChecked(false);
+                    cb_major2.setChecked(true);
+                    cb_major3.setChecked(true);
                     break;
                 case "13":
                     iv_major_division.setImageResource(R.drawable.major_division_13);
+                    cb_major1.setChecked(true);
+                    cb_major2.setChecked(false);
+                    cb_major3.setChecked(true);
                     break;
                 case "123":
                     iv_major_division.setImageResource(R.drawable.major_division_123);
+                    cb_major1.setChecked(true);
+                    cb_major2.setChecked(true);
+                    cb_major3.setChecked(true);
                     break;
             }
-            /*if(data.getMajor_division().equals("1")){
-                iv_major_division.setImageResource(R.drawable.rectangle_blue5);
-            } else if (data.getMajor_division().equals("2")){
-                iv_major_division.setImageResource(R.drawable.rectangle_blue3);
-            } else if (data.getMajor_division().equals("3")){
-                iv_major_division.setImageResource(R.drawable.rectangle_blue1);
-            }*/
 
             //[찜] 기존 데이터에 기반한 찜 초기화
             if(data.getJjim().equals("1") && count_heart == 0){
@@ -289,7 +308,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             }
                         };
                         Context mainActivity = MainActivity.context_main;
-                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, "1", responseListener);
+                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, listData.get(position).course_year, listData.get(position).course_semester, listData.get(position).grade, "1", responseListener);
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
                         queue.add(listenedRequest);
                     } else {
@@ -314,7 +333,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             }
                         };
                         Context mainActivity = MainActivity.context_main;
-                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, "0", responseListener);
+                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, listData.get(position).course_year, listData.get(position).course_semester, listData.get(position).grade,"0", responseListener);
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
                         queue.add(listenedRequest);
                     }
