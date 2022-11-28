@@ -22,62 +22,62 @@
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
-<!--        <RadioGroup-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="25dp"-->
-<!--            android:layout_marginTop="15dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:weightSum="8">-->
+        <!--        <RadioGroup-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="25dp"-->
+        <!--            android:layout_marginTop="15dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:weightSum="8">-->
 
-<!--            <RadioButton-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/radio_button"-->
-<!--                android:button="@null"-->
-<!--                android:checked="true"-->
-<!--                android:text="기본"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textColor="@drawable/radio_text" />-->
+        <!--            <RadioButton-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginRight="10dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/radio_button"-->
+        <!--                android:button="@null"-->
+        <!--                android:checked="true"-->
+        <!--                android:text="기본"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:textColor="@drawable/radio_text" />-->
 
-<!--            <RadioButton-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/radio_button"-->
-<!--                android:button="@null"-->
-<!--                android:checked="false"-->
-<!--                android:text="뇑"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textColor="@drawable/radio_text" />-->
+        <!--            <RadioButton-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginRight="10dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/radio_button"-->
+        <!--                android:button="@null"-->
+        <!--                android:checked="false"-->
+        <!--                android:text="뇑"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:textColor="@drawable/radio_text" />-->
 
-<!--            <RadioButton-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/radio_button"-->
-<!--                android:button="@null"-->
-<!--                android:checked="false"-->
-<!--                android:text="사보"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textColor="@drawable/radio_text" />-->
+        <!--            <RadioButton-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginRight="10dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/radio_button"-->
+        <!--                android:button="@null"-->
+        <!--                android:checked="false"-->
+        <!--                android:text="사보"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:textColor="@drawable/radio_text" />-->
 
-<!--            <RadioButton-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/radio_button"-->
-<!--                android:button="@null"-->
-<!--                android:checked="false"-->
-<!--                android:text="수학"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textColor="@drawable/radio_text" />-->
+        <!--            <RadioButton-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginRight="10dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/radio_button"-->
+        <!--                android:button="@null"-->
+        <!--                android:checked="false"-->
+        <!--                android:text="수학"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:textColor="@drawable/radio_text" />-->
 
-<!--        </RadioGroup>-->
+        <!--        </RadioGroup>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -218,15 +218,17 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_jjimList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></LinearLayout>
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_jjimList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/bottomNavi"
