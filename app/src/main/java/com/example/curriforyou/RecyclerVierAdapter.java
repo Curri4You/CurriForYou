@@ -2,11 +2,14 @@ package com.example.curriforyou;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -100,6 +103,8 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         CheckBox cb_taken;
         boolean i = true;
         CheckBox cb_major1, cb_major2, cb_major3;
+        //다이얼로그
+        Dialog dialog;
 
         //[찜, 수강&미수강] 초기화에 사용되는 임의 count 변수
         int count_heart = 0;
@@ -126,6 +131,13 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             cb_major1 = itemView.findViewById(R.id.cb_major1);
             cb_major2 = itemView.findViewById(R.id.cb_major2);
             cb_major3 = itemView.findViewById(R.id.cb_major3);
+
+            ///
+            Context mainActivity = MainActivity.context_main;
+            dialog = new Dialog(mainActivity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.cb_taken_detail);
+
         }
 
         public void onBind(DataCourseList data, int position) {
@@ -312,6 +324,8 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
                         queue.add(listenedRequest);
                     } else {
+                        /////
+                        showDialog();
                         //선택되지 않은 item을 클릭 시(value == 0)
                         //클릭한 item의 position을 저장
                         selectedlistened.put(position, true);
@@ -383,6 +397,17 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 cb_taken.setText("미수강");
                 cb_taken.setChecked(false);
             }
+        }
+
+        public void showDialog() {
+            dialog.show();
+            Button btn_confirm = dialog.findViewById(R.id.btn_course_detail_confirm);
+            btn_confirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
         }
 
     }
