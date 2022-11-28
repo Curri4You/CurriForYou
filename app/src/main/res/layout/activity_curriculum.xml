@@ -315,7 +315,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-                <!--이수기준 있는 Layout10-->
+                <!--이수기준 있는 Layout11-->
                 <LinearLayout
                     android:id="@+id/ll_detail_category11"
                     android:layout_width="match_parent"
@@ -326,6 +326,188 @@
                 <!--[RecyclerView] CourseList 출력-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_curriculum_course11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout12-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout13-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category13"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout14-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category14"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout15-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout16-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category16"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout17-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category17"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout18-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category18"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout19-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category19"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout20-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category20"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout21-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category21"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout22-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category22"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout23-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--이수기준 있는 Layout24-->
+                <LinearLayout
+                    android:id="@+id/ll_detail_category24"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!--[RecyclerView] CourseList 출력-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_curriculum_course24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -47,7 +48,11 @@ import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -71,111 +76,149 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private  String REQUEST_URL4 = "http://smlee099.dothome.co.kr/CourseListTest4.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
-    RecyclerVierAdapter rc_adapter = null;
-    private ArrayList<HashMap<String, String>> courseList = null;
+    /*RecyclerVierAdapter rc_adapter = null;*/
 
     //[Dialog]
     TextView tv_dialog;
     AlertDialog.Builder builder;
     String[] course_category;
 
-    //[Search]
-    ArrayList<DataCourseList> original_list = new ArrayList<>();
-    ArrayList<DataCourseList> search_list = new ArrayList<>();
+    //[Search] Search List 초기화
     EditText et_search;
+    ArrayList<DataCourseList> search_list0 = new ArrayList<>(), search_list1 = new ArrayList<>(), search_list2 = new ArrayList<>(), search_list3 = new ArrayList<>(), search_list4 = new ArrayList<>(),
+            search_list5 = new ArrayList<>(), search_list6 = new ArrayList<>(), search_list7 = new ArrayList<>(), search_list8 = new ArrayList<>(), search_list9 = new ArrayList<>(),
+            search_list10 = new ArrayList<>(), search_list11 = new ArrayList<>(), search_list12 = new ArrayList<>(), search_list13 = new ArrayList<>(), search_list14 = new ArrayList<>(),
+            search_list15 = new ArrayList<>(), search_list16 = new ArrayList<>(), search_list17 = new ArrayList<>(), search_list18 = new ArrayList<>(), search_list19 = new ArrayList<>(),
+            search_list20 = new ArrayList<>(), search_list21 = new ArrayList<>(), search_list22 = new ArrayList<>(), search_list23 = new ArrayList<>(), search_list24 = new ArrayList<>();
+    ArrayList<DataCourseList> search_list_list[] = new ArrayList[]{search_list0, search_list1, search_list2, search_list3, search_list4,
+            search_list5, search_list6, search_list7, search_list8, search_list9,
+            search_list10, search_list11, search_list12, search_list13, search_list14,
+            search_list15, search_list16, search_list17, search_list18, search_list19,
+            search_list20, search_list21, search_list22, search_list23, search_list24};
 
-    //[Filter]
-    ArrayList<DataCourseList> filter_list = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list2 = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list3 = new ArrayList<>();
-    ArrayList<DataCourseList> filter_list4 = new ArrayList<>();
+    //[Filter] Filter List 초기화
+    ArrayList<DataCourseList> filter_list000 = new ArrayList<>(), filter_list001 = new ArrayList<>(), filter_list002 = new ArrayList<>(), filter_list003 = new ArrayList<>(), filter_list004 = new ArrayList<>(),
+            filter_list005 = new ArrayList<>(), filter_list006 = new ArrayList<>(), filter_list007 = new ArrayList<>(), filter_list008 = new ArrayList<>(), filter_list009 = new ArrayList<>(),
+            filter_list010 = new ArrayList<>(), filter_list011 = new ArrayList<>(), filter_list012 = new ArrayList<>(), filter_list013 = new ArrayList<>(), filter_list014 = new ArrayList<>(),
+            filter_list015 = new ArrayList<>(), filter_list016 = new ArrayList<>(), filter_list017 = new ArrayList<>(), filter_list018 = new ArrayList<>(), filter_list019 = new ArrayList<>(),
+            filter_list020 = new ArrayList<>(), filter_list021 = new ArrayList<>(), filter_list022 = new ArrayList<>(), filter_list023 = new ArrayList<>(), filter_list024 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list100 = new ArrayList<>(), filter_list101 = new ArrayList<>(), filter_list102 = new ArrayList<>(), filter_list103 = new ArrayList<>(), filter_list104 = new ArrayList<>(),
+            filter_list105 = new ArrayList<>(), filter_list106 = new ArrayList<>(), filter_list107 = new ArrayList<>(), filter_list108 = new ArrayList<>(), filter_list109 = new ArrayList<>(),
+            filter_list110 = new ArrayList<>(), filter_list111 = new ArrayList<>(), filter_list112 = new ArrayList<>(), filter_list113 = new ArrayList<>(), filter_list114 = new ArrayList<>(),
+            filter_list115 = new ArrayList<>(), filter_list116 = new ArrayList<>(), filter_list117 = new ArrayList<>(), filter_list118 = new ArrayList<>(), filter_list119 = new ArrayList<>(),
+            filter_list120 = new ArrayList<>(), filter_list121 = new ArrayList<>(), filter_list122 = new ArrayList<>(), filter_list123 = new ArrayList<>(), filter_list124 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list200 = new ArrayList<>(), filter_list201 = new ArrayList<>(), filter_list202 = new ArrayList<>(), filter_list203 = new ArrayList<>(), filter_list204 = new ArrayList<>(),
+            filter_list205 = new ArrayList<>(), filter_list206 = new ArrayList<>(), filter_list207 = new ArrayList<>(), filter_list208 = new ArrayList<>(), filter_list209 = new ArrayList<>(),
+            filter_list210 = new ArrayList<>(), filter_list211 = new ArrayList<>(), filter_list212 = new ArrayList<>(), filter_list213 = new ArrayList<>(), filter_list214 = new ArrayList<>(),
+            filter_list215 = new ArrayList<>(), filter_list216 = new ArrayList<>(), filter_list217 = new ArrayList<>(), filter_list218 = new ArrayList<>(), filter_list219 = new ArrayList<>(),
+            filter_list220 = new ArrayList<>(), filter_list221 = new ArrayList<>(), filter_list222 = new ArrayList<>(), filter_list223 = new ArrayList<>(), filter_list224 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list300 = new ArrayList<>(), filter_list301 = new ArrayList<>(), filter_list302 = new ArrayList<>(), filter_list303 = new ArrayList<>(), filter_list304 = new ArrayList<>(),
+            filter_list305 = new ArrayList<>(), filter_list306 = new ArrayList<>(), filter_list307 = new ArrayList<>(), filter_list308 = new ArrayList<>(), filter_list309 = new ArrayList<>(),
+            filter_list310 = new ArrayList<>(), filter_list311 = new ArrayList<>(), filter_list312 = new ArrayList<>(), filter_list313 = new ArrayList<>(), filter_list314 = new ArrayList<>(),
+            filter_list315 = new ArrayList<>(), filter_list316 = new ArrayList<>(), filter_list317 = new ArrayList<>(), filter_list318 = new ArrayList<>(), filter_list319 = new ArrayList<>(),
+            filter_list320 = new ArrayList<>(), filter_list321 = new ArrayList<>(), filter_list322 = new ArrayList<>(), filter_list323 = new ArrayList<>(), filter_list324 = new ArrayList<>();
+    ArrayList<DataCourseList> filter_list_list0[] = new ArrayList[]{
+            filter_list000, filter_list001, filter_list002, filter_list003, filter_list004,
+            filter_list005, filter_list006, filter_list007, filter_list008, filter_list009,
+            filter_list010, filter_list011, filter_list012, filter_list013, filter_list014,
+            filter_list015, filter_list016, filter_list017, filter_list018, filter_list019,
+            filter_list020, filter_list021, filter_list022, filter_list023, filter_list024};
+    ArrayList<DataCourseList> filter_list_list1[] = new ArrayList[]{
+            filter_list100, filter_list101, filter_list102, filter_list103, filter_list104,
+            filter_list105, filter_list106, filter_list107, filter_list108, filter_list109,
+            filter_list110, filter_list111, filter_list112, filter_list113, filter_list114,
+            filter_list115, filter_list116, filter_list117, filter_list118, filter_list119,
+            filter_list120, filter_list121, filter_list122, filter_list123, filter_list124};
+    ArrayList<DataCourseList> filter_list_list2[] = new ArrayList[]{
+            filter_list200, filter_list201, filter_list202, filter_list203, filter_list204,
+            filter_list205, filter_list206, filter_list207, filter_list208, filter_list209,
+            filter_list210, filter_list211, filter_list212, filter_list213, filter_list214,
+            filter_list215, filter_list216, filter_list217, filter_list218, filter_list219,
+            filter_list220, filter_list221, filter_list222, filter_list223, filter_list224};
+    ArrayList<DataCourseList> filter_list_list3[] = new ArrayList[]{
+            filter_list300, filter_list301, filter_list302, filter_list303, filter_list304,
+            filter_list305, filter_list306, filter_list307, filter_list308, filter_list309,
+            filter_list310, filter_list311, filter_list312, filter_list313, filter_list314,
+            filter_list315, filter_list316, filter_list317, filter_list318, filter_list319,
+            filter_list320, filter_list321, filter_list322, filter_list323, filter_list324};
     Button btn_filter;
 
-    //[Detail Category]
-    /*private LinearLayout ll_detail_category1;
-    private LinearLayout ll_detail_category2;
-    private LinearLayout ll_detail_category3;
-    private LinearLayout ll_detail_category4;*/
+    //////////testing
+    public static Context context_main;
+    public int var;
+
+    //[Detail Category] Adapter List & CourseList List 초기화
+    RecyclerVierAdapter rc_adapter0, rc_adapter1, rc_adapter2, rc_adapter3, rc_adapter4, rc_adapter5, rc_adapter6, rc_adapter7, rc_adapter8, rc_adapter9,
+            rc_adapter10, rc_adapter11, rc_adapter12, rc_adapter13, rc_adapter14, rc_adapter15, rc_adapter16, rc_adapter17, rc_adapter18, rc_adapter19,
+            rc_adapter20, rc_adapter21, rc_adapter22, rc_adapter23, rc_adapter24;
+    RecyclerVierAdapter rc_adapter_list[] = {rc_adapter0, rc_adapter1, rc_adapter2, rc_adapter3, rc_adapter4, rc_adapter5, rc_adapter6, rc_adapter7, rc_adapter8, rc_adapter9,
+            rc_adapter10, rc_adapter11, rc_adapter12, rc_adapter13, rc_adapter14, rc_adapter15, rc_adapter16, rc_adapter17, rc_adapter18, rc_adapter19,
+            rc_adapter20, rc_adapter21, rc_adapter22, rc_adapter23, rc_adapter24};
+
+    ArrayList<DataCourseList> course_list0 = new ArrayList<>(), course_list1 = new ArrayList<>(), course_list2 = new ArrayList<>(), course_list3 = new ArrayList<>(), course_list4 = new ArrayList<>(),
+            course_list5 = new ArrayList<>(), course_list6 = new ArrayList<>(), course_list7 = new ArrayList<>(), course_list8 = new ArrayList<>(), course_list9 = new ArrayList<>(),
+            course_list10 = new ArrayList<>(), course_list11 = new ArrayList<>(), course_list12 = new ArrayList<>(), course_list13 = new ArrayList<>(), course_list14 = new ArrayList<>(),
+            course_list15 = new ArrayList<>(), course_list16 = new ArrayList<>(), course_list17 = new ArrayList<>(), course_list18 = new ArrayList<>(), course_list19 = new ArrayList<>(),
+            course_list20 = new ArrayList<>(), course_list21 = new ArrayList<>(), course_list22 = new ArrayList<>(), course_list23 = new ArrayList<>(), course_list24 = new ArrayList<>();
+    ArrayList<DataCourseList> course_list_list[] = new ArrayList[]{course_list0, course_list1, course_list2, course_list3, course_list4, course_list5, course_list6, course_list7, course_list8, course_list9, course_list10, course_list11,
+            course_list12, course_list13, course_list14, course_list15, course_list16, course_list17, course_list18, course_list19, course_list20,
+            course_list21, course_list22, course_list23, course_list24};
+
+    TextView tv_detail_major[] = new TextView[25];
+    TextView tv_detail_category[] = new TextView[25];
+    TextView tv_detail_standard[] = new TextView[25];
+
+    String detail_major_list[] = {"[주]", "[주]", "[주]", "[주]", "[주]",
+            "[주]", "[주]", "[주]", "[주]", "[주]",
+            "[주]", "[주]", "[주]", "[주]", "[주]",
+            "[주/복]", "[주/복]", "[주/복]", "[주/복]", "[주/복]",
+            "[주]", "[복]", "[부]", "[주/복]", "[전체]"};
+    String detail_category_list[] = {"기독교와 세계", "나눔리더십 외", "사고와 표현", "대학영어", "중국어",
+            "프랑스어", "독일어", "일본어", "스페인어", "러시아어",
+            "고급영어선택", "융합기초", "큐브(인문학)", "큐브(콘텐츠)", "큐브(디자인)",
+            "전공기초(필수)", "전공기초(선택필1)", "전공기초(선택필1)", "전공기초(선택필1)", "전공기초(선택필1)",
+            "전공기초(선택)", "전공기초(선택필2)", "전공기초(뇌인지)", "전공필수", "전공선택"};
+    String detail_standard_list[] = {"1과목 3학점 이수", "1과목 2학점 이수", "2과목 5학점 이수", "1과목 3학점 이수", "2과목 4학점 이수",
+            "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수", "2과목 4학점 이수",
+            "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수",
+            "7과목 19학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수", "1과목 3학점 이수",
+            "1과목 1학점 이수", "2과목 6학점 이수", "4과목 12학점 이수", "11과목 33학점 이수", "1과목 3학점 이수"};
+
+    LayoutInflater detail_inflater0, detail_inflater1, detail_inflater2, detail_inflater3, detail_inflater4,
+            detail_inflater5, detail_inflater6, detail_inflater7, detail_inflater8, detail_inflater9,
+            detail_inflater10, detail_inflater11, detail_inflater12, detail_inflater13, detail_inflater14,
+            detail_inflater15, detail_inflater16, detail_inflater17, detail_inflater18, detail_inflater19,
+            detail_inflater20, detail_inflater21, detail_inflater22, detail_inflater23, detail_inflater24;
+    LayoutInflater detail_inflater_list[] = {detail_inflater0, detail_inflater1, detail_inflater2, detail_inflater3, detail_inflater4,
+            detail_inflater5, detail_inflater6, detail_inflater7, detail_inflater8, detail_inflater9,
+            detail_inflater10, detail_inflater11, detail_inflater12, detail_inflater13, detail_inflater14,
+            detail_inflater15, detail_inflater16, detail_inflater17, detail_inflater18, detail_inflater19,
+            detail_inflater20, detail_inflater21, detail_inflater22, detail_inflater23, detail_inflater24};
+    /* === Detail Category === */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curriculum);
 
-        LinearLayout ll_detail_category[] = new LinearLayout[12];
-        for (int i = 0; i < 12; i ++){
+        //////////////
+        context_main = this;
+
+        //-------------------------------------------------//
+        //[Detail Category]
+        LinearLayout ll_detail_category[] = new LinearLayout[25];
+        for (int i = 0; i < 25; i ++){
             int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
             ll_detail_category[i] = findViewById(res_id2);
+            detail_inflater_list[i] = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            detail_inflater_list[i].inflate(R.layout.detail_category_layout, ll_detail_category[i], true);
         }
 
-        LayoutInflater detail_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater.inflate(R.layout.detail_category_layout, ll_detail_category[0], true);
-        LayoutInflater detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category[1], true);
-        LayoutInflater detail_inflater3 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater3.inflate(R.layout.detail_category_layout, ll_detail_category[2], true);
-        LayoutInflater detail_inflater4 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater4.inflate(R.layout.detail_category_layout, ll_detail_category[3], true);
-        LayoutInflater detail_inflater5 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater5.inflate(R.layout.detail_category_layout, ll_detail_category[4], true);
-        LayoutInflater detail_inflater6 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater6.inflate(R.layout.detail_category_layout, ll_detail_category[5], true);
-        LayoutInflater detail_inflater7 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater7.inflate(R.layout.detail_category_layout, ll_detail_category[6], true);
-        LayoutInflater detail_inflater8 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater8.inflate(R.layout.detail_category_layout, ll_detail_category[7], true);
-        LayoutInflater detail_inflater9 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater9.inflate(R.layout.detail_category_layout, ll_detail_category[8], true);
-        LayoutInflater detail_inflater10 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater10.inflate(R.layout.detail_category_layout, ll_detail_category[9], true);
-        LayoutInflater detail_inflater11 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater11.inflate(R.layout.detail_category_layout, ll_detail_category[10], true);
-        LayoutInflater detail_inflater12 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater12.inflate(R.layout.detail_category_layout, ll_detail_category[11], true);
-
-        TextView tv_detail_category[] = new TextView[12];
-        TextView tv_detail_standard[] = new TextView[12];
-        TextView tv_detail_major[] = new TextView[12];
-        for (int i = 0; i < 12; i ++){
-            tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
-            tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
-            tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
-            tv_detail_major[i].setText(i+"");
-            tv_detail_category[i].setText("영역"+i);
-            tv_detail_standard[i].setText("이수"+i);
-        }
-
-
-        //[Detail Category]
-        /*ll_detail_category1 = findViewById(R.id.ll_detail_category1);
-        LayoutInflater detail_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater.inflate(R.layout.detail_category_layout, ll_detail_category1, true);
-        TextView tv_detail_category = ll_detail_category1.findViewById(R.id.tv_detail_category);
-        tv_detail_category.setText("영역1");
-
-        ll_detail_category2 = findViewById(R.id.ll_detail_category2);
-        LayoutInflater detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category2, true);
-        TextView tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-        tv_detail_category2.setText("영역2");
-
-        ll_detail_category3 = findViewById(R.id.ll_detail_category3);
-        LayoutInflater detail_inflater3 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater3.inflate(R.layout.detail_category_layout, ll_detail_category3, true);
-        TextView tv_detail_category3 = ll_detail_category3.findViewById(R.id.tv_detail_category);
-        tv_detail_category3.setText("영역3");
-
-        ll_detail_category4 = findViewById(R.id.ll_detail_category4);
-        LayoutInflater detail_inflater4 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        detail_inflater4.inflate(R.layout.detail_category_layout, ll_detail_category4, true);
-        TextView tv_detail_category4 = ll_detail_category4.findViewById(R.id.tv_detail_category);
-        tv_detail_category4.setText("영역4");*/
-
-
-
+        //-------------------------------------------------//
         //[Filter]
         RadioButton rb_all = findViewById(R.id.rb_all);
         RadioButton rb_this_semester = findViewById(R.id.rb_this_semester);
+        /*[TESTING]*/
         String filter_all = rb_all.getText().toString().toUpperCase();
         String filter_this_semester = rb_this_semester.getText().toString().toUpperCase();
 
@@ -194,22 +237,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filter_list.clear();
-                filter_list2.clear();
-                filter_list3.clear();
-                filter_list4.clear();
+                for (int i=0; i<25; i++){
+                    filter_list_list0[i].clear();
+                    filter_list_list1[i].clear();
+                    filter_list_list2[i].clear();
+                    filter_list_list3[i].clear();
+                }
 
                 //개설여부
                 if (rb_all.isChecked()){
-                    /*Toast.makeText(getApplicationContext(), filter_all, Toast.LENGTH_SHORT).show();*/
-                    for(int a = 0; a < original_list.size(); a++){
-                        filter_list.add(original_list.get(a));
+                    for (int i=0; i<25; i++){
+                        for (int j=0; j<course_list_list[i].size(); j++){
+                            filter_list_list0[i].add(course_list_list[i].get(j));
+                        }
                     }
                 } else {
-                    /*Toast.makeText(getApplicationContext(), filter_this_semester, Toast.LENGTH_SHORT).show();*/
-                    for(int a = 0; a < original_list.size(); a++){
-                        if(original_list.get(a).is_open.toLowerCase().contains("X".toLowerCase())){
-                            filter_list.add(original_list.get(a));
+                    for (int i=0; i<25; i++){
+                        for (int j=0; j<course_list_list[i].size(); j++){
+                            if(course_list_list[i].get(j).is_open.toLowerCase().contains("O".toLowerCase())){
+                                filter_list_list0[i].add(course_list_list[i].get(j));
+                            }
                         }
                     }
                 }
@@ -228,12 +275,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (cb_credit4.isChecked()){
                     credit_list[3] = "1";
                 }
-                for (int i = 0; i < 4; i++){
-                    if (credit_list[i].equals("1")){
-                        /*Toast.makeText(getApplicationContext(), (i+1)+"", Toast.LENGTH_SHORT).show();*/
-                        for(int a = 0; a < filter_list.size(); a++){
-                            if(filter_list.get(a).credit.equals((i+1)+"")){
-                                filter_list2.add(filter_list.get(a));
+                for (int k = 0; k < 4; k++){
+                    if (credit_list[k].equals("1")){
+                        for (int i=0; i<25; i++){
+                            for (int j=0; j<filter_list_list0[i].size(); j++){
+                                if(filter_list_list0[i].get(j).credit.equals((k+1)+"")){
+                                    filter_list_list1[i].add(filter_list_list0[i].get(j));
+                                }
                             }
                         }
                     }
@@ -241,37 +289,99 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //수강과목 --> ERROR
                 if (swit_taken.isChecked()){
-                    for(int a = 0; a < filter_list2.size(); a++){
-                        if(!filter_list2.get(a).course_year.equals("미정")){
-                            filter_list3.add(filter_list2.get(a));
-                        }
+                    for (int i=0; i<25; i++){
+                        filter_list_list2[i] = filter_list_list1[i];
                     }
                 } else {
-                    filter_list3 = filter_list2;
+                    /*filter_list3 = filter_list2;*/
+                    for (int i=0; i<25; i++){
+                        filter_list_list2[i] = filter_list_list1[i];
+                    }
                 }
 
                 //전공사항
-                String[] major_list = {"0", "0", "0"};
+                int[] major_list = {0, 0, 0};
                 if (cb_major1.isChecked()){
-                    major_list[0] = "1";
+                    major_list[0] = 1;
                 }
                 if (cb_major2.isChecked()){
-                    major_list[1] = "1";
+                    major_list[1] = 1;
                 }
                 if (cb_major3.isChecked()){
-                    major_list[2] = "1";
+                    major_list[2] = 1;
                 }
-                for (int i = 0; i < 3; i++){
-                    if (major_list[i].equals("1")){
-                        for(int a = 0; a < filter_list3.size(); a++){
-                            if(filter_list3.get(a).major_division.equals((i+1)+"")){
-                                filter_list4.add(filter_list3.get(a));
+                int check_sum = 0;
+                for (int i=0; i<3; i++){
+                    check_sum = check_sum + major_list[i];
+                }
+                switch (check_sum){
+                    case 1:
+                        if (major_list[0] == 1){  // 1 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    String what_major = filter_list_list2[i].get(j).major_division;
+                                    if(what_major.equals("1") || what_major.equals("12") || what_major.equals("13") || what_major.equals("123")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        } else if (major_list[1] == 1){  // 2 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    String what_major = filter_list_list2[i].get(j).major_division;
+                                    if(what_major.equals("2") || what_major.equals("12") || what_major.equals("23") || what_major.equals("123")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        } else if (major_list[2] == 1){  // 3 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    String what_major = filter_list_list2[i].get(j).major_division;
+                                    if(what_major.equals("3") || what_major.equals("13") || what_major.equals("23") || what_major.equals("123")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
                             }
                         }
-                    }
+                        break;
+                    case 2:
+                        if (major_list[0] == 1 && major_list[1] == 1){  // 1 & 2 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    if(!filter_list_list2[i].get(j).major_division.equals("3")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        } else if (major_list[0] == 1 && major_list[2] == 1) {   // 1 & 3 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    if(!filter_list_list2[i].get(j).major_division.equals("2")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        } else if (major_list[1] == 1 && major_list[2] == 1) {   // 2 & 3 선택
+                            for (int i=0; i<25; i++){
+                                for (int j=0; j<filter_list_list2[i].size(); j++){
+                                    if(!filter_list_list2[i].get(j).major_division.equals("1")){
+                                        filter_list_list3[i].add(filter_list_list2[i].get(j));
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 3:
+                        for (int i=0; i<25; i++){
+                            filter_list_list3[i] = filter_list_list2[i];
+                        }
+                        break;
                 }
-                /*Toast.makeText(getApplicationContext(), ""+credit_list[0]+credit_list[1]+credit_list[2]+credit_list[3], Toast.LENGTH_SHORT).show();*/
-                rc_adapter.setItems(filter_list4);
+
+                for (int i=0; i<25; i++){
+                    rc_adapter_list[i].setItems(filter_list_list3[i]);
+                }
             }
         });
 
@@ -292,16 +402,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 String search_text = et_search.getText().toString();
-                search_list.clear();
+                /*search_list.clear();*/
+                for (int i=0; i<25; i++){
+                    search_list_list[i].clear();
+                }
 
                 if(search_text.equals("")){
-                    rc_adapter.setItems(original_list);
+                    for (int i=0; i<25; i++){
+                        rc_adapter_list[i].setItems(course_list_list[i]);
+                    }
                 } else {
-                    for(int a=0; a < original_list.size(); a++){
-                        if(original_list.get(a).course_name.toLowerCase().contains(search_text.toLowerCase())){
-                            search_list.add(original_list.get(a));
+                    for (int i=0; i<25; i++){
+                        for (int j=0; j<course_list_list[i].size(); j++){
+                            if(course_list_list[i].get(j).course_name.toLowerCase().contains(search_text.toLowerCase())){
+                                search_list_list[i].add(course_list_list[i].get(j));
+                            }
+                            rc_adapter_list[i].setItems(search_list_list[i]);
                         }
-                        rc_adapter.setItems(search_list);
                     }
                 }
             }
@@ -323,11 +440,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //[RecyclerView] HTTP address로부터 response값 파싱 -> jsonParser 함수 사용 -> DataCourseList에 저장
         getData(REQUEST_URL1);
 
-        //[RecyclerView] HashMap 사용
-        courseList = new ArrayList<HashMap<String, String>>();
-        //[RecyclerView] 각 필드값을 매핑, from -> to
-        String[] from = new String[]{"course_name", "course_id", "is_open", "credit"};
-        int[] to = new int[]{R.id.tv_course_name, R.id.tv_course_id, R.id.tv_is_open, R.id.tv_credit};
+        for (int i=0; i<25; i++){
+            tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
+            tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
+            tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
+            tv_detail_major[i].setText(detail_major_list[i]);
+            tv_detail_category[i].setText(detail_category_list[i]);
+            tv_detail_standard[i].setText(detail_standard_list[i]);
+        }
+
+        /*이수구분을 나타내는 LinearLayout 모두 초기화(GONE)*/
+        for (int i = 0; i < 25; i ++){
+            ll_detail_category[i].setVisibility(View.GONE);
+        }
+        /*전공필수 - 4개 영역으로 분류(16번, 21번, 23번, 24번 적용)*/
+        ll_detail_category[15].setVisibility(View.VISIBLE);
+        ll_detail_category[20].setVisibility(View.VISIBLE);
+        ll_detail_category[22].setVisibility(View.VISIBLE);
+        ll_detail_category[23].setVisibility(View.VISIBLE);
 
         //[RecyclerView] 로딩이 걸릴 경우 로딩 Dialog 출력
         progressDialog = new ProgressDialog(MainActivity.this);
@@ -352,7 +482,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button btn_open = (Button)findViewById(R.id.btn_open);
         btn_open.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(drawerView);
@@ -388,7 +517,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         naviBtn_lectureRecommendation.setOnClickListener(this);
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
-
     }
 
     /////////////////
@@ -400,151 +528,101 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void CateShowDialog(){
         course_category = getResources().getStringArray(R.array.course_category);
 
-        LinearLayout ll_detail_category[] = new LinearLayout[12];
-        for (int i = 0; i < 12; i ++){
+        //[Detail Category]
+        LinearLayout ll_detail_category[] = new LinearLayout[25];
+        for (int i = 0; i < 25; i ++){
             int res_id2 = getResources().getIdentifier("ll_detail_category"+i, "id", getPackageName());
             ll_detail_category[i] = findViewById(res_id2);
         }
 
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Select Your Course Category");    //제목
-
         builder.setItems(course_category, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(), "선택된 카테고리는 "+course_category[which], Toast.LENGTH_SHORT).show();
                 tv_dialog.setText(course_category[which]);
 
-                TextView tv_detail_category[] = new TextView[12];
-                TextView tv_detail_standard[] = new TextView[12];
-                TextView tv_detail_major[] = new TextView[12];
-                for (int i = 0; i < 12; i ++){
+                //[Detail Category]
+                for (int i = 0; i < 25; i ++){
                     tv_detail_category[i] = ll_detail_category[i].findViewById(R.id.tv_detail_category);
                     tv_detail_standard[i] = ll_detail_category[i].findViewById(R.id.tv_detail_standard);
                     tv_detail_major[i] = ll_detail_category[i].findViewById(R.id.tv_detail_major);
-                    tv_detail_major[i].setText("[주]");
+                    tv_detail_major[i].setText(detail_major_list[i]);
+                    tv_detail_category[i].setText(detail_category_list[i]);
+                    tv_detail_standard[i].setText(detail_standard_list[i]);
                 }
+
                 //선택된 카테고리에 따라 다른 URL에서 파싱
                 switch (which){
                     case 0:     //전공필수
                         init();
                         getData(REQUEST_URL1);
 
+                        //[Detail Category]
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(GONE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
                         /*전공필수 - 4개 영역으로 분류*/
-                        for (int i = 0; i < 4; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_major0[] = {"[주/복]", "[주]", "[부]", "[주/복]"};
-                        String str_category0[] = {"전공기초(필수)", "전공기초(선택)", "전공기초", "전공필수"};
-                        String str_standard0[] = {"[7과목 19학점 이수]", "[1과목 1학점 이수]", "[4과목 6학점 이수]",
-                                "[11과목 33학점 이수]"};
-
-                        /*4개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 4; i ++){
-                            tv_detail_major[i].setText(str_major0[i]);
-                            tv_detail_category[i].setText(str_category0[i]);
-                            tv_detail_standard[i].setText(str_standard0[i]);
-                        }
-
-
-
-                        /*ll_detail_category1.setVisibility(View.VISIBLE);
-                        ll_detail_category1 = findViewById(R.id.ll_detail_category1);
-                        LayoutInflater detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category2, true);
-                        TextView tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-                        tv_detail_category2.setText("second");*/
+                        ll_detail_category[15].setVisibility(View.VISIBLE);
+                        ll_detail_category[20].setVisibility(View.VISIBLE);
+                        ll_detail_category[22].setVisibility(View.VISIBLE);
+                        ll_detail_category[23].setVisibility(View.VISIBLE);
                         break;
                     case 1:     //전공선택
                         init();
                         getData(REQUEST_URL2);
 
+                        //[Detail Category]
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
-                        /*전공선택 - 6개 영역으로 분류*/
-                        for (int i = 0; i < 6; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_major1[] = {"[주/복]", "[주/복]", "[주/복]", "[주/복]", "[복]", "[전체]"};
-                        String str_category1[] = {"전공기초(선택필1)", "전공기초(선택필1)", "전공기초(선택필1)",
-                                "전공기초(선택필1)", "전공기초(선택필2)", "전공선택"};
-                        String str_standard1[] = {"[1과목 3학점 이수]", "[1과목 3학점 이수]", "[1과목 3학점 이수]",
-                                "[1과목 3학점 이수]", "[2과목 6학점 이수]", "[1과목 3학점 이수]"};
-
-                        /*6개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 6; i ++){
-                            tv_detail_major[i].setText(str_major1[i]);
-                            tv_detail_category[i].setText(str_category1[i]);
-                            tv_detail_standard[i].setText(str_standard1[i]);
-                        }
-
-                        /*ll_detail_category2.setVisibility(View.VISIBLE);
-                        ll_detail_category2 = findViewById(R.id.ll_detail_category2);
-                        detail_inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        detail_inflater2.inflate(R.layout.detail_category_layout, ll_detail_category2, true);
-                        tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-                        tv_detail_category2.setText("second");*/
+                        /*전공필수 - 6개 영역으로 분류*/
+                        ll_detail_category[16].setVisibility(View.VISIBLE);
+                        ll_detail_category[17].setVisibility(View.VISIBLE);
+                        ll_detail_category[18].setVisibility(View.VISIBLE);
+                        ll_detail_category[19].setVisibility(View.VISIBLE);
+                        ll_detail_category[21].setVisibility(View.VISIBLE);
+                        ll_detail_category[24].setVisibility(View.VISIBLE);
                         break;
                     case 2:     //교양필수
                         init();
                         getData(REQUEST_URL3);
 
+                        //[Detail Category]
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
-                        /*교양필수 - 3개 영역으로 분류*/
-                        for (int i = 0; i < 3; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_category2[] = {"기독교와 세계", "사고와 표현", "대학영어"};
-                        String str_standard2[] = {"[1과목 3학점 이수]", "[2과목 5학점 이수]", "[1과목 3학점 이수]"};
-
-                        /*3개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 3; i ++){
-                            tv_detail_category[i].setText(str_category2[i]);
-                            tv_detail_standard[i].setText(str_standard2[i]);
-                        }
-
-                        //성공했던 코드
-                        /*ll_detail_category2.setVisibility(View.VISIBLE);
-                        ll_detail_category2 = findViewById(R.id.ll_detail_category2);
-                        tv_detail_category2 = ll_detail_category2.findViewById(R.id.tv_detail_category);
-                        tv_detail_category2.setText("third");*/
+                        /*전공필수 - 3개 영역으로 분류*/
+                        ll_detail_category[0].setVisibility(View.VISIBLE);
+                        ll_detail_category[2].setVisibility(View.VISIBLE);
+                        ll_detail_category[3].setVisibility(View.VISIBLE);
                         break;
                     case 3:     //교양선택
                         init();
                         getData(REQUEST_URL4);
 
+                        //[Detail Category]
                         /*이수구분을 나타내는 LinearLayout 모두 초기화(INVISIBLE)*/
-                        for (int i = 0; i < 12; i ++){
+                        for (int i = 0; i < 25; i ++){
                             ll_detail_category[i].setVisibility(View.GONE);
                         }
-                        /*교양필수 - 12개 영역으로 분류*/
-                        for (int i = 0; i < 12; i ++){
-                            ll_detail_category[i].setVisibility(View.VISIBLE);
-                        }
-
-                        String str_category3[] = {"나눔리더십 외", "중국어", "프랑스어", "독일어", "일본어", "스페인어", "러시아어", "고급영어선택", "융합기초", "큐브(인문학)", "큐브(콘텐츠)", "큐브(디자인)"};
-                        String str_standard3[] = {"[1과목 2학점 이수]", "[2과목 4학점 이수]", "[2과목 4학점 이수]",
-                                "[2과목 4학점 이수]", "[2과목 4학점 이수]", "[2과목 4학점 이수]", "[2과목 4학점 이수]",
-                                "[1과목 3학점 이수]", "[1과목 3학점 이수]", "[1과목 3학점 이수]", "[1과목 3학점 이수]",
-                                "[1과목 3학점 이수]"};
-
-                        /*12개의 각 영역에 category와 standard 값 적용*/
-                        for (int i = 0; i < 12; i ++){
-                            tv_detail_category[i].setText(str_category3[i]);
-                            tv_detail_standard[i].setText(str_standard3[i]);
-                        }
+                        /*전공필수 - 12개 영역으로 분류*/
+                        ll_detail_category[1].setVisibility(View.VISIBLE);
+                        ll_detail_category[4].setVisibility(View.VISIBLE);
+                        ll_detail_category[5].setVisibility(View.VISIBLE);
+                        ll_detail_category[6].setVisibility(View.VISIBLE);
+                        ll_detail_category[7].setVisibility(View.VISIBLE);
+                        ll_detail_category[8].setVisibility(View.VISIBLE);
+                        ll_detail_category[9].setVisibility(View.VISIBLE);
+                        ll_detail_category[10].setVisibility(View.VISIBLE);
+                        ll_detail_category[11].setVisibility(View.VISIBLE);
+                        ll_detail_category[12].setVisibility(View.VISIBLE);
+                        ll_detail_category[13].setVisibility(View.VISIBLE);
+                        ll_detail_category[14].setVisibility(View.VISIBLE);
                         break;
                 }
             }
@@ -554,20 +632,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //-------------------------------------------------//
+    //[Detail Category]
+    RecyclerView recyclerView_list[] = new RecyclerView[25];
+    LinearLayoutManager linearLayoutManager0 = new LinearLayoutManager(this), linearLayoutManager1 = new LinearLayoutManager(this), linearLayoutManager2 = new LinearLayoutManager(this), linearLayoutManager3 = new LinearLayoutManager(this), linearLayoutManager4 = new LinearLayoutManager(this),
+            linearLayoutManager5 = new LinearLayoutManager(this), linearLayoutManager6 = new LinearLayoutManager(this), linearLayoutManager7 = new LinearLayoutManager(this), linearLayoutManager8 = new LinearLayoutManager(this), linearLayoutManager9 = new LinearLayoutManager(this),
+            linearLayoutManager10 = new LinearLayoutManager(this), linearLayoutManager11 = new LinearLayoutManager(this), linearLayoutManager12 = new LinearLayoutManager(this), linearLayoutManager13 = new LinearLayoutManager(this), linearLayoutManager14 = new LinearLayoutManager(this),
+            linearLayoutManager15 = new LinearLayoutManager(this), linearLayoutManager16 = new LinearLayoutManager(this), linearLayoutManager17 = new LinearLayoutManager(this), linearLayoutManager18 = new LinearLayoutManager(this), linearLayoutManager19 = new LinearLayoutManager(this),
+            linearLayoutManager20 = new LinearLayoutManager(this), linearLayoutManager21 = new LinearLayoutManager(this), linearLayoutManager22 = new LinearLayoutManager(this), linearLayoutManager23 = new LinearLayoutManager(this), linearLayoutManager24 = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager[] = {linearLayoutManager0, linearLayoutManager1, linearLayoutManager2, linearLayoutManager3, linearLayoutManager4, linearLayoutManager5, linearLayoutManager6, linearLayoutManager7, linearLayoutManager8, linearLayoutManager9, linearLayoutManager10,
+            linearLayoutManager11, linearLayoutManager12, linearLayoutManager13, linearLayoutManager14, linearLayoutManager15, linearLayoutManager16, linearLayoutManager17, linearLayoutManager18, linearLayoutManager19, linearLayoutManager20,
+            linearLayoutManager21, linearLayoutManager22, linearLayoutManager23, linearLayoutManager24};
+
     //[RecyclerView] 커리큘럼 화면의 RecyclerView에 Adapter를 연결하는 함수 & 초기화 함수
+    //[Detail Category]
     private void init(){
-        RecyclerView rc_curriculum_course1 = findViewById(R.id.rc_curriculum_course1);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rc_curriculum_course1.setLayoutManager(linearLayoutManager);
-
-        original_list.clear();
-        filter_list.clear();
-        filter_list2.clear();
-        filter_list3.clear();
-        filter_list4.clear();
-        rc_adapter = new RecyclerVierAdapter(original_list);
-        rc_curriculum_course1.setAdapter(rc_adapter);
+        for(int i=0; i<25; i++){
+            course_list_list[i].clear();
+        }
+        for (int i=0; i<25; i++){
+            int res_id = getResources().getIdentifier("rc_curriculum_course"+i, "id", getPackageName());
+            recyclerView_list[i] = findViewById(res_id);
+            recyclerView_list[i].setLayoutManager(linearLayoutManager[i]);
+            rc_adapter_list[i] = new RecyclerVierAdapter(course_list_list[i]);
+            recyclerView_list[i].setAdapter(rc_adapter_list[i]);
+        }
     }
 
     //[RecyclerView]
@@ -582,12 +670,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         public void handleMessage(Message msg){
             MainActivity mainActivity = weakReference.get();
-
             if(mainActivity != null){
                 switch (msg.what){
                     case LOAD_SUCCESS:
                         mainActivity.progressDialog.dismiss();
-                        mainActivity.rc_adapter.notifyDataSetChanged();
+                        //[Detail Category]
+                        for (int i=0; i<25; i++){
+                            mainActivity.rc_adapter_list[i].notifyDataSetChanged();
+                        }
                         break;
                 }
             }
@@ -660,13 +750,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //전체 행렬 중 DB 내용 부분을 jsonArray 형태로 저장
             JSONArray course = jsonObject.getJSONArray("CourseListTest");
 
-            courseList.clear();
-
             //course의 길이만큼 반복해서 Mapping
             for (int i = 0; i < course.length(); i++) {
                 JSONObject courseInfo = course.getJSONObject(i);
 
                 String major_division = courseInfo.getString("major_division");
+                String detail_category = courseInfo.getString("detail_category");
                 String course_name = courseInfo.getString("course_name");
                 String course_id = courseInfo.getString("course_id");
 
@@ -686,11 +775,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     course_semester = course_semester + "학기";
                 }
 
-
                 String grade = courseInfo.getString("grade");
-
                 String category = courseInfo.getString("category");
-
 
                 String pre_course_id = courseInfo.getString("pre_course_name");
                 String pre_course_name = courseInfo.getString("pre_course_id");
@@ -702,16 +788,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     course_year = "미정";
                     course_semester = "미정";
                     grade = "미정";
-                } else{
-
                 }
 
-
-                DataCourseList data = new DataCourseList(major_division, course_name,
+                DataCourseList data = new DataCourseList(major_division, detail_category, course_name,
                         course_id, is_open, credit, jjim, course_year, course_semester,
                         grade, category, pre_course_name, pre_course_id, pre_is_open,
                         pre_credit, pre_jjim);
-                rc_adapter.addItem(data);
+                //[Detail Category]
+                for (int j=0; j<25; j++){
+                    if (detail_category.equals((j+1)+"")){
+                        rc_adapter_list[j].addItem(data);
+                    }
+                }
                 /*HashMap<String, String> photoinfoMap = new HashMap<String, String>();
                 photoinfoMap.put("course_name", course_name);
                 photoinfoMap.put("subject_id", subject_id);

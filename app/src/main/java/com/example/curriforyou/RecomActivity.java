@@ -8,6 +8,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +31,7 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
     //[RecyclerView] 리스트 출력을 위한 parameter
     private static final String TAG = "imagesearchexample";
     //URL
-    private  String REQUEST_URL = "http://smlee099.dothome.co.kr/recommendation.php";
+    private String REQUEST_URL = "http://smlee099.dothome.co.kr/recommendation.php";
 
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
@@ -40,10 +41,23 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
     ArrayList<DataRecomList> recom_list2 = new ArrayList<>();
     ArrayList<DataRecomList> recom_list3 = new ArrayList<>();
 
+    //////[TEST]
+    /*TextView tv_test;*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recom);
+
+        /////////////[TEST]
+        /*String sum_str = "18.0";
+        String credit_str = "3";
+        double sum = Double.parseDouble(sum_str);
+        int credit = Integer.parseInt(credit_str);
+        double avg;
+        avg = sum / (double) credit;
+        tv_test = findViewById(R.id.tv_test);
+        tv_test.setText(avg+"");*/
 
         init();
         getData(REQUEST_URL);

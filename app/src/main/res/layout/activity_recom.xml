@@ -54,6 +54,7 @@
 
             <!--교양(융복합) 추천-->
             <TextView
+                android:id="@+id/tv_test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="교양(융복합) 추천"
