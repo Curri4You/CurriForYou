@@ -96,17 +96,17 @@
                     android:textColor="@color/gray_4" />
 
                 <TextView
+                    android:id="@+id/tv_jjim_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" "
+                    android:text="17"
                     android:textColor="@color/gray_4" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
                 android:gravity="right">
 
                 <ImageView
@@ -130,103 +130,151 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="40dp">
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/tv_dialog"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="40dp"-->
-        <!--            android:text="전공필수"-->
-        <!--            android:textSize="18sp"-->
-        <!--            android:background="@color/blue_2"-->
-        <!--            android:padding="8dp"-->
-        <!--            android:textStyle="bold"-->
-        <!--            android:drawableRight="@drawable/below_arrow_resize">-->
-        <!--        </TextView>-->
-
-        <TableLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="wrap_content"
+            android:background="@color/blue_2"
+            android:gravity="center"
+            android:weightSum="13">
 
-            <TableRow
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/blue_1"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:weightSum="13">
+                android:text="전공구분"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="전공구분"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:text="교과목명"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:gravity="center"
-                    android:text="교과목명"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="학수번호"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="학수번호"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="개설여부"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="개설여부"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="학점"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="학점"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="찜"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="찜"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
+        </TableRow>
 
-            </TableRow>
-
-        </TableLayout>
-
-    </LinearLayout>
+    </TableLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_jjimList"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_dialog1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/blue_1"
+                android:padding="8dp"
+                android:text="전공필수"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_jjimList1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_dialog2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/blue_1"
+                android:padding="8dp"
+                android:text="전공선택"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_jjimList2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_dialog3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/blue_1"
+                android:padding="8dp"
+                android:text="교양필수"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_jjimList3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_dialog4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/blue_1"
+                android:padding="8dp"
+                android:text="교양선택"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_jjimList4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_jjimList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
