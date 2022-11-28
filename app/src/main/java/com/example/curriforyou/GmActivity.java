@@ -11,9 +11,11 @@ import android.os.Message;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -55,12 +57,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     private ArrayList<HashMap<String, String>> gmSemesterList = null;
     private Context context;
 
-    /*double gradeToDouble, totalGrade, totalGrade11, totalGrade12, totalGrade21, totalGrade22, totalGrade31, totalGrade32, totalGrade41, totalGrade42;
-    double majorGrade, majorGrade11, majorGrade12, majorGrade21, majorGrade22, majorGrade31, majorGrade32, majorGrade41, majorGrade42;
-    double liberalGrade, liberalGrade11, liberalGrade12, liberalGrade21, liberalGrade22, liberalGrade31, liberalGrade32, liberalGrade41, liberalGrade42;
-    int totalCredit, credit11, credit12, credit21, credit22, credit31, credit32, credit41, credit42;
-    int majorCredit, majorCredit11, majorCredit12, majorCredit21, majorCredit22, majorCredit31, majorCredit32, majorCredit41, majorCredit42;
-    int liberalCredit, liberalCredit11, liberalCredit12, liberalCredit21, liberalCredit22, liberalCredit31, liberalCredit32, liberalCredit41, liberalCredit42;*/
     boolean open_or_not = false;
 
     //[Grade] 총평점, 전공평점, 교양평점 TextView들을 담을 list 정의
@@ -76,8 +72,10 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     ImageView open_gm_arrow_list[] = new ImageView[8];
     RecyclerView rc_gm_course_list[] = new RecyclerView[8];
 
-    /////
-
+    //[Change Grade] 만점 변환하는 라디오 그룹
+    RadioGroup rg_grade_version;
+    //[Change Grade] 현재 4.3 / 4.5 / 100 중 어떤 상태인지를 저장하는 변수
+    int version = 1;
 
 
     @Override
@@ -85,27 +83,25 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gm_home);
 
+        //-------------------------------------------------//
+        //[Listened Course] 수강한 리스트를 리사이클러뷰로 띄움
         init();
         getData(REQUEST_URL);
 
-        //
-        /*getData_Grade(REQUEST_URL_GRADE_LIST[0], 0);
-        getData_Grade(REQUEST_URL_GRADE_LIST[1], 1);
-        getData_Grade(REQUEST_URL_GRADE_LIST[2], 2);
-        getData_Grade(REQUEST_URL_GRADE_LIST[3], 3);
-        getData_Grade(REQUEST_URL_GRADE_LIST[4], 4);*/
-        for (int i=0; i<4; i++){
+        //-------------------------------------------------//
+        //[Grade] 평점 계산해서 띄우는 함수 매 semester마다 적용
+        for (int i=0; i<7; i++){
             getData_Grade(REQUEST_URL_GRADE_LIST[i], i, 1);
         }
 
-        // 학점 평점 정리
+        //[Grade] 학점 평점 정리
         tv_totalGrade = findViewById(R.id.totalGrade);
         tv_majorGrade = findViewById(R.id.majorGrade);
         tv_liberalGrade = findViewById(R.id.liberalGrade);
         tv_tillNowCredit = findViewById(R.id.tillNowCredit);
         pb_total_grade = findViewById(R.id.pb_total_grade);
 
-        // 학기별 평점 정리
+        //[Grade] 학기별 평점 정리
         for (int i=0; i<8; i++){
             int grade_res_id = getResources().getIdentifier("gm_list_totalGrade"+i, "id", getPackageName());
             int major_res_id = getResources().getIdentifier("gm_list_majorGrade"+i, "id", getPackageName());
@@ -122,13 +118,110 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
             rc_gm_course_list[i].setVisibility(View.GONE);
         }
 
-        //[하단바] Button parameter 선언
-        LinearLayout naviBtn_curriculum = findViewById(R.id.naviBtn_curriculum);
-        LinearLayout naviBtn_jjimList = findViewById(R.id.naviBtn_jjimList);
-        LinearLayout naviBtn_lectureRecommendation = findViewById(R.id.naviBtn_lectureRecommendation);
-        LinearLayout naviBtn_gradeManagement = findViewById(R.id.naviBtn_gradeManagement);
-        LinearLayout naviBtn_myPage = findViewById(R.id.naviBtn_myPage);
+        //-------------------------------------------------//
+        //[Change Grade] 버튼 변경 시 동작
+        rg_grade_version = findViewById(R.id.rg_grade_version);
+        rg_grade_version.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId){
 
+                //[Change Grade] 총 평점 변환
+                double grade_pre_all0=0, grade_pre_all1=0, grade_pre_all2=0, grade_pre_all3=0, grade_pre_all4=0, grade_pre_all5=0, grade_pre_all6=0;
+                double grade_post_all0=0, grade_post_all1=0, grade_post_all2=0, grade_post_all3=0, grade_post_all4=0, grade_post_all5=0, grade_post_all6=0;
+                double grade_pre_all[] = {grade_pre_all0, grade_pre_all1, grade_pre_all2, grade_pre_all3, grade_pre_all4, grade_pre_all5, grade_pre_all6};
+                double grade_post_all[] = {grade_post_all0, grade_post_all1, grade_post_all2, grade_post_all3, grade_post_all4, grade_post_all5, grade_post_all6};
+
+                //[Change Grade] 전공 평점 변환
+                double grade_pre_major0=0, grade_pre_major1=0, grade_pre_major2=0, grade_pre_major3=0, grade_pre_major4=0, grade_pre_major5=0, grade_pre_major6=0;
+                double grade_post_major0=0, grade_post_major1=0, grade_post_major2=0, grade_post_major3=0, grade_post_major4=0, grade_post_major5=0, grade_post_major6=0;
+                double grade_pre_major[] = {grade_pre_major0, grade_pre_major1, grade_pre_major2, grade_pre_major3, grade_pre_major4, grade_pre_major5, grade_pre_major6};
+                double grade_post_major[] = {grade_post_major0, grade_post_major1, grade_post_major2, grade_post_major3, grade_post_major4, grade_post_major5, grade_post_major6};
+
+                //[Change Grade] 교양 평점 변환
+                double grade_pre_liber0=0, grade_pre_liber1=0, grade_pre_liber2=0, grade_pre_liber3=0, grade_pre_liber4=0, grade_pre_liber5=0, grade_pre_liber6=0;
+                double grade_post_liber0=0, grade_post_liber1=0, grade_post_liber2=0, grade_post_liber3=0, grade_post_liber4=0, grade_post_liber5=0, grade_post_liber6=0;
+                double grade_pre_liber[] = {grade_pre_liber0, grade_pre_liber1, grade_pre_liber2, grade_pre_liber3, grade_pre_liber4, grade_pre_liber5, grade_pre_liber6};
+                double grade_post_liber[] = {grade_post_liber0, grade_post_liber1, grade_post_liber2, grade_post_liber3, grade_post_liber4, grade_post_liber5, grade_post_liber6};
+
+                //[Change Grade] 평점 초기값 저장
+                for (int i=0; i<7; i++){
+                    grade_pre_all[i] = Double.parseDouble(tv_totalGrade_list[i].getText().toString());
+                    grade_pre_major[i] = Double.parseDouble(tv_majorGrade_list[i].getText().toString());
+                    grade_pre_liber[i] = Double.parseDouble(tv_liberalGrade_list[i].getText().toString());
+                }
+
+                switch (checkedId){
+                    case R.id.rb_grade_version0:
+                        if (version == 2){
+                            for (int i=0; i<7; i++){
+                                grade_post_all[i] = grade_pre_all[i] * 4.3 / 4.5;
+                                grade_post_major[i] = grade_pre_major[i] * 4.3 / 4.5;
+                                grade_post_liber[i] = grade_pre_liber[i] * 4.3 / 4.5;
+                                tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
+                                tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
+                                tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                            }
+                        } else if (version == 3){
+                            for (int i=0; i<7; i++){
+                                grade_post_all[i] = grade_pre_all[i] * 4.3 / 100;
+                                grade_post_major[i] = grade_pre_major[i] * 4.3 / 100;
+                                grade_post_liber[i] = grade_pre_liber[i] * 4.3 / 100;
+                                tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
+                                tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
+                                tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                            }
+                        }
+                        version = 1;
+                        break;
+                    case R.id.rb_grade_version1:    // 4.5 버튼을 클릭했을 경우
+                        if (version == 1){
+                            for (int i=0; i<7; i++){
+                                grade_post_all[i] = grade_pre_all[i] * 4.5 / 4.3;
+                                grade_post_major[i] = grade_pre_major[i] * 4.5 / 4.3;
+                                grade_post_liber[i] = grade_pre_liber[i] * 4.5 / 4.3;
+                                tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
+                                tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
+                                tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                            }
+                        } else if (version == 3){
+                            for (int i=0; i<7; i++){
+                                grade_post_all[i] = grade_pre_all[i] * 4.5 / 100;
+                                grade_post_major[i] = grade_pre_major[i] * 4.5 / 100;
+                                grade_post_liber[i] = grade_pre_liber[i] * 4.5 / 100;
+                                tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
+                                tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
+                                tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                            }
+                        }
+                        version = 2;
+                        break;
+                    case R.id.rb_grade_version2:
+                        if (version == 1){
+                            for (int i=0; i<7; i++){
+                                grade_post_all[i] = grade_pre_all[i] * 100 / 4.3;
+                                grade_post_major[i] = grade_pre_major[i] * 100 / 4.3;
+                                grade_post_liber[i] = grade_pre_liber[i] * 100 / 4.3;
+                                tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
+                                tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
+                                tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                            }
+                        } else if (version == 2){
+                            for (int i=0; i<7; i++){
+                                grade_post_all[i] = grade_pre_all[i] * 100 / 4.5;
+                                grade_post_major[i] = grade_pre_major[i] * 100 / 4.5;
+                                grade_post_liber[i] = grade_pre_liber[i] * 100 / 4.5;
+                                tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
+                                tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
+                                tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                            }
+                        }
+                        version = 3;
+                        break;
+                }
+            }
+        });
+
+        //-------------------------------------------------//
         //[RecyclerView] HashMap 사용
         gmSemesterList = new ArrayList<HashMap<String, String>>();
 
@@ -137,22 +230,18 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         progressDialog.setMessage("Please wait ...");
         progressDialog.show();
 
-        /*tv_totalGrade.setText(String.valueOf(totalGrade));
-        tv_majorGrade.setText(String.valueOf(majorGrade));
-        tv_liberalGrade.setText(String.valueOf(liberalGrade));
-        tv_tillNowCredit.setText(String.valueOf(totalCredit));
-        pb_total_grade.setProgress(totalCredit);*/
-
-        /*for (int i=0; i<8; i++){
-            tv_totalGrade_list[i].setText("0");
-            tv_majorGrade_list[i].setText("0");
-            tv_liberalGrade_list[i].setText("0");
-        }*/
-
         for (int i=0; i<8; i++){
             open_gm_arrow_list[i].setOnClickListener(this);
             open_gm_semester_list[i].setOnClickListener(this);
         }
+
+        //-------------------------------------------------//
+        //[하단바] Button parameter 선언
+        LinearLayout naviBtn_curriculum = findViewById(R.id.naviBtn_curriculum);
+        LinearLayout naviBtn_jjimList = findViewById(R.id.naviBtn_jjimList);
+        LinearLayout naviBtn_lectureRecommendation = findViewById(R.id.naviBtn_lectureRecommendation);
+        LinearLayout naviBtn_gradeManagement = findViewById(R.id.naviBtn_gradeManagement);
+        LinearLayout naviBtn_myPage = findViewById(R.id.naviBtn_myPage);
 
         naviBtn_curriculum.setOnClickListener(this);
         naviBtn_jjimList.setOnClickListener(this);
@@ -352,7 +441,8 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         return false;
     }
 
-    /////////////////////////////////////////////////////////////////
+    //-------------------------------------------------//
+    //[Grade] DB에서 값 가져와서 setText하는 함수
     private void getData_Grade(String Request_url, int num_semester, int num_version) {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -401,7 +491,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         thread.start();
     }
 
-    //[RecyclerView] jsonParser 함수
     //웹사이트 화면을 파싱하는 함수
     public void RC_jsonParser_Grade(String jsonString, int num_semester, int num_version) {
 
@@ -450,9 +539,6 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 sum_credit_liber = Double.parseDouble(gmSemesterInfo.getString("sum_credit_liber"));
                 avg_ver1_liber = sum_grade_ver1_liber/sum_credit_liber;
                 tv_liberalGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_liber));
-
-
-
 
             }
         } catch (JSONException e) {
