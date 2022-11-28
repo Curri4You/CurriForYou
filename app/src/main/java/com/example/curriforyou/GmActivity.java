@@ -49,6 +49,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
     private String REQUEST_URL_GRADE4 = "http://smlee099.dothome.co.kr/2021_1.php";
     private String REQUEST_URL_GRADE5 = "http://smlee099.dothome.co.kr/2021_2.php";
     private String REQUEST_URL_GRADE6 = "http://smlee099.dothome.co.kr/2022_1.php";
+    private String REQUEST_URL_TOTAL = "http://smlee099.dothome.co.kr/total_semesters.php";
     String REQUEST_URL_GRADE_LIST[] = {REQUEST_URL_GRADE0, REQUEST_URL_GRADE1, REQUEST_URL_GRADE2, REQUEST_URL_GRADE3, REQUEST_URL_GRADE4, REQUEST_URL_GRADE5, REQUEST_URL_GRADE6};
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
@@ -93,6 +94,7 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
         for (int i=0; i<7; i++){
             getData_Grade(REQUEST_URL_GRADE_LIST[i], i, 1);
         }
+        getData_Grade(REQUEST_URL_TOTAL, 0, 1);
 
         //[Grade] 학점 평점 정리
         tv_totalGrade = findViewById(R.id.totalGrade);
@@ -143,12 +145,20 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 double grade_pre_liber[] = {grade_pre_liber0, grade_pre_liber1, grade_pre_liber2, grade_pre_liber3, grade_pre_liber4, grade_pre_liber5, grade_pre_liber6};
                 double grade_post_liber[] = {grade_post_liber0, grade_post_liber1, grade_post_liber2, grade_post_liber3, grade_post_liber4, grade_post_liber5, grade_post_liber6};
 
+                //
+                double grade_pre_all_total = 0, grade_pre_major_total=0, grade_pre_liber_total;
+                double grade_post_all_total = 0, grade_post_major_total=0, grade_post_liber_total=0;
+
                 //[Change Grade] 평점 초기값 저장
                 for (int i=0; i<7; i++){
                     grade_pre_all[i] = Double.parseDouble(tv_totalGrade_list[i].getText().toString());
                     grade_pre_major[i] = Double.parseDouble(tv_majorGrade_list[i].getText().toString());
                     grade_pre_liber[i] = Double.parseDouble(tv_liberalGrade_list[i].getText().toString());
                 }
+
+                grade_pre_all_total = Double.parseDouble(tv_totalGrade.getText().toString());
+                grade_pre_major_total = Double.parseDouble(tv_majorGrade.getText().toString());
+                grade_pre_liber_total = Double.parseDouble(tv_liberalGrade.getText().toString());
 
                 switch (checkedId){
                     case R.id.rb_grade_version0:
@@ -160,6 +170,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                                 tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
                                 tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
                                 tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                                grade_post_all_total = grade_pre_all_total * 4.3 / 4.5;
+                                grade_post_major_total = grade_pre_major_total * 4.3 / 4.5;
+                                grade_post_liber_total = grade_pre_liber_total * 4.3 / 4.5;
                             }
                         } else if (version == 3){
                             for (int i=0; i<7; i++){
@@ -169,8 +182,14 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                                 tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
                                 tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
                                 tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                                grade_post_all_total = grade_pre_all_total * 4.3 / 100;
+                                grade_post_major_total = grade_pre_major_total * 4.3 / 100;
+                                grade_post_liber_total = grade_pre_liber_total * 4.3 / 100;
                             }
                         }
+                        tv_totalGrade.setText(String.format("%.2f", grade_post_all_total));
+                        tv_majorGrade.setText(String.format("%.2f", grade_post_major_total));
+                        tv_liberalGrade.setText(String.format("%.2f", grade_post_liber_total));
                         version = 1;
                         break;
                     case R.id.rb_grade_version1:    // 4.5 버튼을 클릭했을 경우
@@ -182,6 +201,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                                 tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
                                 tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
                                 tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                                grade_post_all_total = grade_pre_all_total * 4.5 / 4.3;
+                                grade_post_major_total = grade_pre_major_total * 4.5 / 4.3;
+                                grade_post_liber_total = grade_pre_liber_total * 4.5 / 4.3;
                             }
                         } else if (version == 3){
                             for (int i=0; i<7; i++){
@@ -191,8 +213,14 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                                 tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
                                 tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
                                 tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                                grade_post_all_total = grade_pre_all_total * 4.5 / 100;
+                                grade_post_major_total = grade_pre_major_total * 4.5 / 100;
+                                grade_post_liber_total = grade_pre_liber_total * 4.5 / 100;
                             }
                         }
+                        tv_totalGrade.setText(String.format("%.2f", grade_post_all_total));
+                        tv_majorGrade.setText(String.format("%.2f", grade_post_major_total));
+                        tv_liberalGrade.setText(String.format("%.2f", grade_post_liber_total));
                         version = 2;
                         break;
                     case R.id.rb_grade_version2:
@@ -204,6 +232,9 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                                 tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
                                 tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
                                 tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                                grade_post_all_total = grade_pre_all_total * 100 / 4.3;
+                                grade_post_major_total = grade_pre_major_total * 100 / 4.3;
+                                grade_post_liber_total = grade_pre_liber_total * 100 / 4.3;
                             }
                         } else if (version == 2){
                             for (int i=0; i<7; i++){
@@ -213,8 +244,14 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                                 tv_totalGrade_list[i].setText(String.format("%.2f", grade_post_all[i]));
                                 tv_majorGrade_list[i].setText(String.format("%.2f", grade_post_major[i]));
                                 tv_liberalGrade_list[i].setText(String.format("%.2f", grade_post_liber[i]));
+                                grade_post_all_total = grade_pre_all_total * 100 / 4.5;
+                                grade_post_major_total = grade_pre_major_total * 100 / 4.5;
+                                grade_post_liber_total = grade_pre_liber_total * 100 / 4.5;
                             }
                         }
+                        tv_totalGrade.setText(String.format("%.2f", grade_post_all_total));
+                        tv_majorGrade.setText(String.format("%.2f", grade_post_major_total));
+                        tv_liberalGrade.setText(String.format("%.2f", grade_post_liber_total));
                         version = 3;
                         break;
                 }
@@ -513,32 +550,56 @@ public class GmActivity extends AppCompatActivity implements View.OnClickListene
                 double sum_credit_all, sum_credit_major, sum_credit_liber;
                 double avg_ver1_all, avg_ver1_major, avg_ver1_liber;
 
-                for (int j=0; j<8; j++){
-                    int grade_res_id = getResources().getIdentifier("gm_list_totalGrade"+j, "id", getPackageName());
-                    int major_res_id = getResources().getIdentifier("gm_list_majorGrade"+j, "id", getPackageName());
-                    int liberal_res_id = getResources().getIdentifier("gm_list_liberalGrade"+j, "id", getPackageName());
-                    tv_totalGrade_list[j] = findViewById(grade_res_id);
-                    tv_majorGrade_list[j] = findViewById(major_res_id);
-                    tv_liberalGrade_list[j] = findViewById(liberal_res_id);
+                if (!course_year.equals("course_year")) {
+                    for (int j = 0; j < 8; j++) {
+                        int grade_res_id = getResources().getIdentifier("gm_list_totalGrade" + j, "id", getPackageName());
+                        int major_res_id = getResources().getIdentifier("gm_list_majorGrade" + j, "id", getPackageName());
+                        int liberal_res_id = getResources().getIdentifier("gm_list_liberalGrade" + j, "id", getPackageName());
+                        tv_totalGrade_list[j] = findViewById(grade_res_id);
+                        tv_majorGrade_list[j] = findViewById(major_res_id);
+                        tv_liberalGrade_list[j] = findViewById(liberal_res_id);
+                    }
+
+                    //[총 평점]
+                    sum_grade_ver1_all = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver" + num_version + "_all"));
+                    sum_credit_all = Double.parseDouble(gmSemesterInfo.getString("sum_credit_all"));
+                    avg_ver1_all = sum_grade_ver1_all / sum_credit_all;
+                    tv_totalGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_all));
+
+                    //[전공 평점]
+                    sum_grade_ver1_major = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver" + num_version + "_major"));
+                    sum_credit_major = Double.parseDouble(gmSemesterInfo.getString("sum_credit_major"));
+                    avg_ver1_major = sum_grade_ver1_major / sum_credit_major;
+                    tv_majorGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_major));
+
+                    //[교양 평점]
+                    sum_grade_ver1_liber = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver" + num_version + "_liber"));
+                    sum_credit_liber = Double.parseDouble(gmSemesterInfo.getString("sum_credit_liber"));
+                    avg_ver1_liber = sum_grade_ver1_liber / sum_credit_liber;
+                    tv_liberalGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_liber));
+                } else {
+                    tv_totalGrade = findViewById(R.id.totalGrade);
+                    tv_majorGrade = findViewById(R.id.majorGrade);
+                    tv_liberalGrade = findViewById(R.id.liberalGrade);
+
+                    //[총 평점]
+                    sum_grade_ver1_all = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver" + num_version + "_all"));
+                    sum_credit_all = Double.parseDouble(gmSemesterInfo.getString("sum_credit_all"));
+                    avg_ver1_all = sum_grade_ver1_all / sum_credit_all;
+                    tv_totalGrade.setText(String.format("%.2f", avg_ver1_all));
+
+                    //[전공 평점]
+                    sum_grade_ver1_major = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver" + num_version + "_major"));
+                    sum_credit_major = Double.parseDouble(gmSemesterInfo.getString("sum_credit_major"));
+                    avg_ver1_major = sum_grade_ver1_major / sum_credit_major;
+                    tv_majorGrade.setText(String.format("%.2f", avg_ver1_major));
+
+                    //[교양 평점]
+                    sum_grade_ver1_liber = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver" + num_version + "_liber"));
+                    sum_credit_liber = Double.parseDouble(gmSemesterInfo.getString("sum_credit_liber"));
+                    avg_ver1_liber = sum_grade_ver1_liber / sum_credit_liber;
+                    tv_liberalGrade.setText(String.format("%.2f", avg_ver1_liber));
                 }
-
-                //[총 평점]
-                sum_grade_ver1_all = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver"+num_version+"_all"));
-                sum_credit_all = Double.parseDouble(gmSemesterInfo.getString("sum_credit_all"));
-                avg_ver1_all = sum_grade_ver1_all/sum_credit_all;
-                tv_totalGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_all));
-
-                //[전공 평점]
-                sum_grade_ver1_major = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver"+num_version+"_major"));
-                sum_credit_major = Double.parseDouble(gmSemesterInfo.getString("sum_credit_major"));
-                avg_ver1_major = sum_grade_ver1_major/sum_credit_major;
-                tv_majorGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_major));
-
-                //[교양 평점]
-                sum_grade_ver1_liber = Double.parseDouble(gmSemesterInfo.getString("sum_grade_ver"+num_version+"_liber"));
-                sum_credit_liber = Double.parseDouble(gmSemesterInfo.getString("sum_credit_liber"));
-                avg_ver1_liber = sum_grade_ver1_liber/sum_credit_liber;
-                tv_liberalGrade_list[num_semester].setText(String.format("%.2f", avg_ver1_liber));
 
             }
         } catch (JSONException e) {
