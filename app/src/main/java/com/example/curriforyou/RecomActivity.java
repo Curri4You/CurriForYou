@@ -216,8 +216,11 @@ public class RecomActivity extends AppCompatActivity implements View.OnClickList
                 String category = courseInfo.getString("category");
                 String course_name = courseInfo.getString("course_name");
                 String open_major = courseInfo.getString("open_major");
+
                 String credit = courseInfo.getString("credit");
-                String pre_course_name = courseInfo.getString("pre_course_name");
+                credit = credit + "학점";
+
+                String pre_course_name = courseInfo.getString("course_id_to");
                 String jjim = courseInfo.getString("jjim");
 
                 DataRecomList data = new DataRecomList(category, course_name,

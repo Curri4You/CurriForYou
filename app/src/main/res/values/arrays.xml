@@ -8,6 +8,37 @@
         <item>연계전공</item>
     </string-array>
 
+    //*수강연도*//
+    <string-array name="spin_course_year">
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+    </string-array>
+
+    //*수강학기*//
+    <string-array name="spin_course_semester">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    //*학점*//
+    <string-array name="spin_grade">
+        <item>A+</item>
+        <item>A0</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B0</item>
+        <item>B-</item>
+        <item>C+</item>
+        <item>C0</item>
+        <item>C-</item>
+        <item>D+</item>
+        <item>D0</item>
+        <item>D-</item>
+        <item>F</item>
+    </string-array>
+
     //*************************************************//
 
     //*단과대학*//
