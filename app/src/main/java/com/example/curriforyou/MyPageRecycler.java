@@ -13,21 +13,15 @@ import java.util.ArrayList;
 
 public class MyPageRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<DataMpList> listData = null;
-    private Context context;
-
-    MyPageRecycler(ArrayList<DataMpList> list) {
-        listData = list;
-    }
+    private ArrayList<DataMpList> listData = new ArrayList<>();
 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_mpbutton, parent, false);
         return new ViewHolderMpList(view);
     }
 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolderMpList) holder).onBind(listData.get(position), position);
+        ((ViewHolderMpList) holder).onBind(listData.get(position));
     }
 
     public int getItemCount() {
@@ -42,7 +36,6 @@ public class MyPageRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         Button btn_major;
         private DataMpList data;
-        private int position;
 
         public ViewHolderMpList(@NonNull View itemView) {
             super(itemView);
@@ -50,9 +43,8 @@ public class MyPageRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder
             btn_major = itemView.findViewById(R.id.btn_major);
         }
 
-        public void onBind(DataMpList data, int position) {
+        public void onBind(DataMpList data) {
             this.data = data;
-            this.position = position;
 
             btn_major.setText(data.getMajor_name());
         }

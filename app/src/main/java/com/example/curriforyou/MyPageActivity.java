@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -29,20 +31,36 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 //    final static private String URL = "http://smlee099.dothome.co.kr/my_change_ok.php";
 //    private ArrayList<HashMap<String, String>> userDBlist = null;
     private TextView tv_user_name, tv_student_id;
-    private Button btn_major1, btn_major2, btn_major3;
-    ImageView btn_minus;
+//    private Button btn_major1, btn_major2, btn_major3;
+//    ImageView btn_minus;
+    ImageView btn_infoModification;
+    ImageView btn_addMajor;
+    TextView logout;
     Button btn_navigate_feedback;
+    MyPageRecycler adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
+        init();
+        getData();
+
         tv_user_name = (TextView) findViewById(R.id.tv_user_name);
         tv_student_id = (TextView) findViewById(R.id.tv_student_id);
-        btn_major1 = (Button) findViewById(R.id.btn_major1);
-        btn_major2 = (Button) findViewById(R.id.btn_major2);
-        btn_major3 = (Button) findViewById(R.id.btn_major3);
-        btn_minus = (ImageView) findViewById(R.id.btn_minus);
+//        btn_major1 = (Button) findViewById(R.id.btn_major1);
+//        btn_major2 = (Button) findViewById(R.id.btn_major2);
+//        btn_major3 = (Button) findViewById(R.id.btn_major3);
+//        btn_minus = (ImageView) findViewById(R.id.btn_minus);
+        btn_infoModification = (ImageView) findViewById(R.id.btn_infoModification);
+        btn_addMajor = (ImageView) findViewById(R.id.btn_addMajor);
+        logout = (TextView) findViewById(R.id.logout);
+        btn_navigate_feedback = (Button) findViewById(R.id.btn_navigate_feedback);
+        LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
+        LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
+        LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
+        LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
+        LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
 
 //        //[DB] 이름, 학번, 주전공 이름 띄우기
 //        Intent intent = getIntent();
@@ -53,96 +71,59 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 //        tv_student_id.setText(student_id);
 //        btn_mainMajor.setText(major_name);
 
-//        // 프로필 사진
-//        ImageView user_photo = (ImageView) findViewById(R.id.user_photo);
-//        user_photo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(), "프로필 사진 변경", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        // 전공수정버튼 (연필)
-        ImageView btn_infoModification = (ImageView) findViewById(R.id.btn_infoModification);
-        btn_infoModification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage_infoModification.class);
-                startActivity(intent);
-            }
-        });
-
-        // 주전공버튼
-        Button btn_major1 = (Button) findViewById(R.id.btn_major1);
-        btn_major1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
-                startActivity(intent); //액티비티 이동
-            }
-        });
-
-        // 복수전공버튼
-        Button btn_major2 = (Button) findViewById(R.id.btn_major2);
-        btn_major2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
-                startActivity(intent); //액티비티 이동
-            }
-        });
-
-        // 부전공버튼
-        Button btn_major3 = (Button) findViewById(R.id.btn_major3);
-        btn_major3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
-                startActivity(intent);
-            }
-        });
-        // 전공추가 버튼
-        ImageView btn_addMajor = (ImageView) findViewById(R.id.btn_addMajor);
-        btn_addMajor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage_addMajor.class);
-                startActivity(intent);
-            }
-        });
-        // 로그아웃 버튼
-        TextView logout = (TextView) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent); //액티비티 이동만 구현해둔 상태
-            }
-        });
-
-        //[하단네비] 버튼 정의
-        LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
-        LinearLayout naviBtn_jjimList = (LinearLayout) findViewById(R.id.naviBtn_jjimList);
-        LinearLayout naviBtn_lectureRecommendation = (LinearLayout) findViewById(R.id.naviBtn_lectureRecommendation);
-        LinearLayout naviBtn_gradeManagement = (LinearLayout) findViewById(R.id.naviBtn_gradeManagement);
-        LinearLayout naviBtn_myPage = (LinearLayout) findViewById(R.id.naviBtn_myPage);
-        //[하단네비]
+        btn_navigate_feedback.setOnClickListener(this);
+//        btn_minus.setOnClickListener(this);
+        btn_infoModification.setOnClickListener(this);
+//        btn_major1.setOnClickListener(this);
+//        btn_major2.setOnClickListener(this);
+//        btn_major3.setOnClickListener(this);
+        btn_addMajor.setOnClickListener(this);
+        logout.setOnClickListener(this);
         naviBtn_curriculum.setOnClickListener(this);
         naviBtn_jjimList.setOnClickListener(this);
         naviBtn_lectureRecommendation.setOnClickListener(this);
         naviBtn_gradeManagement.setOnClickListener(this);
         naviBtn_myPage.setOnClickListener(this);
+    }
 
-        Button btn_navigate_feedback = (Button) findViewById(R.id.btn_navigate_feedback);
-        ImageView btn_minus = (ImageView) findViewById(R.id.btn_minus);
-        btn_navigate_feedback.setOnClickListener(this);
-        btn_minus.setOnClickListener(this);
+    private void init(){
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager lm = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(lm);
+        adapter = new MyPageRecycler();
+        recyclerView.setAdapter(adapter);
+    }
 
+    private void getData(){
+        DataMpList data = new DataMpList("사이버보안전공");
+        adapter.addItem(data);
+        data = new DataMpList("컴퓨터공학전공");
+        adapter.addItem(data);
+        data = new DataMpList("뇌인지과학전공");
+        adapter.addItem(data);
     }
 
     //[하단네비] 클릭시 Activity 이동
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btn_infoModification:
+                Intent intent_infoModi = new Intent(getApplicationContext(), MyPage_infoModification.class);
+                startActivity(intent_infoModi);
+                break;
+//            case R.id.btn_major1:
+//            case R.id.btn_major2:
+//            case R.id.btn_major3:
+//                Intent intent_btnMajor = new Intent(getApplicationContext(), MyPage_majorModification.class);
+//                startActivity(intent_btnMajor);
+//                break;
+            case R.id.btn_addMajor:
+                Intent intent_addMajor = new Intent(getApplicationContext(), MyPage_addMajor.class);
+                startActivity(intent_addMajor);
+                break;
+            case R.id.logout:
+                Intent intent_logout = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent_logout);
+                break;
             case R.id.naviBtn_curriculum:
                 Intent intent_curriculum = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent_curriculum);
@@ -167,10 +148,10 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(getApplicationContext(), Feedback.class);
                 startActivity(intent);
                 break;
-            case R.id.btn_minus:
-                btn_major3.setVisibility(GONE);
-                btn_minus.setVisibility(GONE);
-                 break;
+//            case R.id.btn_minus:
+//                btn_major3.setVisibility(GONE);
+//                btn_minus.setVisibility(GONE);
+//                 break;
         }
     }
 
