@@ -20,6 +20,14 @@ import android.app.Dialog;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -127,48 +135,85 @@ public class GmRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    String str_grade = "";
+
                     switch (v.getId()) {
                         case R.id.btn_grade_confirm:
                             if (rb_A.isChecked() && rb_plus.isChecked()) {
+                                str_grade = "A+";
                                 rb_grade.setText("A+");
                                 grade_dialog.dismiss();
                             } else if (rb_A.isChecked() && rb_zero.isChecked()) {
+                                str_grade = "A";
                                 rb_grade.setText("A");
                                 grade_dialog.dismiss();
                             } else if (rb_A.isChecked() && rb_minus.isChecked()) {
+                                str_grade = "A-";
                                 rb_grade.setText("A-");
                                 grade_dialog.dismiss();
                             } else if (rb_B.isChecked() && rb_plus.isChecked()) {
+                                str_grade = "B+";
                                 rb_grade.setText("B+");
                                 grade_dialog.dismiss();
                             } else if (rb_B.isChecked() && rb_zero.isChecked()) {
+                                str_grade = "B";
                                 rb_grade.setText("B");
                                 grade_dialog.dismiss();
                             } else if (rb_B.isChecked() && rb_minus.isChecked()) {
+                                str_grade = "B-";
                                 rb_grade.setText("B-");
                                 grade_dialog.dismiss();
                             } else if (rb_C.isChecked() && rb_plus.isChecked()) {
+                                str_grade = "C+";
                                 rb_grade.setText("C+");
                                 grade_dialog.dismiss();
                             } else if (rb_C.isChecked() && rb_zero.isChecked()) {
+                                str_grade = "C";
                                 rb_grade.setText("C");
                                 grade_dialog.dismiss();
                             } else if (rb_C.isChecked() && rb_minus.isChecked()) {
+                                str_grade = "C-";
                                 rb_grade.setText("C-");
                                 grade_dialog.dismiss();
                             } else if (rb_D.isChecked() && rb_plus.isChecked()) {
+                                str_grade = "D+";
                                 rb_grade.setText("D+");
                                 grade_dialog.dismiss();
                             } else if (rb_D.isChecked() && rb_zero.isChecked()) {
+                                str_grade = "D";
                                 rb_grade.setText("D");
                                 grade_dialog.dismiss();
                             } else if (rb_D.isChecked() && rb_minus.isChecked()) {
+                                str_grade = "D-";
                                 rb_grade.setText("D-");
                                 grade_dialog.dismiss();
                             } else {
+                                str_grade = "F";
                                 rb_grade.setText("F");
                                 grade_dialog.dismiss();
                             }
+                            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response);
+                                        boolean success = jsonObject.getBoolean("success");
+                                        if(success) {
+                                            Toast.makeText(context.getApplicationContext(),"등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                    } catch (JSONException e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            };
+                            Context mainActivity = MainActivity.context_main;
+                            GradeRequest gradeRequest = new GradeRequest(listData.get(position).course_id, str_grade, responseListener);
+                            RequestQueue queue = Volley.newRequestQueue(mainActivity);
+                            queue.add(gradeRequest);
                             break;
                     }
                 }

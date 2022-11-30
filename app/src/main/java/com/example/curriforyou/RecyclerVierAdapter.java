@@ -9,11 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +36,6 @@ import java.util.Locale;
 public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     //adapter에 들어갈 list
-    /*private ArrayList<DataCourseList> listData = new ArrayList<>();*/
     private ArrayList<DataCourseList> listData = null;
     private Context context;
 
@@ -51,6 +53,8 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private SparseBooleanArray selectedhearts = new SparseBooleanArray();
     //[수강&미수강] 수강/미수강 상태를 저장하는 boolean array
     private SparseBooleanArray selectedlistened = new SparseBooleanArray();
+    ////
+    private SparseBooleanArray selecteddetails = new SparseBooleanArray();
 
     //생성자
     RecyclerVierAdapter(ArrayList<DataCourseList> list){
@@ -100,11 +104,11 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private DataCourseList data;
         private int position;
         private ImageButton ib_heart;
-        CheckBox cb_taken;
+        CheckBox cb_taken, cb_major1, cb_major2, cb_major3;
         boolean i = true;
-        CheckBox cb_major1, cb_major2, cb_major3;
         //다이얼로그
         Dialog dialog;
+
 
         //[찜, 수강&미수강] 초기화에 사용되는 임의 count 변수
         int count_heart = 0;
@@ -320,7 +324,7 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             }
                         };
                         Context mainActivity = MainActivity.context_main;
-                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, listData.get(position).course_year, listData.get(position).course_semester, listData.get(position).grade, "1", responseListener);
+                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, "1", responseListener);
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
                         queue.add(listenedRequest);
                     } else {
@@ -347,9 +351,10 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             }
                         };
                         Context mainActivity = MainActivity.context_main;
-                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, listData.get(position).course_year, listData.get(position).course_semester, listData.get(position).grade,"0", responseListener);
+                        ListenedRequest listenedRequest = new ListenedRequest(listData.get(position).course_id, "0", responseListener);
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
                         queue.add(listenedRequest);
+
                     }
                     notifyItemChanged(position);
                     break;
@@ -391,22 +396,93 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if(isExpanded){
                 cb_taken.setText("수강");
                 cb_taken.setChecked(true);
+                tv_course_year.setText("2021");
+                tv_course_semester.setText("1");
+                tv_grade.setText("A0");
             } else {
                 cb_taken.setText("미수강");
                 cb_taken.setChecked(false);
+                tv_course_year.setText("미정");
+                tv_course_semester.setText("미정");
+                tv_grade.setText("미정");
             }
         }
 
+
+        String choice_year="", choice_semester="", choice_grade="";
+
         public void showDialog() {
             dialog.show();
+
+            ArrayAdapter<CharSequence> spin_yearAdapter, spin_semesterAdapter, spin_gradeAdapter;
+            /*String choice_year="", choice_semester="", choice_grade="";*/
+
+            Spinner spin_course_year = dialog.findViewById(R.id.spin_course_year);
+            Spinner spin_course_semester = dialog.findViewById(R.id.spin_course_semester);
+            Spinner spin_grade = dialog.findViewById(R.id.spin_grade);
+
+            Context mainActivity = MainActivity.context_main;
+
+            spin_yearAdapter = ArrayAdapter.createFromResource(mainActivity, R.array.spin_course_year, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            spin_yearAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            spin_course_year.setAdapter(spin_yearAdapter);
+            spin_course_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    choice_year = spin_yearAdapter.getItem(position).toString();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            spin_semesterAdapter = ArrayAdapter.createFromResource(mainActivity, R.array.spin_course_semester, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            spin_semesterAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            spin_course_semester.setAdapter(spin_semesterAdapter);
+            spin_course_semester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    choice_semester = spin_semesterAdapter.getItem(position).toString();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            spin_gradeAdapter = ArrayAdapter.createFromResource(mainActivity, R.array.spin_grade, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            spin_gradeAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            spin_grade.setAdapter(spin_gradeAdapter);
+            spin_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    choice_grade = spin_gradeAdapter.getItem(position).toString();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
             Button btn_confirm = dialog.findViewById(R.id.btn_course_detail_confirm);
             btn_confirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String course_year = choice_year;
+                    String course_semester = choice_semester;
+                    String course_grade = choice_grade;
+
+
+
                     dialog.dismiss();
                 }
             });
         }
+
 
     }
 
