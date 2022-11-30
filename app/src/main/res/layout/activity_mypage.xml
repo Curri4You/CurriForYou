@@ -100,90 +100,13 @@
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"/>
 
-                <!--            <LinearLayout-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:gravity="center"-->
-                <!--                android:orientation="vertical">-->
-
-                <!--                <LinearLayout-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:orientation="horizontal">-->
-
-                <!--                    <Button-->
-                <!--                        android:id="@+id/btn_major1"-->
-                <!--                        android:layout_width="200dp"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:text="@string/mainMajor"-->
-                <!--                        android:textColor="@color/blue_5"-->
-                <!--                        android:backgroundTint="@color/blue_2"/>-->
-
-                <!--                    <ImageView-->
-                <!--                        android:src="@drawable/minus"-->
-                <!--                        android:layout_width="30dp"-->
-                <!--                        android:layout_height="30dp"-->
-                <!--                        android:layout_marginLeft="10dp"-->
-                <!--                        android:layout_gravity="center"-->
-                <!--                        app:tint="@color/blue_2" />-->
-
-                <!--                </LinearLayout>-->
-
-                <!--                <LinearLayout-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:orientation="horizontal">-->
-
-                <!--                    <Button-->
-                <!--                        android:id="@+id/btn_major2"-->
-                <!--                        android:layout_width="200dp"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:text="컴퓨터공학전공"-->
-                <!--                        android:textColor="@color/blue_5"-->
-                <!--                        android:backgroundTint="@color/blue_2"/>-->
-
-                <!--                    <ImageView-->
-                <!--                        android:src="@drawable/minus"-->
-                <!--                        android:layout_width="30dp"-->
-                <!--                        android:layout_height="30dp"-->
-                <!--                        android:layout_marginLeft="10dp"-->
-                <!--                        android:layout_gravity="center"-->
-                <!--                        app:tint="@color/blue_2" />-->
-
-                <!--                </LinearLayout>-->
-
-                <!--                <LinearLayout-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:orientation="horizontal">-->
-
-                <!--                    <Button-->
-                <!--                        android:id="@+id/btn_major3"-->
-                <!--                        android:layout_width="200dp"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:text="뇌인지과학전공"-->
-                <!--                        android:textColor="@color/blue_5"-->
-                <!--                        android:backgroundTint="@color/blue_2"/>-->
-
-                <!--                    <ImageView-->
-                <!--                        android:id="@+id/btn_minus"-->
-                <!--                        android:src="@drawable/minus"-->
-                <!--                        android:layout_width="30dp"-->
-                <!--                        android:layout_height="30dp"-->
-                <!--                        android:layout_marginLeft="10dp"-->
-                <!--                        android:layout_gravity="center"-->
-                <!--                        app:tint="@color/blue_2" />-->
-
-                <!--                </LinearLayout>-->
-
-                <!--            </LinearLayout>-->
-
-                <ImageView
+                <ImageButton
                     android:id="@+id/btn_addMajor"
-                    android:layout_width="50dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/add_box"
-                    app:tint="@color/blue_5" />
+                    android:layout_width="246dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/add"
+                    android:backgroundTint="@color/blue_5"
+                    app:tint="@color/blue_1"/>
 
             </LinearLayout>
 
@@ -196,7 +119,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -249,6 +173,15 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_navigate_feedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="feedback"
+                    android:textColor="@color/blue_5"
+                    android:backgroundTint="@color/white"/>
 
             </LinearLayout>
 
@@ -428,13 +361,6 @@
                         android:textSize="13dp" />
 
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_navigate_feedback"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="피드백"/>
 
             </LinearLayout>
 

@@ -141,6 +141,9 @@ public class MyPage_addMajor extends AppCompatActivity implements View.OnClickLi
         switch(view.getId()){
             case R.id.btn_submit:
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("col_name", choice_col);
+                intent.putExtra("major_name", choice_maj);
+                intent.putExtra("check_addMajor", true);
                 startActivity(intent);
                 break;
         }

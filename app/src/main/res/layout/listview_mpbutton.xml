@@ -21,7 +21,7 @@
             android:backgroundTint="@color/blue_2"/>
 
         <ImageView
-            android:id="@+id/btn_delMajor"
+            android:id="@+id/iv_delMajor"
             android:src="@drawable/minus"
             android:layout_width="30dp"
             android:layout_height="30dp"

@@ -156,16 +156,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="20dp">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:paddingTop="15dp"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
             android:text="소속종합대학"
-            android:textColor="@color/blue_5"
+            android:textColor="@color/blue_1"
+            android:background="@color/blue_3"
             android:textStyle="bold"></TextView>
         <!--        <TextView-->
         <!--            android:layout_width="match_parent"-->
@@ -181,15 +182,18 @@
         <Spinner
             android:id="@+id/spin_university_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:paddingTop="15dp"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
             android:text="소속단과대학"
-            android:textColor="@color/blue_5"
+            android:textColor="@color/blue_1"
+            android:background="@color/blue_3"
             android:textStyle="bold"></TextView>
         <!--        <TextView-->
         <!--            android:layout_width="match_parent"-->
@@ -205,15 +209,18 @@
         <Spinner
             android:id="@+id/spin_college_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:paddingTop="15dp"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
             android:text="전공"
-            android:textColor="@color/blue_5"
+            android:textColor="@color/blue_1"
+            android:background="@color/blue_3"
             android:textStyle="bold"></TextView>
         <!--        <TextView-->
         <!--            android:layout_width="match_parent"-->
@@ -229,7 +236,8 @@
         <Spinner
             android:id="@+id/spin_major_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp" />
 
     </LinearLayout>
 

@@ -13,10 +13,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,13 +30,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MyPageActivity extends AppCompatActivity implements View.OnClickListener {
-//    final static private String URL = "http://smlee099.dothome.co.kr/my_change_ok.php";
+    //    final static private String URL = "http://smlee099.dothome.co.kr/my_change_ok.php";
 //    private ArrayList<HashMap<String, String>> userDBlist = null;
     private TextView tv_user_name, tv_student_id;
-//    private Button btn_major1, btn_major2, btn_major3;
-//    ImageView btn_minus;
     ImageView btn_infoModification;
-    ImageView btn_addMajor;
+    ImageButton btn_addMajor;
     TextView logout;
     Button btn_navigate_feedback;
     MyPageRecycler adapter;
@@ -46,14 +46,24 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         init();
         getData();
 
+        Intent intent = getIntent();
+        String major_name = intent.getStringExtra("major_name");
+        String col_name = intent.getStringExtra("col_name");
+        Boolean check_addMajor = intent.getBooleanExtra("check_addMajor", false);
+        if (check_addMajor) {
+            if (major_name.equals("전체")) {
+                DataMpList data = new DataMpList(col_name);
+                adapter.addItem(data);
+            } else {
+                DataMpList data = new DataMpList(major_name);
+                adapter.addItem(data);
+            }
+        }
+
         tv_user_name = (TextView) findViewById(R.id.tv_user_name);
         tv_student_id = (TextView) findViewById(R.id.tv_student_id);
-//        btn_major1 = (Button) findViewById(R.id.btn_major1);
-//        btn_major2 = (Button) findViewById(R.id.btn_major2);
-//        btn_major3 = (Button) findViewById(R.id.btn_major3);
-//        btn_minus = (ImageView) findViewById(R.id.btn_minus);
         btn_infoModification = (ImageView) findViewById(R.id.btn_infoModification);
-        btn_addMajor = (ImageView) findViewById(R.id.btn_addMajor);
+        btn_addMajor = (ImageButton) findViewById(R.id.btn_addMajor);
         logout = (TextView) findViewById(R.id.logout);
         btn_navigate_feedback = (Button) findViewById(R.id.btn_navigate_feedback);
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
@@ -72,11 +82,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 //        btn_mainMajor.setText(major_name);
 
         btn_navigate_feedback.setOnClickListener(this);
-//        btn_minus.setOnClickListener(this);
         btn_infoModification.setOnClickListener(this);
-//        btn_major1.setOnClickListener(this);
-//        btn_major2.setOnClickListener(this);
-//        btn_major3.setOnClickListener(this);
         btn_addMajor.setOnClickListener(this);
         logout.setOnClickListener(this);
         naviBtn_curriculum.setOnClickListener(this);
@@ -86,7 +92,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         naviBtn_myPage.setOnClickListener(this);
     }
 
-    private void init(){
+    private void init() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(lm);
@@ -94,7 +100,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         recyclerView.setAdapter(adapter);
     }
 
-    private void getData(){
+    private void getData() {
         DataMpList data = new DataMpList("사이버보안전공");
         adapter.addItem(data);
         data = new DataMpList("컴퓨터공학전공");
@@ -110,12 +116,6 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intent_infoModi = new Intent(getApplicationContext(), MyPage_infoModification.class);
                 startActivity(intent_infoModi);
                 break;
-//            case R.id.btn_major1:
-//            case R.id.btn_major2:
-//            case R.id.btn_major3:
-//                Intent intent_btnMajor = new Intent(getApplicationContext(), MyPage_majorModification.class);
-//                startActivity(intent_btnMajor);
-//                break;
             case R.id.btn_addMajor:
                 Intent intent_addMajor = new Intent(getApplicationContext(), MyPage_addMajor.class);
                 startActivity(intent_addMajor);
@@ -148,10 +148,6 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(getApplicationContext(), Feedback.class);
                 startActivity(intent);
                 break;
-//            case R.id.btn_minus:
-//                btn_major3.setVisibility(GONE);
-//                btn_minus.setVisibility(GONE);
-//                 break;
         }
     }
 
