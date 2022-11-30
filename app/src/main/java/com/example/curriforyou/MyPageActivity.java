@@ -6,6 +6,9 @@
 
 package com.example.curriforyou;
 
+import static android.view.View.GONE;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +29,8 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 //    final static private String URL = "http://smlee099.dothome.co.kr/my_change_ok.php";
 //    private ArrayList<HashMap<String, String>> userDBlist = null;
     private TextView tv_user_name, tv_student_id;
-    private Button btn_mainMajor, btn_doubleMajor, btn_minor;
+    private Button btn_major1, btn_major2, btn_major3;
+    ImageView btn_minus;
     Button btn_navigate_feedback;
 
     @Override
@@ -31,9 +39,10 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_mypage);
         tv_user_name = (TextView) findViewById(R.id.tv_user_name);
         tv_student_id = (TextView) findViewById(R.id.tv_student_id);
-        btn_mainMajor = (Button) findViewById(R.id.btn_mainMajor);
-        btn_doubleMajor = (Button) findViewById(R.id.btn_doubleMajor);
-        btn_minor = (Button) findViewById(R.id.btn_minor);
+        btn_major1 = (Button) findViewById(R.id.btn_major1);
+        btn_major2 = (Button) findViewById(R.id.btn_major2);
+        btn_major3 = (Button) findViewById(R.id.btn_major3);
+        btn_minus = (ImageView) findViewById(R.id.btn_minus);
 
 //        //[DB] 이름, 학번, 주전공 이름 띄우기
 //        Intent intent = getIntent();
@@ -64,8 +73,8 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         });
 
         // 주전공버튼
-        Button btn_mainMajor = (Button) findViewById(R.id.btn_mainMajor);
-        btn_mainMajor.setOnClickListener(new View.OnClickListener() {
+        Button btn_major1 = (Button) findViewById(R.id.btn_major1);
+        btn_major1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
@@ -74,8 +83,8 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         });
 
         // 복수전공버튼
-        Button btn_doubleMajor = (Button) findViewById(R.id.btn_doubleMajor);
-        btn_doubleMajor.setOnClickListener(new View.OnClickListener() {
+        Button btn_major2 = (Button) findViewById(R.id.btn_major2);
+        btn_major2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
@@ -84,8 +93,8 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         });
 
         // 부전공버튼
-        Button btn_minor = (Button) findViewById(R.id.btn_minor);
-        btn_minor.setOnClickListener(new View.OnClickListener() {
+        Button btn_major3 = (Button) findViewById(R.id.btn_major3);
+        btn_major3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPage_majorModification.class);
@@ -125,7 +134,9 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         naviBtn_myPage.setOnClickListener(this);
 
         Button btn_navigate_feedback = (Button) findViewById(R.id.btn_navigate_feedback);
+        ImageView btn_minus = (ImageView) findViewById(R.id.btn_minus);
         btn_navigate_feedback.setOnClickListener(this);
+        btn_minus.setOnClickListener(this);
 
     }
 
@@ -156,6 +167,10 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(getApplicationContext(), Feedback.class);
                 startActivity(intent);
                 break;
+            case R.id.btn_minus:
+                btn_major3.setVisibility(GONE);
+                btn_minus.setVisibility(GONE);
+                 break;
         }
     }
 

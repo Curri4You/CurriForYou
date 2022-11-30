@@ -79,33 +79,83 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn_mainMajor"
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mainMajor"
-                android:textColor="@color/blue_5"
-                android:backgroundTint="@color/blue_2"/>
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_doubleMajor"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/doubleMajor"
-                android:textColor="@color/blue_5"
-                android:backgroundTint="@color/blue_2" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_minor"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/miner"
-                android:textColor="@color/blue_5"
-                android:backgroundTint="@color/blue_2" />
+                    <Button
+                        android:id="@+id/btn_major1"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mainMajor"
+                        android:textColor="@color/blue_5"
+                        android:backgroundTint="@color/blue_2"/>
+
+                    <ImageView
+                        android:src="@drawable/minus"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        app:tint="@color/blue_2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_major2"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="컴퓨터공학전공"
+                        android:textColor="@color/blue_5"
+                        android:backgroundTint="@color/blue_2"/>
+
+                    <ImageView
+                        android:src="@drawable/minus"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        app:tint="@color/blue_2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_major3"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="뇌인지과학전공"
+                        android:textColor="@color/blue_5"
+                        android:backgroundTint="@color/blue_2"/>
+
+                    <ImageView
+                        android:id="@+id/btn_minus"
+                        android:src="@drawable/minus"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        app:tint="@color/blue_2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/btn_addMajor"
