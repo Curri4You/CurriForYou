@@ -145,7 +145,8 @@
         android:id="@+id/btn_curriculum_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Curriculum Page">
+        android:text="Curriculum Page"
+        android:visibility="gone">
     </Button>
 
 </LinearLayout>

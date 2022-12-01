@@ -271,9 +271,9 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             }
                         };
                         Context mainActivity = MainActivity.context_main;
-                        JjimRequest jjimRequest = new JjimRequest(listData.get(position).course_id, "1", responseListener);
+                        JjimListRequest jjimListRequest = new JjimListRequest(listData.get(position).course_id, "1", responseListener);
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
-                        queue.add(jjimRequest);
+                        queue.add(jjimListRequest);
                     } else {
                         //선택되지 않은 item을 클릭 시(value == 0)
                         //클릭한 item의 position을 저장
@@ -296,9 +296,9 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             }
                         };
                         Context mainActivity = MainActivity.context_main;
-                        JjimRequest jjimRequest = new JjimRequest(listData.get(position).course_id, "0", responseListener);
+                        JjimListRequest jjimListRequest = new JjimListRequest(listData.get(position).course_id, "0", responseListener);
                         RequestQueue queue = Volley.newRequestQueue(mainActivity);
-                        queue.add(jjimRequest);
+                        queue.add(jjimListRequest);
                     }
                     notifyItemChanged(position);
                     break;
@@ -358,8 +358,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
                     notifyItemChanged(position);
                     break;
-
-
             }
         }
 

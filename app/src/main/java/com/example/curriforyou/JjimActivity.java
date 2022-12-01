@@ -40,15 +40,24 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
     private String REQUEST_URL = "http://smlee099.dothome.co.kr/jjim_list.php";
     public static final int LOAD_SUCCESS = 101;
     private ProgressDialog progressDialog = null;
+    JjimRecyclerAdapter rc_adapter1 = null;
+    JjimRecyclerAdapter rc_adapter2 = null;
+    JjimRecyclerAdapter rc_adapter3 = null;
+    JjimRecyclerAdapter rc_adapter4 = null;
     JjimRecyclerAdapter rc_adapter = null;
+    ArrayList<DataJjimList> jjimList1 = new ArrayList<>();
+    ArrayList<DataJjimList> jjimList2 = new ArrayList<>();
+    ArrayList<DataJjimList> jjimList3 = new ArrayList<>();
+    ArrayList<DataJjimList> jjimList4 = new ArrayList<>();
     ArrayList<DataJjimList> jjimList = new ArrayList<>();
-    private Context context;
+    public static Context context_jjim;
     private ArrayList<HashMap<String, String>> jjimArrayList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jjim_list);
+        context_jjim = this;
 
         open_checkbox = (ImageView) findViewById(R.id.open_checkbox);
         open_filtering = (TextView) findViewById(R.id.open_filtering);
@@ -81,8 +90,30 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        Context context;
-
+        RecyclerView rv_jjimList1 = findViewById(R.id.rc_jjimList1);
+        LinearLayoutManager jl1 = new LinearLayoutManager(this);
+        rv_jjimList1.setLayoutManager(jl1);
+        jjimList1.clear();
+        rc_adapter1 = new JjimRecyclerAdapter(jjimList1);
+        rv_jjimList1.setAdapter(rc_adapter1);
+        RecyclerView rv_jjimList2 = findViewById(R.id.rc_jjimList2);
+        LinearLayoutManager jl2 = new LinearLayoutManager(this);
+        rv_jjimList2.setLayoutManager(jl2);
+        jjimList2.clear();
+        rc_adapter2 = new JjimRecyclerAdapter(jjimList2);
+        rv_jjimList2.setAdapter(rc_adapter2);
+        RecyclerView rv_jjimList3 = findViewById(R.id.rc_jjimList3);
+        LinearLayoutManager jl3 = new LinearLayoutManager(this);
+        rv_jjimList3.setLayoutManager(jl3);
+        jjimList3.clear();
+        rc_adapter3 = new JjimRecyclerAdapter(jjimList3);
+        rv_jjimList3.setAdapter(rc_adapter3);
+        RecyclerView rv_jjimList4 = findViewById(R.id.rc_jjimList4);
+        LinearLayoutManager jl4 = new LinearLayoutManager(this);
+        rv_jjimList4.setLayoutManager(jl4);
+        jjimList4.clear();
+        rc_adapter4 = new JjimRecyclerAdapter(jjimList4);
+        rv_jjimList4.setAdapter(rc_adapter4);
         RecyclerView rv_jjimList = findViewById(R.id.rc_jjimList);
         LinearLayoutManager jl = new LinearLayoutManager(this);
         rv_jjimList.setLayoutManager(jl);
@@ -196,7 +227,16 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
                 String category = jjimInfo.getString("category");
 
                 DataJjimList data = new DataJjimList(major_division, course_name, course_id, is_open, credit, jjim, category);
-                rc_adapter.addItem(data);
+
+                if (category.equals("1")) {
+                    rc_adapter1.addItem(data);
+                } else if (category.equals("2")) {
+                    rc_adapter2.addItem(data);
+                } else if (category.equals("3")) {
+                    rc_adapter3.addItem(data);
+                } else if (category.equals("4")) {
+                    rc_adapter4.addItem(data);
+                }
             }
             return true;
         } catch (JSONException e) {
