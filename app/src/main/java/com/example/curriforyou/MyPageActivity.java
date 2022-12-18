@@ -87,7 +87,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(lm);
-        adapter = new MyPageRecycler();
+        adapter = new MyPageRecycler(this);
         recyclerView.setAdapter(adapter);
     }
 
