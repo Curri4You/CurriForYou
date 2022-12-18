@@ -32,6 +32,7 @@ import java.util.HashMap;
 
 public class JjimActivity extends AppCompatActivity implements View.OnClickListener {
 
+    TextView tv_jjim_num;
     ImageView open_checkbox;
     TextView open_filtering;
     boolean open_only = false;
@@ -59,6 +60,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_jjim_list);
         context_jjim = this;
 
+        tv_jjim_num = (TextView) findViewById(R.id.tv_jjim_num);
         open_checkbox = (ImageView) findViewById(R.id.open_checkbox);
         open_filtering = (TextView) findViewById(R.id.open_filtering);
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
@@ -203,6 +205,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
     //[RecyclerView] jsonParser 함수
     //웹사이트 화면을 파싱하는 함수
     public boolean RC_jsonParser(String jsonString) {
+        int jjim_num = 0;
 
         if (jsonString == null) return false;
 
@@ -227,6 +230,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
                 String category = jjimInfo.getString("category");
 
                 DataJjimList data = new DataJjimList(major_division, course_name, course_id, is_open, credit, jjim, category);
+                jjim_num += 1;
 
                 if (category.equals("1")) {
                     rc_adapter1.addItem(data);
@@ -238,6 +242,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
                     rc_adapter4.addItem(data);
                 }
             }
+            tv_jjim_num.setText(String.valueOf(jjim_num));
             return true;
         } catch (JSONException e) {
             Log.d(TAG, e.toString());

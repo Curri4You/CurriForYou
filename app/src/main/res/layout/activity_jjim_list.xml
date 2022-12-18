@@ -99,7 +99,7 @@
                     android:id="@+id/tv_jjim_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="17"
+                    android:text="찜개수"
                     android:textColor="@color/gray_4" />
 
             </LinearLayout>
