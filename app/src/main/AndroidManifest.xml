@@ -23,7 +23,7 @@
             android:windowSoftInputMode="adjustPan">
         </activity>
 
-        <activity android:name=".LoginActivity"
+        <activity android:name=".MyPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,9 +32,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUp_id"/>
-        <activity android:name=".MyPageActivity"/>
+        <activity android:name=".LoginActivity"/>
         <activity android:name=".GmActivity"/>
-        <!--<activity android:name=".GmSemesterActivity"/>-->
         <activity android:name=".RecomActivity"/>
         <activity android:name=".MyPage_addMajor"/>
         <activity android:name=".MyPage_infoModification"/>

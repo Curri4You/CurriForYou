@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +12,7 @@ public class MyPage_infoModification extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mypage_info_modification);
+        setContentView(R.layout.mypage_info_modification);
 
         ImageView btn_infoModification = (ImageView) findViewById(R.id.navigate_before);
         btn_infoModification.setOnClickListener(new View.OnClickListener() {

@@ -7,8 +7,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MyPage_addMajor extends AppCompatActivity implements View.OnClickListener {
@@ -18,11 +21,13 @@ public class MyPage_addMajor extends AppCompatActivity implements View.OnClickLi
     String choice_col = "";
     String choice_maj = "";
     private Button btn_submit;
+    private RadioGroup rg_major_division;
+    int major_division = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mypage_add_major);
+        setContentView(R.layout.mypage_add_major);
 
         //Spinner - university
         final Spinner spin_university_name = (Spinner) findViewById(R.id.spin_university_name);
@@ -37,6 +42,9 @@ public class MyPage_addMajor extends AppCompatActivity implements View.OnClickLi
         btn_submit = (Button) findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(this);
 
+        rg_major_division = (RadioGroup) findViewById(R.id.rg_major_division);
+        rg_major_division.setOnCheckedChangeListener(radioGroupButtonChangeListener);
+
         btn_infoModification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,11 +57,11 @@ public class MyPage_addMajor extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //선택한 item의 index가 0 ~ 17 인 경우
-                if (position >= 0 && position <= 17){     //spin_uniAdapter.getItem(position).equals("인문과학대학")
+                if (position >= 0 && position <= 17) {     //spin_uniAdapter.getItem(position).equals("인문과학대학")
                     int uni = position;
                     choice_uni = spin_uniAdapter.getItem(position).toString();
 
-                    spin_colAdapter = ArrayAdapter.createFromResource(MyPage_addMajor.this, spin_uni_col_major[(uni+1)][0][0], androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+                    spin_colAdapter = ArrayAdapter.createFromResource(MyPage_addMajor.this, spin_uni_col_major[(uni + 1)][0][0], androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
                     spin_colAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
                     spin_college_name.setAdapter(spin_colAdapter);
 
@@ -61,7 +69,7 @@ public class MyPage_addMajor extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             int col = position;
-                            if(col < spin_uni_col_major[(uni+1)][1].length) {
+                            if (col < spin_uni_col_major[(uni + 1)][1].length) {
                                 choice_col = spin_colAdapter.getItem(position).toString();
 
                                 spin_majAdapter = ArrayAdapter.createFromResource(MyPage_addMajor.this, spin_uni_col_major[(uni + 1)][1][col], androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
@@ -136,16 +144,40 @@ public class MyPage_addMajor extends AppCompatActivity implements View.OnClickLi
             {{R.array.spin_col_AI}, {R.array.spin_major_AIAI}}
     };
 
+    //라디오 그룹 클릭 리스너
+    RadioGroup.OnCheckedChangeListener radioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+            if (i == R.id.rb_major_division1) {
+                major_division = 1;
+            } else if (i == R.id.rb_major_division2) {
+                major_division = 2;
+            } else if (i == R.id.rb_major_division3) {
+                major_division = 3;
+            } else if (i == R.id.rb_major_division4) {
+                major_division = 4;
+            } else if (i == R.id.rb_major_division5) {
+                major_division = 5;
+            }
+        }
+    };
+
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.btn_submit:
-                Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
-                intent.putExtra("col_name", choice_col);
-                intent.putExtra("major_name", choice_maj);
-                intent.putExtra("check_addMajor", true);
-                startActivity(intent);
-                break;
+                if (major_division == 0) {
+                    Toast.makeText(getApplicationContext(), "전공구분을 선택해주세요!", Toast.LENGTH_LONG).show();
+                    break;
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                    intent.putExtra("col_name", choice_col);
+                    intent.putExtra("major_name", choice_maj);
+                    intent.putExtra("check_addMajor", true);
+                    intent.putExtra("major_division", major_division);
+                    startActivity(intent);
+                    break;
+                }
         }
     }
 }

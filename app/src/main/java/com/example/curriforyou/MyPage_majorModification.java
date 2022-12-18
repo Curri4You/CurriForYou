@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +13,7 @@ public class MyPage_majorModification extends AppCompatActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mypage_major_modification);
+        setContentView(R.layout.mypage_major_modification);
         Button btn_choice_mainMajor = (Button) findViewById(R.id.btn_choice_mainMajor);
         Button btn_choice_doubleMajor = (Button) findViewById(R.id.btn_choice_doubleMajor);
         Button btn_choice_minor = (Button) findViewById(R.id.btn_choice_minor);
