@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    //*추가전공 개수*//
+    <string-array name="spin_sub_major_num">
+        <item>0개(추가전공 없음)</item>
+        <item>1개</item>
+        <item>2개</item>
+        <item>3개</item>
+        <item>4개</item>
+        <item>5개</item>
+    </string-array>
+
     //*복수전공, 부전공, 연계전공*//
     <string-array name="spin_sub_major">
         <item>복수전공</item>

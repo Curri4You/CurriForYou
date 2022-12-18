@@ -259,12 +259,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     boolean success = jsonObject.getBoolean("success");
-                                    if(success) {
-                                        Toast.makeText(context.getApplicationContext(),"등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
                                 } catch (JSONException e){
                                     e.printStackTrace();
                                 }
@@ -284,12 +278,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     boolean success = jsonObject.getBoolean("success");
-                                    if(success) {
-                                        Toast.makeText(context.getApplicationContext(),listData.get(position).course_id, Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
                                 } catch (JSONException e){
                                     e.printStackTrace();
                                 }
@@ -312,12 +300,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     boolean success = jsonObject.getBoolean("success");
-                                    if(success) {
-                                        Toast.makeText(context.getApplicationContext(),"등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
                                 } catch (JSONException e){
                                     e.printStackTrace();
                                 }
@@ -339,12 +321,6 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     boolean success = jsonObject.getBoolean("success");
-                                    if(success) {
-                                        Toast.makeText(context.getApplicationContext(),listData.get(position).course_id, Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(context.getApplicationContext(),"등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
                                 } catch (JSONException e){
                                     e.printStackTrace();
                                 }

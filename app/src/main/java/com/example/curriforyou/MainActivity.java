@@ -540,7 +540,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.setItems(course_category, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "선택된 카테고리는 "+course_category[which], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "선택된 카테고리는 "+course_category[which]+"입니다.", Toast.LENGTH_SHORT).show();
                 tv_dialog.setText(course_category[which]);
 
                 //[Detail Category]
@@ -865,30 +865,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
-    ///////////////////////////
-    //테스트용 - 버튼 누르면 토스트 문구 띄우기
-    public void CourseList(){
-        String URL = "http://smlee099.dothome.co.kr/CourseList.php";
-
-        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "응답:"+response, Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "에러:"+error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> param = new HashMap<String, String>();
-                return param;
-            }
-        };
-        request.setShouldCache(false);
-        requestQueue.add(request);
-    }
-    ///////////////////////////
 }

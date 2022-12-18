@@ -29,7 +29,7 @@ public class SignUp_id extends AppCompatActivity {
     private AlertDialog dialog;
     private boolean validate = false;
 
-    ArrayAdapter<CharSequence> spin_uniAdapter, spin_colAdapter, spin_majAdapter, spin_subAdapter;
+    ArrayAdapter<CharSequence> spin_uniAdapter, spin_colAdapter, spin_majAdapter, spin_subAdapter, spin_numAdapter;
     String choice_uni="";
     String choice_col="";
     String choice_maj="";
@@ -48,7 +48,7 @@ public class SignUp_id extends AppCompatActivity {
         et_user_password = findViewById(R.id.et_user_password);
         et_user_name = findViewById(R.id.et_user_name);
         et_student_id = findViewById(R.id.et_student_id);
-        et_major_division = findViewById(R.id.et_major_division);
+        /*et_major_division = findViewById(R.id.et_major_division);*/
 
         //아이디 중복 체크
         btn_check = findViewById(R.id.btn_check);
@@ -183,6 +183,24 @@ public class SignUp_id extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 choice_sub = spin_subAdapter.getItem(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //Spinner - 추가전공개수
+        final Spinner spin_sub_major_num = (Spinner)findViewById(R.id.spin_sub_major_num);
+        spin_numAdapter = ArrayAdapter.createFromResource(SignUp_id.this, R.array.spin_sub_major_num, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spin_numAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spin_sub_major_num.setAdapter(spin_numAdapter);
+
+        spin_sub_major_num.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                choice_sub = spin_numAdapter.getItem(position).toString();
             }
 
             @Override

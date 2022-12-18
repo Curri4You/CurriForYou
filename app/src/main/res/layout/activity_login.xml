@@ -64,7 +64,8 @@
                     android:id="@+id/et_user_password"
                     android:layout_width="match_parent"
                     android:hint="여기에 입력하세요"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:inputType="textPassword"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>
