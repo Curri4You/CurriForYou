@@ -56,13 +56,13 @@
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item_open.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_recom.xml" value="0.2" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_semester.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/mypage.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/drawerlayout.xml" value="0.3466796875" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/sidebar_layout.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Samsung/AndroidStudioProjects/CurriForYou/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.114" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/feedbackbox_border.xml" value="0.1" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/drawable/mypage_delete_dialog.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum_sidebar.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_curriculum_sidebar.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_feedback.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm.xml" value="0.12" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_gm_home.xml" value="0.16666666666666666" />
@@ -74,14 +74,12 @@
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_login_fi3.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_management.xml" value="0.1625" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage_add_major.xml" value="0.22" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage_info_modification.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_mypage_major_modification.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_recom.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_signup_id.xml" value="0.1625" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/activity_signup_success.xml" value="0.1625" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/cb_taken_detail.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/detail_category_layout.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/frag1.xml" value="0.13125" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/item_list.xml" value="0.1625" />
@@ -91,11 +89,9 @@
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item2.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_item_open.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_jjim.xml" value="0.22" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_mpbutton.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_mpbutton.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_recom.xml" value="0.1" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/listview_semester.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/mypage_add_major.xml" value="0.1" />
-        <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/mypage_delete_dialog.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/rb_grade.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/layout/real_listview_semester.xml" value="0.1625" />
         <entry key="..\:/Users/godch/AndroidStudioProjects/CurriForYou/app/src/main/res/menu/bottom_navi.xml" value="0.175" />
