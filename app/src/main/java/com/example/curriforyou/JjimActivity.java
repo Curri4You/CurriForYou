@@ -3,6 +3,8 @@ package com.example.curriforyou;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -256,13 +258,13 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.open_filtering:
                 if (open_only) {
                     open_checkbox.setImageResource(R.drawable.checkbox_outline);
-                    open_checkbox.setColorFilter(R.color.gray_4);
-//                    open_filtering.setTextColor(R.color.gray_4);
+                    open_checkbox.setColorFilter(Color.parseColor("#BCC2D0"));
+                    open_filtering.setTextColor(Color.parseColor("#BCC2D0"));
                     open_only = false;
                 } else {
                     open_checkbox.setImageResource(R.drawable.checkbox_checked);
-                    open_checkbox.setColorFilter(R.color.gray_3);
-//                    open_filtering.setTextColor(R.color.gray_3);
+                    open_checkbox.setColorFilter(Color.parseColor("#2D4788"));
+                    open_filtering.setTextColor(Color.parseColor("#2D4788"));
                     open_only = true;
                 }
                 break;
