@@ -6,9 +6,6 @@
 
 package com.example.curriforyou;
 
-import static android.view.View.GONE;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,17 +14,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MyPageActivity extends AppCompatActivity implements View.OnClickListener {
     //    final static private String URL = "http://smlee099.dothome.co.kr/my_change_ok.php";
@@ -42,7 +32,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mypage);
+        setContentView(R.layout.mypage);
         init();
         getData();
 
@@ -50,12 +40,13 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         String major_name = intent.getStringExtra("major_name");
         String col_name = intent.getStringExtra("col_name");
         Boolean check_addMajor = intent.getBooleanExtra("check_addMajor", false);
+        int major_division = intent.getIntExtra("major_division", 0);
         if (check_addMajor) {
             if (major_name.equals("전체")) {
-                DataMpList data = new DataMpList(col_name);
+                MyPageData data = new MyPageData(major_division, col_name);
                 adapter.addItem(data);
             } else {
-                DataMpList data = new DataMpList(major_name);
+                MyPageData data = new MyPageData(major_division, major_name);
                 adapter.addItem(data);
             }
         }
@@ -96,16 +87,16 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(lm);
-        adapter = new MyPageRecycler();
+        adapter = new MyPageRecycler(this);
         recyclerView.setAdapter(adapter);
     }
 
     private void getData() {
-        DataMpList data = new DataMpList("사이버보안전공");
+        MyPageData data = new MyPageData(1, "사이버보안전공");
         adapter.addItem(data);
-        data = new DataMpList("컴퓨터공학전공");
+        data = new MyPageData(2, "컴퓨터공학전공");
         adapter.addItem(data);
-        data = new DataMpList("뇌인지과학전공");
+        data = new MyPageData(3, "뇌인지과학전공");
         adapter.addItem(data);
     }
 
@@ -199,7 +190,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_mypage);
+//        setContentView(R.layout.mypage);
 ////        init();
 ////        getData(URL);
 //

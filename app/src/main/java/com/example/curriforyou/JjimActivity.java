@@ -3,6 +3,8 @@ package com.example.curriforyou;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,6 +34,7 @@ import java.util.HashMap;
 
 public class JjimActivity extends AppCompatActivity implements View.OnClickListener {
 
+    TextView tv_jjim_num;
     ImageView open_checkbox;
     TextView open_filtering;
     boolean open_only = false;
@@ -59,6 +62,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_jjim_list);
         context_jjim = this;
 
+        tv_jjim_num = (TextView) findViewById(R.id.tv_jjim_num);
         open_checkbox = (ImageView) findViewById(R.id.open_checkbox);
         open_filtering = (TextView) findViewById(R.id.open_filtering);
         LinearLayout naviBtn_curriculum = (LinearLayout) findViewById(R.id.naviBtn_curriculum);
@@ -203,6 +207,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
     //[RecyclerView] jsonParser 함수
     //웹사이트 화면을 파싱하는 함수
     public boolean RC_jsonParser(String jsonString) {
+        int jjim_num = 0;
 
         if (jsonString == null) return false;
 
@@ -227,6 +232,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
                 String category = jjimInfo.getString("category");
 
                 DataJjimList data = new DataJjimList(major_division, course_name, course_id, is_open, credit, jjim, category);
+                jjim_num += 1;
 
                 if (category.equals("1")) {
                     rc_adapter1.addItem(data);
@@ -238,6 +244,7 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
                     rc_adapter4.addItem(data);
                 }
             }
+            tv_jjim_num.setText(String.valueOf(jjim_num));
             return true;
         } catch (JSONException e) {
             Log.d(TAG, e.toString());
@@ -251,13 +258,13 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.open_filtering:
                 if (open_only) {
                     open_checkbox.setImageResource(R.drawable.checkbox_outline);
-                    open_checkbox.setColorFilter(R.color.gray_4);
-//                    open_filtering.setTextColor(R.color.gray_4);
+                    open_checkbox.setColorFilter(Color.parseColor("#BCC2D0"));
+                    open_filtering.setTextColor(Color.parseColor("#BCC2D0"));
                     open_only = false;
                 } else {
                     open_checkbox.setImageResource(R.drawable.checkbox_checked);
-                    open_checkbox.setColorFilter(R.color.gray_3);
-//                    open_filtering.setTextColor(R.color.gray_3);
+                    open_checkbox.setColorFilter(Color.parseColor("#2D4788"));
+                    open_filtering.setTextColor(Color.parseColor("#2D4788"));
                     open_only = true;
                 }
                 break;
