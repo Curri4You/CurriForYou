@@ -261,11 +261,19 @@ public class JjimActivity extends AppCompatActivity implements View.OnClickListe
                     open_checkbox.setColorFilter(Color.parseColor("#BCC2D0"));
                     open_filtering.setTextColor(Color.parseColor("#BCC2D0"));
                     open_only = false;
+                    rc_adapter1.getFilter().filter("all");
+                    rc_adapter2.getFilter().filter("all");
+                    rc_adapter3.getFilter().filter("all");
+                    rc_adapter4.getFilter().filter("all");
                 } else {
                     open_checkbox.setImageResource(R.drawable.checkbox_checked);
                     open_checkbox.setColorFilter(Color.parseColor("#2D4788"));
                     open_filtering.setTextColor(Color.parseColor("#2D4788"));
                     open_only = true;
+                    rc_adapter1.getFilter().filter("open_only");
+                    rc_adapter2.getFilter().filter("open_only");
+                    rc_adapter3.getFilter().filter("open_only");
+                    rc_adapter4.getFilter().filter("open_only");
                 }
                 break;
             case R.id.naviBtn_curriculum:

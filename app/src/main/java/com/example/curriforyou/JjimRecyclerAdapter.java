@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,12 +27,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class JjimRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class JjimRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private ArrayList<DataJjimList> listData = null;
     private Context context;
     private SparseBooleanArray selecteditems = new SparseBooleanArray();
+    ArrayList<DataJjimList> filteredList;
     private int prePosition = -1;
     int CHECK_NUM = 0;
     Activity activity;
@@ -39,8 +43,9 @@ public class JjimRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private SparseBooleanArray selectedhearts = new SparseBooleanArray();
 
     //생성자
-    JjimRecyclerAdapter(ArrayList<DataJjimList> list) {
+    public JjimRecyclerAdapter(ArrayList<DataJjimList> list) {
         listData = list;
+        this.filteredList = list;
     }
 
     @NonNull
@@ -55,13 +60,13 @@ public class JjimRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         //item을 하나하나 보여주는(bind되는) 함수
-        ((ViewHolderJjimList) holder).onBind(listData.get(position), position);
+        ((ViewHolderJjimList) holder).onBind(filteredList.get(position), position);
     }
 
     @Override
     public int getItemCount() {
         //RecyclerView의 총 개수
-        return listData.size();
+        return filteredList.size();
     }
 
     void addItem(DataJjimList data) {
@@ -72,6 +77,35 @@ public class JjimRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void setItems(ArrayList<DataJjimList> listData1) {
         listData = listData1;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String open_only = charSequence.toString();
+                if(open_only.equals("all")){
+                    filteredList = listData;
+                } else {
+                    ArrayList<DataJjimList> filteringList = new ArrayList<>();
+                    for (DataJjimList dataJjim : listData) {
+                        if (dataJjim.is_open.equals("1")) {
+                            filteringList.add(dataJjim);
+                        }
+                    }
+                    filteredList = filteringList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filteredList = (ArrayList<DataJjimList>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     class ViewHolderJjimList extends RecyclerView.ViewHolder implements View.OnClickListener {
